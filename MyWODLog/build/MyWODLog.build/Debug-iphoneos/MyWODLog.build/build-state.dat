@@ -38,6 +38,163 @@ c000000004C62430F0000000002EBC2B0
 t1281508111
 s49005232
 
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk
+c000000004CC7DC9E0000000000000110
+t1288166558
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+c000000004CB3DFCF00000000000001E5
+t1286856655
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC10EF500000000003532B0
+t1287720693
+s3486384
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC10F4700000000003E1F20
+t1287720775
+s4071200
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC10F1C0000000000001466
+t1287720732
+s5222
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC11AE60000000000000AA1
+t1287723750
+s2721
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC11B750000000000C769F0
+t1287723893
+s13068784
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.h
+c000000004D3129520000000000000177
+t1295067474
+s375
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m
+c000000004D312952000000000000045E
+t1295067474
+s1118
+i"MainPageViewController.h"
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.xib
+c000000004D31295200000000000060F5
+t1295067474
+s24821
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.h
+c000000004D31295200000000000001C8
+t1295067474
+s456
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m
+c000000004D31295200000000000002BF
+t1295067474
+s703
+i"MyWODLogAppDelegate.h"
+i"MainPageViewController.h"
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/MainWindow.xib
+c000000004D31295200000000000056A6
+t1295067474
+s22182
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/MyWODLog_Prefix.pch
+c000000004D31295200000000000000B9
+t1295067474
+s185
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app.dSYM
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/Info.plist
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MainPageViewController.nib
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MainWindow.nib
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MyWODLog
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/PkgInfo
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/ResourceRules.plist
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MainPageViewController.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLog
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLog.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLogAppDelegate.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/main.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MainPageViewController.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLog
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLog.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLogAppDelegate.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/main.o
+t2
+s0
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/main.m
+c000000004D3129520000000000000164
+t1295067474
+s356
+i<UIKit/UIKit.h>
+
 N/Users/derek/capstone/MyWODLog/Classes/MainPageViewController.h
 c000000004CE89DAA0000000000000279
 t1290313130
@@ -160,6 +317,14 @@ t1290299333
 s356
 i<UIKit/UIKit.h>
 
+N/var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-atdanolwsjfkwlhebhwichqdvgui/MyWODLog_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gzhobsfbqggshnesltotvzkgrdut/MyWODLog_Prefix.pch.gch
+t2
+s0
+
 N/var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-cikailltvkcirhbarjdaxyjgfaab/MyWODLog_Prefix.pch.gch
 t2
 s0
@@ -169,30 +334,54 @@ t2
 s0
 
 NMyWODLog-Info.plist
-c000000004CE867C5000000000000038D
-t1290299333
+c000000004D312952000000000000038D
+t1295067474
 s909
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies312007041#312007041#0(133"[BEROR]Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain1(4@125"Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain312007041#18446744073709551615#0#0(1@0"0(0#1#0"8646529440#0"0#
+lSLF07#2@18"Check dependencies316760373#316760373#0(133"[BEROR]Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain1(4@125"Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain316760373#18446744073709551615#0#0(1@0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MainPageViewController.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
 
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MainPageViewController.o /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLogAppDelegate.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal armv6 objective-c com.apple.compilers.gcc.4_2
 r0
 
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLogAppDelegate.o /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal armv6 objective-c com.apple.compilers.gcc.4_2
 r0
 
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/main.o /Users/Matthew/Desktop/capstone/MyWODLog/main.m normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/main.o /Users/derek/capstone/MyWODLog/main.m normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MainPageViewController.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
 r0
 
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MainPageViewController.o /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
 r0
 
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLogAppDelegate.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLogAppDelegate.o /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal armv7 objective-c com.apple.compilers.gcc.4_2
 r0
 
+CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/main.o /Users/Matthew/Desktop/capstone/MyWODLog/main.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/main.o /Users/derek/capstone/MyWODLog/main.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.xib
+r0
+
+CCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/MainWindow.xib
 r0
 
 CCompileXIB /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.xib
@@ -204,10 +393,25 @@ r0
 CCpResource build/Debug-iphoneos/MyWODLog.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/ResourceRules.plist
 r0
 
+CCpResource build/Debug-iphoneos/MyWODLog.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+r0
+
+CCreateUniversalBinary /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MyWODLog normal "armv6 armv7"
+r0
+
 CCreateUniversalBinary /Users/derek/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MyWODLog normal "armv6 armv7"
 r0
 
+CGenerateDSYMFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app.dSYM /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MyWODLog
+r0
+
 CGenerateDSYMFile /Users/derek/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app.dSYM /Users/derek/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/MyWODLog
+r0
+
+CLd /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLog normal armv6
+r0
+
+CLd /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLog normal armv7
 r0
 
 CLd /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv6/MyWODLog normal armv6
@@ -216,13 +420,25 @@ r0
 CLd /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphoneos/MyWODLog.build/Objects-normal/armv7/MyWODLog normal armv7
 r0
 
+CProcessInfoPlistFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/Info.plist MyWODLog-Info.plist
+r0
+
 CProcessInfoPlistFile /Users/derek/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app/Info.plist MyWODLog-Info.plist
+r0
+
+CProcessPCH /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-atdanolwsjfkwlhebhwichqdvgui/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gzhobsfbqggshnesltotvzkgrdut/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal armv7 objective-c com.apple.compilers.gcc.4_2
 r0
 
 CProcessPCH /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-cikailltvkcirhbarjdaxyjgfaab/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
 r0
 
 CProcessPCH /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gotluwzwbubldmhgexgxovhvrkdy/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CTouch /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app
 r0
 
 CTouch /Users/derek/capstone/MyWODLog/build/Debug-iphoneos/MyWODLog.app

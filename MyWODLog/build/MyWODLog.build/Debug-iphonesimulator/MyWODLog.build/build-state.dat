@@ -1,18 +1,18 @@
 TMyWODLog
 v7
 r0
-t312016441.944334
+t316760408.153192
 cCheck dependencies
-cProcessInfoPlistFile /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist MyWODLog-Info.plist
-cCompileXIB /Users/derek/capstone/MyWODLog/MainWindow.xib
-cCompileXIB /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.xib
-cProcessPCH /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gareenfnryjprndizvudwzqbshep/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o /Users/derek/capstone/MyWODLog/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog normal i386
-cGenerateDSYMFile /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
-cTouch /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
+cProcessInfoPlistFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist MyWODLog-Info.plist
+cCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/MainWindow.xib
+cCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.xib
+cProcessPCH /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o /Users/Matthew/Desktop/capstone/MyWODLog/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog normal i386
+cGenerateDSYMFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
+cTouch /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
 
 N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk
 c000000004C6C30170000000000000110
@@ -43,6 +43,129 @@ N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1
 c000000004C6242840000000001E228C0
 t1281507972
 s31598784
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk
+c000000004CC128950000000000000110
+t1287727253
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC12246000000000029B310
+t1287725638
+s2732816
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC1226D000000000029D5D0
+t1287725677
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC1225F0000000000001466
+t1287725663
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC1281F0000000000000AA1
+t1287727135
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC12883000000000074D7B0
+t1287727235
+s7657392
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.h
+c000000004D3129520000000000000177
+t1295067474
+s375
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m
+c000000004D312952000000000000045E
+t1295067474
+s1118
+i"MainPageViewController.h"
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.xib
+c000000004D31295200000000000060F5
+t1295067474
+s24821
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.h
+c000000004D31295200000000000001C8
+t1295067474
+s456
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m
+c000000004D31295200000000000002BF
+t1295067474
+s703
+i"MyWODLogAppDelegate.h"
+i"MainPageViewController.h"
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/MainWindow.xib
+c000000004D31295200000000000056A6
+t1295067474
+s22182
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/MyWODLog_Prefix.pch
+c000000004D31295200000000000000B9
+t1295067474
+s185
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
+t1295067608
+s238
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM
+t1295067608
+s102
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist
+t1295067474
+s595
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MainPageViewController.nib
+t1295067474
+s4029
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MainWindow.nib
+t1295067474
+s1655
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
+t1295067607
+s16824
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/PkgInfo
+t1295067474
+s8
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o
+t1295067607
+s40460
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLog.LinkFileList
+c000000004D3129D4000000000000019B
+t1295067604
+s411
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o
+t1295067607
+s48444
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o
+t1295067607
+s6308
+
+N/Users/Matthew/Desktop/capstone/MyWODLog/main.m
+c000000004D3129520000000000000164
+t1295067474
+s356
+i<UIKit/UIKit.h>
 
 N/Users/derek/capstone/MyWODLog/Classes/MainPageViewController.h
 c000000004CE8C1450000000000000177
@@ -153,6 +276,10 @@ t1290299333
 s356
 i<UIKit/UIKit.h>
 
+N/var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch.gch
+t1295067606
+s15453392
+
 N/var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fxtgwltqvtoaarafevqpgxmhhjra/MyWODLog_Prefix.pch.pth
 t2
 s0
@@ -162,8 +289,8 @@ t1290319079
 s15211536
 
 NMyWODLog-Info.plist
-c000000004CE867C5000000000000038D
-t1290299333
+c000000004D312952000000000000038D
+t1295067474
 s909
 
 C<C0011:'CompileC MyWODLogAppDelegate.o':P9:W0>
@@ -220,7 +347,20 @@ lSLF07#2@45"Analyze /Users/derek/capstone/MyWODLog/main.m312010485#312010485#0(4
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies312016441#312016441#0(0"0(0#1#0"8653528256#0"0#
+lSLF07#2@18"Check dependencies316760404#316760404#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s316760407.423161
+e316760407.509795
+r1
+xCompileC
+xbuild/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o
+x/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m316760407#316760407#0(0"0(0#0#73"/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m8600163840#2000"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch -c /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.m -o /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o0#
 
 CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s312016441.735155
@@ -235,6 +375,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@71"Compile /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m312016441#312016441#0(0"0(0#0#63"/Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m8668331584#1890"    cd /Users/derek/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gareenfnryjprndizvudwzqbshep/MyWODLog_Prefix.pch -c /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.m -o /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MainPageViewController.o0#
 
+CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s316760407.345927
+e316760407.423038
+r1
+xCompileC
+xbuild/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o
+x/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m316760407#316760407#0(0"0(0#0#70"/Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m8602706144#1994"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch -c /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m -o /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o0#
+
 CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s312015045.136858
 e312015045.321332
@@ -248,6 +401,19 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@68"Compile /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m312015045#312015045#0(0"0(0#0#60"/Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m8647092992#1884"    cd /Users/derek/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gareenfnryjprndizvudwzqbshep/MyWODLog_Prefix.pch -c /Users/derek/capstone/MyWODLog/Classes/MyWODLogAppDelegate.m -o /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLogAppDelegate.o0#
 
+CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o /Users/Matthew/Desktop/capstone/MyWODLog/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s316760407.207211
+e316760407.345805
+r1
+xCompileC
+xbuild/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o
+x/Users/Matthew/Desktop/capstone/MyWODLog/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@55"Compile /Users/Matthew/Desktop/capstone/MyWODLog/main.m316760407#316760407#0(0"0(0#0#47"/Users/Matthew/Desktop/capstone/MyWODLog/main.m8599675904#1956"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch -c /Users/Matthew/Desktop/capstone/MyWODLog/main.m -o /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o0#
+
 CCompileC build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o /Users/derek/capstone/MyWODLog/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s312011879.749201
 e312011879.826600
@@ -260,6 +426,12 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@45"Compile /Users/derek/capstone/MyWODLog/main.m312011879#312011879#0(0"0(0#0#37"/Users/derek/capstone/MyWODLog/main.m8647029024#1846"    cd /Users/derek/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -include /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gareenfnryjprndizvudwzqbshep/MyWODLog_Prefix.pch -c /Users/derek/capstone/MyWODLog/main.m -o /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/main.o0#
+
+CCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/Classes/MainPageViewController.xib
+r0
+
+CCompileXIB /Users/Matthew/Desktop/capstone/MyWODLog/MainWindow.xib
+r0
 
 CCompileXIB /Users/derek/capstone/MyWODLog/Classes/MainPageViewController.xib
 s312016367.233938
@@ -277,6 +449,15 @@ xCompileXIB
 x/Users/derek/capstone/MyWODLog/MainWindow.xib
 lSLF07#2@25"CompileXIB MainWindow.xib312014664#312014665#0(0"0(0#0#45"/Users/derek/capstone/MyWODLog/MainWindow.xib8625676768#547"    cd /Users/derek/capstone/MyWODLog    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.1    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MainWindow.nib /Users/derek/capstone/MyWODLog/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk0#
 
+CGenerateDSYMFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
+s316760408.029067
+e316760408.129700
+r1
+xGenerateDSYMFile
+x/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM
+x/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
+lSLF07#2@112"GenerateDSYMFile build/Debug-iphonesimulator/MyWODLog.app.dSYM build/Debug-iphonesimulator/MyWODLog.app/MyWODLog316760408#316760408#0(0"0(0#0#90"/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog8601413664#392"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog -o /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM0#
+
 CGenerateDSYMFile /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
 s312016441.930387
 e312016441.942060
@@ -285,6 +466,16 @@ xGenerateDSYMFile
 x/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM
 x/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
 lSLF07#2@112"GenerateDSYMFile build/Debug-iphonesimulator/MyWODLog.app.dSYM build/Debug-iphonesimulator/MyWODLog.app/MyWODLog312016441#312016441#0(0"0(0#0#80"/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog8658497248#362"    cd /Users/derek/capstone/MyWODLog    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog -o /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app.dSYM0#
+
+CLd /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog normal i386
+s316760407.510023
+e316760408.028923
+r1
+xLd
+x/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog
+xnormal
+xi386
+lSLF07#2@95"Link /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog316760407#316760408#0(0"0(0#0#0"8604142240#915"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -L/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -F/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -filelist /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLog.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog0#
 
 CLd /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog normal i386
 s312016441.912104
@@ -296,6 +487,9 @@ xnormal
 xi386
 lSLF07#2@85"Link /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog312016441#312016441#0(0"0(0#0#0"8693317984#865"    cd /Users/derek/capstone/MyWODLog    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -L/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -F/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -filelist /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/Objects-normal/i386/MyWODLog.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/MyWODLog0#
 
+CProcessInfoPlistFile /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist MyWODLog-Info.plist
+r0
+
 CProcessInfoPlistFile /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist MyWODLog-Info.plist
 s312011878.787575
 e312011878.792406
@@ -304,6 +498,19 @@ xProcessInfoPlistFile
 x/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist
 xMyWODLog-Info.plist
 lSLF07#2@27"Process MyWODLog-Info.plist312011878#312011878#0(0"0(0#0#50"/Users/derek/capstone/MyWODLog/MyWODLog-Info.plist8626159232#458"    cd /Users/derek/capstone/MyWODLog    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility MyWODLog-Info.plist -genpkginfo /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app/Info.plist0#
+
+CProcessPCH /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch.gch MyWODLog_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s316760404.758248
+e316760407.206884
+r1
+xProcessPCH
+x/var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch.gch
+xMyWODLog_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@30"Precompile MyWODLog_Prefix.pch316760404#316760407#0(0"0(0#0#60"/Users/Matthew/Desktop/capstone/MyWODLog/MyWODLog_Prefix.pch5791461373540323328#1845"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/Matthew/Desktop/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -c /Users/Matthew/Desktop/capstone/MyWODLog/MyWODLog_Prefix.pch -o /var/folders/JT/JTB4+F6WE9maN61mBPV+b++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fczqjijurqjjcbdjdilnfrejyahd/MyWODLog_Prefix.pch.gch0#
 
 CProcessPCH /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-fxtgwltqvtoaarafevqpgxmhhjra/MyWODLog_Prefix.pch.pth MyWODLog_Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.analyzer
 s312010484.850146
@@ -393,6 +600,14 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@30"Precompile MyWODLog_Prefix.pch312011879#312011879#0(0"0(0#0#50"/Users/derek/capstone/MyWODLog/MyWODLog_Prefix.pch8657774208#1745"    cd /Users/derek/capstone/MyWODLog    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.1.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-generated-files.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-own-target-headers.hmap -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-all-target-headers.hmap -iquote /Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/MyWODLog-project-headers.hmap -F/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator -I/Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/include -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources/i386 -I/Users/derek/capstone/MyWODLog/build/MyWODLog.build/Debug-iphonesimulator/MyWODLog.build/DerivedSources -c /Users/derek/capstone/MyWODLog/MyWODLog_Prefix.pch -o /var/folders/xA/xAMjhlpOEHaTCwzup-dTJ++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/MyWODLog_Prefix-gareenfnryjprndizvudwzqbshep/MyWODLog_Prefix.pch.gch0#
+
+CTouch /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
+s316760408.129823
+e316760408.153117
+r1
+xTouch
+x/Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
+lSLF07#2@87"Touch /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app316760408#316760408#0(0"0(0#0#0"8601060288#283"    cd /Users/Matthew/Desktop/capstone/MyWODLog    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/Matthew/Desktop/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app0#
 
 CTouch /Users/derek/capstone/MyWODLog/build/Debug-iphonesimulator/MyWODLog.app
 s312016441.942139
