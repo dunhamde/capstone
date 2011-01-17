@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		344776A312E16B95001C31D8 /* CreateWOD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344776A212E16B95001C31D8 /* CreateWOD.xib */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
 		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
@@ -29,7 +28,6 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyWODLog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWODLog_Prefix.pch; sourceTree = "<group>"; };
-		344776A212E16B95001C31D8 /* CreateWOD.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWOD.xib; path = Classes/CreateWOD.xib; sourceTree = "<group>"; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				65F474081298A1B000E58B04 /* MainPageViewController.xib */,
-				344776A212E16B95001C31D8 /* CreateWOD.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* MyWODLog-Info.plist */,
 			);
@@ -166,7 +163,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */,
-				344776A312E16B95001C31D8 /* CreateWOD.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
