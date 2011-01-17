@@ -15,6 +15,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
+		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
+		65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODListViewController.h; sourceTree = "<group>"; };
+		65FF40B012E3DEA700DF2F2A /* WODListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODListViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MyWODLog-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MyWODLog-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +53,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */,
+				65FF40B012E3DEA700DF2F2A /* WODListViewController.m */,
 				1D3623240D0F684500981E51 /* MyWODLogAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MyWODLogAppDelegate.m */,
 				65F474061298A1B000E58B04 /* MainPageViewController.h */,
@@ -171,6 +176,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MyWODLogAppDelegate.m in Sources */,
 				65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */,
+				65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +219,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};

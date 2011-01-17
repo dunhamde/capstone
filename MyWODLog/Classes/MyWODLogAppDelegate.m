@@ -20,8 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-    // Override point for customization after application launch.
-   	[window addSubview:mpvc.view];
+    // Create MainPageViewController
+	mpvc = [[MainPageViewController alloc] init];
+	
+	// Create an instance of a UINavigationController
+	// its stack contains only itemsViewController
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mpvc];
+	
+	//Place navigation controller's view in the window hierarchy
+	[window addSubview:[navController view]];
+	
     [window makeKeyAndVisible];
     
     return YES;

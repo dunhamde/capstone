@@ -15,14 +15,21 @@
 
 
 - (void)buttonPressed:(UIButton *)sender {
-
-	//[self updateUI];
+	
+	if (!wlvc) {
+		wlvc = [[WODListViewController alloc] init];
+	}
+	
+	NSLog(@"Title label _%@_",sender.titleLabel.text);
+		
+	if ([sender.titleLabel.text isEqualToString: @"List WODs"]) {
+		[[self navigationController] pushViewController:wlvc animated:YES];
+	}
 }
 
 - (void)viewDidLoad {    
     [super viewDidLoad];
-	self.title = @"My WOD Log!";
-	
+	[self setTitle: @"Main Page"];	
 }
 
 

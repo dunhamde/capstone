@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WODListViewController.h"
 
 @interface MainPageViewController : UIViewController {
 	
 	IBOutlet UILabel *testLabel;
+	WODListViewController *wlvc;
 
 }
 
