@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "WODListViewController.h"
+#import "CreateWODViewController.h"
 
 @interface MainPageViewController : UIViewController {
 	
 	IBOutlet UILabel *testLabel;
 	WODListViewController *wlvc;
+	CreateWODViewController *createWOD;
 
 }
 

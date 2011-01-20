@@ -19,17 +19,23 @@
 	if (!wlvc) {
 		wlvc = [[WODListViewController alloc] init];
 	}
-	
+	if (!createWOD) {
+		createWOD = [[CreateWODViewController alloc] init];
+	}
+	//How do you view this log?
 	NSLog(@"Title label _%@_",sender.titleLabel.text);
 		
 	if ([sender.titleLabel.text isEqualToString: @"List WODs"]) {
 		[[self navigationController] pushViewController:wlvc animated:YES];
+	} else if ([sender.titleLabel.text isEqualToString: @"Create WOD"]) {
+		[[self navigationController] pushViewController:createWOD animated:YES];
 	}
+	
 }
 
 - (void)viewDidLoad {    
     [super viewDidLoad];
-	[self setTitle: @"Main Page"];	
+	[self setTitle: @"Home"];	
 }
 
 

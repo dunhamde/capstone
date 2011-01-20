@@ -21,7 +21,7 @@
 	[wodlist retain];
 	// Set the nav bar to have the pre-fab'ed Edit button when
 	// WODListViewController is on top of the stack
-	//[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
 	// Set the title of the nav bar to WOD List when WODListViewController
 	// is on top of the stack
