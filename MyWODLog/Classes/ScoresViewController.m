@@ -26,18 +26,12 @@
 	}
 
 	if ([sender.titleLabel.text isEqualToString: @"By Date"] || [sender.titleLabel.text isEqualToString: @"By Name"]) {
-		//if(root != NULL) {
-			[[root navigationController] pushViewController:viewscores animated:YES];
-		//}
+			[[self navigationController] pushViewController:viewscores animated:YES];
 	}
 	
 }
 
-+ (void)setRoot:(id)r {
-/*	if (!root && !r) {
-		root = r;
-	} */
-}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

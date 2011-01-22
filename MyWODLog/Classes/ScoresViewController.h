@@ -14,13 +14,10 @@
 @interface ScoresViewController : UIViewController {
 	
 	ViewScoresViewController *viewscores;
-	//UIViewController *root;
-	id root;
-
 	
 }
 
-+ (void)setRoot:(id)r;
+
 - (IBAction)buttonPressed:(UIButton *)sender;
 
 @end
