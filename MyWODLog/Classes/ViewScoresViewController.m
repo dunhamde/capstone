@@ -1,30 +1,31 @@
 //
-//  CreateWODViewController.m
+//  ViewScoresViewController.m
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 1/19/11.
+//  Created by Matthew Dalrymple on 1/21/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CreateWODViewController.h"
+#import "ViewScoresViewController.h"
 
 
-@implementation CreateWODViewController
+@implementation ViewScoresViewController
 
 
 - (id)init {
 	// Call the superclass's designated initializer
 	//[super initWithStyle:UITableViewStyleGrouped];
 	
-
+	
 	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
 	// Set the title of the nav bar to WOD List when WODListViewController
 	// is on top of the stack
-	[self setTitle:@"Create WOD"];
+	[self setTitle:@"View Scores"];
 	
 	return self;
 }
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

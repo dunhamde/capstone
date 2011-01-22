@@ -15,6 +15,10 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */; };
 		34807F2612E7BB0900885EBB /* CreateWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34807F2412E7BB0900885EBB /* CreateWODViewController.xib */; };
+		349D34B212EAAA4200419F93 /* ViewScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349D34B012EAAA4200419F93 /* ViewScoresViewController.m */; };
+		349D34B312EAAA4200419F93 /* ViewScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */; };
+		349D34C012EAAE3300419F93 /* ScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349D34BE12EAAE3300419F93 /* ScoresViewController.m */; };
+		349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34BF12EAAE3300419F93 /* ScoresViewController.xib */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
 		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
@@ -33,6 +37,12 @@
 		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWODViewController.h; sourceTree = "<group>"; };
 		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWODViewController.m; sourceTree = "<group>"; };
 		34807F2412E7BB0900885EBB /* CreateWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWODViewController.xib; path = Classes/CreateWODViewController.xib; sourceTree = "<group>"; };
+		349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewScoresViewController.h; sourceTree = "<group>"; };
+		349D34B012EAAA4200419F93 /* ViewScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewScoresViewController.m; sourceTree = "<group>"; };
+		349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewScoresViewController.xib; path = Classes/ViewScoresViewController.xib; sourceTree = "<group>"; };
+		349D34BD12EAAE3300419F93 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresViewController.h; sourceTree = "<group>"; };
+		349D34BE12EAAE3300419F93 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresViewController.m; sourceTree = "<group>"; };
+		349D34BF12EAAE3300419F93 /* ScoresViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoresViewController.xib; path = Classes/ScoresViewController.xib; sourceTree = "<group>"; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
@@ -58,6 +68,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */,
+				349D34B012EAAA4200419F93 /* ViewScoresViewController.m */,
 				65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */,
 				65FF40B012E3DEA700DF2F2A /* WODListViewController.m */,
 				1D3623240D0F684500981E51 /* MyWODLogAppDelegate.h */,
@@ -66,6 +78,8 @@
 				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
 				65F474061298A1B000E58B04 /* MainPageViewController.h */,
 				65F474071298A1B000E58B04 /* MainPageViewController.m */,
+				349D34BD12EAAE3300419F93 /* ScoresViewController.h */,
+				349D34BE12EAAE3300419F93 /* ScoresViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -102,6 +116,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				349D34BF12EAAE3300419F93 /* ScoresViewController.xib */,
+				349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */,
 				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
 				65F474081298A1B000E58B04 /* MainPageViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -172,6 +188,8 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */,
 				34807F2612E7BB0900885EBB /* CreateWODViewController.xib in Resources */,
+				349D34B312EAAA4200419F93 /* ViewScoresViewController.xib in Resources */,
+				349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +205,8 @@
 				65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */,
 				65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */,
 				34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */,
+				349D34B212EAAA4200419F93 /* ViewScoresViewController.m in Sources */,
+				349D34C012EAAE3300419F93 /* ScoresViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
