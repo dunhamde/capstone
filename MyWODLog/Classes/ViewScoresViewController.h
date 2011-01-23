@@ -10,6 +10,8 @@
 
 
 @interface ViewScoresViewController : UIViewController {
+	
+	UIToolbar *toolbar;
 
 }
 

@@ -1,35 +1,15 @@
 //
-//  ViewScoresViewController.m
+//  ViewWODViewController.m
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 1/21/11.
+//  Created by Matthew Dalrymple on 1/23/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ViewScoresViewController.h"
+#import "ViewWODViewController.h"
 
 
-@implementation ViewScoresViewController
-
-
-- (id)init {
-	// Call the superclass's designated initializer
-	//[super initWithStyle:UITableViewStyleGrouped];
-	
-	toolbar = [[UIToolbar alloc] init];
-	toolbar.barStyle = UIBarStyleDefault;
-	[toolbar sizeToFit];
-	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-	
-	// Set the title of the nav bar to WOD List when WODListViewController
-	// is on top of the stack
-	[self setTitle:@"View Scores"];
-//	[[self navigationController] toolbarHidden:NO];
-
-//	self.navigationController.toolbarHidden = YES;
-	
-	return self;
-}
+@implementation ViewWODViewController
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
