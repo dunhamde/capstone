@@ -1,35 +1,21 @@
 //
-//  ViewWODViewController.m
+//  LogScoreViewController.m
 //  MyWODLog
 //
 //  Created by Matthew Dalrymple on 1/23/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ViewWODViewController.h"
+#import "LogScoreViewController.h"
 
 
-@implementation ViewWODViewController
+@implementation LogScoreViewController
 
 
 - (id)init {
-	[self setTitle:@"<WOD Name>"];
+	[self setTitle:@"Log Score for <WOD>"];
 	
 	return self;
-}
-
-
-
-- (void)logScorePressed {
-	
-	if (!logScore) {
-		logScore = [[LogScoreViewController alloc] init];
-	}
-
-
-	[[self navigationController] pushViewController:logScore animated:YES];
-
-	
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

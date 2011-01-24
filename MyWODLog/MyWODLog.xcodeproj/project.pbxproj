@@ -21,6 +21,8 @@
 		349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34BF12EAAE3300419F93 /* ScoresViewController.xib */; };
 		34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */; };
 		34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */; };
+		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
+		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
 		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
@@ -48,6 +50,9 @@
 		34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWODViewController.h; sourceTree = "<group>"; };
 		34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewWODViewController.m; sourceTree = "<group>"; };
 		34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewWODViewController.xib; path = Classes/ViewWODViewController.xib; sourceTree = "<group>"; };
+		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogScoreViewController.h; sourceTree = "<group>"; };
+		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogScoreViewController.m; sourceTree = "<group>"; };
+		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
@@ -87,6 +92,8 @@
 				65F474071298A1B000E58B04 /* MainPageViewController.m */,
 				349D34BD12EAAE3300419F93 /* ScoresViewController.h */,
 				349D34BE12EAAE3300419F93 /* ScoresViewController.m */,
+				34F60F6012ED4D05004186AF /* LogScoreViewController.h */,
+				34F60F6112ED4D05004186AF /* LogScoreViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				34F60F6212ED4D05004186AF /* LogScoreViewController.xib */,
 				34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */,
 				349D34BF12EAAE3300419F93 /* ScoresViewController.xib */,
 				349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */,
@@ -199,6 +207,7 @@
 				349D34B312EAAA4200419F93 /* ViewScoresViewController.xib in Resources */,
 				349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */,
 				34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */,
+				34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +226,7 @@
 				349D34B212EAAA4200419F93 /* ViewScoresViewController.m in Sources */,
 				349D34C012EAAE3300419F93 /* ScoresViewController.m in Sources */,
 				34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */,
+				34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

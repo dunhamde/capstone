@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LogScoreViewController.h"
 
 
 @interface ViewWODViewController : UIViewController {
+	
+	LogScoreViewController* logScore;
 
 }
+
+- (IBAction)logScorePressed;
 
 @end
