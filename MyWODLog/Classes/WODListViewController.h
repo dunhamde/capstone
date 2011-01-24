@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ViewWODViewController.h"
 
 @interface WODListViewController : UITableViewController {
 
 	NSMutableArray *wodlist;
+	ViewWODViewController *vwvc;
 }
 
 @end

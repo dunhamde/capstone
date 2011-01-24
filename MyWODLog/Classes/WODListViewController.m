@@ -58,6 +58,8 @@
 		// Create an instance of UITableViewCell, with default appearance
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
 									   reuseIdentifier:@"UITableViewCell"] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
 	// Set the text on the cell with the description of the possession
@@ -73,6 +75,18 @@
 	
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
+{
+	NSLog(@"Tapping...\n");
+	if (!vwvc) {
+		vwvc = [[ViewWODViewController alloc] init];
+	}
+	[[self navigationController] pushViewController:vwvc animated:YES];
+
+	
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
