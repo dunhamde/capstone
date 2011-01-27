@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		3418760F12F22C6D003E97B4 /* DBSchema.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */; };
 		34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */; };
 		34807F2612E7BB0900885EBB /* CreateWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34807F2412E7BB0900885EBB /* CreateWODViewController.xib */; };
 		349D34B212EAAA4200419F93 /* ViewScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349D34B012EAAA4200419F93 /* ViewScoresViewController.m */; };
@@ -38,6 +39,7 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyWODLog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWODLog_Prefix.pch; sourceTree = "<group>"; };
+		3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DBSchema.xcdatamodel; sourceTree = "<group>"; };
 		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWODViewController.h; sourceTree = "<group>"; };
 		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWODViewController.m; sourceTree = "<group>"; };
 		34807F2412E7BB0900885EBB /* CreateWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWODViewController.xib; path = Classes/CreateWODViewController.xib; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */,
 				34C0620812ECA1B100049AFC /* ViewWODViewController.h */,
 				34C0620912ECA1B100049AFC /* ViewWODViewController.m */,
 				349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */,
@@ -227,6 +230,7 @@
 				349D34C012EAAE3300419F93 /* ScoresViewController.m in Sources */,
 				34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */,
 				34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */,
+				3418760F12F22C6D003E97B4 /* DBSchema.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
