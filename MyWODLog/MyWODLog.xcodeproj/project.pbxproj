@@ -36,30 +36,30 @@
 		1D6058910D05DD3D006BFB54 /* MyWODLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWODLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyWODLog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWODLog_Prefix.pch; sourceTree = "<group>"; };
-		3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DBSchema.xcdatamodel; sourceTree = "<group>"; };
-		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWODViewController.h; sourceTree = "<group>"; };
-		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWODViewController.m; sourceTree = "<group>"; };
+		3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; name = DBSchema.xcdatamodel; path = Classes/DBSchema.xcdatamodel; sourceTree = "<group>"; };
+		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateWODViewController.h; path = Classes/CreateWODViewController.h; sourceTree = "<group>"; };
+		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateWODViewController.m; path = Classes/CreateWODViewController.m; sourceTree = "<group>"; };
 		34807F2412E7BB0900885EBB /* CreateWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWODViewController.xib; path = Classes/CreateWODViewController.xib; sourceTree = "<group>"; };
-		349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewScoresViewController.h; sourceTree = "<group>"; };
-		349D34B012EAAA4200419F93 /* ViewScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewScoresViewController.m; sourceTree = "<group>"; };
+		349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewScoresViewController.h; path = Classes/ViewScoresViewController.h; sourceTree = "<group>"; };
+		349D34B012EAAA4200419F93 /* ViewScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewScoresViewController.m; path = Classes/ViewScoresViewController.m; sourceTree = "<group>"; };
 		349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewScoresViewController.xib; path = Classes/ViewScoresViewController.xib; sourceTree = "<group>"; };
-		349D34BD12EAAE3300419F93 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresViewController.h; sourceTree = "<group>"; };
-		349D34BE12EAAE3300419F93 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresViewController.m; sourceTree = "<group>"; };
+		349D34BD12EAAE3300419F93 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoresViewController.h; path = Classes/ScoresViewController.h; sourceTree = "<group>"; };
+		349D34BE12EAAE3300419F93 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoresViewController.m; path = Classes/ScoresViewController.m; sourceTree = "<group>"; };
 		349D34BF12EAAE3300419F93 /* ScoresViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScoresViewController.xib; path = Classes/ScoresViewController.xib; sourceTree = "<group>"; };
-		34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWODViewController.h; sourceTree = "<group>"; };
-		34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewWODViewController.m; sourceTree = "<group>"; };
+		34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewWODViewController.h; path = Classes/ViewWODViewController.h; sourceTree = "<group>"; };
+		34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewWODViewController.m; path = Classes/ViewWODViewController.m; sourceTree = "<group>"; };
 		34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewWODViewController.xib; path = Classes/ViewWODViewController.xib; sourceTree = "<group>"; };
-		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogScoreViewController.h; sourceTree = "<group>"; };
-		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogScoreViewController.m; sourceTree = "<group>"; };
+		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
+		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
-		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
-		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
+		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPageViewController.h; path = Classes/MainPageViewController.h; sourceTree = "<group>"; };
+		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPageViewController.m; path = Classes/MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
-		65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODListViewController.h; sourceTree = "<group>"; };
-		65FF40B012E3DEA700DF2F2A /* WODListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODListViewController.m; sourceTree = "<group>"; };
+		65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODListViewController.h; path = Classes/WODListViewController.h; sourceTree = "<group>"; };
+		65FF40B012E3DEA700DF2F2A /* WODListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WODListViewController.m; path = Classes/WODListViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MyWODLog-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MyWODLog-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,23 +80,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */,
-				34C0620812ECA1B100049AFC /* ViewWODViewController.h */,
-				34C0620912ECA1B100049AFC /* ViewWODViewController.m */,
-				349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */,
-				349D34B012EAAA4200419F93 /* ViewScoresViewController.m */,
-				65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */,
-				65FF40B012E3DEA700DF2F2A /* WODListViewController.m */,
 				1D3623240D0F684500981E51 /* MyWODLogAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MyWODLogAppDelegate.m */,
-				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
-				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
-				65F474061298A1B000E58B04 /* MainPageViewController.h */,
-				65F474071298A1B000E58B04 /* MainPageViewController.m */,
-				349D34BD12EAAE3300419F93 /* ScoresViewController.h */,
-				349D34BE12EAAE3300419F93 /* ScoresViewController.m */,
-				34F60F6012ED4D05004186AF /* LogScoreViewController.h */,
-				34F60F6112ED4D05004186AF /* LogScoreViewController.m */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -112,6 +98,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				34CD239412F2640D002A8DC0 /* Pages */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -133,13 +120,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				34F60F6212ED4D05004186AF /* LogScoreViewController.xib */,
-				34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */,
-				349D34BF12EAAE3300419F93 /* ScoresViewController.xib */,
-				349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */,
-				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
-				65F474081298A1B000E58B04 /* MainPageViewController.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				3418760E12F22C6D003E97B4 /* DBSchema.xcdatamodel */,
 				8D1107310486CEB800E47090 /* MyWODLog-Info.plist */,
 			);
 			name = Resources;
@@ -153,6 +134,89 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34CD237712F26266002A8DC0 /* WOD List Page */ = {
+			isa = PBXGroup;
+			children = (
+				65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */,
+				65FF40B012E3DEA700DF2F2A /* WODListViewController.m */,
+			);
+			name = "WOD List Page";
+			sourceTree = "<group>";
+		};
+		34CD237812F26297002A8DC0 /* Log Score Page */ = {
+			isa = PBXGroup;
+			children = (
+				34F60F6012ED4D05004186AF /* LogScoreViewController.h */,
+				34F60F6112ED4D05004186AF /* LogScoreViewController.m */,
+				34F60F6212ED4D05004186AF /* LogScoreViewController.xib */,
+			);
+			name = "Log Score Page";
+			sourceTree = "<group>";
+		};
+		34CD237912F262AE002A8DC0 /* View WOD Page */ = {
+			isa = PBXGroup;
+			children = (
+				34C0620812ECA1B100049AFC /* ViewWODViewController.h */,
+				34C0620912ECA1B100049AFC /* ViewWODViewController.m */,
+				34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */,
+			);
+			name = "View WOD Page";
+			sourceTree = "<group>";
+		};
+		34CD237A12F262D0002A8DC0 /* Create WOD Page */ = {
+			isa = PBXGroup;
+			children = (
+				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
+				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
+				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
+			);
+			name = "Create WOD Page";
+			sourceTree = "<group>";
+		};
+		34CD237B12F262E3002A8DC0 /* Scores Page */ = {
+			isa = PBXGroup;
+			children = (
+				349D34BD12EAAE3300419F93 /* ScoresViewController.h */,
+				349D34BE12EAAE3300419F93 /* ScoresViewController.m */,
+				349D34BF12EAAE3300419F93 /* ScoresViewController.xib */,
+			);
+			name = "Scores Page";
+			sourceTree = "<group>";
+		};
+		34CD237C12F26300002A8DC0 /* View Scores Page */ = {
+			isa = PBXGroup;
+			children = (
+				349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */,
+				349D34B012EAAA4200419F93 /* ViewScoresViewController.m */,
+				349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */,
+			);
+			name = "View Scores Page";
+			sourceTree = "<group>";
+		};
+		34CD237D12F26316002A8DC0 /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				65F474061298A1B000E58B04 /* MainPageViewController.h */,
+				65F474071298A1B000E58B04 /* MainPageViewController.m */,
+				65F474081298A1B000E58B04 /* MainPageViewController.xib */,
+			);
+			name = "Main Page";
+			sourceTree = "<group>";
+		};
+		34CD239412F2640D002A8DC0 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				34CD237D12F26316002A8DC0 /* Main Page */,
+				34CD237C12F26300002A8DC0 /* View Scores Page */,
+				34CD237B12F262E3002A8DC0 /* Scores Page */,
+				34CD237A12F262D0002A8DC0 /* Create WOD Page */,
+				34CD237912F262AE002A8DC0 /* View WOD Page */,
+				34CD237812F26297002A8DC0 /* Log Score Page */,
+				34CD237712F26266002A8DC0 /* WOD List Page */,
+			);
+			name = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
