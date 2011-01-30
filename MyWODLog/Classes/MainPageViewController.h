@@ -13,14 +13,16 @@
 
 @interface MainPageViewController : UIViewController {
 	
-	IBOutlet UILabel *testLabel;
 	WODListViewController *wlvc;
 	CreateWODViewController *createWOD;
 	ScoresViewController *scores;
+	
+	NSManagedObjectContext *managedObjectContext;	 
 
 }
 
-@property (nonatomic, retain) IBOutlet UILabel* testLabel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
+
 	
 - (IBAction)buttonPressed:(UIButton *)sender;
 

@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WOD.h"
 
-
-@interface CreateWODViewController : UIViewController {
-
+@interface CreateWODViewController : UIViewController <UITextFieldDelegate> {
+	
+	NSManagedObjectContext *managedObjectContext;
+	WOD *wod;
+	UITextField *name;
+	
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
+@property (nonatomic, retain) IBOutlet UITextField *name;
 
 @end

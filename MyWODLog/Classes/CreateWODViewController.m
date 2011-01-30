@@ -11,10 +11,11 @@
 
 @implementation CreateWODViewController
 
+@synthesize managedObjectContext,name;
 
-- (id)init {
+/*- (id)init {
 	// Call the superclass's designated initializer
-	//[super initWithStyle:UITableViewStyleGrouped];
+	[super initWithStyle:UITableViewStyleGrouped];
 	
 
 	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
@@ -24,7 +25,7 @@
 	[self setTitle:@"Create WOD"];
 	
 	return self;
-}
+}*/
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -36,12 +37,20 @@
 }
 */
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.title = @"Create WOD";
 }
-*/
+
+- (void)viewWillAppear:(BOOL)animated {
+	name.placeholder = @"New WOD Name";
+	[name becomeFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

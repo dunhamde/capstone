@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "ViewWODViewController.h"
 
 @interface WODListViewController : UITableViewController {
 
-	NSMutableArray *wodlist;
+	NSMutableArray *wodList;
 	ViewWODViewController *vwvc;
+	
+	NSManagedObjectContext *managedObjectContext;
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
+@property (nonatomic, retain) NSMutableArray *wodList;	
+
+- (IBAction)createWOD;
 
 @end

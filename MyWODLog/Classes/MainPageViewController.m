@@ -11,13 +11,13 @@
 
 @implementation MainPageViewController
 
-@synthesize testLabel;
-
+@synthesize managedObjectContext;
 
 - (void)buttonPressed:(UIButton *)sender {
 	
 	if (!wlvc) {
 		wlvc = [[WODListViewController alloc] init];
+		wlvc.managedObjectContext = [self managedObjectContext];
 	}
 	if (!createWOD) {
 		createWOD = [[CreateWODViewController alloc] init];
@@ -65,7 +65,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-	self.testLabel = nil;
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
