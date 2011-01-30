@@ -8,19 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "ViewWODViewController.h"
+#import "CreateWODViewController.h"
 
-@interface WODListViewController : UITableViewController {
+@interface WODListViewController : UITableViewController <NSFetchedResultsControllerDelegate, CreateWODViewControllerDelegate> {
 
-	NSMutableArray *wodList;
-	ViewWODViewController *vwvc;
-	
+	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
+	NSManagedObjectContext *addingManagedObjectContext;	    
 }
 
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-@property (nonatomic, retain) NSMutableArray *wodList;	
+@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
+
 
 - (IBAction)createWOD;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 
 @end

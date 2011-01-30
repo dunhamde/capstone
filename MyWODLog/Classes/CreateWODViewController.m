@@ -11,7 +11,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext,name;
+@synthesize managedObjectContext, name, delegate, wod;
 
 /*- (id)init {
 	// Call the superclass's designated initializer
@@ -40,16 +40,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"Create WOD";
+	
+	// Configure the save and cancel buttons.
+	UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+	self.navigationItem.rightBarButtonItem = saveButton;
+	[saveButton release];
+	
+	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+	self.navigationItem.leftBarButtonItem = cancelButton;
+	[cancelButton release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	name.placeholder = @"New WOD Name";
-	[name becomeFirstResponder];
+	//[name becomeFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
+	wod.name = textField.text;
 	return NO;
+}
+
+#pragma mark -
+#pragma mark Save and cancel operations
+
+- (IBAction)cancel:(id)sender {
+	[delegate createWODViewController:self didFinishWithSave:NO];
+}
+
+- (IBAction)save:(id)sender {
+	[delegate createWODViewController:self didFinishWithSave:YES];
 }
 
 /*
