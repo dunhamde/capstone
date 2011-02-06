@@ -40,10 +40,15 @@
 - (void)viewWillAppear {
 	[self.tableView reloadData];
 }
+
+
+
 - (void)viewDidUnload {
 	// Release any properties that are loaded in viewDidLoad or can be recreated lazily.
 	self.fetchedResultsController = nil;
 }
+
+
 
 #pragma mark -
 #pragma mark Table view data source methods
@@ -57,12 +62,15 @@
 }
 
 
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 	return [sectionInfo numberOfObjects];
 }
+
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,12 +88,15 @@
 }
 
 
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
 	WOD *wod = [fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = wod.name;
 }
+
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -104,6 +115,8 @@
     }   
 }
 
+
+
 #pragma mark -
 #pragma mark Selection and moving
 
@@ -111,6 +124,8 @@
     // The table view should not be re-orderable.
     return NO;
 }
+
+
 
 #pragma mark -
 #pragma mark Adding a Book
@@ -140,6 +155,7 @@
 	[createWODViewController release];
 	[navController release];
 }
+
 
 
 /**
@@ -184,6 +200,7 @@
 }
 
 
+
 /**
  Notification from the add controller's context's save operation. This is used to update the fetched results controller's managed object context with the new book instead of performing a fetch (which would be a much more computationally expensive operation).
  */
@@ -193,6 +210,7 @@
 	// Merging changes causes the fetched results controller to update its results
 	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
 }
+
 
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -211,6 +229,8 @@
 
 	}	
 }
+
+
 
 #pragma mark -
 #pragma mark Fetched results controller
@@ -254,6 +274,7 @@
 }    
 
 
+
 /**
  Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
  */
@@ -262,6 +283,8 @@
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
 	[self.tableView beginUpdates];
 }
+
+
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	
@@ -289,6 +312,7 @@
 }
 
 
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
 	
 	switch(type) {
@@ -304,53 +328,13 @@
 }
 
 
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
 	[self.tableView endUpdates];
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView 
-		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	
-	// Check for reusable cell first, use that if it exists
-	UITableViewCell *cell = 
-	[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-	
-	if (!cell) {
-		// Create an instance of UITableViewCell, with default appearance
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
-									   reuseIdentifier:@"UITableViewCell"] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	}
-	
-	// Set the text on the cell with the description of the possession
-	// that is at the nth index of possessions, where n=row this cell
-	// will appear in the window
-	
-	// If the table view is filling a row with a possession in it, do as normal
-	if ([indexPath row] < [wodList count]) {		 
-		[[cell textLabel] setText:[[wodList objectAtIndex:[indexPath row]] description]];
-	} else { // Otherwise, if we are editing we have one extra row...
-		[[cell textLabel] setText:@"Add New WOD..."];
-	}
-	
-	
-	return cell;
-}*/
-/*
-- (void)tableView:(UITableView *)tableView
-accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
-{
-	
-	if (!vwvc) {
-		vwvc = [[ViewWODViewController alloc] init];
-	}
-	[[self navigationController] pushViewController:vwvc animated:YES];
 
-	
-}*/
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -358,6 +342,54 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
     
     // Release any cached data, images, etc. that aren't in use.
 }
+
+
+
+/*
+ - (UITableViewCell *)tableView:(UITableView *)tableView 
+ cellForRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ 
+ // Check for reusable cell first, use that if it exists
+ UITableViewCell *cell = 
+ [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+ 
+ if (!cell) {
+ // Create an instance of UITableViewCell, with default appearance
+ cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+ reuseIdentifier:@"UITableViewCell"] autorelease];
+ cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+ cell.selectionStyle = UITableViewCellSelectionStyleNone;
+ }
+ 
+ // Set the text on the cell with the description of the possession
+ // that is at the nth index of possessions, where n=row this cell
+ // will appear in the window
+ 
+ // If the table view is filling a row with a possession in it, do as normal
+ if ([indexPath row] < [wodList count]) {		 
+ [[cell textLabel] setText:[[wodList objectAtIndex:[indexPath row]] description]];
+ } else { // Otherwise, if we are editing we have one extra row...
+ [[cell textLabel] setText:@"Add New WOD..."];
+ }
+ 
+ 
+ return cell;
+ }*/
+/*
+ - (void)tableView:(UITableView *)tableView
+ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
+ {
+ 
+ if (!vwvc) {
+ vwvc = [[ViewWODViewController alloc] init];
+ }
+ [[self navigationController] pushViewController:vwvc animated:YES];
+ 
+ 
+ }*/
+
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -369,6 +401,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
 	[addingManagedObjectContext release];
     [super dealloc];
 }
+
 
 
 @end

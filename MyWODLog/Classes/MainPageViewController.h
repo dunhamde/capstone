@@ -13,9 +13,9 @@
 
 @interface MainPageViewController : UIViewController {
 	
-	WODListViewController *wlvc;
-	CreateWODViewController *createWOD;
-	ScoresViewController *scores;
+//	WODListViewController *wlvc;
+//	CreateWODViewController *createWOD;
+//	ScoresViewController *scores;
 	
 	NSManagedObjectContext *managedObjectContext;	 
 
@@ -24,6 +24,8 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 
 	
-- (IBAction)buttonPressed:(UIButton *)sender;
+//- (IBAction)buttonPressed:(UIButton *)sender;
+- (IBAction)wodListPressed;
+- (IBAction)scoresPressed;
 
 @end

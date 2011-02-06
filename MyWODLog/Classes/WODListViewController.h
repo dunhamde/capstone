@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "CreateWODViewController.h"
 
+
+
 @interface WODListViewController : UITableViewController <NSFetchedResultsControllerDelegate, CreateWODViewControllerDelegate> {
 
 	NSFetchedResultsController *fetchedResultsController;

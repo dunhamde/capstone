@@ -15,7 +15,7 @@
 
 - (void)buttonPressed:(UIButton *)sender {
 	
-	if (!wlvc) {
+/*	if (!wlvc) {
 		wlvc = [[WODListViewController alloc] init];
 		wlvc.managedObjectContext = [self managedObjectContext];
 	}
@@ -36,9 +36,37 @@
 	} else if ([sender.titleLabel.text isEqualToString: @"Scores"]) {
 		//[scores setRoot:self];  // Breaks badly, must get this to work at some point
 		[[self navigationController] pushViewController:scores animated:YES];
-	}
+	} */
 	
 }
+
+
+- (void)wodListPressed {
+	
+	WODListViewController *wodList;
+	
+	wodList = [[WODListViewController alloc] init];
+	wodList.managedObjectContext = [self managedObjectContext];
+	
+	[[self navigationController] pushViewController:wodList animated:YES];
+	
+	[wodList release];
+	
+}
+
+
+- (void)scoresPressed {
+	
+	ScoresViewController *scores;
+	
+	scores = [[ScoresViewController alloc] init];
+	
+	[[self navigationController] pushViewController:scores animated:YES];
+	
+	[scores release];
+}
+
+
 
 - (void)viewDidLoad {    
     [super viewDidLoad];
