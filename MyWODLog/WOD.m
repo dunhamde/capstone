@@ -17,5 +17,6 @@
 @dynamic timelimit;
 @dynamic date_created;
 @dynamic score_type;
+@dynamic scored_by_time;
 
 @end

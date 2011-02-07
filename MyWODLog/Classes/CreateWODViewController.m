@@ -41,8 +41,10 @@
     [super viewDidLoad];
 	self.title = @"Create WOD";
 	
+	isEditing = NO;
 	// Configure the save and cancel buttons.
-	UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+	saveButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = saveButton;
 	[saveButton release];
 	
@@ -59,6 +61,15 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
 	wod.name = textField.text;
+	isEditing = NO;
+
+	// Enable saving if there is text in the field
+	//  ?What if name is the same as another?
+	//TODO:  if( name.text isn't already in the database )
+	if ([name.text length] > 0) {
+		saveButton.enabled = YES;
+	}
+	
 	return NO;
 }
 
@@ -69,9 +80,34 @@
 	[delegate createWODViewController:self didFinishWithSave:NO];
 }
 
+
+
 - (IBAction)save:(id)sender {
-	[delegate createWODViewController:self didFinishWithSave:YES];
+	// Confirm that a name has been entered
+	if (!isEditing) {
+		NSLog(@"Saved with text: %@", name.text);
+		//wod.scored_by_time = !(scoreSwitch.on);
+	//	wod.scored_by_time = 1;
+		[delegate createWODViewController:self didFinishWithSave:YES];
+	} else {
+		/*
+		 UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Network error" message: @"Error sending your info to the server" delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+		 
+		 [someError show];
+		 [someError release];
+		 */
+	}
+	
 }
+
+
+- (IBAction)startEditingMode {
+	// Grey out save button here as well
+	saveButton.enabled = NO;
+	isEditing = YES;
+}
+
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -81,6 +117,8 @@
 }
 */
 
+
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -88,11 +126,16 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
+
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[saveButton release];
+	saveButton = nil;
 }
+
 
 
 - (void)dealloc {

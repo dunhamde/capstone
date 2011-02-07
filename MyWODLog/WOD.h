@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * timelimit;
 @property (nonatomic, retain) NSDate * date_created;
 @property (nonatomic, retain) NSManagedObject * score_type;
+@property (nonatomic) BOOL scored_by_time;
 
 @end
 
