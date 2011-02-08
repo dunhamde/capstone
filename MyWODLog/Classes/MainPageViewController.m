@@ -45,6 +45,11 @@
 	
 	WODListViewController *wodList;
 	
+	// Set the back button to say "Home" instead of the title of this page
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
+	[backButton release];
+	
 	wodList = [[WODListViewController alloc] init];
 	wodList.managedObjectContext = [self managedObjectContext];
 	
@@ -58,6 +63,11 @@
 - (void)scoresPressed {
 	
 	ScoresViewController *scores;
+	
+	// Set the back button to say "Home" instead of the title of this page
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
+	[backButton release];
 	
 	scores = [[ScoresViewController alloc] init];
 	
