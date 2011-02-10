@@ -11,7 +11,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, delegate, wod;
+@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton;
 
 /*- (id)init {
 	// Call the superclass's designated initializer
@@ -116,8 +116,33 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	return 2;
+}
 
 
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Configure the cell.
+	[self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+    // Configure the cell to show the book's title
+	cell.textLabel.text = @"OMG";
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

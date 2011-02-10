@@ -12,7 +12,7 @@
 @protocol CreateWODViewControllerDelegate;
 
 
-@interface CreateWODViewController : UIViewController <UITextFieldDelegate> {
+@interface CreateWODViewController : UIViewController  <UITextFieldDelegate,UITableViewDelegate> {
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
