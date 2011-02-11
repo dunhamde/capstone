@@ -138,11 +138,16 @@
 	[self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
+
+
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
 	cell.textLabel.text = @"OMG";
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

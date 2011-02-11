@@ -128,7 +128,7 @@
 
 
 #pragma mark -
-#pragma mark Adding a Book
+#pragma mark Adding a WOD
 
 /**
  Creates a new book, an AddViewController to manage addition of the book, and a new managed object context for the add controller to keep changes made to the book discrete from the application's managed object context until the book is saved.
@@ -230,6 +230,21 @@
 	}	
 }
 
+#pragma mark -
+#pragma mark Selecting a WOD
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)ip 
+{
+	//Throw a wod up
+	
+	ViewWODViewController *wod_view = [[ViewWODViewController alloc] init];
+	[[self navigationController] pushViewController:wod_view animated:YES];
+	[wod_view release];
+    //AssetListViewController *anotherViewController = [[AssetListViewController alloc] init];
+    //[anotherViewController setLocation:[locationList objectAtIndex:[ip row]]];
+    //[[self navigationController] pushViewController:anotherViewController animated:YES];
+    //[anotherViewController release];
+}
 
 
 #pragma mark -
