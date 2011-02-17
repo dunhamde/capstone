@@ -238,6 +238,10 @@
 	//Throw a wod up
 	
 	ViewWODViewController *wod_view = [[ViewWODViewController alloc] init];
+	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
+	[wod_view setCurrentWOD:wod];
+	//    [anotherViewController setLocation:[locationList objectAtIndex:[ip row]]];
+	//[fetchedResultsController objectAtIndexPath:indexPath];
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];
     //AssetListViewController *anotherViewController = [[AssetListViewController alloc] init];

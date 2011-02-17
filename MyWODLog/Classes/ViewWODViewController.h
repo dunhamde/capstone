@@ -7,14 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "LogScoreViewController.h"
+#import "WOD.h"
 
 
 @interface ViewWODViewController : UIViewController {
 	
 	LogScoreViewController* logScore;
 
+	NSManagedObject* cWOD;
+	WOD *w;
 }
+
+@property (nonatomic, retain) NSManagedObject *cWOD;
+@property (nonatomic, retain) WOD *w;
+
+
++ (void)setCurrentWOD:(WOD *)wod;
 
 - (IBAction)logScorePressed;
 

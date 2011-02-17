@@ -11,11 +11,26 @@
 
 @implementation ViewWODViewController
 
+@synthesize cWOD;
+
+
 
 - (id)init {
-	[self setTitle:@"<WOD Name>"];
+	//[self setTitle:@"<WOD Name>"];
 	
 	return self;
+}
+
+
+
++ (void)setCurrentWOD:(WOD *)wod {
+	NSLog(@"GOT HERE");
+	w = wod;
+	//    [self setTitle:[location valueForKey:@"label"]];
+	//NSString *t = [wod valueForKey:@"name"];
+	NSLog(@"GOT HERE2");
+	[self setTitle:wod.name];
+	NSLog(@"Set Current Wod: %@", wod.name);
 }
 
 
