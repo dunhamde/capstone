@@ -23,7 +23,7 @@
 
 
 
-+ (void)setCurrentWOD:(WOD *)wod {
+- (void)setCurrentWOD:(WOD *)wod {
 	NSLog(@"GOT HERE");
 	w = wod;
 	//    [self setTitle:[location valueForKey:@"label"]];

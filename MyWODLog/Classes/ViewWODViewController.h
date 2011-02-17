@@ -24,7 +24,7 @@
 @property (nonatomic, retain) WOD *w;
 
 
-+ (void)setCurrentWOD:(WOD *)wod;
+- (void)setCurrentWOD:(WOD *)wod;
 
 - (IBAction)logScorePressed;
 

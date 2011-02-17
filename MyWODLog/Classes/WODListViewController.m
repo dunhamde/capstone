@@ -238,6 +238,14 @@
 	//Throw a wod up
 	
 	ViewWODViewController *wod_view = [[ViewWODViewController alloc] init];
+	if( !fetchedResultsController ) {
+		NSLog( @"FETCHED RESULTS CONTROLLER IS NULL!!!!\n" );
+	}
+	
+	
+	//WOD *wod = [fetchedResultsController objectAtIndexPath:indexPath];
+	
+	
 	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
 	[wod_view setCurrentWOD:wod];
 	//    [anotherViewController setLocation:[locationList objectAtIndex:[ip row]]];
