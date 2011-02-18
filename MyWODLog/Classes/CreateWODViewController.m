@@ -39,7 +39,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = @"Create WOD";
+	[self setTitle:@"Create WOD"];
+//	self.title = @"Create WOD";
 	
 	isEditing = NO;
 	// Configure the save and cancel buttons.
@@ -83,6 +84,7 @@
 
 
 - (IBAction)save:(id)sender {
+	
 	// Confirm that a name has been entered
 	if (!isEditing) {
 		NSLog(@"Saved with text: %@", name.text);
@@ -108,6 +110,45 @@
 }
 
 
+
+#pragma mark -
+#pragma mark More button operations
+
+
+
+- (IBAction)addExercise
+{
+	ViewExerciseModesViewController* exercise = [[ViewExerciseModesViewController alloc] init];
+	//exercise.delegate = self;
+	
+	
+	//TODO: This may need to be eveuntualled entered back in... but modifed for Exercises/Modes
+	
+	/*  
+	
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+	self.addingManagedObjectContext = addingContext;
+	[addingContext release];
+	
+	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+	
+	createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
+	
+	
+	*/
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise];
+	
+    [self.navigationController presentModalViewController:navController animated:YES];
+	
+	[exercise release];
+	[navController release];
+}
+
+
+#pragma mark -
+#pragma mark Table View Controller stuff
 
 /*
 // Override to allow orientations other than the default portrait orientation.

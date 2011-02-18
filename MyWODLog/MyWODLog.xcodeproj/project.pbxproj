@@ -16,6 +16,8 @@
 		3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */; };
 		34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */; };
 		34807F2612E7BB0900885EBB /* CreateWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34807F2412E7BB0900885EBB /* CreateWODViewController.xib */; };
+		34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34957625130DF12400895074 /* ViewExerciseModesViewController.m */; };
+		34957628130DF12400895074 /* ViewExerciseModesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34957626130DF12400895074 /* ViewExerciseModesViewController.xib */; };
 		349D34B212EAAA4200419F93 /* ViewScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349D34B012EAAA4200419F93 /* ViewScoresViewController.m */; };
 		349D34B312EAAA4200419F93 /* ViewScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */; };
 		349D34C012EAAE3300419F93 /* ScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 349D34BE12EAAE3300419F93 /* ScoresViewController.m */; };
@@ -45,6 +47,9 @@
 		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateWODViewController.h; path = Classes/CreateWODViewController.h; sourceTree = "<group>"; };
 		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateWODViewController.m; path = Classes/CreateWODViewController.m; sourceTree = "<group>"; };
 		34807F2412E7BB0900885EBB /* CreateWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWODViewController.xib; path = Classes/CreateWODViewController.xib; sourceTree = "<group>"; };
+		34957624130DF12400895074 /* ViewExerciseModesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewExerciseModesViewController.h; path = Classes/ViewExerciseModesViewController.h; sourceTree = "<group>"; };
+		34957625130DF12400895074 /* ViewExerciseModesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewExerciseModesViewController.m; path = Classes/ViewExerciseModesViewController.m; sourceTree = "<group>"; };
+		34957626130DF12400895074 /* ViewExerciseModesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewExerciseModesViewController.xib; path = Classes/ViewExerciseModesViewController.xib; sourceTree = "<group>"; };
 		349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewScoresViewController.h; path = Classes/ViewScoresViewController.h; sourceTree = "<group>"; };
 		349D34B012EAAA4200419F93 /* ViewScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewScoresViewController.m; path = Classes/ViewScoresViewController.m; sourceTree = "<group>"; };
 		349D34B112EAAA4200419F93 /* ViewScoresViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewScoresViewController.xib; path = Classes/ViewScoresViewController.xib; sourceTree = "<group>"; };
@@ -145,6 +150,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		344B3719130DDF8000670EBE /* View Exercise Modes Page */ = {
+			isa = PBXGroup;
+			children = (
+				34957624130DF12400895074 /* ViewExerciseModesViewController.h */,
+				34957625130DF12400895074 /* ViewExerciseModesViewController.m */,
+				34957626130DF12400895074 /* ViewExerciseModesViewController.xib */,
+			);
+			name = "View Exercise Modes Page";
+			sourceTree = "<group>";
+		};
 		34CD237712F26266002A8DC0 /* WOD List Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +232,7 @@
 		34CD239412F2640D002A8DC0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
 				34CD237D12F26316002A8DC0 /* Main Page */,
 				34CD237C12F26300002A8DC0 /* View Scores Page */,
 				34CD237B12F262E3002A8DC0 /* Scores Page */,
@@ -284,6 +300,7 @@
 				349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */,
 				34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */,
 				34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */,
+				34957628130DF12400895074 /* ViewExerciseModesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +322,7 @@
 				34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */,
 				3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */,
 				65AA386012F5151800907DE3 /* WOD.m in Sources */,
+				34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

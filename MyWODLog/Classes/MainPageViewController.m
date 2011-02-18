@@ -13,32 +13,6 @@
 
 @synthesize managedObjectContext;
 
-- (void)buttonPressed:(UIButton *)sender {
-	
-/*	if (!wlvc) {
-		wlvc = [[WODListViewController alloc] init];
-		wlvc.managedObjectContext = [self managedObjectContext];
-	}
-	if (!createWOD) {
-		createWOD = [[CreateWODViewController alloc] init];
-	}
-	if (!scores) {
-		scores = [[ScoresViewController alloc] init];
-		//
-	}
-	
-	NSLog(@"Title label _%@_",sender.titleLabel.text);
-		
-	if ([sender.titleLabel.text isEqualToString: @"List WODs"]) {
-		[[self navigationController] pushViewController:wlvc animated:YES];
-	} else if ([sender.titleLabel.text isEqualToString: @"Create WOD"]) {
-		[[self navigationController] pushViewController:createWOD animated:YES];
-	} else if ([sender.titleLabel.text isEqualToString: @"Scores"]) {
-		//[scores setRoot:self];  // Breaks badly, must get this to work at some point
-		[[self navigationController] pushViewController:scores animated:YES];
-	} */
-	
-}
 
 
 - (void)wodListPressed {

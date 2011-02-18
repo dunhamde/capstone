@@ -16,15 +16,13 @@
 	
 	LogScoreViewController* logScore;
 
-	NSManagedObject* cWOD;
-	WOD *w;
+	WOD *wod;
 }
 
-@property (nonatomic, retain) NSManagedObject *cWOD;
-@property (nonatomic, retain) WOD *w;
+@property (nonatomic, retain) WOD *wod;
 
 
-- (void)setCurrentWOD:(WOD *)wod;
+- (void)setCurrentWOD:(WOD *)w;
 
 - (IBAction)logScorePressed;
 

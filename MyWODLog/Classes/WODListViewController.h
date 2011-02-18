@@ -17,7 +17,8 @@
 
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
-	NSManagedObjectContext *addingManagedObjectContext;	    
+	NSManagedObjectContext *addingManagedObjectContext;
+	
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

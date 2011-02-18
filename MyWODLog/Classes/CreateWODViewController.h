@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WOD.h"
+#import "ViewExerciseModesViewController.h"
 
 @protocol CreateWODViewControllerDelegate;
 
@@ -33,12 +34,14 @@
 @property (nonatomic, assign) BOOL isEditing;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 
-
+- (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)startEditingMode;
 
 @end
+
+
 
 @protocol CreateWODViewControllerDelegate
 - (void)createWODViewController:(CreateWODViewController *)controller didFinishWithSave:(BOOL)save;
