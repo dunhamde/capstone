@@ -16,8 +16,9 @@
 {
 }
 
+
+//TODO:  Check to see if timelimit/date_created/score_type should actually be pointers...
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * wod_id;
 @property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSNumber * timelimit;
 @property (nonatomic, retain) NSDate * date_created;

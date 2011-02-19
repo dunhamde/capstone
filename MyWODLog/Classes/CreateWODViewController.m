@@ -40,9 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
-//	self.title = @"Create WOD";
 	
 	isEditing = NO;
+	
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 	saveButton.enabled = NO;
@@ -88,8 +88,14 @@
 	// Confirm that a name has been entered
 	if (!isEditing) {
 		NSLog(@"Saved with text: %@", name.text);
-		//wod.scored_by_time = !(scoreSwitch.on);
-	//	wod.scored_by_time = 1;
+		
+		// Set the score type based on the UISwitch position
+		if (scoreSwitch.on) {
+			[wod setScore_type:WOD_SCORE_TYPE_TIME];
+		} else {
+			wod.score_type = WOD_SCORE_TYPE_REPS;
+		}
+
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {
 		/*
@@ -119,10 +125,11 @@
 - (IBAction)addExercise
 {
 	ViewExerciseModesViewController* exercise = [[ViewExerciseModesViewController alloc] init];
+	exercise.managedObjectContext = self.managedObjectContext;
 	//exercise.delegate = self;
 	
 	
-	//TODO: This may need to be eveuntualled entered back in... but modifed for Exercises/Modes
+	//TODO: This may need to be eventually entered back in... but modifed for Exercises/Modes
 	
 	/*  
 	

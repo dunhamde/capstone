@@ -7,7 +7,6 @@
 //
 
 #import "WODListViewController.h"
-//#import "CreateWODViewController.h"
 
 
 @implementation WODListViewController
@@ -242,20 +241,12 @@
 		NSLog( @"FETCHED RESULTS CONTROLLER IS NULL!!!!\n" );
 	}
 	
-	
-	//WOD *wod = [fetchedResultsController objectAtIndexPath:indexPath];
-	
-	
 	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
 	[wod_view setCurrentWOD:wod];
-	//    [anotherViewController setLocation:[locationList objectAtIndex:[ip row]]];
-	//[fetchedResultsController objectAtIndexPath:indexPath];
+
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];
-    //AssetListViewController *anotherViewController = [[AssetListViewController alloc] init];
-    //[anotherViewController setLocation:[locationList objectAtIndex:[ip row]]];
-    //[[self navigationController] pushViewController:anotherViewController animated:YES];
-    //[anotherViewController release];
+	
 }
 
 
@@ -277,8 +268,6 @@
 	[fetchRequest setEntity:entity];
 	
 	// Create the sort descriptors array.
-	//NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"author" ascending:YES];
-	//NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
 	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
@@ -293,9 +282,6 @@
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	//[authorDescriptor release];
-	//[titleDescriptor release];
-	//[sortDescriptors release];
 	
 	return fetchedResultsController;
 }    
@@ -372,57 +358,10 @@
 
 
 
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView 
- cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- 
- // Check for reusable cell first, use that if it exists
- UITableViewCell *cell = 
- [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
- 
- if (!cell) {
- // Create an instance of UITableViewCell, with default appearance
- cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
- reuseIdentifier:@"UITableViewCell"] autorelease];
- cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
- }
- 
- // Set the text on the cell with the description of the possession
- // that is at the nth index of possessions, where n=row this cell
- // will appear in the window
- 
- // If the table view is filling a row with a possession in it, do as normal
- if ([indexPath row] < [wodList count]) {		 
- [[cell textLabel] setText:[[wodList objectAtIndex:[indexPath row]] description]];
- } else { // Otherwise, if we are editing we have one extra row...
- [[cell textLabel] setText:@"Add New WOD..."];
- }
- 
- 
- return cell;
- }*/
-/*
- - (void)tableView:(UITableView *)tableView
- accessoryButtonTappedForRowWithIndexPath:(NSIndexPath * )indexPath
- {
- 
- if (!vwvc) {
- vwvc = [[ViewWODViewController alloc] init];
- }
- [[self navigationController] pushViewController:vwvc animated:YES];
- 
- 
- }*/
-
-
-
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-	//[wodList release];
 	[fetchedResultsController release];
 	[managedObjectContext release];
 	[addingManagedObjectContext release];

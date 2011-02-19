@@ -28,10 +28,10 @@
 }
 
 @property (nonatomic, assign) id <CreateWODViewControllerDelegate> delegate;
+@property (nonatomic, assign) BOOL isEditing;
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 @property (nonatomic, retain) IBOutlet UITextField *name;
-@property (nonatomic, assign) BOOL isEditing;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 
 - (IBAction)addExercise;

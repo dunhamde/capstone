@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "CreateExerciseModeViewController.h"
 
-@interface ViewExerciseModesViewController : UITableViewController <UITableViewDelegate> {
+
+//TODO:  Make CreateWODViewController the delegate for this
+
+@interface ViewExerciseModesViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 	
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;
@@ -26,10 +30,9 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)setLeftBarButton:(Boolean)animated;
 
-- (IBAction)cancel:(id)sender;
+- (void)cancel:(id)sender;
 
-// This is for creating a new exercise category/type
-- (IBAction)createExerciseMode:(id)sender;
+// This is for creating a new exercise category/type  (Executes when the edit button is pressed)
+- (void)createExerciseMode:(id)sender;
 
 @end
-

@@ -24,6 +24,9 @@
 		349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34BF12EAAE3300419F93 /* ScoresViewController.xib */; };
 		34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */; };
 		34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */; };
+		34C28D6D130F728C00FB7C61 /* MODE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28D6C130F728C00FB7C61 /* MODE.m */; };
+		34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */; };
+		34C28DA5130F789200FB7C61 /* CreateExerciseModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */; };
 		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
@@ -59,6 +62,11 @@
 		34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewWODViewController.h; path = Classes/ViewWODViewController.h; sourceTree = "<group>"; };
 		34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewWODViewController.m; path = Classes/ViewWODViewController.m; sourceTree = "<group>"; };
 		34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewWODViewController.xib; path = Classes/ViewWODViewController.xib; sourceTree = "<group>"; };
+		34C28D6B130F728C00FB7C61 /* MODE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MODE.h; path = DataClasses/MODE.h; sourceTree = "<group>"; };
+		34C28D6C130F728C00FB7C61 /* MODE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MODE.m; path = DataClasses/MODE.m; sourceTree = "<group>"; };
+		34C28DA1130F789200FB7C61 /* CreateExerciseModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateExerciseModeViewController.h; path = Classes/CreateExerciseModeViewController.h; sourceTree = "<group>"; };
+		34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateExerciseModeViewController.m; path = Classes/CreateExerciseModeViewController.m; sourceTree = "<group>"; };
+		34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateExerciseModeViewController.xib; path = Classes/CreateExerciseModeViewController.xib; sourceTree = "<group>"; };
 		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
 		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
@@ -131,8 +139,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65AA385E12F5151800907DE3 /* WOD.h */,
-				65AA385F12F5151800907DE3 /* WOD.m */,
+				34C28D76130F729A00FB7C61 /* CoreData Classes */,
 				3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */,
 				8D1107310486CEB800E47090 /* MyWODLog-Info.plist */,
 			);
@@ -158,6 +165,36 @@
 				34957626130DF12400895074 /* ViewExerciseModesViewController.xib */,
 			);
 			name = "View Exercise Modes Page";
+			sourceTree = "<group>";
+		};
+		34C28D76130F729A00FB7C61 /* CoreData Classes */ = {
+			isa = PBXGroup;
+			children = (
+				34C28D6B130F728C00FB7C61 /* MODE.h */,
+				34C28D6C130F728C00FB7C61 /* MODE.m */,
+				65AA385E12F5151800907DE3 /* WOD.h */,
+				65AA385F12F5151800907DE3 /* WOD.m */,
+			);
+			name = "CoreData Classes";
+			sourceTree = "<group>";
+		};
+		34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */ = {
+			isa = PBXGroup;
+			children = (
+				34C28DA1130F789200FB7C61 /* CreateExerciseModeViewController.h */,
+				34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */,
+				34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */,
+			);
+			name = "Create Exercise Mode Page";
+			sourceTree = "<group>";
+		};
+		34C28D92130F77D600FB7C61 /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
+				34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */,
+			);
+			name = Exercises;
 			sourceTree = "<group>";
 		};
 		34CD237712F26266002A8DC0 /* WOD List Page */ = {
@@ -232,7 +269,7 @@
 		34CD239412F2640D002A8DC0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
+				34C28D92130F77D600FB7C61 /* Exercises */,
 				34CD237D12F26316002A8DC0 /* Main Page */,
 				34CD237C12F26300002A8DC0 /* View Scores Page */,
 				34CD237B12F262E3002A8DC0 /* Scores Page */,
@@ -301,6 +338,7 @@
 				34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */,
 				34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */,
 				34957628130DF12400895074 /* ViewExerciseModesViewController.xib in Resources */,
+				34C28DA5130F789200FB7C61 /* CreateExerciseModeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +361,8 @@
 				3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */,
 				65AA386012F5151800907DE3 /* WOD.m in Sources */,
 				34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */,
+				34C28D6D130F728C00FB7C61 /* MODE.m in Sources */,
+				34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

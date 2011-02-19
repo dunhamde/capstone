@@ -12,7 +12,6 @@
 @implementation WOD 
 
 @dynamic name;
-@dynamic wod_id;
 @dynamic notes;
 @dynamic timelimit;
 @dynamic date_created;
