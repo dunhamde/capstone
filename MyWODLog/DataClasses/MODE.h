@@ -9,7 +9,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface MODE : NSObject {
+@interface MODE : NSManagedObject {
 
 }
 

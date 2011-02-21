@@ -104,12 +104,14 @@
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	self.addingManagedObjectContext = addingContext;
-	[addingContext release];
-
+	
+	if (self.managedObjectContext == nil) {
+		NSLog(@"NULL NULL NULL!");
+	}
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
 	NSLog( @"GETS HERE AND CRASHES ON THE NEXT LINE" );
-	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
+	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
 	NSLog( @"DOESN'T GET HERE BECAUSE IT CRASHES" );
 	NSLog( @"IF YOU SEE THIS:  CRASH FIXED" );
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseModeViewController];
@@ -117,6 +119,7 @@
 	
 	[createExerciseModeViewController release];
 	[navController release];
+	[addingContext release];  // SHOULD WE BE RELEASING THIS??!?!?
 }
 
 

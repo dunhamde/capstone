@@ -98,8 +98,14 @@
 }    
 
 
+
+
+
+
 #pragma mark -
 #pragma mark Core Data stack
+
+
 
 /**
  Returns the managed object context for the application.
@@ -120,6 +126,7 @@
 }
 
 
+
 /**
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created from the application's model.
@@ -132,6 +139,8 @@
     managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
     return managedObjectModel;
 }
+
+
 
 /**
  Returns the persistent store coordinator for the application.
@@ -190,14 +199,20 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
+
 #pragma mark -
 #pragma mark Memory management
+
+
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
 }
+
+
 
 - (void)dealloc {
 	
