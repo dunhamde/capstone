@@ -13,12 +13,12 @@
 
 //TODO:  Make CreateWODViewController the delegate for this
 
-@interface ViewExerciseModesViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ViewExerciseModesViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, CreateExerciseModeViewControllerDelegate> {
 	
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;
 	NSManagedObjectContext		*addingManagedObjectContext;
-
+	
 }
 
 

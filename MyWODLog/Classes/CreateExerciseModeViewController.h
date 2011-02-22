@@ -10,16 +10,35 @@
 #import "MODE.h"
 
 
+@protocol CreateExerciseModeControllerDelegate;
+
+
 @interface CreateExerciseModeViewController : UIViewController <UITextFieldDelegate> {
 	
 	MODE* mode;
 	
 	UIBarButtonItem *saveButton;
 	
-	IBOutlet UITextField *name;
+	IBOutlet UITextField *nameField;
+	
+	NSString *name;
+	
+	id <CreateExerciseModeControllerDelegate> delegate;
 
 }
 
-@property (nonatomic, retain) MODE *mode;
 
+- (void)cancel:(id)sender;
+- (void)save:(id)sender;
+
+
+@property (nonatomic, retain) MODE *mode;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) id <CreateExerciseModeControllerDelegate> delegate;
+
+@end
+
+
+@protocol CreateExerciseModeViewControllerDelegate
+- (void)createExerciseModeViewController:(CreateExerciseModeViewController *)controller didFinishWithSave:(BOOL)save;
 @end

@@ -90,11 +90,11 @@
 		NSLog(@"Saved with text: %@", name.text);
 		
 		// Set the score type based on the UISwitch position
-		if (scoreSwitch.on) {
-			[wod setScore_type:WOD_SCORE_TYPE_TIME];
-		} else {
-			wod.score_type = WOD_SCORE_TYPE_REPS;
-		}
+	//	if (scoreSwitch.on) {
+	//		[wod setScore_type:WOD_SCORE_TYPE_TIME];
+	//	} else {
+	//		wod.score_type = WOD_SCORE_TYPE_REPS;
+	//	}
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {

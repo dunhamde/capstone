@@ -95,31 +95,101 @@
 
 
 - (void)createExerciseMode:(id)sender {
-	NSLog( @"GOT HERE OH YEAH" );
 	
 	CreateExerciseModeViewController *createExerciseModeViewController = [[CreateExerciseModeViewController alloc] init];
-	//TODO: Create and set the delegate
-	//createExerciseModeController.delegate = self;
+	createExerciseModeViewController.delegate = self;
+//	[createExerciseModeViewController setManagedObjectContext:self.managedObjectContext];
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	self.addingManagedObjectContext = addingContext;
-	
-	if (self.managedObjectContext == nil) {
-		NSLog(@"NULL NULL NULL!");
-	}
+	[addingContext release];
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-	NSLog( @"GETS HERE AND CRASHES ON THE NEXT LINE" );
-	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
-	NSLog( @"DOESN'T GET HERE BECAUSE IT CRASHES" );
-	NSLog( @"IF YOU SEE THIS:  CRASH FIXED" );
+	
+	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseModeViewController];
+	
+    [self.navigationController presentModalViewController:navController animated:YES];
+	
+	[createExerciseModeViewController release];
+	[navController release];
+	
+	/*
+	NSLog( @"createExerciseMode" );
+	CreateExerciseModeViewController *createExerciseModeViewController = [[CreateExerciseModeViewController alloc] init];
+
+	// Why is there a warning stating:
+	//   Class 'ViewExerciseModesViewController' does not implement the 'CreateExerciseModeControllerDelegate' protocol
+	[createExerciseModeViewController setDelegate:self];
+	
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+	self.addingManagedObjectContext = addingContext;
+	[addingContext release];
+	
+	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseModeViewController];
     [self.navigationController presentModalViewController:navController animated:YES];
 	
 	[createExerciseModeViewController release];
 	[navController release];
-	[addingContext release];  // SHOULD WE BE RELEASING THIS??!?!?
+	//[addingContext release];  // SHOULD WE BE RELEASING THIS??!?!?
+	 */
+}
+
+
+
+/**
+ * Create Exercise Mode controller's delegate method; informs the delegate that the add operation has completed, and indicates whether the user saved the new book.
+ */
+- (void)createExerciseModeViewController:(CreateExerciseModeViewController *)controller didFinishWithSave:(BOOL)save {
+	
+	NSLog( @"I'm Ron Burgundy?" );
+	
+	if (save) {
+		/*
+		 The new book is associated with the add controller's managed object context.
+		 This is good because it means that any edits that are made don't affect the application's main managed object context -- it's a way of keeping disjoint edits in a separate scratchpad -- but it does make it more difficult to get the new book registered with the fetched results controller.
+		 First, you have to save the new book.  This means it will be added to the persistent store.  Then you can retrieve a corresponding managed object into the application delegate's context.  Normally you might do this using a fetch or using objectWithID: -- for example
+		 
+		 NSManagedObjectID *newBookID = [controller.book objectID];
+		 NSManagedObject *newBook = [applicationContext objectWithID:newBookID];
+		 
+		 These techniques, though, won't update the fetch results controller, which only observes change notifications in its context.
+		 You don't want to tell the fetch result controller to perform its fetch again because this is an expensive operation.
+		 You can, though, update the main context using mergeChangesFromContextDidSaveNotification: which will emit change notifications that the fetch results controller will observe.
+		 To do this:
+		 1	Register as an observer of the add controller's change notifications
+		 2	Perform the save
+		 3	In the notification method (addControllerContextDidSave:), merge the changes
+		 4	Unregister as an observer
+		 */
+		NSLog( @"In Save" );
+		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		[dnc addObserver:self selector:@selector(createExerciseModeControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		NSLog( @"In Save 2" );		
+		NSError *error;
+		if (addingManagedObjectContext == nil) {
+			NSLog( @"ADDING MOC IS NULL" );
+		}
+		NSLog(@"In Save 2.5");
+		if (![addingManagedObjectContext save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+		NSLog( @"In Save 3" );
+		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		NSLog( @"In Save 4" );
+	}
+	// Release the adding managed object context.
+	self.addingManagedObjectContext = nil;
+NSLog( @"In Save 5" );
+	// Dismiss the modal view to return to the main list
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -143,13 +213,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    //return 1;
+	return [[fetchedResultsController sections] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    //return 0;
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	return [sectionInfo numberOfObjects];
 }
 
 
