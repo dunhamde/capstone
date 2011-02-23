@@ -69,6 +69,7 @@
 - (IBAction)save:(id)sender
 {
     [self setName:[nameField text]];
+	self.mode.name = [name copy];
 	NSLog( @"Setting name to: %@", [self name] );
     //[[self navigationController] popViewControllerAnimated:YES];
 	[delegate createExerciseModeViewController:self didFinishWithSave:YES];

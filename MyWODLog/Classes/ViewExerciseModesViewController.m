@@ -121,29 +121,6 @@
 	
 	[createExerciseModeViewController release];
 	[navController release];
-	
-	/*
-	NSLog( @"createExerciseMode" );
-	CreateExerciseModeViewController *createExerciseModeViewController = [[CreateExerciseModeViewController alloc] init];
-
-	// Why is there a warning stating:
-	//   Class 'ViewExerciseModesViewController' does not implement the 'CreateExerciseModeControllerDelegate' protocol
-	[createExerciseModeViewController setDelegate:self];
-	
-	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
-	[addingContext release];
-	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseModeViewController];
-    [self.navigationController presentModalViewController:navController animated:YES];
-	
-	[createExerciseModeViewController release];
-	[navController release];
-	//[addingContext release];  // SHOULD WE BE RELEASING THIS??!?!?
-	 */
 }
 
 
@@ -256,7 +233,7 @@ NSLog( @"In Save 5" );
     }
     
     // Configure the cell...
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -277,12 +254,11 @@ NSLog( @"In Save 5" );
     // Configure the cell to show the book's title
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
-		//cell.textLabel.text = mode.name;
-		cell.textLabel.text = @"HELLO WORLD";
+		cell.textLabel.text = mode.name;
+		//cell.textLabel.text = @"HELLO WORLD";
 	} else {
 		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );
 	}
-	
 	
 }
 
