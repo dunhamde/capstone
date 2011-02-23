@@ -32,7 +32,7 @@
 	[self setTitle:@"Add Mode"];
     
     UIBarButtonItem *bbi;
-    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                         target:self
                                                         action:@selector(save:)];
     [[self navigationItem] setRightBarButtonItem:bbi];
@@ -69,7 +69,7 @@
 - (IBAction)save:(id)sender
 {
     [self setName:[nameField text]];
-	NSLog( @"Setting name to: @", [self name] );
+	NSLog( @"Setting name to: %@", [self name] );
     //[[self navigationController] popViewControllerAnimated:YES];
 	[delegate createExerciseModeViewController:self didFinishWithSave:YES];
 }

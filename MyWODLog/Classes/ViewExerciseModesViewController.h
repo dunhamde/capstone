@@ -29,6 +29,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)setLeftBarButton:(Boolean)animated;
+- (void)createExerciseModeViewController:(CreateExerciseModeViewController *)controller didFinishWithSave:(BOOL)save;
 
 - (void)cancel:(id)sender;
 
