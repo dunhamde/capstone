@@ -17,9 +17,12 @@
 	LogScoreViewController* logScore;
 
 	WOD *wod;
+	
+	IBOutlet UILabel *scoredByLabel;
 }
 
 @property (nonatomic, retain) WOD *wod;
+@property (nonatomic, retain) UILabel *scoredByLabel;
 
 
 - (void)setCurrentWOD:(WOD *)w;

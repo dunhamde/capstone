@@ -94,14 +94,14 @@
 		
 		int scoreType;
 		// Set the score type based on the UISwitch position
-		if ( scoreSwitch.on ) {
-//		if ( [scoreSwitch on] ) {
+		if ( !(scoreSwitch.on) ) {
+			NSLog( @"SWITCH IS OFF" );
 			scoreType = WOD_SCORE_TYPE_TIME;
-			//[wod setScore_type:WOD_SCORE_TYPE_TIME];
 		} else {
+			NSLog(@"SWITCH IS ON");
 			scoreType = WOD_SCORE_TYPE_REPS;
-			//wod.score_type = WOD_SCORE_TYPE_REPS;
 		}
+		NSLog(@"ScOre type = %@", [NSNumber numberWithInt:scoreType]);
 		[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
