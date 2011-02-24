@@ -27,6 +27,10 @@
 		34C28D6D130F728C00FB7C61 /* MODE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28D6C130F728C00FB7C61 /* MODE.m */; };
 		34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */; };
 		34C28DA5130F789200FB7C61 /* CreateExerciseModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */; };
+		34C68BB51315A92700023704 /* CreateExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C68BB31315A92700023704 /* CreateExerciseViewController.m */; };
+		34C68BB61315A92800023704 /* CreateExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C68BB41315A92700023704 /* CreateExerciseViewController.xib */; };
+		34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C68BBA1315A9DD00023704 /* ViewExercisesViewController.m */; };
+		34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */; };
 		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
@@ -67,6 +71,12 @@
 		34C28DA1130F789200FB7C61 /* CreateExerciseModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateExerciseModeViewController.h; path = Classes/CreateExerciseModeViewController.h; sourceTree = "<group>"; };
 		34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateExerciseModeViewController.m; path = Classes/CreateExerciseModeViewController.m; sourceTree = "<group>"; };
 		34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateExerciseModeViewController.xib; path = Classes/CreateExerciseModeViewController.xib; sourceTree = "<group>"; };
+		34C68BB21315A92700023704 /* CreateExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateExerciseViewController.h; path = Classes/CreateExerciseViewController.h; sourceTree = "<group>"; };
+		34C68BB31315A92700023704 /* CreateExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateExerciseViewController.m; path = Classes/CreateExerciseViewController.m; sourceTree = "<group>"; };
+		34C68BB41315A92700023704 /* CreateExerciseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateExerciseViewController.xib; path = Classes/CreateExerciseViewController.xib; sourceTree = "<group>"; };
+		34C68BB91315A9DD00023704 /* ViewExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewExercisesViewController.h; path = Classes/ViewExercisesViewController.h; sourceTree = "<group>"; };
+		34C68BBA1315A9DD00023704 /* ViewExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewExercisesViewController.m; path = Classes/ViewExercisesViewController.m; sourceTree = "<group>"; };
+		34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewExercisesViewController.xib; path = Classes/ViewExercisesViewController.xib; sourceTree = "<group>"; };
 		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
 		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
@@ -167,6 +177,26 @@
 			name = "View Exercise Modes Page";
 			sourceTree = "<group>";
 		};
+		34BAF9BD1314B8A40042DB88 /* View Exercises Page */ = {
+			isa = PBXGroup;
+			children = (
+				34C68BB91315A9DD00023704 /* ViewExercisesViewController.h */,
+				34C68BBA1315A9DD00023704 /* ViewExercisesViewController.m */,
+				34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */,
+			);
+			name = "View Exercises Page";
+			sourceTree = "<group>";
+		};
+		34BAF9BE1314B8B70042DB88 /* Create Exercise Page */ = {
+			isa = PBXGroup;
+			children = (
+				34C68BB21315A92700023704 /* CreateExerciseViewController.h */,
+				34C68BB31315A92700023704 /* CreateExerciseViewController.m */,
+				34C68BB41315A92700023704 /* CreateExerciseViewController.xib */,
+			);
+			name = "Create Exercise Page";
+			sourceTree = "<group>";
+		};
 		34C28D76130F729A00FB7C61 /* CoreData Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +221,8 @@
 		34C28D92130F77D600FB7C61 /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
+				34BAF9BE1314B8B70042DB88 /* Create Exercise Page */,
+				34BAF9BD1314B8A40042DB88 /* View Exercises Page */,
 				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
 				34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */,
 			);
@@ -339,6 +371,8 @@
 				34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */,
 				34957628130DF12400895074 /* ViewExerciseModesViewController.xib in Resources */,
 				34C28DA5130F789200FB7C61 /* CreateExerciseModeViewController.xib in Resources */,
+				34C68BB61315A92800023704 /* CreateExerciseViewController.xib in Resources */,
+				34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +397,8 @@
 				34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */,
 				34C28D6D130F728C00FB7C61 /* MODE.m in Sources */,
 				34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */,
+				34C68BB51315A92700023704 /* CreateExerciseViewController.m in Sources */,
+				34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[self setTitle:@"Select Modality"];
+	[self setTitle:@"Categories"];
 	
 	// Configure the save and cancel buttons.
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
@@ -37,15 +37,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.tableView.allowsSelectionDuringEditing = YES;
 	
-	NSLog(@"WILL THIS WORK?");
-	//TODO: Get code below to work (as it is necessary yet crashes the program right now
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
-	NSLog(@"THE ANSWER IS: YES.. YES IT DOES WORK");
+
 }
 
 /*
@@ -86,6 +84,7 @@
 
 
 - (void)cancel:(id)sender {
+	//TODO:  Get this to work (needs a delegate)
 	// Hack for now to get this off of the screen
 	  //(And this doesn't work anymore because its in a new nav controller)
 //	[[self navigationController] popViewControllerAnimated:YES];
@@ -98,19 +97,22 @@
 - (void)createExerciseMode:(id)sender {
 	
 	CreateExerciseModeViewController *createExerciseModeViewController = [[CreateExerciseModeViewController alloc] init];
-	createExerciseModeViewController.delegate = self;
+//	createExerciseModeViewController.delegate = self;
+	
+	[createExerciseModeViewController setDelegate:self];
 //	[createExerciseModeViewController setManagedObjectContext:self.managedObjectContext];
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	self.addingManagedObjectContext = addingContext;
 	[addingContext release];
+	
 	if( fetchedResultsController == NULL ) {
 		NSLog( @"FETCHED RESULTS IS NULL WHEN IT SHOULDN'T BE!!!!" );
 	}
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-//NSLog(@"IF IT GETS TO HERE THIS DOES NOT MAKE SENSE AS FETCHED RESULTS IS NULL!!!!!!");
+
 	
 	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
 
@@ -151,10 +153,10 @@
 		 3	In the notification method (addControllerContextDidSave:), merge the changes
 		 4	Unregister as an observer
 		 */
-		NSLog( @"In Save" );
+
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createExerciseModeControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		NSLog( @"In Save 2" );		
+	
 		NSError *error;
 		if (addingManagedObjectContext == NULL) {
 			NSLog( @"ADDING MOC IS NULL" );
@@ -165,13 +167,13 @@
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-		NSLog( @"In Save 3" );
+
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		NSLog( @"In Save 4" );
+
 	}
 	// Release the adding managed object context.
 	self.addingManagedObjectContext = nil;
-NSLog( @"In Save 5" );
+
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -238,6 +240,17 @@ NSLog( @"In Save 5" );
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
+	
+	MODE *m = [fetchedResultsController objectAtIndexPath:indexPath];
+	[viewExercisesViewController setMode:m];
+	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
+	
+	[[self navigationController] pushViewController:viewExercisesViewController animated:YES];
+	
+	[viewExercisesViewController release];
+	
     // Navigation logic may go here. Create and push another view controller.
     /*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -250,12 +263,11 @@ NSLog( @"In Save 5" );
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"CONFIGURING A CELL");
+
     // Configure the cell to show the book's title
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
 		cell.textLabel.text = mode.name;
-		//cell.textLabel.text = @"HELLO WORLD";
 	} else {
 		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );
 	}
@@ -278,18 +290,18 @@ NSLog( @"In Save 5" );
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+	if( editingStyle == UITableViewCellEditingStyleDelete ) {
+		// Delete the managed object.
+		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
 	
-	// Delete the managed object.
-	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-	[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
-	
-	NSError *error;
-	if (![context save:&error]) {
-		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
+		NSError *error;
+		if (![context save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
 	}
-	
 	
     //if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
@@ -374,34 +386,32 @@ NSLog( @"In Save 5" );
  Returns the fetched results controller. Creates and configures the controller if necessary.
  */
 - (NSFetchedResultsController *)fetchedResultsController {
-    
-	NSLog( @"VEMVC: fetchedResultsController()" );
+   
 	
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
-    NSLog(@"HEREzzz1");
+
 	// Create and configure a fetch request with the Book entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
-	NSLog(@"HEREzzz2");
+
 	// Create the sort descriptors array.
 	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	
-	NSLog(@"HEREzzz3");
 	// Create and initialize the fetch results controller.
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
 	self.fetchedResultsController = aFetchedResultsController;
 	fetchedResultsController.delegate = self;
-	NSLog(@"HEREzzz4");
+
 	// Memory management.
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	NSLog(@"HEREzzz5");
+	
 	return fetchedResultsController;
 }
 

@@ -62,13 +62,15 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
 	wod.name = textField.text;
-	isEditing = NO;
+	[self setIsEditing:NO];
+//	isEditing = NO;
 
 	// Enable saving if there is text in the field
 	//  ?What if name is the same as another?
 	//TODO:  if( name.text isn't already in the database )
 	if ([name.text length] > 0) {
-		saveButton.enabled = YES;
+		[saveButton setEnabled:YES];
+//		saveButton.enabled = YES;
 	}
 	
 	return NO;
@@ -87,14 +89,20 @@
 	
 	// Confirm that a name has been entered
 	if (!isEditing) {
+		
 		NSLog(@"Saved with text: %@", name.text);
 		
+		int scoreType;
 		// Set the score type based on the UISwitch position
-	//	if (scoreSwitch.on) {
-	//		[wod setScore_type:WOD_SCORE_TYPE_TIME];
-	//	} else {
-	//		wod.score_type = WOD_SCORE_TYPE_REPS;
-	//	}
+		if ( scoreSwitch.on ) {
+//		if ( [scoreSwitch on] ) {
+			scoreType = WOD_SCORE_TYPE_TIME;
+			//[wod setScore_type:WOD_SCORE_TYPE_TIME];
+		} else {
+			scoreType = WOD_SCORE_TYPE_REPS;
+			//wod.score_type = WOD_SCORE_TYPE_REPS;
+		}
+		[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {
@@ -111,8 +119,10 @@
 
 - (IBAction)startEditingMode {
 	// Grey out save button here as well
-	saveButton.enabled = NO;
-	isEditing = YES;
+	[saveButton setEnabled:NO];
+	[self setIsEditing:YES];
+//	saveButton.enabled = NO;
+//	isEditing = YES;
 }
 
 
@@ -124,8 +134,8 @@
 
 - (IBAction)addExercise
 {
-	ViewExerciseModesViewController* exercise = [[ViewExerciseModesViewController alloc] init];
-	exercise.managedObjectContext = self.managedObjectContext;
+	ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
+	[exercise_category setManagedObjectContext:[self managedObjectContext]];
 	//exercise.delegate = self;
 	
 	
@@ -145,11 +155,11 @@
 	
 	*/
 	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
 	
-    [self.navigationController presentModalViewController:navController animated:YES];
+    [[self navigationController] presentModalViewController:navController animated:YES];
 	
-	[exercise release];
+	[exercise_category release];
 	[navController release];
 }
 
@@ -192,7 +202,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
-	cell.textLabel.text = @"OMG";
+	cell.textLabel.text = @"<AN EXERCISE HERE>";
 }
 
 

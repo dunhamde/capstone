@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "CreateExerciseModeViewController.h"
+#import "ViewExercisesViewController.h"
 
 
 //TODO:  Make CreateWODViewController the delegate for this
