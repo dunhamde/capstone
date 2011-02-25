@@ -15,9 +15,6 @@
 
 
 
-
-
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -104,7 +101,8 @@
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
+	[self setAddingManagedObjectContext:addingContext];
+//	self.addingManagedObjectContext = addingContext;
 	[addingContext release];
 	
 	if( fetchedResultsController == NULL ) {
@@ -172,7 +170,8 @@
 
 	}
 	// Release the adding managed object context.
-	self.addingManagedObjectContext = nil;
+//	self.addingManagedObjectContext = nil;
+	[self setAddingManagedObjectContext:nil];
 
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
@@ -192,24 +191,23 @@
 
 - (void)setLeftBarButton:(Boolean)animated {
 	
+	/*
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 	[self.navigationItem setLeftBarButtonItem:cancelButton animated:animated];
 	[cancelButton release];
+	*/
 	
 }
-
-
-
-
 
 
 
 #pragma mark -
 #pragma mark Table view data source
 
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    //return 1;
 	return [[fetchedResultsController sections] count];
 }
 
@@ -217,7 +215,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    //return 0;
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 	return [sectionInfo numberOfObjects];
 }
@@ -329,6 +326,8 @@
 }
 */
 
+
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
 	
@@ -341,20 +340,17 @@
 		[addButton release];
 	}
 	else {
-		[self setLeftBarButton:YES];
+		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		//[self setLeftBarButton:YES];
 	}	
 }
 
 
 
-
-
-
-
-
-
 #pragma mark -
 #pragma mark Memory management
+
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -363,10 +359,13 @@
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
+
+
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }
+
 
 
 - (void)dealloc {
@@ -376,11 +375,10 @@
 
 
 
-
-
-
 #pragma mark -
 #pragma mark Fetched results controller
+
+
 
 /**
  Returns the fetched results controller. Creates and configures the controller if necessary.
@@ -414,6 +412,7 @@
 	
 	return fetchedResultsController;
 }
+
 
 
 /**

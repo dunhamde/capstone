@@ -11,6 +11,8 @@
 
 @implementation CreateExerciseViewController
 
+@synthesize exercise;
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -22,12 +24,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self setTitle:@"Add Exercise"];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

@@ -35,7 +35,7 @@
 
 - (void)setCurrentWOD:(WOD *)w {
 
-	wod = w;
+	[self setWod:w];
 
 	[self setTitle:wod.name];
 

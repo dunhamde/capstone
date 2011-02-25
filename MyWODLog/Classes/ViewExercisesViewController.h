@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "MODE.h"
+#import "MODE.h"
+#import "CreateExerciseViewController.h"
 
 
 @interface ViewExercisesViewController : UITableViewController {
@@ -19,6 +20,8 @@
 	MODE *mode;
 
 }
+
+- (IBAction)createExercise;
 
 
 @property (nonatomic, retain) MODE *mode;

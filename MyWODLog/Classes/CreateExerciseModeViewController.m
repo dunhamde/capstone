@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[self setTitle:@"Add Mode"];
+	[self setTitle:@"Add Category"];
     
     UIBarButtonItem *bbi;
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -37,13 +37,15 @@
                                                         action:@selector(save:)];
     [[self navigationItem] setRightBarButtonItem:bbi];
     [bbi release];
-    
+
+
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                         target:self
                                                         action:@selector(cancel:)];
     [[self navigationItem] setLeftBarButtonItem:bbi];
     [bbi release];
-	
+
+	 
 	// Why Auto-correction for numbers? (because it doesn't use dictionary?)
 	[nameField setAutocorrectionType:UITextAutocorrectionTypeNo];
 }

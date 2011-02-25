@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */; };
+		341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */ = {isa = PBXBuildFile; fileRef = 341ACABA1317656E00E369D2 /* EXERCISE.m */; };
 		34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */; };
 		34807F2612E7BB0900885EBB /* CreateWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34807F2412E7BB0900885EBB /* CreateWODViewController.xib */; };
 		34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34957625130DF12400895074 /* ViewExerciseModesViewController.m */; };
@@ -51,6 +52,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyWODLog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWODLog_Prefix.pch; sourceTree = "<group>"; };
 		3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; name = MyWODLog.xcdatamodel; path = Classes/MyWODLog.xcdatamodel; sourceTree = "<group>"; };
+		341ACAB91317656E00E369D2 /* EXERCISE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXERCISE.h; path = DataClasses/EXERCISE.h; sourceTree = "<group>"; };
+		341ACABA1317656E00E369D2 /* EXERCISE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXERCISE.m; path = DataClasses/EXERCISE.m; sourceTree = "<group>"; };
 		34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateWODViewController.h; path = Classes/CreateWODViewController.h; sourceTree = "<group>"; };
 		34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateWODViewController.m; path = Classes/CreateWODViewController.m; sourceTree = "<group>"; };
 		34807F2412E7BB0900885EBB /* CreateWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateWODViewController.xib; path = Classes/CreateWODViewController.xib; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				34C28D6C130F728C00FB7C61 /* MODE.m */,
 				65AA385E12F5151800907DE3 /* WOD.h */,
 				65AA385F12F5151800907DE3 /* WOD.m */,
+				341ACAB91317656E00E369D2 /* EXERCISE.h */,
+				341ACABA1317656E00E369D2 /* EXERCISE.m */,
 			);
 			name = "CoreData Classes";
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */,
 				34C68BB51315A92700023704 /* CreateExerciseViewController.m in Sources */,
 				34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */,
+				341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

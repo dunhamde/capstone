@@ -22,12 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+	
 	if (self.mode != NULL) {
-		[self setTitle:mode.name];
+		[self setTitle:[mode name]];
 	}
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -115,6 +114,24 @@
 */
 
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+	
+	
+	[[self navigationItem] setHidesBackButton:editing animated:YES];
+	
+	if (editing) {
+		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createExercise)];
+		[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
+		[addButton release];
+	}
+	else {
+		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		
+	}	
+}
+
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -131,8 +148,47 @@
 */
 
 
+
+#pragma mark -
+#pragma mark Adding an Exercise
+
+
+
+/**
+ Creates a new book, an AddViewController to manage addition of the book, and a new managed object context for the add controller to keep changes made to the book discrete from the application's managed object context until the book is saved.
+ IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context, which would simplify some of the code -- you wouldn't need to merge changes after a save, for example. This implementation, though, illustrates a pattern that may sometimes be useful (where you want to maintain a separate set of edits).  The root view controller sets itself as the delegate of the add controller so that it can be informed when the user has completed the add operation -- either saving or canceling (see addViewController:didFinishWithSave:).
+ */
+- (IBAction)createExercise {
+	
+    CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
+
+	//TODO: Delegate stuff
+//	[createExerciseModeViewController setDelegate:self];
+
+	
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+	[self setAddingManagedObjectContext:addingContext];
+	[addingContext release];
+	
+	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+	
+//	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
+	
+    [self.navigationController presentModalViewController:navController animated:YES];
+	
+	[createExerciseViewController release];
+	[navController release];
+}
+
+
+
 #pragma mark -
 #pragma mark Table view delegate
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.

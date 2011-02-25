@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "EXERCISE.h"
+
 
 @interface CreateExerciseViewController : UIViewController {
-
+	
+	EXERCISE *exercise;
+	
 }
+
+@property (nonatomic, retain) EXERCISE *exercise;
 
 @end

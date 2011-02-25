@@ -1,4 +1,4 @@
-    //
+//
 //  WODListViewController.m
 //  MyWODLog
 //
@@ -26,6 +26,7 @@
 	// is on top of the stack
 	[self setTitle:@"WOD List"];
 	
+	// Perform Fetch of WODs
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
@@ -136,12 +137,14 @@
 - (IBAction)createWOD {
 	
     CreateWODViewController *createWODViewController = [[CreateWODViewController alloc] init];
-	createWODViewController.delegate = self;
+	//createWODViewController.delegate = self;
+	[createWODViewController setDelegate:self];
 	[createWODViewController setManagedObjectContext:self.managedObjectContext];
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
+	//self.addingManagedObjectContext = addingContext;
+	[self setAddingManagedObjectContext:addingContext];
 	[addingContext release];
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
@@ -230,17 +233,21 @@
 	}	
 }
 
+
+
 #pragma mark -
 #pragma mark Selecting a WOD
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)ip 
 {
 	//Throw a wod up
 	
 	ViewWODViewController *wod_view = [[ViewWODViewController alloc] init];
-	if( !fetchedResultsController ) {
+/*	if( !fetchedResultsController ) {
 		NSLog( @"FETCHED RESULTS CONTROLLER IS NULL!!!!\n" );
-	}
+	} */
 	
 	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
 	[wod_view setCurrentWOD:wod];
@@ -251,8 +258,11 @@
 }
 
 
+
 #pragma mark -
 #pragma mark Fetched results controller
+
+
 
 /**
  Returns the fetched results controller. Creates and configures the controller if necessary.
@@ -263,7 +273,7 @@
         return fetchedResultsController;
     }
     
-	// Create and configure a fetch request with the Book entity.
+	// Create and configure a fetch request with the 'wod' entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"wod" inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];

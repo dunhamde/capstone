@@ -95,13 +95,10 @@
 		int scoreType;
 		// Set the score type based on the UISwitch position
 		if ( !(scoreSwitch.on) ) {
-			NSLog( @"SWITCH IS OFF" );
 			scoreType = WOD_SCORE_TYPE_TIME;
 		} else {
-			NSLog(@"SWITCH IS ON");
 			scoreType = WOD_SCORE_TYPE_REPS;
 		}
-		NSLog(@"ScOre type = %@", [NSNumber numberWithInt:scoreType]);
 		[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
@@ -155,12 +152,16 @@
 	
 	*/
 	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
+//	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
 	
-    [[self navigationController] presentModalViewController:navController animated:YES];
+  //  [[self navigationController] presentModalViewController:navController animated:YES];
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
+	[backButton release];
+	[[self navigationController] pushViewController:exercise_category animated:YES];
 	
 	[exercise_category release];
-	[navController release];
+	//[navController release];
 }
 
 
