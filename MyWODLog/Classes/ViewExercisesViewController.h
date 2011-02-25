@@ -11,7 +11,7 @@
 #import "CreateExerciseViewController.h"
 
 
-@interface ViewExercisesViewController : UITableViewController {
+@interface ViewExercisesViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, CreateExerciseViewControllerDelegate> {
 	
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;

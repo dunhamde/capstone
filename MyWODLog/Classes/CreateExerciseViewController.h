@@ -11,12 +11,32 @@
 #import "EXERCISE.h"
 
 
+@protocol CreateExerciseViewControllerDelegate;
+
+
 @interface CreateExerciseViewController : UIViewController {
 	
 	EXERCISE *exercise;
 	
+	IBOutlet UITextField *nameField;
+	
+	NSString *name;
+	
 }
 
-@property (nonatomic, retain) EXERCISE *exercise;
 
+- (void)cancel:(id)sender;
+- (void)save:(id)sender;
+
+
+@property (nonatomic, retain) EXERCISE *exercise;
+@property (nonatomic, retain) UITextField *nameField;
+@property (nonatomic, retain) NSString *name;
+
+@end
+
+
+
+@protocol CreateExerciseViewControllerDelegate
+- (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save;
 @end

@@ -39,6 +39,9 @@
 - (IBAction)save:(id)sender;
 - (IBAction)startEditingMode;
 
+//Added this line below to get rid of the warning... if the warning still exists then this line is useless
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 
