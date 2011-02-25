@@ -22,21 +22,23 @@
 }
 
 
+- (void)viewDidLoad {
+	
+	if( [[wod score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
+		[[self scoredByLabel] setText:@"Time"];
+	} else {
+		[[self scoredByLabel] setText:@"Number of Repetitions"];
+	}
+}
+
+
 
 - (void)setCurrentWOD:(WOD *)w {
 
 	wod = w;
 
 	[self setTitle:wod.name];
-	
-	NSLog( @"NOT CRASHING HERE" );
-	if( [[wod score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
-		NSLog( @"HERERHEHREHRHE" );
-		[[self scoredByLabel] setText:@"TIME!!!!"];
-	} else {
-		NSLog( @"NOT HERERHEHREHR" );
-		[[self scoredByLabel] setText:@"# OF REPS!!!!"];
-	}
+
 }
 
 
