@@ -16,6 +16,8 @@
 
 @interface CreateExerciseViewController : UIViewController {
 	
+	id <CreateExerciseViewControllerDelegate> delegate;
+	
 	EXERCISE *exercise;
 	
 	IBOutlet UITextField *nameField;
@@ -28,7 +30,7 @@
 - (void)cancel:(id)sender;
 - (void)save:(id)sender;
 
-
+@property (nonatomic, assign) id <CreateExerciseViewControllerDelegate> delegate;
 @property (nonatomic, retain) EXERCISE *exercise;
 @property (nonatomic, retain) UITextField *nameField;
 @property (nonatomic, retain) NSString *name;

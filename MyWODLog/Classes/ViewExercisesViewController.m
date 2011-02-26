@@ -21,12 +21,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	NSLog( @"HERE BBBBB" );
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-	
+	NSLog( @"HERE BBBBB2" );
 	if (self.mode != NULL) {
 		[self setTitle:[mode name]];
 	}
+	NSLog( @"HERE BBBBB3" );
+	
+	//TODO:  implement the rest of the fetchedResults stuff i.e. the delegate methods
+	// Perform Fetch of WODs
+	NSError *error;
+	if (fetchedResultsController != NULL && ![[self fetchedResultsController] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
+	NSLog( @"HERE BBBBB4" );
 }
 
 
@@ -163,7 +174,7 @@
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
 
 	//TODO: Delegate stuff
-//	[createExerciseModeViewController setDelegate:self];
+	[createExerciseViewController setDelegate:self];
 
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
@@ -181,6 +192,47 @@
 	
 	[createExerciseViewController release];
 	[navController release];
+}
+
+
+
+- (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save
+{
+	if (save) {
+		/*
+		 The new book is associated with the add controller's managed object context.
+		 This is good because it means that any edits that are made don't affect the application's main managed object context -- it's a way of keeping disjoint edits in a separate scratchpad -- but it does make it more difficult to get the new book registered with the fetched results controller.
+		 First, you have to save the new book.  This means it will be added to the persistent store.  Then you can retrieve a corresponding managed object into the application delegate's context.  Normally you might do this using a fetch or using objectWithID: -- for example
+		 
+		 NSManagedObjectID *newBookID = [controller.book objectID];
+		 NSManagedObject *newBook = [applicationContext objectWithID:newBookID];
+		 
+		 These techniques, though, won't update the fetch results controller, which only observes change notifications in its context.
+		 You don't want to tell the fetch result controller to perform its fetch again because this is an expensive operation.
+		 You can, though, update the main context using mergeChangesFromContextDidSaveNotification: which will emit change notifications that the fetch results controller will observe.
+		 To do this:
+		 1	Register as an observer of the add controller's change notifications
+		 2	Perform the save
+		 3	In the notification method (addControllerContextDidSave:), merge the changes
+		 4	Unregister as an observer
+		 */
+		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		
+		NSError *error;
+		if (![addingManagedObjectContext save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+	}
+	// Release the adding managed object context.
+	[self setAddingManagedObjectContext:nil];
+//	self.addingManagedObjectContext = nil;
+	
+	// Dismiss the modal view to return to the main list
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

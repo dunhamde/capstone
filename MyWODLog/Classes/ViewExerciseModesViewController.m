@@ -32,7 +32,7 @@
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	self.tableView.allowsSelectionDuringEditing = YES;
+	self.tableView.allowsSelectionDuringEditing = NO;
 	
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -42,6 +42,7 @@
 	}
 
 }
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -240,17 +241,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	NSLog( @"HERE ZZZZ" );
 	ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
-	
+	NSLog( @"HERE ZZZZ2" );
 	MODE *m = [fetchedResultsController objectAtIndexPath:indexPath];
+	NSLog( @"HERE ZZZZ3" );
 	[viewExercisesViewController setMode:m];
+	NSLog( @"HERE ZZZZ4" );
 	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
-	
+	NSLog( @"HERE ZZZZ5" );
 	[[self navigationController] pushViewController:viewExercisesViewController animated:YES];
-	
+	NSLog( @"HERE ZZZZ6" );
 	[viewExercisesViewController release];
-	
+	NSLog( @"HERE ZZZZ7" );
     // Navigation logic may go here. Create and push another view controller.
     /*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -273,6 +276,7 @@
 	}
 	
 }
+
 
 
 
@@ -312,7 +316,13 @@
    // }   
 }
 
+#pragma mark -
+#pragma mark Selection and moving
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // The table view should not be re-orderable.
+    return NO;
+}
 
 /*
 // Override to support rearranging the table view.
@@ -367,6 +377,9 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	// Release any properties that are loaded in viewDidLoad or can be recreated lazily.
+	[self setFetchedResultsController:nil];
+	//	self.fetchedResultsController = nil;
 }
 
 
