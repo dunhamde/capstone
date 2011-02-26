@@ -160,11 +160,14 @@
 			NSLog( @"ADDING MOC IS NULL" );
 		}
 		NSLog(@"In Save 2.5");
+		if( addingManagedObjectContext == NULL )
+			NSLog(@"ADDING MOC IS NULL");
 		if (![addingManagedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
+		NSLog(@"PAST 2.5");
 
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 
@@ -369,6 +372,8 @@
 
 
 - (void)dealloc {
+	[fetchedResultsController release];
+	[managedObjectContext release];
 	[addingManagedObjectContext release];
     [super dealloc];
 }
@@ -473,7 +478,6 @@
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
 	[self.tableView endUpdates];
 }
-
 
 
 

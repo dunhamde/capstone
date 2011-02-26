@@ -228,8 +228,8 @@
 			children = (
 				34BAF9BE1314B8B70042DB88 /* Create Exercise Page */,
 				34BAF9BD1314B8A40042DB88 /* View Exercises Page */,
-				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
 				34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */,
+				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
 			);
 			name = Exercises;
 			sourceTree = "<group>";
