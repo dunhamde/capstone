@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>6553BEC613036E42004459AE</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>MyWODLog.xcdatamodel</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>6553BEC713036E42004459AE</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>MyWODLog.xcdatamodel</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>6553BEF813037599004459AE</string>
-						<key>history</key>
-						<array>
-							<string>6553BE991303698F004459AE</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {992, 588}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>38 223 992 629 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -321,14 +280,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
-									<integer>11</integer>
-									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 30}, {231, 685}}</string>
+							<string>{{0, 0}, {231, 685}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -365,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CreateWODViewController.m</string>
+								<string>WOD.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -373,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CreateWODViewController.m</string>
+										<string>WOD.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6553BEF713037599004459AE</string>
+										<string>65D003321318C07D007B50B9</string>
 										<key>history</key>
 										<array>
 											<string>65F474C21298DBAA00E58B04</string>
@@ -388,16 +344,13 @@
 											<string>65AA375312F4EE9F00907DE3</string>
 											<string>65AA387D12F5170A00907DE3</string>
 											<string>65AA391812F51EE700907DE3</string>
-											<string>65AA396D12F52A6C00907DE3</string>
-											<string>65AA396E12F52A6C00907DE3</string>
 											<string>65A33ABF12F933420001B369</string>
 											<string>6553BEBE13036E42004459AE</string>
 											<string>6553BEBF13036E42004459AE</string>
-											<string>6553BEC213036E42004459AE</string>
-											<string>6553BEDE13037308004459AE</string>
 											<string>6553BEE9130373E5004459AE</string>
 											<string>6553BEEA130373E5004459AE</string>
-											<string>6553BEEB130373E5004459AE</string>
+											<string>65D0032F1318C065007B50B9</string>
+											<string>65D003301318C065007B50B9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -409,14 +362,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1187, 590}}</string>
+								<string>{{0, 0}, {1187, 584}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 134 1440 744 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>590pt</string>
+							<string>584pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -429,14 +382,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 595}, {1187, 108}}</string>
+								<string>{{0, 589}, {1187, 114}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 134 1440 744 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>108pt</string>
+							<string>114pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -455,9 +408,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6553BE891303692C004459AE</string>
+				<string>65D0032C1318C054007B50B9</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6553BE8A1303692C004459AE</string>
+				<string>65D0032D1318C054007B50B9</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -595,13 +548,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6553BEF913037599004459AE</string>
-		<string>6553BEC913036E42004459AE</string>
-		<string>6553BE941303692C004459AE</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>65F474131298A1CA00E58B04</string>
-		<string>6553BEC613036E42004459AE</string>
 		<string>/Users/derek/capstone/MyWODLog/MyWODLog.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -626,7 +573,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MyWODLog.xcdatamodel</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -643,8 +590,6 @@
 							<string>223pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -684,7 +629,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>65F474131298A1CA00E58B04</string>
-				<string>6553BE8B1303692C004459AE</string>
+				<string>65D0032E1318C054007B50B9</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -806,13 +751,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>6553BE8C1303692C004459AE</string>
+				<string>65D002F31318A7A1007B50B9</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>6553BE8D1303692C004459AE</string>
-				<string>6553BE8E1303692C004459AE</string>
-				<string>6553BE8F1303692C004459AE</string>
-				<string>6553BE901303692C004459AE</string>
-				<string>6553BE911303692C004459AE</string>
+				<string>65D002F41318A7A1007B50B9</string>
+				<string>65D002F51318A7A1007B50B9</string>
+				<string>65D002F61318A7A1007B50B9</string>
+				<string>65D002F71318A7A1007B50B9</string>
+				<string>65D002F81318A7A1007B50B9</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -968,7 +913,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>6553BE921303692C004459AE</string>
+				<string>65D002F91318A7A1007B50B9</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

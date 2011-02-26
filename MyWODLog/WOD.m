@@ -11,10 +11,11 @@
 
 @implementation WOD 
 
-@dynamic name;
+@dynamic date_created;
 @dynamic notes;
 @dynamic timelimit;
-@dynamic date_created;
 @dynamic score_type;
+@dynamic name;
+@dynamic exercises;
 
 @end
