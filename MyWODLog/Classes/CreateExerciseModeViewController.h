@@ -10,7 +10,7 @@
 #import "MODE.h"
 
 
-@protocol CreateExerciseModeViewControllerDelegate;
+@protocol CreateExerciseModeControllerDelegate;
 
 
 @interface CreateExerciseModeViewController : UIViewController <UITextFieldDelegate> {
@@ -23,7 +23,7 @@
 	
 	NSString *name;
 	
-	id <CreateExerciseModeViewControllerDelegate> delegate;
+	id <CreateExerciseModeControllerDelegate> delegate;
 
 }
 
@@ -34,7 +34,7 @@
 
 @property (nonatomic, retain) MODE *mode;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) id <CreateExerciseModeViewControllerDelegate> delegate;
+@property (nonatomic, retain) id <CreateExerciseModeControllerDelegate> delegate;
 
 @end
 
