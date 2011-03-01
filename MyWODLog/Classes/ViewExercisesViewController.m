@@ -171,6 +171,7 @@
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
 
 	[createExerciseViewController setDelegate:self];
+	[createExerciseViewController setMode:[self mode]];
 
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
@@ -194,7 +195,6 @@
 
 - (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save
 {
-	NSLog(@"FINISH WITH SAVE 1");
 	if (save) {
 		/*
 		 The new book is associated with the add controller's managed object context.
@@ -213,12 +213,11 @@
 		 3	In the notification method (addControllerContextDidSave:), merge the changes
 		 4	Unregister as an observer
 		 */
-			NSLog(@"FINISH WITH SAVE 2");
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		
 		[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 		//[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-			NSLog(@"FINISH WITH SAVE 3");
+
 		NSError *error;
 
 		if (addingManagedObjectContext == NULL) {
