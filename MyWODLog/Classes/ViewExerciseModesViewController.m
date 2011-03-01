@@ -44,35 +44,6 @@
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-
 
 
 
@@ -237,23 +208,24 @@
     
     // Configure the cell...
     [self configureCell:cell atIndexPath:indexPath];
+	
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog( @"HERE ZZZZ" );
+	
 	ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
-	NSLog( @"HERE ZZZZ2" );
+	
 	MODE *m = [fetchedResultsController objectAtIndexPath:indexPath];
-	NSLog( @"HERE ZZZZ3" );
+	
 	[viewExercisesViewController setMode:m];
-	NSLog( @"HERE ZZZZ4" );
+	
 	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
-	NSLog( @"HERE ZZZZ5" );
+	
 	[[self navigationController] pushViewController:viewExercisesViewController animated:YES];
-	NSLog( @"HERE ZZZZ6" );
+
 	[viewExercisesViewController release];
-	NSLog( @"HERE ZZZZ7" );
+
     // Navigation logic may go here. Create and push another view controller.
     /*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

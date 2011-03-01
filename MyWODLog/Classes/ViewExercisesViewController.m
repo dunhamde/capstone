@@ -21,53 +21,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog( @"HERE BBBBB" );
+
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-	NSLog( @"HERE BBBBB2" );
+
 	if (self.mode != NULL) {
 		[self setTitle:[mode name]];
 	}
-	NSLog( @"HERE BBBBB3" );
+
 	
 	//TODO:  implement the rest of the fetchedResults stuff i.e. the delegate methods
 	// Perform Fetch of WODs
 	NSError *error;
-	if (fetchedResultsController != NULL && ![[self fetchedResultsController] performFetch:&error]) {
+	//if (fetchedResultsController != NULL && ![[self fetchedResultsController] performFetch:&error]) {
+	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
-	NSLog( @"HERE BBBBB4" );
+
 }
 
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 
 #pragma mark -
@@ -75,13 +48,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+	return [[fetchedResultsController sections] count];
+//    return 0;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	return [sectionInfo numberOfObjects];
+//    return 0;
 }
 
 
@@ -96,10 +72,25 @@
     }
     
     // Configure the cell...
-    
+    [self configureCell:cell atIndexPath:indexPath];
+	
     return cell;
 }
 
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+    // Configure the cell to show the book's title
+	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
+	if (exercise) {
+		cell.textLabel.text = [exercise name];
+		//[[cell textLabel] setText:[exercise name]];
+	} else {
+		NSLog( @"Exercise is NULL for a cell at row %d", [indexPath row] );
+	}
+	
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -108,21 +99,24 @@
     return YES;
 }
 */
-
-
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+	if( editingStyle == UITableViewCellEditingStyleDelete ) {
+		// Delete the managed object.
+		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+		
+		NSError *error;
+		if (![context save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+	}
+	
 }
-*/
+
 
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -166,8 +160,15 @@
 
 
 /**
- Creates a new book, an AddViewController to manage addition of the book, and a new managed object context for the add controller to keep changes made to the book discrete from the application's managed object context until the book is saved.
- IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context, which would simplify some of the code -- you wouldn't need to merge changes after a save, for example. This implementation, though, illustrates a pattern that may sometimes be useful (where you want to maintain a separate set of edits).  The root view controller sets itself as the delegate of the add controller so that it can be informed when the user has completed the add operation -- either saving or canceling (see addViewController:didFinishWithSave:).
+ Creates a new book, an AddViewController to manage addition of the book, and a new managed object context
+  for the add controller to keep changes made to the book discrete from the application's managed object
+  context until the book is saved.
+ IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context,
+  which would simplify some of the code -- you wouldn't need to merge changes after a save, for example.
+  This implementation, though, illustrates a pattern that may sometimes be useful (where you want to
+  maintain a separate set of edits).  The root view controller sets itself as the delegate of the add
+  controller so that it can be informed when the user has completed the add operation -- either saving or
+  canceling (see addViewController:didFinishWithSave:).
  */
 - (IBAction)createExercise {
 	
@@ -184,7 +185,7 @@
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
 	
-//	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
+	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
 	
@@ -198,6 +199,7 @@
 
 - (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save
 {
+	NSLog(@"FINISH WITH SAVE 1");
 	if (save) {
 		/*
 		 The new book is associated with the add controller's managed object context.
@@ -216,23 +218,131 @@
 		 3	In the notification method (addControllerContextDidSave:), merge the changes
 		 4	Unregister as an observer
 		 */
+			NSLog(@"FINISH WITH SAVE 2");
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		
+			NSLog(@"FINISH WITH SAVE 3");
 		NSError *error;
+
+		if (addingManagedObjectContext == NULL) {
+			NSLog(@"AMOC IS NULL");
+		}
 		if (![addingManagedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
+			NSLog(@"FINISH WITH SAVE 4");
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+			NSLog(@"FINISH WITH SAVE 5");
 	}
+		NSLog(@"FINISH WITH SAVE 6");
 	// Release the adding managed object context.
 	[self setAddingManagedObjectContext:nil];
 //	self.addingManagedObjectContext = nil;
-	
+		NSLog(@"FINISH WITH SAVE 7");
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Fetched results controller
+
+
+
+/**
+ Returns the fetched results controller. Creates and configures the controller if necessary.
+ */
+- (NSFetchedResultsController *)fetchedResultsController {
+	
+	
+    if (fetchedResultsController != nil) {
+        return fetchedResultsController;
+    }
+	
+	// Create and configure a fetch request with the Book entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"exercise" inManagedObjectContext:managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	// Create the sort descriptors array.
+	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+	[fetchRequest setSortDescriptors:sortDescriptors];
+	
+	// Create and initialize the fetch results controller.
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
+	self.fetchedResultsController = aFetchedResultsController;
+	fetchedResultsController.delegate = self;
+	
+	// Memory management.
+	[aFetchedResultsController release];
+	[fetchRequest release];
+	[nameDescriptor release];
+	
+	return fetchedResultsController;
+}
+
+
+
+/**
+ Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
+ */
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+	[self.tableView beginUpdates];
+}
+
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+	
+	UITableView *tableView = self.tableView;
+	
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeUpdate:
+			[self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+			break;
+			
+		case NSFetchedResultsChangeMove:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+	
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+	[self.tableView endUpdates];
 }
 
 
@@ -243,15 +353,29 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
+	
+	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
+	 
+	 EXERCISE *m = [fetchedResultsController objectAtIndexPath:indexPath];
+	 
+	 [viewExercisesViewController setMode:m];
+	 
+	 [viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
+	 
+	 [[self navigationController] pushViewController:viewExercisesViewController animated:YES];
+	 
+	 [viewExercisesViewController release]; */
+	
+	/*
     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
     // ...
     // Pass the selected object to the new view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
-    */
+	*/
+	
 }
+
 
 
 #pragma mark -
