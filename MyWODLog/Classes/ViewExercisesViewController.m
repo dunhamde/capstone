@@ -69,7 +69,7 @@
     
     // Configure the cell...
     [self configureCell:cell atIndexPath:indexPath];
-	
+
     return cell;
 }
 
@@ -172,6 +172,7 @@
 
 	[createExerciseViewController setDelegate:self];
 	[createExerciseViewController setMode:[self mode]];
+	[[createExerciseViewController exercise] setMode:[self mode]];
 
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.

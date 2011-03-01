@@ -85,7 +85,7 @@
 	
 //	self.exercise.name = [name copy];
 	[[self exercise] setName:[name copy]];
-	[[self exercise] setModes:[self mode]];
+//	[[self exercise] setModes:[self mode]];
 
 	NSLog( @"Setting name to: %@", [self name] );
     //[[self navigationController] popViewControllerAnimated:YES];
