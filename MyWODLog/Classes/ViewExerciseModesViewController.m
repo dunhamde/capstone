@@ -28,6 +28,8 @@
 	// Configure the save and cancel buttons.
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
+	
+	//TODO:  investigate this thoroughly
 	[self setLeftBarButton:NO];
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

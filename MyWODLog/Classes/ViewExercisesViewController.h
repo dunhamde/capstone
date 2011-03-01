@@ -30,4 +30,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save;
+
 @end

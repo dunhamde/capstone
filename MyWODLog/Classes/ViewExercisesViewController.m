@@ -28,8 +28,6 @@
 		[self setTitle:[mode name]];
 	}
 
-	
-	//TODO:  implement the rest of the fetchedResults stuff i.e. the delegate methods
 	// Perform Fetch of WODs
 	NSError *error;
 	//if (fetchedResultsController != NULL && ![[self fetchedResultsController] performFetch:&error]) {
@@ -49,7 +47,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
 	return [[fetchedResultsController sections] count];
-//    return 0;
 }
 
 
@@ -57,7 +54,6 @@
     // Return the number of rows in the section.
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 	return [sectionInfo numberOfObjects];
-//    return 0;
 }
 
 
@@ -220,7 +216,9 @@
 		 */
 			NSLog(@"FINISH WITH SAVE 2");
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		
+		[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		//[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 			NSLog(@"FINISH WITH SAVE 3");
 		NSError *error;
 
@@ -243,6 +241,17 @@
 		NSLog(@"FINISH WITH SAVE 7");
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+/**
+ Notification from the add controller's context's save operation. This is used to update the fetched results controller's managed object context with the new book instead of performing a fetch (which would be a much more computationally expensive operation).
+ */
+- (void)createExerciseControllerContextDidSave:(NSNotification*)saveNotification {
+	
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
 }
 
 
@@ -395,6 +404,9 @@
 
 
 - (void)dealloc {
+	[fetchedResultsController release];
+	[managedObjectContext release];
+	[addingManagedObjectContext release];
     [super dealloc];
 }
 
