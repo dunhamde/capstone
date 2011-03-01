@@ -8,11 +8,14 @@
 
 #import "EXERCISE.h"
 
+#import "MODE.h"
+#import "WOD.h"
 
-@implementation EXERCISE
+@implementation EXERCISE 
 
 @dynamic name;
-//@dynamic date_created;
-
+@dynamic modes;
+@dynamic wod;
 
 @end
+

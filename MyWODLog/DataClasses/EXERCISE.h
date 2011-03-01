@@ -6,15 +6,26 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
+@class MODE;
+@class WOD;
 
-@interface EXERCISE : NSObject {
-
+@interface EXERCISE :  NSManagedObject  
+{
 }
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) MODE * modes;
+@property (nonatomic, retain) NSSet* wod;
 
-//@property (nonatomic, retain) NSDate * date_created;
+@end
+
+
+@interface EXERCISE (CoreDataGeneratedAccessors)
+- (void)addWodObject:(WOD *)value;
+- (void)removeWodObject:(WOD *)value;
+- (void)addWod:(NSSet *)value;
+- (void)removeWod:(NSSet *)value;
 
 @end

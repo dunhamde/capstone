@@ -8,10 +8,12 @@
 
 #import "MODE.h"
 
+#import "exercise.h"
 
-@implementation MODE
-
+@implementation MODE 
 
 @dynamic name;
+@dynamic exercises;
 
 @end
+

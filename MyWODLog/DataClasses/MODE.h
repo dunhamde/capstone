@@ -8,11 +8,22 @@
 
 #import <CoreData/CoreData.h>
 
+@class exercise;
 
-@interface MODE : NSManagedObject {
-
+@interface MODE :  NSManagedObject  
+{
 }
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet* exercises;
+
+@end
+
+
+@interface MODE (CoreDataGeneratedAccessors)
+- (void)addExercisesObject:(exercise *)value;
+- (void)removeExercisesObject:(exercise *)value;
+- (void)addExercises:(NSSet *)value;
+- (void)removeExercises:(NSSet *)value;
 
 @end

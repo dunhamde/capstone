@@ -7,8 +7,10 @@
 //
 
 #import <CoreData/CoreData.h>
+
 #define WOD_SCORE_TYPE_TIME 0
 #define WOD_SCORE_TYPE_REPS 1
+
 
 @interface WOD :  NSManagedObject  
 {
