@@ -170,7 +170,6 @@
 	
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
 
-	//TODO: Delegate stuff
 	[createExerciseViewController setDelegate:self];
 
 	
@@ -362,6 +361,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+
+	[[self navigationController] popToRootViewControllerAnimated:YES];
 	
 	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
 	 
