@@ -18,6 +18,9 @@
 	NSManagedObjectContext		*addingManagedObjectContext;
 	
 	MODE *mode;
+	
+	EXERCISE *lastExerciseAdded;
+	NSString *lastExerciseAddedName;
 
 }
 
@@ -28,6 +31,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
+@property (nonatomic, retain) EXERCISE *lastExerciseAdded;
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

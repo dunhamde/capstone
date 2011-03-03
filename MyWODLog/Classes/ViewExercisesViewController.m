@@ -12,7 +12,7 @@
 @implementation ViewExercisesViewController
 
 
-@synthesize	mode, fetchedResultsController, managedObjectContext, addingManagedObjectContext;
+@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, addingManagedObjectContext;
 
 
 #pragma mark -
@@ -46,14 +46,27 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-	return [[fetchedResultsController sections] count];
+	return 1;
+	//return [[fetchedResultsController sections] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (mode != NULL && [mode exercises] != NULL) {
+		NSLog(@"RETURNING %d", [[mode exercises] count]);
+		return [[mode exercises] count];
+	}
+	if (mode == NULL) {
+		NSLog( @"MODE == NULL" );
+	} else if ([mode exercises] == NULL) {
+		NSLog(@"MODE EXERCISES == NULL");
+	}
+	NSLog(@"RETURNING ZERO");
+	return 0;
+
     // Return the number of rows in the section.
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-	return [sectionInfo numberOfObjects];
+	//id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	//return [sectionInfo numberOfObjects];
 }
 
 
@@ -78,7 +91,8 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
-	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
+	EXERCISE *exercise = [[mode exercises] anyObject];
+//	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (exercise) {
 		cell.textLabel.text = [exercise name];
 		//[[cell textLabel] setText:[exercise name]];
@@ -171,8 +185,6 @@
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
 
 	[createExerciseViewController setDelegate:self];
-	[createExerciseViewController setMode:[self mode]];
-	[[createExerciseViewController exercise] setMode:[self mode]];
 
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
@@ -183,6 +195,9 @@
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
 	
 	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
+
+	[self setLastExerciseAdded:createExerciseViewController.exercise];
+
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
 	
@@ -217,7 +232,6 @@
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		
 		[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		//[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 
 		NSError *error;
 
@@ -229,28 +243,88 @@
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-			NSLog(@"FINISH WITH SAVE 4");
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-			NSLog(@"FINISH WITH SAVE 5");
 	}
-		NSLog(@"FINISH WITH SAVE 6");
+
 	// Release the adding managed object context.
 	[self setAddingManagedObjectContext:nil];
-//	self.addingManagedObjectContext = nil;
-		NSLog(@"FINISH WITH SAVE 7");
+
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
 }
 
 
 /**
- Notification from the add controller's context's save operation. This is used to update the fetched results controller's managed object context with the new book instead of performing a fetch (which would be a much more computationally expensive operation).
+ Notification from the add controller's context's save operation
+ This is used to update the fetched results controller's managed
+ object context with the new book instead of performing a fetch
+ (which would be a much more computationally expensive operation).
  */
 - (void)createExerciseControllerContextDidSave:(NSNotification*)saveNotification {
 	
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	// Merging changes causes the fetched results controller to update its results
-	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];
+	
+	//TODO: Set Mode/Category here
+	// possibly need to refetch the exercise that was just added?
+	if ( [self lastExerciseAdded] != nil) {
+		NSString *lastNameQuery = [NSString stringWithFormat:@"name == '%@'", [[self lastExerciseAdded] name]];
+		
+		
+		// Create and configure a fetch request with the Book entity.
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"exercise" inManagedObjectContext:managedObjectContext];
+		[fetchRequest setEntity:entity];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:lastNameQuery]];
+		
+		NSError *error = nil; 
+		NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		if (!error && [array count] > 0) {
+			EXERCISE *e = [array objectAtIndex:0];
+			[e setModes:[self mode]];
+			NSLog(@"SET MODES CALLED");
+		}
+		
+		
+		// Create the sort descriptors array.
+		//NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+		//NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+		//[fetchRequest setSortDescriptors:sortDescriptors];
+		
+		
+		// Create and initialize the fetch results controller.
+		//NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
+		
+		
+		// code from stackoverflow
+		/*
+		NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Friends" inManagedObjectContext:context]; 
+		
+		NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
+		
+		[request setEntity:entityDescription]; 
+		
+		[request setPredicate:[NSPredicate predicateWithFormat:@"firstName == 'George'"]]; 
+		NSError *error = nil; 
+		NSArray *array = [context executeFetchRequest:request error:&error];
+		*/
+		//endcodefromstackoverflow
+		
+		
+		
+		
+		//[aFetchedResultsController release];
+		[fetchRequest release];
+		[entity release];
+		
+		
+		
+		//[[self lastExerciseAdded] setModes:[self mode]];
+		[[self lastExerciseAdded] release];
+		[self setLastExerciseAdded:nil];
+		NSLog(@"GOT HERE");
+	}
 }
 
 
