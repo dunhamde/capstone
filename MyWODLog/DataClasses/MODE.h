@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@class exercise;
+@class EXERCISE;
 
 @interface MODE :  NSManagedObject  
 {
@@ -21,8 +21,8 @@
 
 
 @interface MODE (CoreDataGeneratedAccessors)
-- (void)addExercisesObject:(exercise *)value;
-- (void)removeExercisesObject:(exercise *)value;
+- (void)addExercisesObject:(EXERCISE *)value;
+- (void)removeExercisesObject:(EXERCISE *)value;
 - (void)addExercises:(NSSet *)value;
 - (void)removeExercises:(NSSet *)value;
 

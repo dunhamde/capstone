@@ -241,7 +241,9 @@
     // Configure the cell to show the book's title
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
-		cell.textLabel.text = mode.name;
+		//cell.textLabel.text = mode.name;
+		cell.textLabel.text = [NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]];
+
 	} else {
 		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );
 	}

@@ -211,6 +211,7 @@
 
 - (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save
 {
+NSLog( @"didFinishWithSave");
 	if (save) {
 		/*
 		 The new book is associated with the add controller's managed object context.
@@ -288,8 +289,10 @@ NSLog( @"HERE B2" );
 		NSError *error = nil; 
 		NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 		if (!error && [array count] > 0) {
+			NSLog(@"COUNT=%d", [array count]);
 			EXERCISE *e = [array objectAtIndex:0];
 			[e setModes:[self mode]];
+			[mode addExercisesObject:e];
 			NSLog(@"SET MODES CALLED");
 		}
 		
