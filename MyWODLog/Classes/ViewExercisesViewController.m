@@ -272,9 +272,11 @@ NSLog( @"HERE B2" );
 	
 	//TODO: Set Mode/Category here
 	// possibly need to refetch the exercise that was just added?
+
 	if ( [self lastExerciseAdded] != nil) {
+
 		NSString *lastNameQuery = [NSString stringWithFormat:@"name == '%@'", [[self lastExerciseAdded] name]];
-		NSLog(@"Query: %@");
+		NSLog(@"Query: %@", lastNameQuery);
 		
 		
 		// Create and configure a fetch request with the Book entity.
