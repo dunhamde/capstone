@@ -46,13 +46,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-	return 1;
-	//return [[fetchedResultsController sections] count];
+	//return 1;
+	return [[fetchedResultsController sections] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (mode != NULL && [mode exercises] != NULL) {
+/*	if (mode != NULL && [mode exercises] != NULL) {
 		NSLog(@"RETURNING %d", [[mode exercises] count]);
 		return [[mode exercises] count];
 	}
@@ -63,10 +63,10 @@
 	}
 	NSLog(@"RETURNING ZERO");
 	return 0;
-
+*/
     // Return the number of rows in the section.
-	//id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-	//return [sectionInfo numberOfObjects];
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	return [sectionInfo numberOfObjects];
 }
 
 
@@ -244,13 +244,17 @@
 			exit(-1);  // Fail
 		}
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		NSLog( @"HERE B1" );
 	}
 
 	// Release the adding managed object context.
 	[self setAddingManagedObjectContext:nil];
-
+NSLog( @"HERE B2" );
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+	NSLog( @"HERE B3" );
+	//[[self fetchedResultsController] release];
+	//[self setFetchedResultsController:nil];
 }
 
 
@@ -270,6 +274,7 @@
 	// possibly need to refetch the exercise that was just added?
 	if ( [self lastExerciseAdded] != nil) {
 		NSString *lastNameQuery = [NSString stringWithFormat:@"name == '%@'", [[self lastExerciseAdded] name]];
+		NSLog(@"Query: %@");
 		
 		
 		// Create and configure a fetch request with the Book entity.
@@ -338,7 +343,7 @@
  */
 - (NSFetchedResultsController *)fetchedResultsController {
 	
-	
+	NSLog( @"HEREZ" );
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
@@ -362,7 +367,7 @@
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	
+	NSLog( @"HEREZ2" );
 	return fetchedResultsController;
 }
 

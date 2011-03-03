@@ -20,7 +20,6 @@
 	MODE *mode;
 	
 	EXERCISE *lastExerciseAdded;
-	NSString *lastExerciseAddedName;
 
 }
 
