@@ -91,8 +91,8 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
-	EXERCISE *exercise = [[mode exercises] anyObject];
-//	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
+//	EXERCISE *exercise = [[mode exercises] anyObject];
+	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (exercise) {
 		cell.textLabel.text = [exercise name];
 		//[[cell textLabel] setText:[exercise name]];
@@ -322,13 +322,13 @@ NSLog( @"HERE B2" );
 		
 		
 		//[aFetchedResultsController release];
-		[fetchRequest release];
-		[entity release];
+	//	[fetchRequest release];
+	//	[entity release];
 		
 		
 		
 		//[[self lastExerciseAdded] setModes:[self mode]];
-		[[self lastExerciseAdded] release];
+	//	[[self lastExerciseAdded] release];
 		[self setLastExerciseAdded:nil];
 		NSLog(@"GOT HERE");
 	}
