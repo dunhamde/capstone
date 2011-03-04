@@ -11,7 +11,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton, exerciseArray;
+@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton, exerciseArray,table;
 
 static CreateWODViewController *sharedInstance = nil;
 
@@ -47,7 +47,7 @@ static CreateWODViewController *sharedInstance = nil;
 	[self setTitle:@"Create WOD"];
 	
 	isEditing = NO;
-	self.exerciseArray = [NSMutableArray arrayWithCapacity:10];
+	self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 	saveButton.enabled = NO;
@@ -58,15 +58,17 @@ static CreateWODViewController *sharedInstance = nil;
 	self.navigationItem.leftBarButtonItem = cancelButton;
 	[cancelButton release];
 	
-	// Register for exercises saved notifications
-	
-	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 
-	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
 	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	// Register for exercises saved notifications
+	
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	
+	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
+	
 	NSLog(@"exercises %@",self.exerciseArray);
 	name.placeholder = @"New WOD Name";
 	//[name becomeFirstResponder];
@@ -196,7 +198,7 @@ static CreateWODViewController *sharedInstance = nil;
 	NSLog(@"NEW EXERCISE \n %@",e);
 	[self.exerciseArray addObject:e];
 	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
-	
+	[self.table reloadData];
 	NSLog(@"EXERCISES ARRAY\n %@",self.exerciseArray);
 }
 
@@ -210,7 +212,7 @@ static CreateWODViewController *sharedInstance = nil;
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return 2;
+	return [self.exerciseArray count];
 }
 
 

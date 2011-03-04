@@ -23,6 +23,7 @@
 	
 	IBOutlet UITextField *name;
 	IBOutlet UISwitch *scoreSwitch;
+	IBOutlet UITableView *table;
 	
 	NSMutableArray *exerciseArray;
 	
@@ -36,6 +37,8 @@
 @property (nonatomic, retain) IBOutlet UITextField *name;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) NSMutableArray *exerciseArray;
+@property (nonatomic, retain) IBOutlet UITableView *table;
+
 
 + (id)sharedInstance;
 
