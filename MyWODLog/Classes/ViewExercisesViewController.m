@@ -7,12 +7,13 @@
 //
 
 #import "ViewExercisesViewController.h"
+#import "CreateWODViewController.h"
 
 
 @implementation ViewExercisesViewController
 
 
-@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc;
+@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc, delegate;
 
 
 #pragma mark -
@@ -488,6 +489,10 @@ NSLog( @"HERE B2" );
 	
 
 	[[self navigationController] popToRootViewControllerAnimated:YES];
+	EXERCISE *m = [fetchedResultsController objectAtIndexPath:indexPath];
+	NSLog(@"EXERCISESENT \n %@", m);
+	//[delegate exerciseSelected:m];
+	[[[CreateWODViewController sharedInstance] exerciseArray] addObject:m];
 	
 	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
 	 

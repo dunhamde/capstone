@@ -11,6 +11,7 @@
 #import "CreateExerciseModeViewController.h"
 #import "ViewExercisesViewController.h"
 
+@class CreateWODViewController;
 
 //TODO:  Make CreateWODViewController the delegate for this
 
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 @property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
+
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

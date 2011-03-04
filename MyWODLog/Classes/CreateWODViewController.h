@@ -13,7 +13,7 @@
 @protocol CreateWODViewControllerDelegate;
 
 
-@interface CreateWODViewController : UIViewController  <UITextFieldDelegate,UITableViewDelegate> {
+@interface CreateWODViewController : UIViewController  <UITextFieldDelegate,UITableViewDelegate, ViewExercisesViewControllerDelegate> {
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
@@ -24,6 +24,8 @@
 	IBOutlet UITextField *name;
 	IBOutlet UISwitch *scoreSwitch;
 	
+	NSMutableArray *exerciseArray;
+	
 	BOOL isEditing;
 }
 
@@ -33,6 +35,9 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 @property (nonatomic, retain) IBOutlet UITextField *name;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, retain) NSMutableArray *exerciseArray;
+
++ (id)sharedInstance;
 
 - (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;

@@ -7,6 +7,7 @@
 //
 
 #import "ViewExerciseModesViewController.h"
+#import "CreateWODViewController.h"
 
 
 @implementation ViewExerciseModesViewController
@@ -218,6 +219,8 @@
 	MODE *m = [fetchedResultsController objectAtIndexPath:indexPath];
 	
 	[viewExercisesViewController setMode:m];
+	
+	[viewExercisesViewController setDelegate:[CreateWODViewController sharedInstance]];
 	
 	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
 	

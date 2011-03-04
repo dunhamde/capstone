@@ -11,7 +11,10 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton;
+@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton, exerciseArray;
+
+static CreateWODViewController *sharedInstance = nil;
+
 
 /*- (id)init {
 	// Call the superclass's designated initializer
@@ -37,6 +40,8 @@
 }
 */
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
@@ -55,6 +60,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	NSLog(@"exercises %@",self.exerciseArray);
 	name.placeholder = @"New WOD Name";
 	//[name becomeFirstResponder];
 }
@@ -168,6 +174,13 @@
 #pragma mark -
 #pragma mark Table View Controller stuff
 
+- (void)exerciseSelected:(EXERCISE	*)exercise {
+	
+	//[self dismissModalViewControllerAnimated:YES];
+	[exerciseArray addObject:exercise];
+	NSLog(@"EXERCISES ARRAY\n %@",exerciseArray);
+}
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -203,7 +216,9 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
     // Configure the cell to show the book's title
-	cell.textLabel.text = @"<AN EXERCISE HERE>";
+	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
+
+	cell.textLabel.text = [exercise name];
 }
 
 
@@ -230,6 +245,50 @@
 - (void)dealloc {
     [super dealloc];
 }
+
+
+#pragma mark -
+#pragma mark Shared instance stuff
+
+// Get the shared instance and create it if necessary.
++ (CreateWODViewController*)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[super allocWithZone:NULL] init];
+    }
+	
+    return sharedInstance;
+}
+
+// We don't want to allocate a new instance, so return the current one.
++ (id)allocWithZone:(NSZone*)zone {
+    return [[self sharedInstance] retain];
+}
+
+// Equally, we don't want to generate multiple copies of the singleton.
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+// Once again - do nothing, as we don't have a retain counter for this object.
+- (id)retain {
+    return self;
+}
+
+// Replace the retain counter so we can never release this object.
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+// This function is empty, as we don't want to let the user release this object.
+- (void)release {
+	
+}
+
+//Do nothing, other than return the shared instance - as this is expected from autorelease.
+- (id)autorelease {
+    return self;
+}
+
 
 
 @end

@@ -136,7 +136,7 @@
  */
 - (IBAction)createWOD {
 	
-    CreateWODViewController *createWODViewController = [[CreateWODViewController alloc] init];
+    CreateWODViewController *createWODViewController = [CreateWODViewController sharedInstance];
 	//createWODViewController.delegate = self;
 	[createWODViewController setDelegate:self];
 	[createWODViewController setManagedObjectContext:self.managedObjectContext];
