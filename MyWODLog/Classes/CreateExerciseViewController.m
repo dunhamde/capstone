@@ -83,7 +83,7 @@
 {
     [self setName:[nameField text]];
 	
-	[[self exercise] setName:[name copy]];
+	//[[self exercise] setName:[name copy]];
 
 	NSLog( @"Setting name to: %@", [self name] );
 
@@ -112,7 +112,7 @@
 
 
 - (void)dealloc {
-	[exercise release];
+//	[exercise release];
 	[name release];
     [super dealloc];
 }

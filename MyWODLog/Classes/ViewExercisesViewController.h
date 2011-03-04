@@ -15,22 +15,25 @@
 	
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;
-	NSManagedObjectContext		*addingManagedObjectContext;
+	//NSManagedObjectContext		*addingManagedObjectContext;
+	
+	CreateExerciseViewController *cevc;
 	
 	MODE *mode;
 	
 	EXERCISE *lastExerciseAdded;
 
+	
 }
 
 - (IBAction)createExercise;
 
-
+//@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, retain) MODE *mode;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, retain) EXERCISE *lastExerciseAdded;
+@property (nonatomic, retain) CreateExerciseViewController *cevc;
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

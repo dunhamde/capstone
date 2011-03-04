@@ -12,7 +12,7 @@
 @implementation ViewExercisesViewController
 
 
-@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, addingManagedObjectContext;
+@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc;
 
 
 #pragma mark -
@@ -37,6 +37,7 @@
 		exit(-1);  // Fail
 	}
 
+	[self setCevc:nil];
 }
 
 
@@ -183,10 +184,12 @@
 - (IBAction)createExercise {
 	
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
-
 	[createExerciseViewController setDelegate:self];
+	
+	[self setCevc:createExerciseViewController];
 
 	
+	/*
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	[self setAddingManagedObjectContext:addingContext];
@@ -197,7 +200,7 @@
 	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
 
 	[self setLastExerciseAdded:createExerciseViewController.exercise];
-
+	 */
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
 	
@@ -213,6 +216,53 @@
 {
 NSLog( @"didFinishWithSave");
 	if (save) {
+		
+		// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+		//NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+		//[self setAddingManagedObjectContext:addingContext];
+		//[addingContext release];
+		
+		//[managedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+		
+		EXERCISE *e = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:managedObjectContext];
+		
+		[e setName:[[self cevc] name]];
+		[e setModes:[self mode]];
+		[[self mode] addExercisesObject:e];
+		
+		
+		/*Update*/
+		/*NSString *modeQuery = [NSString stringWithFormat:@"name == '%@'", [[self mode] name]];
+		NSLog(@"Query: %@", modeQuery);
+		
+		
+		// Create and configure a fetch request with the Book entity.
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:addingManagedObjectContext];
+		[fetchRequest setEntity:entity];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:modeQuery]];
+		
+		NSError *error0 = nil; 
+		NSArray *array = [addingManagedObjectContext executeFetchRequest:fetchRequest error:&error0];
+		if (!error0 && [array count] > 0) {
+			NSLog(@"COUNT=%d", [array count]);
+			MODE *m = [array objectAtIndex:0];
+			NSLog(@"Setting Mode" );
+			[lastExerciseAdded setModes:m];
+			[m addExercisesObject:lastExerciseAdded];
+			
+			// Save back to database
+			if (![addingManagedObjectContext save:&error0]) {
+				// Update to handle the error appropriately.
+				NSLog(@"Unresolved error %@, %@", error0, [error0 userInfo]);
+				exit(-1);  // Fail
+			}
+			
+			
+			NSLog(@"SET MODES CALLED");
+		}*/
+		
+		
 		/*
 		 The new book is associated with the add controller's managed object context.
 		 This is good because it means that any edits that are made don't affect the application's main managed object context -- it's a way of keeping disjoint edits in a separate scratchpad -- but it does make it more difficult to get the new book registered with the fetched results controller.
@@ -230,26 +280,26 @@ NSLog( @"didFinishWithSave");
 		 3	In the notification method (addControllerContextDidSave:), merge the changes
 		 4	Unregister as an observer
 		 */
-		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	//	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		
-		[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+	//	[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 
 		NSError *error;
 
-		if (addingManagedObjectContext == NULL) {
+		/*if (addingManagedObjectContext == NULL) {
 			NSLog(@"AMOC IS NULL");
-		}
-		if (![addingManagedObjectContext save:&error]) {
+		}*/
+		if (![managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+	//	[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 		NSLog( @"HERE B1" );
 	}
 
 	// Release the adding managed object context.
-	[self setAddingManagedObjectContext:nil];
+	//[self setAddingManagedObjectContext:nil];
 NSLog( @"HERE B2" );
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
@@ -273,8 +323,8 @@ NSLog( @"HERE B2" );
 	
 	//TODO: Set Mode/Category here
 	// possibly need to refetch the exercise that was just added?
-
-	if ( [self lastExerciseAdded] != nil) {
+/*
+	if ( [self lastExerciseAdded] != nil ) {
 
 		NSString *lastNameQuery = [NSString stringWithFormat:@"name == '%@'", [[self lastExerciseAdded] name]];
 		NSLog(@"Query: %@", lastNameQuery);
@@ -293,9 +343,17 @@ NSLog( @"HERE B2" );
 			EXERCISE *e = [array objectAtIndex:0];
 			[e setModes:[self mode]];
 			[mode addExercisesObject:e];
+
+			// Save back to database
+			if (![addingManagedObjectContext save:&error]) {
+				// Update to handle the error appropriately.
+				NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+				exit(-1);  // Fail
+			}
+			
+			
 			NSLog(@"SET MODES CALLED");
 		}
-		
 		
 		// Create the sort descriptors array.
 		//NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
@@ -305,36 +363,14 @@ NSLog( @"HERE B2" );
 		
 		// Create and initialize the fetch results controller.
 		//NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-		
-		
-		// code from stackoverflow
-		/*
-		NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Friends" inManagedObjectContext:context]; 
-		
-		NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
-		
-		[request setEntity:entityDescription]; 
-		
-		[request setPredicate:[NSPredicate predicateWithFormat:@"firstName == 'George'"]]; 
-		NSError *error = nil; 
-		NSArray *array = [context executeFetchRequest:request error:&error];
-		*/
-		//endcodefromstackoverflow
-		
-		
-		
-		
-		//[aFetchedResultsController release];
-	//	[fetchRequest release];
-	//	[entity release];
-		
+
 		
 		
 		//[[self lastExerciseAdded] setModes:[self mode]];
 	//	[[self lastExerciseAdded] release];
 		[self setLastExerciseAdded:nil];
 		NSLog(@"GOT HERE");
-	}
+	} */
 }
 
 
@@ -492,7 +528,7 @@ NSLog( @"HERE B2" );
 - (void)dealloc {
 	[fetchedResultsController release];
 	[managedObjectContext release];
-	[addingManagedObjectContext release];
+//	[addingManagedObjectContext release];
     [super dealloc];
 }
 
