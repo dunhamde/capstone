@@ -392,9 +392,9 @@ NSLog( @"HERE B2" );
 	// Create and configure a fetch request with the Book entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"exercise" inManagedObjectContext:managedObjectContext];
-	//NSPredicate *pred = [NSPredicate predicateWithFormat:@"ANY modes.name like %@",[[self mode] name]];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"modes.name == %@",[[self mode] name]];
 	[fetchRequest setEntity:entity];
-	//[fetchRequest setPredicate:pred];
+	[fetchRequest setPredicate:pred];
 	
 	// Create the sort descriptors array.
 	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
@@ -402,8 +402,8 @@ NSLog( @"HERE B2" );
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	
 	// Create and initialize the fetch results controller.
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-	//NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:nil];
+	//NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:nil];
 
 	self.fetchedResultsController = aFetchedResultsController;
 	fetchedResultsController.delegate = self;
