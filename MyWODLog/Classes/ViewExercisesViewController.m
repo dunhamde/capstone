@@ -488,11 +488,15 @@ NSLog( @"HERE B2" );
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 
-	[[self navigationController] popToRootViewControllerAnimated:YES];
-	EXERCISE *m = [fetchedResultsController objectAtIndexPath:indexPath];
-	NSLog(@"EXERCISESENT \n %@", m);
+	EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
+	NSLog(@"EXERCISESENT \n %@", e);
 	//[delegate exerciseSelected:m];
-	[[[CreateWODViewController sharedInstance] exerciseArray] addObject:m];
+	//[[[CreateWODViewController sharedInstance] exerciseArray] addObject:m];
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
+
+	[[self navigationController] popToRootViewControllerAnimated:YES];
+
 	
 	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
 	 

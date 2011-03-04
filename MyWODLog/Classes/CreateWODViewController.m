@@ -47,7 +47,7 @@ static CreateWODViewController *sharedInstance = nil;
 	[self setTitle:@"Create WOD"];
 	
 	isEditing = NO;
-	
+	self.exerciseArray = [NSMutableArray arrayWithCapacity:10];
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 	saveButton.enabled = NO;
@@ -57,6 +57,13 @@ static CreateWODViewController *sharedInstance = nil;
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 	self.navigationItem.leftBarButtonItem = cancelButton;
 	[cancelButton release];
+	
+	// Register for exercises saved notifications
+	
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+
+	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -180,6 +187,18 @@ static CreateWODViewController *sharedInstance = nil;
 	[exerciseArray addObject:exercise];
 	NSLog(@"EXERCISES ARRAY\n %@",exerciseArray);
 }
+- (void)exerciseSelectedNote:(NSNotification*)saveNotification {
+	
+	//[self dismissModalViewControllerAnimated:YES];
+	//[exerciseArray addObject:exercise];
+	NSDictionary *dict = [saveNotification userInfo];
+	EXERCISE *e = [dict objectForKey:@"Exercise"];
+	NSLog(@"NEW EXERCISE \n %@",e);
+	[self.exerciseArray addObject:e];
+	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
+	
+	NSLog(@"EXERCISES ARRAY\n %@",self.exerciseArray);
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -207,7 +226,12 @@ static CreateWODViewController *sharedInstance = nil;
     }
     
     // Configure the cell.
-	[self configureCell:cell atIndexPath:indexPath];
+	if ([[self exerciseArray] count] != 0) {
+		NSLog(@"ARRAY COUNT: %d\n",[[self exerciseArray] count]);
+		NSLog(@"ELEMENT ONE : %@",[exerciseArray objectAtIndex:0]);
+		[self configureCell:cell atIndexPath:indexPath];
+
+	}
     return cell;
 }
 
@@ -217,7 +241,7 @@ static CreateWODViewController *sharedInstance = nil;
 	
     // Configure the cell to show the book's title
 	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
-
+	NSLog(@" EXERCISE INTO TABLE %@",exercise);
 	cell.textLabel.text = [exercise name];
 }
 
@@ -234,6 +258,7 @@ static CreateWODViewController *sharedInstance = nil;
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+	NSLog(@"UNLOADED CREATEWOD\n");
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	[saveButton release];
@@ -243,6 +268,8 @@ static CreateWODViewController *sharedInstance = nil;
 
 
 - (void)dealloc {
+	NSLog(@"DEALLOCED CREATEWOD\n");
+
     [super dealloc];
 }
 

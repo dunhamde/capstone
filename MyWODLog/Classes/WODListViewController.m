@@ -186,7 +186,6 @@
 		 */
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		
 		NSError *error;
 		if (![addingManagedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
