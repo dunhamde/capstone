@@ -10,15 +10,11 @@
 #import "MODE.h"
 #import "CreateExerciseViewController.h"
 
-@class CreateWODViewController;
 
-@protocol ViewExercisesViewControllerDelegate;
 
 
 @interface ViewExercisesViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, CreateExerciseViewControllerDelegate> {
-	
-	id <ViewExercisesViewControllerDelegate> delegate;
-	
+		
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;
 	//NSManagedObjectContext		*addingManagedObjectContext;
@@ -40,8 +36,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) EXERCISE *lastExerciseAdded;
 @property (nonatomic, retain) CreateExerciseViewController *cevc;
-@property (nonatomic, assign) id <CreateExerciseViewControllerDelegate> delegate;
-
 
 
 
@@ -50,6 +44,4 @@
 
 @end
 
-@protocol ViewExercisesViewControllerDelegate
-- (void)exerciseSelected:(EXERCISE *)exercise;
-@end
+

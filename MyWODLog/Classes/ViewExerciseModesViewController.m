@@ -219,9 +219,7 @@
 	MODE *m = [fetchedResultsController objectAtIndexPath:indexPath];
 	
 	[viewExercisesViewController setMode:m];
-	
-	[viewExercisesViewController setDelegate:[CreateWODViewController sharedInstance]];
-	
+		
 	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
 	
 	[[self navigationController] pushViewController:viewExercisesViewController animated:YES];

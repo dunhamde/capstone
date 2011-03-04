@@ -13,7 +13,7 @@
 @protocol CreateWODViewControllerDelegate;
 
 
-@interface CreateWODViewController : UIViewController  <UITextFieldDelegate,UITableViewDelegate, ViewExercisesViewControllerDelegate> {
+@interface CreateWODViewController : UIViewController  <UITextFieldDelegate,UITableViewDelegate> {
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
@@ -39,8 +39,6 @@
 @property (nonatomic, retain) NSMutableArray *exerciseArray;
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
-
-+ (id)sharedInstance;
 
 - (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;

@@ -13,7 +13,7 @@
 @implementation ViewExercisesViewController
 
 
-@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc, delegate;
+@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc;
 
 
 #pragma mark -
@@ -491,7 +491,6 @@ NSLog( @"HERE B2" );
 	EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
 	NSLog(@"EXERCISESENT \n %@", e);
 	//[delegate exerciseSelected:m];
-	//[[[CreateWODViewController sharedInstance] exerciseArray] addObject:m];
 	NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
 

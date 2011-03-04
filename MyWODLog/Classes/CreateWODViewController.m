@@ -13,41 +13,25 @@
 
 @synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton, exerciseArray,table;
 
-static CreateWODViewController *sharedInstance = nil;
 
-
-/*- (id)init {
-	// Call the superclass's designated initializer
-	[super initWithStyle:UITableViewStyleGrouped];
-	
-
-	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-	
-	// Set the title of the nav bar to WOD List when WODListViewController
-	// is on top of the stack
-	[self setTitle:@"Create WOD"];
-	
-	return self;
-}*/
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization.
+		self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
 }
-*/
+
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
-	
+	NSLog(@"VIEW DID LOAD \n");
 	isEditing = NO;
-	self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 	saveButton.enabled = NO;
@@ -183,23 +167,28 @@ static CreateWODViewController *sharedInstance = nil;
 #pragma mark -
 #pragma mark Table View Controller stuff
 
-- (void)exerciseSelected:(EXERCISE	*)exercise {
-	
-	//[self dismissModalViewControllerAnimated:YES];
-	[exerciseArray addObject:exercise];
-	NSLog(@"EXERCISES ARRAY\n %@",exerciseArray);
-}
+
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification {
 	
 	//[self dismissModalViewControllerAnimated:YES];
-	//[exerciseArray addObject:exercise];
 	NSDictionary *dict = [saveNotification userInfo];
 	EXERCISE *e = [dict objectForKey:@"Exercise"];
 	NSLog(@"NEW EXERCISE \n %@",e);
+	NSLog(@"EXERCISES ARRAY1\n %@",self.exerciseArray);
+	NSLog(@"ARRAY COUNT: %d\n",[[self exerciseArray] count]);
+
+	NSLog(@"DICTIONARY CONTENTS \n %@",dict);
+
 	[self.exerciseArray addObject:e];
+	NSLog(@"EXERCISES ARRAY2\n %@",self.exerciseArray);
+	NSLog(@"ARRAY COUNT2: %d\n",[[self exerciseArray] count]);
+
 	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
 	[self.table reloadData];
-	NSLog(@"EXERCISES ARRAY\n %@",self.exerciseArray);
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+
+	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
+
 }
 
 /*
@@ -228,12 +217,9 @@ static CreateWODViewController *sharedInstance = nil;
     }
     
     // Configure the cell.
-	if ([[self exerciseArray] count] != 0) {
-		NSLog(@"ARRAY COUNT: %d\n",[[self exerciseArray] count]);
-		NSLog(@"ELEMENT ONE : %@",[exerciseArray objectAtIndex:0]);
-		[self configureCell:cell atIndexPath:indexPath];
+	[self configureCell:cell atIndexPath:indexPath];
 
-	}
+	
     return cell;
 }
 
@@ -274,50 +260,5 @@ static CreateWODViewController *sharedInstance = nil;
 
     [super dealloc];
 }
-
-
-#pragma mark -
-#pragma mark Shared instance stuff
-
-// Get the shared instance and create it if necessary.
-+ (CreateWODViewController*)sharedInstance {
-    if (sharedInstance == nil) {
-        sharedInstance = [[super allocWithZone:NULL] init];
-    }
-	
-    return sharedInstance;
-}
-
-// We don't want to allocate a new instance, so return the current one.
-+ (id)allocWithZone:(NSZone*)zone {
-    return [[self sharedInstance] retain];
-}
-
-// Equally, we don't want to generate multiple copies of the singleton.
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-// Once again - do nothing, as we don't have a retain counter for this object.
-- (id)retain {
-    return self;
-}
-
-// Replace the retain counter so we can never release this object.
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-// This function is empty, as we don't want to let the user release this object.
-- (void)release {
-	
-}
-
-//Do nothing, other than return the shared instance - as this is expected from autorelease.
-- (id)autorelease {
-    return self;
-}
-
-
 
 @end
