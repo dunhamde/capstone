@@ -17,13 +17,16 @@
 
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
-	NSManagedObjectContext *addingManagedObjectContext;
+	//NSManagedObjectContext *addingManagedObjectContext;
 	
+	
+	CreateWODViewController *createWODViewController;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
+//@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
+@property (nonatomic, retain) CreateWODViewController *createWODViewController;
 
 
 - (IBAction)createWOD;

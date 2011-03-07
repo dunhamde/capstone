@@ -11,7 +11,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, delegate, wod, isEditing, saveButton, exerciseArray,table;
+@synthesize managedObjectContext, name, scoreType, delegate, wodName, isEditing, saveButton, exerciseArray, table;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -31,12 +31,13 @@
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
 	NSLog(@"VIEW DID LOAD \n");
-	isEditing = NO;
+	[self setIsEditing:NO];
+
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
 	saveButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = saveButton;
-	[saveButton release];
+	//[saveButton release];
 	
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 	self.navigationItem.leftBarButtonItem = cancelButton;
@@ -54,13 +55,18 @@
 	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
 	
 	NSLog(@"exercises %@",self.exerciseArray);
-	name.placeholder = @"New WOD Name";
+	[name setPlaceholder:@"New WOD Name"];
+//	name.placeholder = @"New WOD Name";
 	//[name becomeFirstResponder];
 }
 
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
-	wod.name = textField.text;
+	
+	[self setWodName:[textField text]];
+	//wod.name = textField.text;
 	[self setIsEditing:NO];
 //	isEditing = NO;
 
@@ -87,18 +93,20 @@
 - (IBAction)save:(id)sender {
 	
 	// Confirm that a name has been entered
-	if (!isEditing) {
+	if (![self isEditing]) {
 		
-		NSLog(@"Saved with text: %@", name.text);
+		NSLog(@"Saved with text: %@", [name text]);
 		
-		int scoreType;
+		//int scoreType;
 		// Set the score type based on the UISwitch position
 		if ( !(scoreSwitch.on) ) {
-			scoreType = WOD_SCORE_TYPE_TIME;
+			[self setScoreType:WOD_SCORE_TYPE_TIME];
+//			scoreType = WOD_SCORE_TYPE_TIME;
 		} else {
-			scoreType = WOD_SCORE_TYPE_REPS;
+			[self setScoreType:WOD_SCORE_TYPE_REPS];
+//			scoreType = WOD_SCORE_TYPE_REPS;
 		}
-		[wod setScore_type:[NSNumber numberWithInt:scoreType]];
+	//	[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {
@@ -179,12 +187,12 @@
 
 	NSLog(@"DICTIONARY CONTENTS \n %@",dict);
 
-	[self.exerciseArray addObject:e];
+	[[self exerciseArray] addObject:e];
 	NSLog(@"EXERCISES ARRAY2\n %@",self.exerciseArray);
 	NSLog(@"ARRAY COUNT2: %d\n",[[self exerciseArray] count]);
 
 	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
-	[self.table reloadData];
+	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 
 	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
@@ -201,7 +209,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return [self.exerciseArray count];
+	return [[self exerciseArray] count];
 }
 
 
@@ -250,7 +258,8 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	[saveButton release];
-	saveButton = nil;
+	[self setSaveButton:nil];
+//	saveButton = nil;
 }
 
 

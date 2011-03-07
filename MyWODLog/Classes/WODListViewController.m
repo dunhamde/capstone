@@ -11,7 +11,7 @@
 
 @implementation WODListViewController
 
-@synthesize fetchedResultsController, managedObjectContext, addingManagedObjectContext;
+@synthesize fetchedResultsController, managedObjectContext, createWODViewController;
 
 
 
@@ -135,27 +135,29 @@
  IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context, which would simplify some of the code -- you wouldn't need to merge changes after a save, for example. This implementation, though, illustrates a pattern that may sometimes be useful (where you want to maintain a separate set of edits).  The root view controller sets itself as the delegate of the add controller so that it can be informed when the user has completed the add operation -- either saving or canceling (see addViewController:didFinishWithSave:).
  */
 - (IBAction)createWOD {
-	
-    CreateWODViewController *createWODViewController = [[CreateWODViewController alloc] init];
+
+	self.createWODViewController = [[CreateWODViewController alloc] init];
+//	[self setCreateWODViewController:[[CreateWODViewController alloc] init];
+//    CreateWODViewController *createWODViewController = [[CreateWODViewController alloc] init];
 	//createWODViewController.delegate = self;
 	[createWODViewController setDelegate:self];
 	[createWODViewController setManagedObjectContext:self.managedObjectContext];
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	//self.addingManagedObjectContext = addingContext;
-	[self setAddingManagedObjectContext:addingContext];
-	[addingContext release];
+//	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+
+//	[self setAddingManagedObjectContext:addingContext];
+//	[addingContext release];
 	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+//	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
 	
-	createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
+	//createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createWODViewController];
 	
     [self.navigationController presentModalViewController:navController animated:YES];
 	
-	[createWODViewController release];
+	//[createWODViewController release];
 	[navController release];
 }
 
@@ -184,19 +186,30 @@
 		 3	In the notification method (addControllerContextDidSave:), merge the changes
 		 4	Unregister as an observer
 		 */
+		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
+
+		[wod setName:[createWODViewController wodName]];
+		NSSet* set = [[NSSet alloc] initWithArray:[createWODViewController exerciseArray]];
+//		[wod setExercises:[createWODViewController exerciseArray]];
+		[wod setExercises:set];
+		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController scoreType]]];
+		
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 		NSError *error;
-		if (![addingManagedObjectContext save:&error]) {
+		if (![managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		[set release];
+		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 	}
 	// Release the adding managed object context.
-	self.addingManagedObjectContext = nil;
-	
+	//[self setAddingManagedObjectContext:nil];
+//	self.addingManagedObjectContext = nil;
+	[createWODViewController release];
+	[self setCreateWODViewController:nil];
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -374,7 +387,7 @@
 - (void)dealloc {
 	[fetchedResultsController release];
 	[managedObjectContext release];
-	[addingManagedObjectContext release];
+//	[addingManagedObjectContext release];
     [super dealloc];
 }
 

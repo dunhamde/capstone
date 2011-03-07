@@ -17,7 +17,7 @@
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
-	WOD *wod;
+//	WOD *wod;
 	
 	UIBarButtonItem *saveButton;
 	
@@ -26,17 +26,24 @@
 	IBOutlet UITableView *table;
 	
 	NSMutableArray *exerciseArray;
+	NSString* wodName;
+	int scoreType;
 	
 	BOOL isEditing;
+
 }
 
 @property (nonatomic, assign) id <CreateWODViewControllerDelegate> delegate;
+
 @property (nonatomic, assign) BOOL isEditing;
-@property (nonatomic, retain) WOD *wod;
+@property (nonatomic, retain) NSMutableArray *exerciseArray;
+@property (nonatomic, retain) NSString *wodName;
+@property (nonatomic, assign) int scoreType;
+
+//@property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 @property (nonatomic, retain) IBOutlet UITextField *name;
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
-@property (nonatomic, retain) NSMutableArray *exerciseArray;
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
 
