@@ -69,7 +69,7 @@
 //	createExerciseModeViewController.delegate = self;
 	
 	[createExerciseModeViewController setDelegate:self];
-//	[createExerciseModeViewController setManagedObjectContext:self.managedObjectContext];
+	[createExerciseModeViewController setManagedObjectContext:[self managedObjectContext]];
 	
 	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];

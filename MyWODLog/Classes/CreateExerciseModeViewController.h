@@ -23,6 +23,9 @@
 	
 	NSString *name;
 	
+	
+	NSManagedObjectContext *managedObjectContext;
+	
 	id <CreateExerciseModeViewControllerDelegate> delegate;
 
 }
@@ -35,6 +38,7 @@
 @property (nonatomic, retain) MODE *mode;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) id <CreateExerciseModeViewControllerDelegate> delegate;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
 

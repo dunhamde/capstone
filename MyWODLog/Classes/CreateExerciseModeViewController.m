@@ -11,7 +11,7 @@
 
 @implementation CreateExerciseModeViewController
 
-@synthesize mode, name, delegate;
+@synthesize mode, name, delegate, managedObjectContext;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -70,11 +70,33 @@
 
 - (IBAction)save:(id)sender
 {
-    [self setName:[nameField text]];
-	self.mode.name = [name copy];
-	NSLog( @"Setting name to: %@", [self name] );
-    //[[self navigationController] popViewControllerAnimated:YES];
-	[delegate createExerciseModeViewController:self didFinishWithSave:YES];
+	// Check to see if that name doesn't already exist.
+	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [nameField text]];
+
+	
+	// Create and configure a fetch request with the Book entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
+	[fetchRequest setEntity:entity];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
+	
+	NSError *error = nil; 
+	NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	NSLog(@"ADDING STUFF???");
+	if( error || [array count] > 0) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Name Already Exists" message: @"Error, that WOD name already exists" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		alert = nil;
+	} else {
+		[self setName:[nameField text]];
+		self.mode.name = [name copy];
+		NSLog( @"Setting name to: %@", [self name] );
+		//[[self navigationController] popViewControllerAnimated:YES];
+		[delegate createExerciseModeViewController:self didFinishWithSave:YES];
+	}
+	
 }
 
 
@@ -102,6 +124,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[[self managedObjectContext] release];
+	[self setManagedObjectContext:nil];
 }
 
 

@@ -170,14 +170,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		344B3719130DDF8000670EBE /* View Exercise Modes Page */ = {
+		344B3719130DDF8000670EBE /* View Modes Page */ = {
 			isa = PBXGroup;
 			children = (
 				34957624130DF12400895074 /* ViewExerciseModesViewController.h */,
 				34957625130DF12400895074 /* ViewExerciseModesViewController.m */,
 				34957626130DF12400895074 /* ViewExerciseModesViewController.xib */,
 			);
-			name = "View Exercise Modes Page";
+			name = "View Modes Page";
 			sourceTree = "<group>";
 		};
 		34BAF9BD1314B8A40042DB88 /* View Exercises Page */ = {
@@ -213,14 +213,14 @@
 			name = "CoreData Classes";
 			sourceTree = "<group>";
 		};
-		34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */ = {
+		34C28D91130F77C400FB7C61 /* Create Mode Page */ = {
 			isa = PBXGroup;
 			children = (
 				34C28DA1130F789200FB7C61 /* CreateExerciseModeViewController.h */,
 				34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */,
 				34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */,
 			);
-			name = "Create Exercise Mode Page";
+			name = "Create Mode Page";
 			sourceTree = "<group>";
 		};
 		34C28D92130F77D600FB7C61 /* Exercises */ = {
@@ -228,8 +228,8 @@
 			children = (
 				34BAF9BE1314B8B70042DB88 /* Create Exercise Page */,
 				34BAF9BD1314B8A40042DB88 /* View Exercises Page */,
-				34C28D91130F77C400FB7C61 /* Create Exercise Mode Page */,
-				344B3719130DDF8000670EBE /* View Exercise Modes Page */,
+				34C28D91130F77C400FB7C61 /* Create Mode Page */,
+				344B3719130DDF8000670EBE /* View Modes Page */,
 			);
 			name = Exercises;
 			sourceTree = "<group>";
