@@ -85,16 +85,18 @@
 	
 	NSLog(@"ADDING STUFF???");
 	if( error || [array count] > 0) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Name Already Exists" message: @"Error, that WOD name already exists" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Category Already Exists" message: @"Error, a category with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
 		alert = nil;
 	} else {
-		[self setName:[nameField text]];
-		self.mode.name = [name copy];
-		NSLog( @"Setting name to: %@", [self name] );
-		//[[self navigationController] popViewControllerAnimated:YES];
-		[delegate createExerciseModeViewController:self didFinishWithSave:YES];
+		if( [[nameField text] length] > 0 ) {
+			[self setName:[nameField text]];
+			self.mode.name = [name copy];
+			NSLog( @"Setting name to: %@", [self name] );
+			//[[self navigationController] popViewControllerAnimated:YES];
+			[delegate createExerciseModeViewController:self didFinishWithSave:YES];
+		}
 	}
 	
 }

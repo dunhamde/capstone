@@ -92,8 +92,27 @@
 
 - (IBAction)save:(id)sender {
 	
+	// Check to see if that name doesn't already exist.
+	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [name text]];
+	
+	// Create and configure a fetch request with the wod entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"wod" inManagedObjectContext:[self managedObjectContext]];
+	[fetchRequest setEntity:entity];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
+	
+	NSError *error = nil; 
+	NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	NSLog(@"ADDING STUFF???");
+	if( error || [array count] > 0) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Already Exists" message: @"Error, a WOD with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		alert = nil;
+	
 	// Confirm that a name has been entered
-	if (![self isEditing]) {
+	} else if (![self isEditing]) {
 		
 		NSLog(@"Saved with text: %@", [name text]);
 		

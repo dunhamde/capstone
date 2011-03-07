@@ -81,13 +81,17 @@
 
 - (IBAction)save:(id)sender
 {
-    [self setName:[nameField text]];
+	if ([[nameField text] length] > 0) {
+		
 	
-	//[[self exercise] setName:[name copy]];
+		[self setName:[nameField text]];
+	
+		//[[self exercise] setName:[name copy]];
+		
+		NSLog( @"Setting name to: %@", [self name] );
 
-	NSLog( @"Setting name to: %@", [self name] );
-
-	[delegate createExerciseViewController:self didFinishWithSave:YES];
+		[delegate createExerciseViewController:self didFinishWithSave:YES];
+	}
 }
 
 
