@@ -11,7 +11,7 @@
 
 @implementation ViewWODViewController
 
-@synthesize wod, scoredByLabel;
+@synthesize wod, scoredByLabel, exerciseListLabel;
 
 
 
@@ -23,12 +23,27 @@
 
 
 - (void)viewDidLoad {
+	//Assumes setCurrentWOD is called
 	
 	if( [[wod score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
 		[[self scoredByLabel] setText:@"Time"];
 	} else {
 		[[self scoredByLabel] setText:@"Number of Repetitions"];
 	}
+	
+	NSString *exerciseList = [[NSString alloc] init];
+	
+	NSEnumerator *enumer = [[wod exercises] objectEnumerator];
+	EXERCISE* e;
+	NSLog(@"GRABBED ENUMERATOR");
+	while ((e = (EXERCISE*)[enumer nextObject])) {
+		NSLog(@"ENUMERATED AT LEAST ONCE");
+		//[exerciseList stringByAppendingFormat:@"%@\n",[e name]];
+//		[exerciseList stringByAppendingString:[e name]];
+		exerciseList = [e name];
+	}
+	//[myString stringByAppendingString:@" is just a test"];
+	[[self exerciseListLabel] setText:exerciseList];
 }
 
 
@@ -37,7 +52,7 @@
 
 	[self setWod:w];
 
-	[self setTitle:wod.name];
+	[self setTitle:[wod name]];
 
 }
 
@@ -45,14 +60,11 @@
 
 - (void)logScorePressed {
 	
-	if (!logScore) {
-		logScore = [[LogScoreViewController alloc] init];
-	}
-
+	LogScoreViewController* logScore = [[LogScoreViewController alloc] init];
 
 	[[self navigationController] pushViewController:logScore animated:YES];
 
-	
+	[logScore release];
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

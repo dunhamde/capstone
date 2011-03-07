@@ -10,19 +10,20 @@
 #import <CoreData/CoreData.h>
 #import "LogScoreViewController.h"
 #import "WOD.h"
+#import "EXERCISE.h"
 
 
 @interface ViewWODViewController : UIViewController {
-	
-	LogScoreViewController* logScore;
 
 	WOD *wod;
 	
 	IBOutlet UILabel *scoredByLabel;
+	IBOutlet UILabel *exerciseListLabel;
 }
 
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) UILabel *scoredByLabel;
+@property (nonatomic, retain) UILabel *exerciseListLabel;
 
 
 - (void)setCurrentWOD:(WOD *)w;
