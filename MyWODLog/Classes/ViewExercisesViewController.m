@@ -487,6 +487,7 @@ NSLog( @"didFinishWithSave");
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
+	[seqvc setExercise:[fetchedResultsController objectAtIndexPath:indexPath]];
 	
 	[[self navigationController] pushViewController:seqvc animated:YES];
 	

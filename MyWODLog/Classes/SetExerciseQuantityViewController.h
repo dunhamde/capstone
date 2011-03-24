@@ -13,9 +13,14 @@
 @interface SetExerciseQuantityViewController : UIViewController {
 	
 	EXERCISE *exercise;
+	
+	IBOutlet UITextField *quantityField;
 
 }
 
+- (void)save:(id)sender;
+
 @property (nonatomic, retain) EXERCISE *exercise;
+@property (nonatomic, retain) UITextField *quantityField;
 
 @end

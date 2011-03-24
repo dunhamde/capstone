@@ -11,7 +11,7 @@
 
 @implementation SetExerciseQuantityViewController
 
-@synthesize exercise;
+@synthesize exercise, quantityField;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -23,6 +23,7 @@
     return self;
 }
 */
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -47,6 +48,27 @@
 	
 	
 }
+
+
+
+- (void)save:(id)sender {
+	
+	
+	if ([[[self quantityField] text] length] > 0 ) {
+		
+		
+		// Create a dictionary with the exercise and the quantity and their respective keys
+		NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self exercise],[[self quantityField] text],nil] forKeys:[NSArray arrayWithObjects:@"Exercise",@"Quantity",nil]];
+		//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
+	
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+		
+	}
+	
+}
+
+
 
 
 /*

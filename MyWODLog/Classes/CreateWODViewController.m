@@ -205,8 +205,12 @@
 	NSLog(@"ARRAY COUNT: %d\n",[[self exerciseArray] count]);
 
 	NSLog(@"DICTIONARY CONTENTS \n %@",dict);
-
+	NSLog(@"RAWR1");
+	if (e == nil) {
+		NSLog(@"E == NIL!");
+	}
 	[[self exerciseArray] addObject:e];
+	NSLog(@"RAWR2");
 	NSLog(@"EXERCISES ARRAY2\n %@",self.exerciseArray);
 	NSLog(@"ARRAY COUNT2: %d\n",[[self exerciseArray] count]);
 
