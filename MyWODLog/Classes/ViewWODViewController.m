@@ -35,12 +35,15 @@
 	
 	NSEnumerator *enumer = [[wod exercises] objectEnumerator];
 	EXERCISE* e;
-	NSLog(@"GRABBED ENUMERATOR");
+
 	while ((e = (EXERCISE*)[enumer nextObject])) {
-		NSLog(@"ENUMERATED AT LEAST ONCE");
-		//[exerciseList stringByAppendingFormat:@"%@\n",[e name]];
-//		[exerciseList stringByAppendingString:[e name]];
-		exerciseList = [e name];
+
+		if ([exerciseList length] > 0) {
+			exerciseList = [NSString stringWithFormat:@"%@\n\n%@", exerciseList, [e name]];
+		} else {
+			exerciseList = [e name];
+		}
+		
 	}
 	//[myString stringByAppendingString:@" is just a test"];
 	[[self exerciseListLabel] setText:exerciseList];

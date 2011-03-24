@@ -30,6 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	//TODO: Possibly set title to the name of the exercise we are setting quantity for:
+	// then make a static text that says 'Quantity:' or something along that line
+	// also maybe have the default text be 0 or 1?
 	[self setTitle:@"Set Quantity"];
 	
 	UIBarButtonItem *bbi;
