@@ -296,15 +296,15 @@ NSLog( @"didFinishWithSave");
 			exit(-1);  // Fail
 		}
 	//	[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		NSLog( @"HERE B1" );
+		//NSLog( @"HERE B1" );
 	}
 
 	// Release the adding managed object context.
 	//[self setAddingManagedObjectContext:nil];
-NSLog( @"HERE B2" );
+//NSLog( @"HERE B2" );
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
-	NSLog( @"HERE B3" );
+	//NSLog( @"HERE B3" );
 	//[[self fetchedResultsController] release];
 	//[self setFetchedResultsController:nil];
 }
@@ -322,8 +322,7 @@ NSLog( @"HERE B2" );
 	// Merging changes causes the fetched results controller to update its results
 	[context mergeChangesFromContextDidSaveNotification:saveNotification];
 	
-	//TODO: Set Mode/Category here
-	// possibly need to refetch the exercise that was just added?
+
 /*
 	if ( [self lastExerciseAdded] != nil ) {
 
@@ -385,7 +384,7 @@ NSLog( @"HERE B2" );
  */
 - (NSFetchedResultsController *)fetchedResultsController {
 	
-	NSLog( @"HEREZ" );
+	//NSLog( @"HEREZ" );
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
@@ -413,7 +412,7 @@ NSLog( @"HERE B2" );
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	NSLog( @"HEREZ2" );
+//	NSLog( @"HEREZ2" );
 	return fetchedResultsController;
 }
 
@@ -487,14 +486,20 @@ NSLog( @"HERE B2" );
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-
-	EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
-	NSLog(@"EXERCISESENT \n %@", e);
+	SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
+	
+	[[self navigationController] pushViewController:seqvc animated:YES];
+	
+	[seqvc release];
+	
+	/*EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
+	//NSLog(@"EXERCISE SENT \n %@", e);
 	//[delegate exerciseSelected:m];
+	//NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray initWithObjects:e,nil] forKeys:[NSArray initWithObjects:@"Exericse",@"Quantity",nil]];
 	NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
 
-	[[self navigationController] popToRootViewControllerAnimated:YES];
+	[[self navigationController] popToRootViewControllerAnimated:YES]; */
 
 	
 	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];

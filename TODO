@@ -1,0 +1,10 @@
+# TODO file for My WOD Log
+#  Created by: Matthew Dalrymple
+#  Last Updated: Wednesday, 23 March 2011
+
+
+-Modify Create Exercise Page
+  +Add a YES/NO slider for 'Quantifiable'
+     -If YES then when selecting this Exercise, a quantity page should pop up.
+     -If NO then when this Exercise is selected to be added, quantity page is not shown.
+
