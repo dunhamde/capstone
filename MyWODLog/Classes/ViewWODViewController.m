@@ -11,7 +11,7 @@
 
 @implementation ViewWODViewController
 
-@synthesize wod, scoredByLabel, exerciseListLabel;
+@synthesize wod, scoredByLabel, exerciseArray, table; // removed the list label in order to add the tabel
 
 
 
@@ -23,6 +23,8 @@
 
 
 - (void)viewDidLoad {
+	NSLog(@"view did load called \n");
+
 	//Assumes setCurrentWOD is called
 	
 	if( [[wod score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
@@ -30,7 +32,7 @@
 	} else {
 		[[self scoredByLabel] setText:@"Number of Repetitions"];
 	}
-	
+	/*
 	NSString *exerciseList = [[NSString alloc] init];
 	
 	NSEnumerator *enumer = [[wod exercises] objectEnumerator];
@@ -46,7 +48,12 @@
 		
 	}
 	//[myString stringByAppendingString:@" is just a test"];
-	[[self exerciseListLabel] setText:exerciseList];
+	[[self exerciseListLabel] setText:exerciseList];*/
+	
+	// Fill the exercises array with all the WOD's exercsies
+	//exerciseArray = [[[self wod] exercises] allObjects];
+	NSLog(@"%@\n", [[exerciseArray objectAtIndex:0] name]);
+	NSLog(@"count %d\n", [[self exerciseArray] count]);
 }
 
 
@@ -68,6 +75,43 @@
 	[[self navigationController] pushViewController:logScore animated:YES];
 
 	[logScore release];
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSLog(@"number of rows called \n");
+	NSLog(@"count %d\n", [[self exerciseArray] count]);
+	return [[self exerciseArray] count];
+}
+
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"cell for row called \n");
+
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Configure the cell.
+	[self configureCell:cell atIndexPath:indexPath];
+	
+	
+    return cell;
+}
+
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+    // Configure the cell to show the book's title
+	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
+	NSLog(@" EXERCISE INTO TABLE %@",exercise);
+	cell.textLabel.text = [exercise name];
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

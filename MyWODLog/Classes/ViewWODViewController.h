@@ -13,21 +13,25 @@
 #import "EXERCISE.h"
 
 
-@interface ViewWODViewController : UIViewController {
+@interface ViewWODViewController : UIViewController <UITableViewDelegate> {
 
 	WOD *wod;
+	NSArray *exerciseArray;
 	
 	IBOutlet UILabel *scoredByLabel;
-	IBOutlet UILabel *exerciseListLabel;
+	//IBOutlet UILabel *exerciseListLabel;
+	IBOutlet UITableView *table;
 }
 
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) UILabel *scoredByLabel;
-@property (nonatomic, retain) UILabel *exerciseListLabel;
-
+//@property (nonatomic, retain) UILabel *exerciseListLabel;
+@property (nonatomic, retain) IBOutlet UITableView *table;
+@property (nonatomic, retain) NSArray *exerciseArray;
 
 - (void)setCurrentWOD:(WOD *)w;
 
 - (IBAction)logScorePressed;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end

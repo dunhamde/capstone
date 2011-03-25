@@ -263,6 +263,7 @@
 	
 	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
 	[wod_view setCurrentWOD:wod];
+	[wod_view setExerciseArray:[[wod exercises] allObjects]];
 
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];
