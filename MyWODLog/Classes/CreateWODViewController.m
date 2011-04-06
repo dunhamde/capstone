@@ -230,9 +230,41 @@
 }
 */
 // Customize the number of rows in the table view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *title = nil;
+    // Return a title or nil as appropriate for the section.
+    switch (section) {
+        case 0:
+            title = @"Details";
+            break;
+        case 1:
+            title = @"Exercises";
+            break;
+        default:
+            break;
+    }
+    return title;;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return [[self exerciseArray] count];
+	NSInteger rows;
+	switch (section) {
+        case 0:
+            rows = 2;
+            break;
+        case 1:
+            rows = [[self exerciseArray] count];
+            break;
+        default:
+            break;
+    }
+    return rows;;
 }
 
 
@@ -240,13 +272,26 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+			cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
     }
-    
+	else if (indexPath.section == 0 && indexPath.row == 1) {
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		}
+	}
+	else if(indexPath.section == 1) {
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		}
+	}
     // Configure the cell.
 	[self configureCell:cell atIndexPath:indexPath];
 
@@ -254,17 +299,22 @@
     return cell;
 }
 
-
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-    // Configure the cell to show the book's title
-	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
-	NSLog(@" EXERCISE INTO TABLE %@",exercise);
-	cell.textLabel.text = [exercise name];
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		cell.textLabel.text = @"Name";
+		cell.detailTextLabel.text = @"WOD Name";
+    }
+	else if (indexPath.section == 0 && indexPath.row == 1) {
+		cell.textLabel.text = @"Timed";
+	}
+	else if(indexPath.section == 1) {
+		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
+		NSLog(@" EXERCISE INTO TABLE %@",exercise);
+		cell.textLabel.text = [exercise name];
+	}
+
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
