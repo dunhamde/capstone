@@ -20,8 +20,9 @@
 //	WOD *wod;
 	
 	UIBarButtonItem *saveButton;
+	UISwitch *switchButton;
 	
-	IBOutlet UITextField *name;
+	NSString *name;
 	IBOutlet UISwitch *scoreSwitch;
 	IBOutlet UITableView *table;
 	
@@ -42,9 +43,13 @@
 
 //@property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-@property (nonatomic, retain) IBOutlet UITextField *name;
+//@property (nonatomic, retain) IBOutlet UITextField *name;
+@property (nonatomic, retain) NSString *name;
+
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) IBOutlet UITableView *table;
+@property (nonatomic, retain) UISwitch *switchButton;
+
 
 
 - (IBAction)addExercise;

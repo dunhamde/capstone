@@ -7,11 +7,12 @@
 //
 
 #import "CreateWODViewController.h"
+//#import	"EditingViewController.h"
 
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, scoreType, delegate, wodName, isEditing, saveButton, exerciseArray, table;
+@synthesize managedObjectContext, name, scoreType, delegate, wodName, isEditing, saveButton, exerciseArray, table, switchButton;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -55,14 +56,14 @@
 	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
 	
 	NSLog(@"exercises %@",self.exerciseArray);
-	[name setPlaceholder:@"New WOD Name"];
+	//[name setPlaceholder:@"New WOD Name"];
 //	name.placeholder = @"New WOD Name";
 	//[name becomeFirstResponder];
 }
 
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+/*- (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
 	
 	[self setWodName:[textField text]];
@@ -79,7 +80,7 @@
 	}
 	
 	return NO;
-}
+}*/
 
 #pragma mark -
 #pragma mark Save and cancel operations
@@ -272,37 +273,62 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	static NSString *CellIdentifier = @"Cell";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
+		static NSString *NameCellIdentifier = @"NameCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NameCellIdentifier];
+
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:NameCellIdentifier] autorelease];
 			cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
+
     }
 	else if (indexPath.section == 0 && indexPath.row == 1) {
+		static NSString *TimedCellIdentifier = @"TimedCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TimedCellIdentifier];
+
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TimedCellIdentifier] autorelease];
+			switchButton = [[UISwitch alloc] initWithFrame:CGRectZero];
+			[cell setAccessoryView : switchButton];
+			[switchButton release];
 		}
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
+
 	}
 	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
+		static NSString *ExerciseCellIdentifier = @"ExerciseCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
+
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ExerciseCellIdentifier] autorelease];
 		}
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
+
 	}
 	else {
+		static NSString *AddCellIdentifier = @"AddCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AddCellIdentifier];
+
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AddCellIdentifier] autorelease];
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 		}
-	}
-    // Configure the cell.
-	[self configureCell:cell atIndexPath:indexPath];
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
 
-	
-    return cell;
+	}
+
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -362,6 +388,17 @@
 		[exercise_category release];
 		//[navController release];
 	}	
+	else if (indexPath.section == 0 && indexPath.row == 0) {
+		/*EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+		
+		controller.editedObject = name;
+		controller.editedFieldKey = @"name";
+		controller.editedFieldName = NSLocalizedString(@"name", @"display name for title");
+		controller.editingDate = NO;
+		
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];	*/
+	}
 }
 
 - (void)didReceiveMemoryWarning {
