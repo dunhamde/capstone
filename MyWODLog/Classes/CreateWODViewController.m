@@ -259,7 +259,7 @@
             rows = 2;
             break;
         case 1:
-            rows = [[self exerciseArray] count];
+            rows = [[self exerciseArray] count] + 1;
             break;
         default:
             break;
@@ -287,9 +287,15 @@
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		}
 	}
-	else if(indexPath.section == 1) {
+	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		}
+	}
+	else {
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 		}
 	}
     // Configure the cell.
@@ -308,12 +314,54 @@
 	else if (indexPath.section == 0 && indexPath.row == 1) {
 		cell.textLabel.text = @"Timed";
 	}
-	else if(indexPath.section == 1) {
+	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
 		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
 		NSLog(@" EXERCISE INTO TABLE %@",exercise);
 		cell.textLabel.text = [exercise name];
 	}
+	else {
+		cell.textLabel.text = @"Add Exercise...";
+	}
 
+
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (indexPath.section == 1 && indexPath.row == [[self exerciseArray] count] ) {
+		
+		ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
+		[exercise_category setManagedObjectContext:[self managedObjectContext]];
+		//exercise.delegate = self;
+		
+		
+		//TODO: This may need to be eventually entered back in... but modifed for Exercises/Modes
+		
+		/*  
+		 
+		 // Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+		 NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+		 self.addingManagedObjectContext = addingContext;
+		 [addingContext release];
+		 
+		 [addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+		 
+		 createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
+		 
+		 
+		 */
+		
+		//	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
+		
+		//  [[self navigationController] presentModalViewController:navController animated:YES];
+		UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+		self.navigationItem.backBarButtonItem = backButton;
+		[backButton release];
+		[[self navigationController] pushViewController:exercise_category animated:YES];
+		
+		[exercise_category release];
+		//[navController release];
+	}	
 }
 
 - (void)didReceiveMemoryWarning {
