@@ -7,7 +7,7 @@
 //
 
 #import "CreateWODViewController.h"
-//#import	"EditingViewController.h"
+#import	"EditViewController.h"
 
 
 @implementation CreateWODViewController
@@ -54,8 +54,9 @@
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	
 	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
-	
-	NSLog(@"exercises %@",self.exerciseArray);
+	[dnc addObserver:self selector:@selector(nameChangedNote:) name:@"EditSent" object:nil];
+
+	NSLog(@"exercises %@\n",self.exerciseArray);
 	//[name setPlaceholder:@"New WOD Name"];
 //	name.placeholder = @"New WOD Name";
 	//[name becomeFirstResponder];
@@ -223,6 +224,19 @@
 
 }
 
+- (void)nameChangedNote:(NSNotification*)saveNotification {
+
+	NSDictionary *dict = [saveNotification userInfo];
+	self.name = [dict objectForKey:@"Name"];
+	NSLog(@"NEWNAME %@\n",self.name);
+	
+	[[self table] reloadData];
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	
+	[dnc removeObserver:self name:@"EditSent" object:nil];
+	
+	
+}
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -272,7 +286,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"CELLFORROW\n");
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
 		static NSString *NameCellIdentifier = @"NameCell";
@@ -334,13 +348,26 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
-		cell.textLabel.text = @"Name";
-		cell.detailTextLabel.text = @"WOD Name";
+		NSLog(@"the name %@\n",name);
+		if (name != nil) {
+			cell.textLabel.text = @"Name";
+			cell.detailTextLabel.text = name;
+		}
+		else {
+			NSLog(@"2\n");
+
+			cell.textLabel.text = @"Name";
+			cell.detailTextLabel.text = @"WOD Name";
+		}		
     }
 	else if (indexPath.section == 0 && indexPath.row == 1) {
+		NSLog(@"3\n");
+
 		cell.textLabel.text = @"Timed";
 	}
 	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
+		NSLog(@"4\n");
+
 		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
 		NSLog(@" EXERCISE INTO TABLE %@",exercise);
 		cell.textLabel.text = [exercise name];
@@ -389,15 +416,12 @@
 		//[navController release];
 	}	
 	else if (indexPath.section == 0 && indexPath.row == 0) {
-		/*EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+		EditViewController *controller = [[EditViewController alloc] init];
 		
-		controller.editedObject = name;
-		controller.editedFieldKey = @"name";
-		controller.editedFieldName = NSLocalizedString(@"name", @"display name for title");
-		controller.editingDate = NO;
+		controller.titleName = @"Name";
 		
 		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];	*/
+		[controller release];	
 	}
 }
 

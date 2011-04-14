@@ -17,7 +17,7 @@
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
-//	WOD *wod;
+	//WOD *wod;
 	
 	UIBarButtonItem *saveButton;
 	UISwitch *switchButton;

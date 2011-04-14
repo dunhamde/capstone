@@ -36,6 +36,8 @@
 		34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */; };
 		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
+		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
+		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
 		65AA386012F5151800907DE3 /* WOD.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA385F12F5151800907DE3 /* WOD.m */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
@@ -88,6 +90,9 @@
 		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
 		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
+		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		65AA385E12F5151800907DE3 /* WOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOD.h; sourceTree = "<group>"; };
 		65AA385F12F5151800907DE3 /* WOD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOD.m; sourceTree = "<group>"; };
@@ -283,6 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
+				653B14441356A62700BF3C72 /* EditViewController.h */,
+				653B14451356A62700BF3C72 /* EditViewController.m */,
+				653B14461356A62700BF3C72 /* EditViewController.xib */,
 				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
 				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
 			);
@@ -395,6 +403,7 @@
 				34C68BB61315A92800023704 /* CreateExerciseViewController.xib in Resources */,
 				34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */,
 				3444C20B133ABA7800184673 /* SetExerciseQuantityViewController.xib in Resources */,
+				653B14481356A62700BF3C72 /* EditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +432,7 @@
 				34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */,
 				341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */,
 				3444C20A133ABA7800184673 /* SetExerciseQuantityViewController.m in Sources */,
+				653B14471356A62700BF3C72 /* EditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
