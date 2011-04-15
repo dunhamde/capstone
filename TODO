@@ -2,9 +2,8 @@
 #  Created by: Matthew Dalrymple
 #  Last Updated: Wednesday, 23 March 2011
 
-
--Modify Create Exercise Page
-  +Add a YES/NO slider for 'Quantifiable'
-     -If YES then when selecting this Exercise, a quantity page should pop up.
-     -If NO then when this Exercise is selected to be added, quantity page is not shown.
-
+[ ] Fix "Timer" switch so that it works
+[ ] Change Edit Controller to have custom notification name
+[ ] Add functionality to select method of user input to the Edit Controller[ ] Add Notes to database
+[ ] Add rounds to CreateWOD page
+[ ] Add in intermediate database for exercises 

@@ -95,7 +95,7 @@
 - (IBAction)save:(id)sender {
 	
 	// Check to see if that name doesn't already exist.
-	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [name text]];
+	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self name] ];
 	
 	// Create and configure a fetch request with the wod entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -116,7 +116,7 @@
 	// Confirm that a name has been entered
 	} else if (![self isEditing]) {
 		
-		NSLog(@"Saved with text: %@", [name text]);
+		NSLog(@"Saved with text: %@", [self name]);
 		
 		//int scoreType;
 		// Set the score type based on the UISwitch position
@@ -234,6 +234,7 @@
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	
 	[dnc removeObserver:self name:@"EditSent" object:nil];
+	saveButton.enabled = YES;
 	
 	
 }
@@ -246,7 +247,7 @@
 */
 // Customize the number of rows in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -259,6 +260,9 @@
             break;
         case 1:
             title = @"Exercises";
+            break;
+		case 2:
+            title = @"Notes";
             break;
         default:
             break;
@@ -276,6 +280,9 @@
         case 1:
             rows = [[self exerciseArray] count] + 1;
             break;
+        case 2:
+            rows = 1;
+            break;			
         default:
             break;
     }
@@ -328,6 +335,19 @@
 		return cell;
 
 	}
+	else if (indexPath.section == 2) {
+		static NSString *NotesCellIdentifier = @"NotesCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
+		
+		if (cell == nil) {
+			
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		}
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		return cell;
+	}
 	else {
 		static NSString *AddCellIdentifier = @"AddCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AddCellIdentifier];
@@ -348,30 +368,27 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
-		NSLog(@"the name %@\n",name);
 		if (name != nil) {
 			cell.textLabel.text = @"Name";
 			cell.detailTextLabel.text = name;
 		}
 		else {
-			NSLog(@"2\n");
 
 			cell.textLabel.text = @"Name";
 			cell.detailTextLabel.text = @"WOD Name";
 		}		
     }
 	else if (indexPath.section == 0 && indexPath.row == 1) {
-		NSLog(@"3\n");
 
 		cell.textLabel.text = @"Timed";
 	}
 	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
-		NSLog(@"4\n");
-
 		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
 		NSLog(@" EXERCISE INTO TABLE %@",exercise);
 		cell.textLabel.text = [exercise name];
 	}
+	else if (indexPath.section == 2)
+		cell.textLabel.text = @"Add Notes...";
 	else {
 		cell.textLabel.text = @"Add Exercise...";
 	}

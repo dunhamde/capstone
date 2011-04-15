@@ -188,7 +188,7 @@
 		 */
 		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
 
-		[wod setName:[createWODViewController wodName]];
+		[wod setName:[createWODViewController name]];
 		NSSet* set = [[NSSet alloc] initWithArray:[createWODViewController exerciseArray]];
 //		[wod setExercises:[createWODViewController exerciseArray]];
 		[wod setExercises:set];
