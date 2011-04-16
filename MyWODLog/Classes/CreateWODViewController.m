@@ -120,7 +120,7 @@
 		
 		//int scoreType;
 		// Set the score type based on the UISwitch position
-		if ( !(scoreSwitch.on) ) {
+		if ( (switchButton.on) ) {
 			[self setScoreType:WOD_SCORE_TYPE_TIME];
 //			scoreType = WOD_SCORE_TYPE_TIME;
 		} else {
@@ -436,6 +436,7 @@
 		EditViewController *controller = [[EditViewController alloc] init];
 		
 		controller.titleName = @"Name";
+		controller.noteName = @"EditSent";
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];	

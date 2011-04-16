@@ -11,7 +11,7 @@
 
 @implementation EditViewController
 
-@synthesize titleName;
+@synthesize titleName,noteName;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -74,7 +74,7 @@
 	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:editField.text,nil] forKeys:[NSArray arrayWithObjects: @"Name",nil]];
 
 	//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"EditSent" object:nil userInfo:dict];
+	[[NSNotificationCenter defaultCenter] postNotificationName:noteName object:nil userInfo:dict];
 	
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 	
