@@ -15,6 +15,7 @@
 	NSString	*noteName;
 	UIBarButtonItem	*saveButton;
 	IBOutlet UITextField	*editField;
+	IBOutlet UITextView		*editBox;
 	
 }
 
@@ -24,6 +25,9 @@
 
 @property (nonatomic, retain) NSString *titleName;
 @property (nonatomic, retain) NSString *noteName;
+@property (nonatomic, retain) IBOutlet UITextField *editField;
+@property (nonatomic, retain) IBOutlet UITextView *editBox;
+
 
 
 @end

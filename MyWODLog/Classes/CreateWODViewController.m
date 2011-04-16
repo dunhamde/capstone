@@ -227,15 +227,12 @@
 - (void)nameChangedNote:(NSNotification*)saveNotification {
 
 	NSDictionary *dict = [saveNotification userInfo];
-	self.name = [dict objectForKey:@"Name"];
-	NSLog(@"NEWNAME %@\n",self.name);
-	
+	self.name = [dict objectForKey:@"Text"];
+	NSLog(@"NAME %@ \n",self.name);
 	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-	
 	[dnc removeObserver:self name:@"EditSent" object:nil];
 	saveButton.enabled = YES;
-	
 	
 }
 /*
@@ -437,8 +434,11 @@
 		
 		controller.titleName = @"Name";
 		controller.noteName = @"EditSent";
-		
 		[self.navigationController pushViewController:controller animated:YES];
+		controller.editField.keyboardType = UIKeyboardTypeDefault;
+		controller.editField.hidden = YES;
+		controller.editField.enabled = NO;
+
 		[controller release];	
 	}
 }

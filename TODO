@@ -4,6 +4,6 @@
 
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
-[ ] Add functionality to select method of user input to the Edit Controller[ ] Add Notes to database
+[x] Add functionality to select method of user input to the Edit Controller[ ] Add Notes to database
 [ ] Add rounds to CreateWOD page
 [ ] Add in intermediate database for exercises 

@@ -11,7 +11,7 @@
 
 @implementation EditViewController
 
-@synthesize titleName,noteName;
+@synthesize titleName,noteName,editField, editBox;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	
 	[self setTitle:titleName];
-    
+	    
     UIBarButtonItem *bbi;
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                         target:self
@@ -71,7 +71,19 @@
 {
 	
 	// Create a dictionary with the exercise and the quantity and their respective keys
-	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:editField.text,nil] forKeys:[NSArray arrayWithObjects: @"Name",nil]];
+	NSString *returnable;
+	
+	if (editField.hidden == YES) {
+		returnable = editBox.text;
+	}
+	else {
+		returnable = editField.text;
+	}
+
+	NSLog(@"box %@\n", editBox.text);
+	NSLog(@"Returnable %@\n",returnable);
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects: @"Text",nil]];
 
 	//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:noteName object:nil userInfo:dict];
