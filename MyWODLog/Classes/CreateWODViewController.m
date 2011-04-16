@@ -20,7 +20,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
+		[self setExerciseArray:[NSMutableArray arrayWithCapacity:0]];
+//		self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
 }
@@ -31,7 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
-	NSLog(@"VIEW DID LOAD \n");
+
+	//TODO: fix change IsEditing stuff
 	[self setIsEditing:NO];
 
 	// Configure the save and cancel buttons.
@@ -43,9 +45,6 @@
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 	self.navigationItem.leftBarButtonItem = cancelButton;
 	[cancelButton release];
-	
-
-	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,8 +105,9 @@
 	NSError *error = nil; 
 	NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	
-	NSLog(@"ADDING STUFF???");
+	// Throw up an error message if the WOD already exists.
 	if( error || [array count] > 0) {
+		
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Already Exists" message: @"Error, a WOD with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -122,10 +122,8 @@
 		// Set the score type based on the UISwitch position
 		if ( (switchButton.on) ) {
 			[self setScoreType:WOD_SCORE_TYPE_TIME];
-//			scoreType = WOD_SCORE_TYPE_TIME;
 		} else {
 			[self setScoreType:WOD_SCORE_TYPE_REPS];
-//			scoreType = WOD_SCORE_TYPE_REPS;
 		}
 	//	[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
@@ -235,21 +233,19 @@
 	saveButton.enabled = YES;
 	
 }
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+
 // Customize the number of rows in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	
     return 3;
+	
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
     NSString *title = nil;
+	
     // Return a title or nil as appropriate for the section.
     switch (section) {
         case 0:
@@ -264,12 +260,15 @@
         default:
             break;
     }
-    return title;;
+	
+    return title;
+	
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	NSInteger rows;
+	
 	switch (section) {
         case 0:
             rows = 2;
@@ -283,16 +282,18 @@
         default:
             break;
     }
-    return rows;;
+	
+    return rows;
+	
 }
 
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"CELLFORROW\n");
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
+		
 		static NSString *NameCellIdentifier = @"NameCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NameCellIdentifier];
 
@@ -306,6 +307,7 @@
 
     }
 	else if (indexPath.section == 0 && indexPath.row == 1) {
+		
 		static NSString *TimedCellIdentifier = @"TimedCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TimedCellIdentifier];
 
@@ -321,6 +323,7 @@
 
 	}
 	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
+		
 		static NSString *ExerciseCellIdentifier = @"ExerciseCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
 
@@ -333,6 +336,7 @@
 
 	}
 	else if (indexPath.section == 2) {
+		
 		static NSString *NotesCellIdentifier = @"NotesCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
 		
@@ -346,6 +350,7 @@
 		return cell;
 	}
 	else {
+		
 		static NSString *AddCellIdentifier = @"AddCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AddCellIdentifier];
 
@@ -365,29 +370,39 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	if (indexPath.section == 0 && indexPath.row == 0) {
-		if (name != nil) {
-			cell.textLabel.text = @"Name";
-			cell.detailTextLabel.text = name;
+		
+		[[cell textLabel] setText:@"Name"];
+		if ([self name] != nil) {
+			
+			[[cell detailTextLabel] setText:[self name]];
+			
 		}
 		else {
 
-			cell.textLabel.text = @"Name";
-			cell.detailTextLabel.text = @"WOD Name";
-		}		
+			[[cell detailTextLabel] setText:@"<WOD NAME HERE>"];
+			
+		}
+		
     }
 	else if (indexPath.section == 0 && indexPath.row == 1) {
 
-		cell.textLabel.text = @"Timed";
+		[[cell textLabel] setText:@"Timed?"];
+		
 	}
-	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
-		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
-		NSLog(@" EXERCISE INTO TABLE %@",exercise);
-		cell.textLabel.text = [exercise name];
+	else if ([indexPath section] == 1 && [indexPath row] < [[self exerciseArray] count] ) {
+		
+		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:[indexPath row]];
+		[[cell textLabel] setText:[exercise name]];
+		
 	}
-	else if (indexPath.section == 2)
-		cell.textLabel.text = @"Add Notes...";
-	else {
-		cell.textLabel.text = @"Add Exercise...";
+	else if (indexPath.section == 2) {
+		
+		[[cell textLabel] setText:@"Add Notes..."];
+		
+	} else {
+		
+		[[cell textLabel] setText:@"Add Exercise..."];
+		
 	}
 
 
@@ -395,11 +410,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	// Case 'Add Exericse':
 	if (indexPath.section == 1 && indexPath.row == [[self exerciseArray] count] ) {
 		
 		ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
 		[exercise_category setManagedObjectContext:[self managedObjectContext]];
-		//exercise.delegate = self;
 		
 		
 		//TODO: This may need to be eventually entered back in... but modifed for Exercises/Modes
@@ -418,26 +433,31 @@
 		 
 		 */
 		
-		//	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
-		
-		//  [[self navigationController] presentModalViewController:navController animated:YES];
 		UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-		self.navigationItem.backBarButtonItem = backButton;
+		
+		[[self navigationItem] setBackBarButtonItem:backButton];
 		[backButton release];
+		
 		[[self navigationController] pushViewController:exercise_category animated:YES];
 		
 		[exercise_category release];
-		//[navController release];
-	}	
+
+	}
+	// Case 'Edit Name':
 	else if (indexPath.section == 0 && indexPath.row == 0) {
+		
 		EditViewController *controller = [[EditViewController alloc] init];
 		
-		controller.titleName = @"Name";
-		controller.noteName = @"EditSent";
+		[controller setTitleName:@"Name"];
+		[controller setNotificationName:@"EditSent"];
+		[controller setCustomEditType:EDIT_TYPE_NORMAL];
+	//	controller.titleName = @"Name";
+	//	controller.notificationName = @"EditSent";
+	//	controller.editField.keyboardType = UIKeyboardTypeDefault;
+	//	controller.editField.hidden = YES;
+	//	controller.editField.enabled = NO;
 		[self.navigationController pushViewController:controller animated:YES];
-		controller.editField.keyboardType = UIKeyboardTypeDefault;
-		controller.editField.hidden = YES;
-		controller.editField.enabled = NO;
+		
 
 		[controller release];	
 	}

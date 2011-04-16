@@ -11,7 +11,7 @@
 
 @implementation EditViewController
 
-@synthesize titleName,noteName,editField, editBox;
+@synthesize titleName, notificationName, editField, editBox, editType;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -27,10 +27,13 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	NSLog(@"LOADING...");
+	
     [super viewDidLoad];
 	
-	[self setTitle:titleName];
-	    
+	[self setTitle:[self titleName]];
+	
+	// Set Save Button:
     UIBarButtonItem *bbi;
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                         target:self
@@ -38,7 +41,7 @@
     [[self navigationItem] setRightBarButtonItem:bbi];
     [bbi release];
 	
-	
+	// Set Cancel Button:
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                         target:self
                                                         action:@selector(cancel:)];
@@ -47,22 +50,71 @@
 	
 	
 	// Why Auto-correction for numbers? (because it doesn't use dictionary?)
-	[editField setAutocorrectionType:UITextAutocorrectionTypeNo];
+	[[self editField] setAutocorrectionType:UITextAutocorrectionTypeNo];
+	NSLog(@"DONE LOADING...");
 }
 
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [editField becomeFirstResponder];
+	if ([self editType] == EDIT_TYPE_TEXTBOX) {
+		[[self editBox] becomeFirstResponder];
+	} else {
+		[[self editField] becomeFirstResponder];
+	}
 }
 
 
+- (NSString*)dictionaryKey
+{
+	return DICTIONARY_KEY;
+}
+
+
+- (void)setCustomEditType:(int)type
+{
+	NSLog(@"HEREzzz");
+	bool valid = YES;
+	switch (type) {
+		case EDIT_TYPE_NORMAL:
+			self.editField.keyboardType = UIKeyboardTypeDefault;
+			self.editField.hidden = NO;
+			self.editField.enabled = YES;
+			self.editBox.keyboardType = UIKeyboardTypeDefault;
+			self.editBox.hidden = YES;
+			break;
+		case EDIT_TYPE_NUMBER:
+			self.editField.keyboardType = UIKeyboardTypeDefault;
+			self.editField.hidden = NO;
+			self.editField.enabled = YES;
+			self.editBox.keyboardType = UIKeyboardTypeDefault;
+			self.editBox.hidden = YES;
+			//self.editBox.enabled = NO;
+			break;
+		case EDIT_TYPE_TEXTBOX:
+			self.editField.keyboardType = UIKeyboardTypeDefault;
+			self.editField.hidden = YES;
+			self.editField.enabled = NO;
+			self.editBox.keyboardType = UIKeyboardTypeDefault;
+			self.editBox.hidden = NO;
+			break;
+
+		default:
+			valid = NO;
+			break;
+	}
+	if (valid) {
+		NSLog(@"HERE333");
+		//self.editType = type;
+		[self setEditType:type];
+		NSLog(@"HERE444");
+	}
+}
 
 - (IBAction)cancel:(id)sender
 {
 	[[self navigationController] popToRootViewControllerAnimated:YES];
-
 }
 
 
@@ -73,34 +125,24 @@
 	// Create a dictionary with the exercise and the quantity and their respective keys
 	NSString *returnable;
 	
-	if (editField.hidden == YES) {
-		returnable = editBox.text;
+	if (self.editField.hidden == YES) {
+		returnable = [[self editBox] text];
 	}
 	else {
-		returnable = editField.text;
+		returnable = [[self editField] text];
 	}
 
-	NSLog(@"box %@\n", editBox.text);
+	NSLog(@"box %@\n", [editBox text]);
 	NSLog(@"Returnable %@\n",returnable);
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects: @"Text",nil]];
+	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
 
 	//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
-	[[NSNotificationCenter defaultCenter] postNotificationName:noteName object:nil userInfo:dict];
+	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
 	
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 	
 }
-
-
-
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations.
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
 
 
 

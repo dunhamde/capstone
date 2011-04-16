@@ -140,8 +140,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				34CD239412F2640D002A8DC0 /* Pages */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				34CD239412F2640D002A8DC0 /* Pages */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -287,10 +287,11 @@
 		34CD237A12F262D0002A8DC0 /* Create WOD Page */ = {
 			isa = PBXGroup;
 			children = (
-				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
+				34C28D92130F77D600FB7C61 /* Exercises */,
 				653B14441356A62700BF3C72 /* EditViewController.h */,
 				653B14451356A62700BF3C72 /* EditViewController.m */,
 				653B14461356A62700BF3C72 /* EditViewController.xib */,
+				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
 				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
 				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
 			);
@@ -330,7 +331,6 @@
 		34CD239412F2640D002A8DC0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				34C28D92130F77D600FB7C61 /* Exercises */,
 				34CD237D12F26316002A8DC0 /* Main Page */,
 				34CD237C12F26300002A8DC0 /* View Scores Page */,
 				34CD237812F26297002A8DC0 /* Log Score Page */,
