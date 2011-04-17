@@ -22,22 +22,30 @@
 	
 	NSString	*titleName;
 	NSString	*notificationName;
-	UIBarButtonItem	*saveButton;
+	NSString	*defaultText;
+	NSString	*placeholder;
+	
+	UIBarButtonItem			*saveButton;
 	IBOutlet UITextField	*editField;
 	IBOutlet UITextView		*editBox;
 	
 }
 
-
+// Button Action Methods:
 - (void)cancel:(id)sender;
 - (void)save:(id)sender;
+
+// Misc. Methods:
 - (void)initCustomEditPreferences;
 - (int)editType;
 - (NSString*)dictionaryKey;
 
+
 @property (nonatomic, assign) int editType;
 @property (nonatomic, retain) NSString *titleName;
 @property (nonatomic, retain) NSString *notificationName;
+@property (nonatomic, retain) NSString *defaultText;
+@property (nonatomic, retain) NSString *placeholder;
 @property (nonatomic, retain) IBOutlet UITextField *editField;
 @property (nonatomic, retain) IBOutlet UITextView *editBox;
 

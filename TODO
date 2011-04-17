@@ -1,13 +1,13 @@
 # TODO file for My WOD Log
 #  Created by: Matthew Dalrymple
-#  Last Updated: Saturday, 16 April 2011
+#  Last Updated: Saturday, 17 April 2011
 
 MAJOR:
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
 [x] Add functionality to select method of user input to the Edit Controller[X] Add Notes to database
 [ ] Add rep rounds to CreateWOD page (list view)
-[ ] Add # of rounds field
+[X] Add # of rounds field and time limit field
 [X] Add WOD Type field instead of switch
 [ ] Add in intermediate database for exercises 
 [ ] Error check Create WOD page
@@ -18,10 +18,12 @@ MAJOR:
 MINOR:
 [ ] Make a Edit/View List page that is generic like EditViewController but
     is for viewing/editing a generic list
-[ ] Change Edit Controller to pass in what the default text should be
+[X] Change Edit Controller to pass in what the default text should be
  -This will allow someone to type in something, then come back and edit
   before they save (i.e. Type in name, click save, then click name and
   change it.  Even more useful with notes! [longer text])
+[ ] Refactor #define's to enums
+ - See: UITextAlignment
 
 BUGS:
 [ ] WOD List -> View WOD Page will crash if WOD doesn't have any exercises

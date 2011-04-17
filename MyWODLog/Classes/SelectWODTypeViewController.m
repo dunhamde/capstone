@@ -63,7 +63,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    return NUM_WOD_TYPES;
 }
 
 
@@ -80,21 +80,26 @@
 	
 	// Configure the cell...
 	NSString *cellText = nil;
-	switch ([indexPath row]) {
-		case 0:
+	
+	int i = [indexPath row] + 1;  // Convert from 0 index to 1-based index
+	switch (i) {
+		case WOD_TYPE_TIME:
 			cellText = WOD_TYPE_TEXT_TIME;
 			break;
-		case 1:
+		case WOD_TYPE_RFT:
 			cellText = WOD_TYPE_TEXT_RFT;
 			break;
-		case 2:
+		case WOD_TYPE_RRFT:
 			cellText = WOD_TYPE_TEXT_RRFT;
 			break;
-		case 3:
+		case WOD_TYPE_RFMR:
 			cellText = WOD_TYPE_TEXT_RFMR;
 			break;
-		case 4:
+		case WOD_TYPE_AMRAP:
 			cellText = WOD_TYPE_TEXT_AMRAP;
+			break;
+		case WOD_TYPE_EMOTM:
+			cellText = WOD_TYPE_TEXT_EMOTM;
 			break;
 		default:
 			break;

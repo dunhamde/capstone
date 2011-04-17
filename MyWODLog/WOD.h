@@ -8,8 +8,10 @@
 
 #import <CoreData/CoreData.h>
 
-#define WOD_SCORE_TYPE_TIME		0
-#define WOD_SCORE_TYPE_REPS		1
+#define WOD_SCORE_TYPE_NONE		0
+#define WOD_SCORE_TYPE_TIME		1
+#define WOD_SCORE_TYPE_REPS		2
+#define WOD_SCORE_TYPE_RNDS		3
 
 #define WOD_TYPE_UNKNOWN		0
 #define WOD_TYPE_TIME			1
@@ -17,7 +19,9 @@
 #define WOD_TYPE_RRFT			3	// Rep Rounds For Time (RRFT)
 #define WOD_TYPE_RFMR			4	// Rounds For Max Rep (RFMR)
 #define WOD_TYPE_AMRAP			5	// As Many Rounds As Possible (AMRAP)
+#define WOD_TYPE_EMOTM			6	// Each Minute On The Minute (EMOTM)
 
+#define NUM_WOD_TYPES			6
 
 #define WOD_TYPE_TEXT_UNKNOWN	@"Unspecified"
 #define WOD_TYPE_TEXT_TIME		@"For Time"
@@ -25,6 +29,8 @@
 #define WOD_TYPE_TEXT_RRFT		@"Rep Rounds For Time"
 #define WOD_TYPE_TEXT_RFMR		@"Rounds For Max Rep"
 #define WOD_TYPE_TEXT_AMRAP		@"As Many Rounds As Possible"
+#define WOD_TYPE_TEXT_EMOTM		@"Each Minute On The Minute"
+
 
 @interface WOD :  NSManagedObject  
 {

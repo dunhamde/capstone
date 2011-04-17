@@ -10,14 +10,17 @@
 #import "WOD.h"
 #import "ViewExerciseModesViewController.h"
 #import "SelectWODTypeViewController.h"
+#import	"EditViewController.h"
 
 
-#define SECTION_DETAILS				0
-#define SECTION_EXERCISES			1
-#define SECTION_NOTES				2
-#define SECTION_TITLE_DETAILS		@"Details"
-#define SECTION_TITLE_EXERCISE		@"Exercises"
-#define SECTION_TITLE_NOTES			@"Notes"
+#define CW_SECTION_DETAILS				0
+#define CW_SECTION_EXERCISES			1
+#define CW_SECTION_NOTES				2
+#define CW_SECTION_TITLE_DETAILS		@"Details"
+#define CW_SECTION_TITLE_EXERCISES		@"Exercises"
+#define CW_SECTION_TITLE_NOTES			@"Notes"
+
+#define CW_NUM_SECTIONS					3
 
 
 
@@ -29,8 +32,8 @@
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
 	
+	// UI Elements:
 	UIBarButtonItem *saveButton;
-	UISwitch *switchButton;
 
 	IBOutlet UISwitch *scoreSwitch;
 	IBOutlet UITableView *table;
@@ -40,26 +43,42 @@
 	NSString*		wodName;
 	int				wodType;
 	NSString*		wodNotes;
+	NSString*		wodTimeLimit;
+	NSString*		wodNumRounds;
+	NSMutableArray*	wodRepRounds;
+	int				wodScoreType;
 	
-	
+	// Flags:
 	BOOL readyToSave;
+	
+	BOOL quantifyExercises;
+	BOOL showTimeLimit;
+	BOOL showNumRounds;
+	BOOL showRepRounds;
 
 }
 
 @property (nonatomic, assign) id <CreateWODViewControllerDelegate> delegate;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, assign) BOOL				readyToSave;
+@property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, retain) IBOutlet UITableView *table;
+
+
 @property (nonatomic, retain) NSMutableArray*	wodExerciseArray;
 @property (nonatomic, retain) NSString*			wodName;
 @property (nonatomic, assign) int				wodType;
 @property (nonatomic, retain) NSString*			wodNotes;
+@property (nonatomic, retain) NSString*			wodTimeLimit;
+@property (nonatomic, retain) NSString*			wodNumRounds;
+@property (nonatomic, retain) NSMutableArray*	wodRepRounds;
+@property (nonatomic, assign) int				wodScoreType;
 
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-
-@property (nonatomic, retain) UIBarButtonItem *saveButton;
-@property (nonatomic, retain) IBOutlet UITableView *table;
-//@property (nonatomic, retain) UISwitch *switchButton;
+@property (nonatomic, assign) BOOL				readyToSave;
+@property (nonatomic, assign) BOOL				quantifyExercises;
+@property (nonatomic, assign) BOOL				showTimeLimit;
+@property (nonatomic, assign) BOOL				showNumRounds;
+@property (nonatomic, assign) BOOL				showRepRounds;
 
 
 // Notifications:
@@ -68,6 +87,10 @@
 - (void)notesChangedNote:(NSNotification*)saveNotification;
 - (void)typeChangedNote:(NSNotification*)saveNotification;
 
+- (void)timeLimitChangedNote:(NSNotification*)saveNotification;
+- (void)numRoundsChangedNote:(NSNotification*)saveNotification;
+- (void)repRoundsChangedNote:(NSNotification*)saveNotification;
+
 // Misc Methods:
 
 - (void)evaluateSaveReadiness;
@@ -75,9 +98,8 @@
 - (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
-//- (IBAction)startEditingMode;
 
-//Added this line below to get rid of the warning... if the warning still exists then this line is useless
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
