@@ -682,6 +682,12 @@
 	else if( [cellIdentifier isEqualToString:@"TimeLimitCell"] ) {
 		
 		[[cell textLabel] setText:@"Time Limit"];
+		if ([self wodTimeLimit] != nil && [[self wodTimeLimit] length] > 0) {
+			[[cell detailTextLabel] setText:[self wodTimeLimit]];
+		}
+		else {
+			[[cell detailTextLabel] setText:@"<TIME LIMIT HERE>"];
+		}
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
