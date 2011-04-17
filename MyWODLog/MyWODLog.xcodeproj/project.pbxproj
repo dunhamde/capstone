@@ -34,6 +34,8 @@
 		34C68BB61315A92800023704 /* CreateExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C68BB41315A92700023704 /* CreateExerciseViewController.xib */; };
 		34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C68BBA1315A9DD00023704 /* ViewExercisesViewController.m */; };
 		34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */; };
+		34D122FB135ABBE9008B9573 /* SelectWODTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D122F9135ABBE9008B9573 /* SelectWODTypeViewController.m */; };
+		34D122FC135ABBE9008B9573 /* SelectWODTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D122FA135ABBE9008B9573 /* SelectWODTypeViewController.xib */; };
 		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
@@ -87,12 +89,15 @@
 		34C68BB91315A9DD00023704 /* ViewExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewExercisesViewController.h; path = Classes/ViewExercisesViewController.h; sourceTree = "<group>"; };
 		34C68BBA1315A9DD00023704 /* ViewExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewExercisesViewController.m; path = Classes/ViewExercisesViewController.m; sourceTree = "<group>"; };
 		34C68BBB1315A9DD00023704 /* ViewExercisesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewExercisesViewController.xib; path = Classes/ViewExercisesViewController.xib; sourceTree = "<group>"; };
+		34D122F8135ABBE9008B9573 /* SelectWODTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectWODTypeViewController.h; path = Classes/SelectWODTypeViewController.h; sourceTree = "<group>"; };
+		34D122F9135ABBE9008B9573 /* SelectWODTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectWODTypeViewController.m; path = Classes/SelectWODTypeViewController.m; sourceTree = "<group>"; };
+		34D122FA135ABBE9008B9573 /* SelectWODTypeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectWODTypeViewController.xib; path = Classes/SelectWODTypeViewController.xib; sourceTree = "<group>"; };
 		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
 		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
-		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
-		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
-		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
+		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
+		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
+		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		65AA385E12F5151800907DE3 /* WOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOD.h; sourceTree = "<group>"; };
 		65AA385F12F5151800907DE3 /* WOD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOD.m; sourceTree = "<group>"; };
@@ -287,10 +292,8 @@
 		34CD237A12F262D0002A8DC0 /* Create WOD Page */ = {
 			isa = PBXGroup;
 			children = (
+				34D122FE135ABBF6008B9573 /* Select WOD Type */,
 				34C28D92130F77D600FB7C61 /* Exercises */,
-				653B14441356A62700BF3C72 /* EditViewController.h */,
-				653B14451356A62700BF3C72 /* EditViewController.m */,
-				653B14461356A62700BF3C72 /* EditViewController.xib */,
 				34807F2212E7BB0900885EBB /* CreateWODViewController.h */,
 				34807F2312E7BB0900885EBB /* CreateWODViewController.m */,
 				34807F2412E7BB0900885EBB /* CreateWODViewController.xib */,
@@ -331,6 +334,7 @@
 		34CD239412F2640D002A8DC0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				34D12327135AC3FB008B9573 /* Custom Edit */,
 				34CD237D12F26316002A8DC0 /* Main Page */,
 				34CD237C12F26300002A8DC0 /* View Scores Page */,
 				34CD237812F26297002A8DC0 /* Log Score Page */,
@@ -340,6 +344,27 @@
 				34CD237712F26266002A8DC0 /* WOD List Page */,
 			);
 			name = Pages;
+			sourceTree = "<group>";
+		};
+		34D122FE135ABBF6008B9573 /* Select WOD Type */ = {
+			isa = PBXGroup;
+			children = (
+				34D122F8135ABBE9008B9573 /* SelectWODTypeViewController.h */,
+				34D122F9135ABBE9008B9573 /* SelectWODTypeViewController.m */,
+				34D122FA135ABBE9008B9573 /* SelectWODTypeViewController.xib */,
+			);
+			name = "Select WOD Type";
+			sourceTree = "<group>";
+		};
+		34D12327135AC3FB008B9573 /* Custom Edit */ = {
+			isa = PBXGroup;
+			children = (
+				653B14441356A62700BF3C72 /* EditViewController.h */,
+				653B14451356A62700BF3C72 /* EditViewController.m */,
+				653B14461356A62700BF3C72 /* EditViewController.xib */,
+			);
+			name = "Custom Edit";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +429,7 @@
 				34C68BBD1315A9DD00023704 /* ViewExercisesViewController.xib in Resources */,
 				3444C20B133ABA7800184673 /* SetExerciseQuantityViewController.xib in Resources */,
 				653B14481356A62700BF3C72 /* EditViewController.xib in Resources */,
+				34D122FC135ABBE9008B9573 /* SelectWODTypeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +459,7 @@
 				341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */,
 				3444C20A133ABA7800184673 /* SetExerciseQuantityViewController.m in Sources */,
 				653B14471356A62700BF3C72 /* EditViewController.m in Sources */,
+				34D122FB135ABBE9008B9573 /* SelectWODTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

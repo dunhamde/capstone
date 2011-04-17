@@ -166,7 +166,7 @@
 		NSSet* set = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
 		[wod setExercises:set];
 		[wod setName:[createWODViewController wodName]];
-		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodScoreType]]];
+		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodType]]];
 		[wod setNotes:[createWODViewController wodNotes]];
 		
 		// Save the new WOD:
@@ -233,14 +233,16 @@
 	//Throw a wod up
 	
 	ViewWODViewController *wod_view = [[ViewWODViewController alloc] init];
-	NSLog(@"HERE22");
+
 	WOD *wod = [fetchedResultsController objectAtIndexPath:ip];
 	[wod_view setCurrentWOD:wod];
+	
+	//TODO: Fix crash when no exercises!
 	[wod_view setExerciseArray:[[wod exercises] allObjects]];
 
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];
-	NSLog(@"HERE99");
+
 }
 
 
@@ -255,6 +257,7 @@
  */
 - (NSFetchedResultsController *)fetchedResultsController {
     
+	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
@@ -272,8 +275,10 @@
 	
 	// Create and initialize the fetch results controller.
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-	self.fetchedResultsController = aFetchedResultsController;
-	fetchedResultsController.delegate = self;
+	[self setFetchedResultsController:aFetchedResultsController];
+//	self.fetchedResultsController = aFetchedResultsController;
+	[[self fetchedResultsController] setDelegate:self];
+//	fetchedResultsController.delegate = self;
 	
 	// Memory management.
 	[aFetchedResultsController release];
@@ -291,14 +296,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-	[self.tableView beginUpdates];
+	[[self tableView] beginUpdates];
 }
 
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	
-	UITableView *tableView = self.tableView;
+	UITableView *tableView = [self tableView];
 	
 	switch(type) {
 			
@@ -328,11 +333,11 @@
 	switch(type) {
 			
 		case NSFetchedResultsChangeInsert:
-			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self tableView] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 	}
 }
@@ -341,7 +346,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	[self.tableView endUpdates];
+	[[self tableView] endUpdates];
 }
 
 
@@ -361,7 +366,6 @@
 - (void)dealloc {
 	[fetchedResultsController release];
 	[managedObjectContext release];
-//	[addingManagedObjectContext release];
     [super dealloc];
 }
 

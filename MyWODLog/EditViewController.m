@@ -125,13 +125,9 @@
 	else {
 		returnable = [[self editField] text];
 	}
-
-	NSLog(@"box %@\n", [editBox text]);
-	NSLog(@"Returnable %@\n",returnable);
 	
 	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
 
-	//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
 	
 	[[self navigationController] popToRootViewControllerAnimated:YES];

@@ -12,7 +12,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, delegate, wodName, wodExerciseArray, wodNotes, wodScoreType, readyToSave, saveButton, table, switchButton;
+@synthesize managedObjectContext, delegate, wodName, wodExerciseArray, wodNotes, wodType, readyToSave, saveButton, table;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -33,18 +33,23 @@
     [super viewDidLoad];
 	[self setTitle:@"Create WOD"];
 
-	//TODO: fix change IsEditing stuff
-	[self setReadyToSave:NO];
+
 
 	// Configure the save and cancel buttons.
-	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-	saveButton.enabled = YES;
-	self.navigationItem.rightBarButtonItem = saveButton;
-	//[saveButton release];
+	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
+	//saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+	[[self saveButton] setEnabled:YES];
+//	saveButton.enabled = YES;
+	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
+///	self.navigationItem.rightBarButtonItem = saveButton;
+	[saveButton release];
 	
 	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-	self.navigationItem.leftBarButtonItem = cancelButton;
+	[[self navigationItem] setLeftBarButtonItem:cancelButton];
+//	self.navigationItem.leftBarButtonItem = cancelButton;
 	[cancelButton release];
+	
+	[self evaluateSaveReadiness];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,41 +61,24 @@
 	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
 	[dnc addObserver:self selector:@selector(nameChangedNote:) name:@"EditSent" object:nil];
 	[dnc addObserver:self selector:@selector(notesChangedNote:) name:@"NotesSent" object:nil];
+	[dnc addObserver:self selector:@selector(typeChangedNote:) name:@"TypeSent" object:nil];
 	
 }
-
-
-
-/*- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	[textField resignFirstResponder];
-	
-	[self setWodName:[textField text]];
-	//wod.name = textField.text;
-	[self setIsEditing:NO];
-//	isEditing = NO;
-
-	// Enable saving if there is text in the field
-	//  ?What if name is the same as another?
-	//TODO:  if( name.text isn't already in the database )
-	if ([name.text length] > 0) {
-		[saveButton setEnabled:YES];
-//		saveButton.enabled = YES;
-	}
-	
-	return NO;
-}*/
 
 #pragma mark -
 #pragma mark Save and cancel operations
 
 - (IBAction)cancel:(id)sender {
+	
 	[delegate createWODViewController:self didFinishWithSave:NO];
+	
 }
 
 
 
 - (IBAction)save:(id)sender {
-	
+
+	// Error check that save is possible:
 	if ([self wodName] == nil) {
 		return;
 	}
@@ -116,17 +104,20 @@
 		alert = nil;
 	
 	// Confirm that a name has been entered
-	} else if (![self readyToSave]) {
+	} else if ([self readyToSave]) {
 		
 		NSLog(@"Saved with text: %@", [self wodName]);
 		
+		//TODO: setWODType here!
+		
 		//int scoreType;
 		// Set the score type based on the UISwitch position
+		/*
 		if ( (switchButton.on) ) {
-			[self setWodScoreType:WOD_SCORE_TYPE_TIME];
+			[self setWodType:WOD_SCORE_TYPE_TIME];
 		} else {
-			[self setWodScoreType:WOD_SCORE_TYPE_REPS];
-		}
+			[self setWodType:WOD_SCORE_TYPE_REPS];
+		}*/
 	//	[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
@@ -142,16 +133,6 @@
 }
 
 
-- (IBAction)startEditingMode {
-	// Grey out save button here as well
-	[saveButton setEnabled:NO];
-	[self setReadyToSave:YES];
-//	saveButton.enabled = NO;
-//	isEditing = YES;
-}
-
-
-
 #pragma mark -
 #pragma mark More button operations
 
@@ -161,35 +142,16 @@
 {
 	ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
 	[exercise_category setManagedObjectContext:[self managedObjectContext]];
-	//exercise.delegate = self;
 	
-	
-	//TODO: This may need to be eventually entered back in... but modifed for Exercises/Modes
-	
-	/*  
-	
-	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
-	[addingContext release];
-	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-	
-	createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
-	
-	
-	*/
-	
-//	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:exercise_category];
-	
-  //  [[self navigationController] presentModalViewController:navController animated:YES];
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-	self.navigationItem.backBarButtonItem = backButton;
+//	self.navigationItem.backBarButtonItem = backButton;
+	[[self navigationItem] setBackBarButtonItem:backButton];
 	[backButton release];
 	[[self navigationController] pushViewController:exercise_category animated:YES];
 	
 	[exercise_category release];
-	//[navController release];
+
+	
 }
 
 #pragma mark -
@@ -201,7 +163,8 @@
 	//[self dismissModalViewControllerAnimated:YES];
 	NSDictionary *dict = [saveNotification userInfo];
 	EXERCISE *e = [dict objectForKey:@"Exercise"];
-	NSLog(@"NEW EXERCISE \n %@",e);
+
+	/*NSLog(@"NEW EXERCISE \n %@",e);
 	NSLog(@"EXERCISES ARRAY1\n %@",self.wodExerciseArray);
 	NSLog(@"ARRAY COUNT: %d\n",[[self wodExerciseArray] count]);
 	
@@ -209,18 +172,21 @@
 	NSLog(@"RAWR1");
 	if (e == nil) {
 		NSLog(@"E == NIL!");
-	}
+	}*/
+	
 	[[self wodExerciseArray] addObject:e];
-	NSLog(@"RAWR2");
+	
+	/*NSLog(@"RAWR2");
 	NSLog(@"EXERCISES ARRAY2\n %@",self.wodExerciseArray);
 	NSLog(@"ARRAY COUNT2: %d\n",[[self wodExerciseArray] count]);
-	
+	*/
 	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
 	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	
 	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
 	
+	[self evaluateSaveReadiness];
 }
 
 
@@ -233,8 +199,8 @@
 	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@"EditSent" object:nil];
-	//	saveButton.enabled = YES;
-	[[self saveButton] setEnabled:YES];
+	
+	[self evaluateSaveReadiness];
 }
 
 
@@ -246,7 +212,53 @@
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@"NotesSent" object:nil];
 
-//	[[self saveButton] setEnabled:YES];
+	[self evaluateSaveReadiness];
+}
+
+- (void)typeChangedNote:(NSNotification*)saveNotification {
+	NSDictionary *dict = [saveNotification userInfo];
+	
+	//NSString *stringType = [dict objectForKey:@"Text"];
+	//int type = [stringType intValue];
+	// + 1 is needed as it returns row value
+	[self setWodType:[[dict objectForKey:@"Text"] intValue] + 1];
+	[[self table] reloadData];
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@"TypeSent" object:nil];
+	
+	[self evaluateSaveReadiness];
+}
+
+
+
+#pragma mark -
+#pragma mark Misc. Methods
+
+- (void)evaluateSaveReadiness {
+	
+	BOOL activate = NO;
+
+	// Should the user be able to press 'Save' yet?
+	if ( [self wodName] != nil && [[self wodName] length] > 0 ) {
+		if ([self wodType] > 0) {
+
+			activate = YES;
+			
+		}
+	}
+	
+	// Switch On/Off save button depending on conditions:
+	if (activate) {
+		// Activate save button
+		[[self saveButton] setEnabled:YES];
+		[self setReadyToSave:YES];
+	} else {
+		// Grey out (deactivate) the save button
+		[[self saveButton] setEnabled:NO];
+		[self setReadyToSave:NO];
+	}
+
+
 }
 
 
@@ -329,14 +341,16 @@
     }
 	else if ([indexPath section] == 0 && [indexPath row] == 1) {
 		
-		static NSString *TimedCellIdentifier = @"TimedCell";
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TimedCellIdentifier];
+		static NSString *TypeCellIdentifier = @"TypeCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
 
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TimedCellIdentifier] autorelease];
-			switchButton = [[UISwitch alloc] initWithFrame:CGRectZero];
-			[cell setAccessoryView : switchButton];
-			[switchButton release];
+//			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TimedCellIdentifier] autorelease];
+//			switchButton = [[UISwitch alloc] initWithFrame:CGRectZero];
+//			[cell setAccessoryView : switchButton];
+//			[switchButton release];
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+			[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
@@ -409,7 +423,31 @@
     }
 	else if ([indexPath section] == 0 && [indexPath row] == 1) {
 
-		[[cell textLabel] setText:@"Timed?"];
+		[[cell textLabel] setText:@"Type"];
+		
+		NSString *subText = nil;
+		switch ([self wodType]) {
+			case WOD_TYPE_TIME:
+				subText = WOD_TYPE_TEXT_TIME;
+				break;
+			case WOD_TYPE_RFT:
+				subText = WOD_TYPE_TEXT_RFT;
+				break;
+			case WOD_TYPE_RRFT:
+				subText = WOD_TYPE_TEXT_RRFT;
+				break;
+			case WOD_TYPE_RFMR:
+				subText = WOD_TYPE_TEXT_RFMR;
+				break;
+			case WOD_TYPE_AMRAP:
+				subText = WOD_TYPE_TEXT_AMRAP;
+				break;
+			default:
+				subText = WOD_TYPE_TEXT_UNKNOWN;
+				break;
+		}
+		
+		[[cell detailTextLabel] setText:subText];
 		
 	}
 	else if ([indexPath section] == 1 && [indexPath row] < [[self wodExerciseArray] count] ) {
@@ -420,7 +458,13 @@
 	}
 	else if ([indexPath section] == 2) {
 		
-		[[cell textLabel] setText:@"Add Notes..."];
+		if ([self wodNotes] != nil && [[self wodNotes] length] > 0) {
+			[[cell textLabel] setText:[self wodNotes]];
+		} else {
+			[[cell textLabel] setText:@"Add Notes..."];
+		}
+
+
 		
 	} else {
 		
@@ -432,29 +476,37 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
+	// Case 'WOD Name':
+	if ([indexPath section] == 0 && [indexPath row] == 0) {
+		
+		EditViewController *controller = [[EditViewController alloc] init];
+		
+		[controller setTitleName:@"Name"];
+		[controller setNotificationName:@"EditSent"];
+		[controller setEditType:EDIT_TYPE_NORMAL];
+		[[self navigationController] pushViewController:controller animated:YES];
+
+		[controller release];	
+	}
+	// Case 'WOD Type':
+	else if ([indexPath section] == 0 && [indexPath row] == 1) {
+		
+		SelectWODTypeViewController *controller = [[SelectWODTypeViewController alloc] init];
+		
+		// Set Back Button:
+		UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+		[[self navigationItem] setBackBarButtonItem:backButton];
+		[backButton release];
+		
+		[[self navigationController] pushViewController:controller animated:YES];
+		
+	}
 	// Case 'Add Exericse...':
-	if ([indexPath section] == 1 && [indexPath row] == [[self wodExerciseArray] count] ) {
+	else if ([indexPath section] == 1 && [indexPath row] == [[self wodExerciseArray] count] ) {
 		
 		ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
 		[exercise_category setManagedObjectContext:[self managedObjectContext]];
-		
-		
-		//TODO: This may need to be eventually entered back in... but modifed for Exercises/Modes
-		
-		/*  
-		 
-		 // Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-		 NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-		 self.addingManagedObjectContext = addingContext;
-		 [addingContext release];
-		 
-		 [addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-		 
-		 createWODViewController.wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:addingContext];
-		 
-		 
-		 */
 		
 		UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 		
@@ -464,21 +516,7 @@
 		[[self navigationController] pushViewController:exercise_category animated:YES];
 		
 		[exercise_category release];
-
-	}
-	// Case 'WOD Name':
-	else if ([indexPath section] == 0 && [indexPath row] == 0) {
 		
-		EditViewController *controller = [[EditViewController alloc] init];
-		
-		[controller setTitleName:@"Name"];
-		[controller setNotificationName:@"EditSent"];
-		[controller setEditType:EDIT_TYPE_NORMAL];
-		[[self navigationController] pushViewController:controller animated:YES];
-//		[self.navigationController pushViewController:controller animated:YES];
-
-
-		[controller release];	
 	}
 	// Case 'Add Notes...':
 	else if ([indexPath section] == 2 && [indexPath row] == 0) {

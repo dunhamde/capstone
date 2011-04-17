@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WOD.h"
 #import "ViewExerciseModesViewController.h"
+#import "SelectWODTypeViewController.h"
 
 
 #define SECTION_DETAILS				0
@@ -37,7 +38,7 @@
 	// WOD Attributes:
 	NSMutableArray*	wodExerciseArray;
 	NSString*		wodName;
-	int				wodScoreType;
+	int				wodType;
 	NSString*		wodNotes;
 	
 	
@@ -50,30 +51,31 @@
 @property (nonatomic, assign) BOOL				readyToSave;
 @property (nonatomic, retain) NSMutableArray*	wodExerciseArray;
 @property (nonatomic, retain) NSString*			wodName;
-@property (nonatomic, assign) int				wodScoreType;
+@property (nonatomic, assign) int				wodType;
 @property (nonatomic, retain) NSString*			wodNotes;
 
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-//@property (nonatomic, retain) IBOutlet UITextField *name;
-//@property (nonatomic, retain) NSString *name;
 
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) IBOutlet UITableView *table;
-@property (nonatomic, retain) UISwitch *switchButton;
+//@property (nonatomic, retain) UISwitch *switchButton;
 
 
 // Notifications:
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification;
 - (void)nameChangedNote:(NSNotification*)saveNotification;
 - (void)notesChangedNote:(NSNotification*)saveNotification;
+- (void)typeChangedNote:(NSNotification*)saveNotification;
 
 // Misc Methods:
+
+- (void)evaluateSaveReadiness;
 
 - (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
-- (IBAction)startEditingMode;
+//- (IBAction)startEditingMode;
 
 //Added this line below to get rid of the warning... if the warning still exists then this line is useless
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
