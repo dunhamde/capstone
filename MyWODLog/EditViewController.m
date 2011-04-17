@@ -27,7 +27,6 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	NSLog(@"LOADING...");
 	
     [super viewDidLoad];
 	
@@ -49,9 +48,8 @@
     [bbi release];
 	
 	
-	// Why Auto-correction for numbers? (because it doesn't use dictionary?)
-	[[self editField] setAutocorrectionType:UITextAutocorrectionTypeNo];
-	NSLog(@"DONE LOADING...");
+	[self initCustomEditPreferences];
+
 }
 
 
@@ -72,28 +70,26 @@
 }
 
 
-- (void)setCustomEditType:(int)type
+- (void)initCustomEditPreferences
 {
-	NSLog(@"HEREzzz");
-	bool valid = YES;
-	switch (type) {
+	switch ([self editType]) {
 		case EDIT_TYPE_NORMAL:
 			self.editField.keyboardType = UIKeyboardTypeDefault;
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
-			self.editBox.keyboardType = UIKeyboardTypeDefault;
+			//self.editBox.keyboardType = UIKeyboardTypeDefault;
 			self.editBox.hidden = YES;
 			break;
 		case EDIT_TYPE_NUMBER:
-			self.editField.keyboardType = UIKeyboardTypeDefault;
+			self.editField.keyboardType = UIKeyboardTypeNumberPad;
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
-			self.editBox.keyboardType = UIKeyboardTypeDefault;
+			//self.editBox.keyboardType = UIKeyboardTypeDefault;
 			self.editBox.hidden = YES;
 			//self.editBox.enabled = NO;
 			break;
 		case EDIT_TYPE_TEXTBOX:
-			self.editField.keyboardType = UIKeyboardTypeDefault;
+			//self.editField.keyboardType = UIKeyboardTypeDefault;
 			self.editField.hidden = YES;
 			self.editField.enabled = NO;
 			self.editBox.keyboardType = UIKeyboardTypeDefault;
@@ -101,15 +97,13 @@
 			break;
 
 		default:
-			valid = NO;
+			[self setEditType:EDIT_TYPE_NORMAL];
+			[self initCustomEditPreferences];
 			break;
 	}
-	if (valid) {
-		NSLog(@"HERE333");
-		//self.editType = type;
-		[self setEditType:type];
-		NSLog(@"HERE444");
-	}
+	// Why Auto-correction for numbers? (because it doesn't use dictionary?)
+	[[self editField] setAutocorrectionType:UITextAutocorrectionTypeNo];
+	[[self editBox] setAutocorrectionType:UITextAutocorrectionTypeNo];
 }
 
 - (IBAction)cancel:(id)sender

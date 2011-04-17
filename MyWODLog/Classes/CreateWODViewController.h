@@ -10,6 +10,16 @@
 #import "WOD.h"
 #import "ViewExerciseModesViewController.h"
 
+
+#define SECTION_DETAILS				0
+#define SECTION_EXERCISES			1
+#define SECTION_NOTES				2
+#define SECTION_TITLE_DETAILS		@"Details"
+#define SECTION_TITLE_EXERCISE		@"Exercises"
+#define SECTION_TITLE_NOTES			@"Notes"
+
+
+
 @protocol CreateWODViewControllerDelegate;
 
 
@@ -17,40 +27,48 @@
 	
 	id <CreateWODViewControllerDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
-	//WOD *wod;
 	
 	UIBarButtonItem *saveButton;
 	UISwitch *switchButton;
-	
-	NSString *name;
+
 	IBOutlet UISwitch *scoreSwitch;
 	IBOutlet UITableView *table;
 	
-	NSMutableArray *exerciseArray;
-	NSString* wodName;
-	int scoreType;
+	// WOD Attributes:
+	NSMutableArray*	wodExerciseArray;
+	NSString*		wodName;
+	int				wodScoreType;
+	NSString*		wodNotes;
 	
-	BOOL isEditing;
+	
+	BOOL readyToSave;
 
 }
 
 @property (nonatomic, assign) id <CreateWODViewControllerDelegate> delegate;
 
-@property (nonatomic, assign) BOOL isEditing;
-@property (nonatomic, retain) NSMutableArray *exerciseArray;
-@property (nonatomic, retain) NSString *wodName;
-@property (nonatomic, assign) int scoreType;
+@property (nonatomic, assign) BOOL				readyToSave;
+@property (nonatomic, retain) NSMutableArray*	wodExerciseArray;
+@property (nonatomic, retain) NSString*			wodName;
+@property (nonatomic, assign) int				wodScoreType;
+@property (nonatomic, retain) NSString*			wodNotes;
 
-//@property (nonatomic, retain) WOD *wod;
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 //@property (nonatomic, retain) IBOutlet UITextField *name;
-@property (nonatomic, retain) NSString *name;
+//@property (nonatomic, retain) NSString *name;
 
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) IBOutlet UITableView *table;
 @property (nonatomic, retain) UISwitch *switchButton;
 
 
+// Notifications:
+- (void)exerciseSelectedNote:(NSNotification*)saveNotification;
+- (void)nameChangedNote:(NSNotification*)saveNotification;
+- (void)notesChangedNote:(NSNotification*)saveNotification;
+
+// Misc Methods:
 
 - (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;

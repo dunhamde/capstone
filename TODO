@@ -1,9 +1,22 @@
 # TODO file for My WOD Log
 #  Created by: Matthew Dalrymple
-#  Last Updated: Wednesday, 23 March 2011
+#  Last Updated: Saturday, 16 April 2011
 
+MAJOR:
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
-[x] Add functionality to select method of user input to the Edit Controller[ ] Add Notes to database
+[x] Add functionality to select method of user input to the Edit Controller[X] Add Notes to database
 [ ] Add rounds to CreateWOD page
+[ ] Add WOD Type field instead of switch
 [ ] Add in intermediate database for exercises 
+[ ] Error check Create WOD page
+ -Must enter in a name, and add at least 1 exercise
+[ ] Update Display WOD Page to reflect new Create WOD page
+
+
+MINOR:
+[ ] Make a Edit/View List page that is generic like EditViewController but
+    is for viewing/editing a generic list
+
+BUGS:
+[ ] WOD List -> View WOD Page will crash if WOD doesn't have any exercises

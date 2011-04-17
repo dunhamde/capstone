@@ -12,7 +12,7 @@
 
 @implementation CreateWODViewController
 
-@synthesize managedObjectContext, name, scoreType, delegate, wodName, isEditing, saveButton, exerciseArray, table, switchButton;
+@synthesize managedObjectContext, delegate, wodName, wodExerciseArray, wodNotes, wodScoreType, readyToSave, saveButton, table, switchButton;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -20,7 +20,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		[self setExerciseArray:[NSMutableArray arrayWithCapacity:0]];
+		[self setWodExerciseArray:[NSMutableArray arrayWithCapacity:0]];
 //		self.exerciseArray = [NSMutableArray arrayWithCapacity:0];
     }
     return self;
@@ -34,11 +34,11 @@
 	[self setTitle:@"Create WOD"];
 
 	//TODO: fix change IsEditing stuff
-	[self setIsEditing:NO];
+	[self setReadyToSave:NO];
 
 	// Configure the save and cancel buttons.
 	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-	saveButton.enabled = NO;
+	saveButton.enabled = YES;
 	self.navigationItem.rightBarButtonItem = saveButton;
 	//[saveButton release];
 	
@@ -48,17 +48,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+
 	// Register for exercises saved notifications
 	
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	
 	[dnc addObserver:self selector:@selector(exerciseSelectedNote:) name:@"ExerciseSelected" object:nil];
 	[dnc addObserver:self selector:@selector(nameChangedNote:) name:@"EditSent" object:nil];
-
-	NSLog(@"exercises %@\n",self.exerciseArray);
-	//[name setPlaceholder:@"New WOD Name"];
-//	name.placeholder = @"New WOD Name";
-	//[name becomeFirstResponder];
+	[dnc addObserver:self selector:@selector(notesChangedNote:) name:@"NotesSent" object:nil];
+	
 }
 
 
@@ -93,8 +91,12 @@
 
 - (IBAction)save:(id)sender {
 	
+	if ([self wodName] == nil) {
+		return;
+	}
+	
 	// Check to see if that name doesn't already exist.
-	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self name] ];
+	NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self wodName] ];
 	
 	// Create and configure a fetch request with the wod entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -114,16 +116,16 @@
 		alert = nil;
 	
 	// Confirm that a name has been entered
-	} else if (![self isEditing]) {
+	} else if (![self readyToSave]) {
 		
-		NSLog(@"Saved with text: %@", [self name]);
+		NSLog(@"Saved with text: %@", [self wodName]);
 		
 		//int scoreType;
 		// Set the score type based on the UISwitch position
 		if ( (switchButton.on) ) {
-			[self setScoreType:WOD_SCORE_TYPE_TIME];
+			[self setWodScoreType:WOD_SCORE_TYPE_TIME];
 		} else {
-			[self setScoreType:WOD_SCORE_TYPE_REPS];
+			[self setWodScoreType:WOD_SCORE_TYPE_REPS];
 		}
 	//	[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
@@ -143,7 +145,7 @@
 - (IBAction)startEditingMode {
 	// Grey out save button here as well
 	[saveButton setEnabled:NO];
-	[self setIsEditing:YES];
+	[self setReadyToSave:YES];
 //	saveButton.enabled = NO;
 //	isEditing = YES;
 }
@@ -190,9 +192,8 @@
 	//[navController release];
 }
 
-
 #pragma mark -
-#pragma mark Table View Controller stuff
+#pragma mark Notifications
 
 
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification {
@@ -201,38 +202,58 @@
 	NSDictionary *dict = [saveNotification userInfo];
 	EXERCISE *e = [dict objectForKey:@"Exercise"];
 	NSLog(@"NEW EXERCISE \n %@",e);
-	NSLog(@"EXERCISES ARRAY1\n %@",self.exerciseArray);
-	NSLog(@"ARRAY COUNT: %d\n",[[self exerciseArray] count]);
-
+	NSLog(@"EXERCISES ARRAY1\n %@",self.wodExerciseArray);
+	NSLog(@"ARRAY COUNT: %d\n",[[self wodExerciseArray] count]);
+	
 	NSLog(@"DICTIONARY CONTENTS \n %@",dict);
 	NSLog(@"RAWR1");
 	if (e == nil) {
 		NSLog(@"E == NIL!");
 	}
-	[[self exerciseArray] addObject:e];
+	[[self wodExerciseArray] addObject:e];
 	NSLog(@"RAWR2");
-	NSLog(@"EXERCISES ARRAY2\n %@",self.exerciseArray);
-	NSLog(@"ARRAY COUNT2: %d\n",[[self exerciseArray] count]);
-
+	NSLog(@"EXERCISES ARRAY2\n %@",self.wodExerciseArray);
+	NSLog(@"ARRAY COUNT2: %d\n",[[self wodExerciseArray] count]);
+	
 	//self.exerciseArray = [NSMutableArray arrayWithObject:e];
 	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-
+	
 	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
-
+	
 }
 
-- (void)nameChangedNote:(NSNotification*)saveNotification {
 
+- (void)nameChangedNote:(NSNotification*)saveNotification {
+	
 	NSDictionary *dict = [saveNotification userInfo];
-	self.name = [dict objectForKey:@"Text"];
-	NSLog(@"NAME %@ \n",self.name);
+	[self setWodName:[dict objectForKey:@"Text"]];
+	//	self.name = [dict objectForKey:@"Text"];
+	NSLog(@"NAME %@ \n",[self wodName]);
 	[[self table] reloadData];
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@"EditSent" object:nil];
-	saveButton.enabled = YES;
-	
+	//	saveButton.enabled = YES;
+	[[self saveButton] setEnabled:YES];
 }
+
+
+- (void)notesChangedNote:(NSNotification*)saveNotification {
+	NSDictionary *dict = [saveNotification userInfo];
+
+	[self setWodNotes:[dict objectForKey:@"Text"]];
+	[[self table] reloadData];
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@"NotesSent" object:nil];
+
+//	[[self saveButton] setEnabled:YES];
+}
+
+
+#pragma mark -
+#pragma mark Table View Controller stuff
+
+
 
 // Customize the number of rows in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -274,7 +295,7 @@
             rows = 2;
             break;
         case 1:
-            rows = [[self exerciseArray] count] + 1;
+            rows = [[self wodExerciseArray] count] + 1;
             break;
         case 2:
             rows = 1;
@@ -292,21 +313,21 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if (indexPath.section == 0 && indexPath.row == 0) {
+	if ([indexPath section] == 0 && [indexPath row] == 0) {
 		
 		static NSString *NameCellIdentifier = @"NameCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NameCellIdentifier];
 
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:NameCellIdentifier] autorelease];
-			cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
 		return cell;
 
     }
-	else if (indexPath.section == 0 && indexPath.row == 1) {
+	else if ([indexPath section] == 0 && [indexPath row] == 1) {
 		
 		static NSString *TimedCellIdentifier = @"TimedCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TimedCellIdentifier];
@@ -322,7 +343,7 @@
 		return cell;
 
 	}
-	else if (indexPath.section == 1 && indexPath.row < [[self exerciseArray] count] ) {
+	else if ([indexPath section] == 1 && [indexPath row] < [[self wodExerciseArray] count] ) {
 		
 		static NSString *ExerciseCellIdentifier = @"ExerciseCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
@@ -335,7 +356,7 @@
 		return cell;
 
 	}
-	else if (indexPath.section == 2) {
+	else if ([indexPath section] == 2) {
 		
 		static NSString *NotesCellIdentifier = @"NotesCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
@@ -343,7 +364,8 @@
 		if (cell == nil) {
 			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			
 		}
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
@@ -357,7 +379,8 @@
 		if (cell == nil) {
 			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AddCellIdentifier] autorelease];
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
 		}
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
@@ -369,12 +392,12 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-	if (indexPath.section == 0 && indexPath.row == 0) {
+	if ([indexPath section] == 0 && [indexPath row] == 0) {
 		
 		[[cell textLabel] setText:@"Name"];
-		if ([self name] != nil) {
+		if ([self wodName] != nil) {
 			
-			[[cell detailTextLabel] setText:[self name]];
+			[[cell detailTextLabel] setText:[self wodName]];
 			
 		}
 		else {
@@ -384,18 +407,18 @@
 		}
 		
     }
-	else if (indexPath.section == 0 && indexPath.row == 1) {
+	else if ([indexPath section] == 0 && [indexPath row] == 1) {
 
 		[[cell textLabel] setText:@"Timed?"];
 		
 	}
-	else if ([indexPath section] == 1 && [indexPath row] < [[self exerciseArray] count] ) {
+	else if ([indexPath section] == 1 && [indexPath row] < [[self wodExerciseArray] count] ) {
 		
-		EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:[indexPath row]];
+		EXERCISE *exercise = (EXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
 		[[cell textLabel] setText:[exercise name]];
 		
 	}
-	else if (indexPath.section == 2) {
+	else if ([indexPath section] == 2) {
 		
 		[[cell textLabel] setText:@"Add Notes..."];
 		
@@ -410,8 +433,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	// Case 'Add Exericse':
-	if (indexPath.section == 1 && indexPath.row == [[self exerciseArray] count] ) {
+	// Case 'Add Exericse...':
+	if ([indexPath section] == 1 && [indexPath row] == [[self wodExerciseArray] count] ) {
 		
 		ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
 		[exercise_category setManagedObjectContext:[self managedObjectContext]];
@@ -443,23 +466,32 @@
 		[exercise_category release];
 
 	}
-	// Case 'Edit Name':
-	else if (indexPath.section == 0 && indexPath.row == 0) {
+	// Case 'WOD Name':
+	else if ([indexPath section] == 0 && [indexPath row] == 0) {
 		
 		EditViewController *controller = [[EditViewController alloc] init];
 		
 		[controller setTitleName:@"Name"];
 		[controller setNotificationName:@"EditSent"];
-		[controller setCustomEditType:EDIT_TYPE_NORMAL];
-	//	controller.titleName = @"Name";
-	//	controller.notificationName = @"EditSent";
-	//	controller.editField.keyboardType = UIKeyboardTypeDefault;
-	//	controller.editField.hidden = YES;
-	//	controller.editField.enabled = NO;
-		[self.navigationController pushViewController:controller animated:YES];
-		
+		[controller setEditType:EDIT_TYPE_NORMAL];
+		[[self navigationController] pushViewController:controller animated:YES];
+//		[self.navigationController pushViewController:controller animated:YES];
+
 
 		[controller release];	
+	}
+	// Case 'Add Notes...':
+	else if ([indexPath section] == 2 && [indexPath row] == 0) {
+		
+		EditViewController *controller = [[EditViewController alloc] init];
+		
+		[controller setTitleName:@"Notes"];
+		[controller setNotificationName:@"NotesSent"];
+		[controller setEditType:EDIT_TYPE_TEXTBOX];
+		[[self navigationController] pushViewController:controller animated:YES];		
+		
+		[controller release];
+		
 	}
 }
 
@@ -474,19 +506,17 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-	NSLog(@"UNLOADED CREATEWOD\n");
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	[saveButton release];
 	[self setSaveButton:nil];
-//	saveButton = nil;
+
 }
 
 
 
 - (void)dealloc {
-	NSLog(@"DEALLOCED CREATEWOD\n");
-
     [super dealloc];
 }
 

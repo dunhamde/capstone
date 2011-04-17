@@ -31,7 +31,7 @@
 
 - (void)cancel:(id)sender;
 - (void)save:(id)sender;
-- (void)setCustomEditType:(int)type;
+- (void)initCustomEditPreferences;
 - (int)editType;
 - (NSString*)dictionaryKey;
 
