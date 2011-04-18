@@ -95,7 +95,6 @@
 
 - (void)evaluateSaveReadiness;
 
-- (IBAction)addExercise;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 

@@ -144,27 +144,6 @@
 
 
 #pragma mark -
-#pragma mark More button operations
-
-
-
-- (IBAction)addExercise
-{
-	
-	ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
-	[exercise_category setManagedObjectContext:[self managedObjectContext]];
-	
-	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-
-	[[self navigationItem] setBackBarButtonItem:backButton];
-	[backButton release];
-	[[self navigationController] pushViewController:exercise_category animated:YES];
-	
-	[exercise_category release];
-	
-}
-
-#pragma mark -
 #pragma mark Notifications
 
 
