@@ -568,7 +568,8 @@
 		if (cell == nil) {
 			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
-			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			//[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 			
 		}
 		
@@ -585,7 +586,8 @@
 		if (cell == nil) {
 			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AddCellIdentifier] autorelease];
-			[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			//[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
