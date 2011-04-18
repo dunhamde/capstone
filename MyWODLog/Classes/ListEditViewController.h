@@ -15,14 +15,16 @@
 	NSString			*notificationName;
 	UIBarButtonItem		*saveButton;
 	
+	NSMutableArray		*elements;
 }
 
 // Button Action Methods:
 - (void)cancel:(id)sender;
 - (void)save:(id)sender;
 
-@property (nonatomic, retain) NSString *titleName;
-@property (nonatomic, retain) NSString *notificationName;
+@property (nonatomic, retain) NSString			*titleName;
+@property (nonatomic, retain) NSString			*notificationName;
+@property (nonatomic, retain) NSMutableArray	*elements;
 
 
 @end

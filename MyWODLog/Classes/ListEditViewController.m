@@ -11,11 +11,21 @@
 
 @implementation ListEditViewController
 
-@synthesize titleName, notificationName;
+@synthesize titleName, notificationName, elements;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+		self.elements = [NSMutableArray arrayWithCapacity:0];
+    }
+    return self;
+	
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
