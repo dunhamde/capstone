@@ -13,15 +13,30 @@
 @implementation ViewExercisesViewController
 
 
-@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc;
+@synthesize	mode, lastExerciseAdded, fetchedResultsController, managedObjectContext, cevc, quantify;
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization.
+		[self setQuantify:NO];
+    }
+    return self;
+}
+
+
+
 - (void)viewDidLoad {
+	
     [super viewDidLoad];
+	
+	//[self setQuantify:NO];
 
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 
@@ -39,6 +54,7 @@
 	}
 
 	[self setCevc:nil];
+	
 }
 
 
@@ -486,12 +502,29 @@ NSLog( @"didFinishWithSave");
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
-	[seqvc setExercise:[fetchedResultsController objectAtIndexPath:indexPath]];
 	
-	[[self navigationController] pushViewController:seqvc animated:YES];
+	if ([self quantify]) {
+		
 	
-	[seqvc release];
+		SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
+		[seqvc setExercise:[fetchedResultsController objectAtIndexPath:indexPath]];
+	
+		[[self navigationController] pushViewController:seqvc animated:YES];
+	
+		[seqvc release];
+		
+	} else {
+		
+		EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
+
+		//NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray initWithObjects:e,nil] forKeys:[NSArray initWithObjects:@"Exericse",@"Quantity",nil]];
+		NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
+		
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+		
+	}
+
 	
 	/*EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
 	//NSLog(@"EXERCISE SENT \n %@", e);
@@ -501,27 +534,6 @@ NSLog( @"didFinishWithSave");
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
 
 	[[self navigationController] popToRootViewControllerAnimated:YES]; */
-
-	
-	/*ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
-	 
-	 EXERCISE *m = [fetchedResultsController objectAtIndexPath:indexPath];
-	 
-	 [viewExercisesViewController setMode:m];
-	 
-	 [viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
-	 
-	 [[self navigationController] pushViewController:viewExercisesViewController animated:YES];
-	 
-	 [viewExercisesViewController release]; */
-	
-	/*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-	*/
 	
 }
 

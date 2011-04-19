@@ -25,14 +25,11 @@
 */
 
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    
+	[super viewDidLoad];
 	
-	//TODO: Possibly set title to the name of the exercise we are setting quantity for:
-	// then make a static text that says 'Quantity:' or something along that line
-	// also maybe have the default text be 0 or 1?
 	[self setTitle:@"Set Quantity"];
 	
 	UIBarButtonItem *bbi;
@@ -42,13 +39,14 @@
     [[self navigationItem] setRightBarButtonItem:bbi];
     [bbi release];
 	
+}
+
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
 	
-  /*  bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                        target:self
-                                                        action:@selector(cancel:)];
-    [[self navigationItem] setLeftBarButtonItem:bbi];
-    [bbi release]; */
-	
+	[[self quantityField] becomeFirstResponder];
 	
 }
 
@@ -56,9 +54,7 @@
 
 - (void)save:(id)sender {
 	
-	
 	if ([[[self quantityField] text] length] > 0 ) {
-		
 		
 		// Create a dictionary with the exercise and the quantity and their respective keys
 		NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self exercise],[[self quantityField] text],nil] forKeys:[NSArray arrayWithObjects:@"Exercise",@"Quantity",nil]];
