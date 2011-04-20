@@ -25,6 +25,7 @@
 	
 	EXERCISE *lastExerciseAdded;
 
+	BOOL quantify;
 	
 }
 
@@ -36,7 +37,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) EXERCISE *lastExerciseAdded;
 @property (nonatomic, retain) CreateExerciseViewController *cevc;
-
+@property (nonatomic, assign) BOOL quantify;
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

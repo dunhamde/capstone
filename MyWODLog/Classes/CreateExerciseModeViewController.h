@@ -15,8 +15,7 @@
 
 @interface CreateExerciseModeViewController : UIViewController <UITextFieldDelegate> {
 	
-	MODE* mode;
-	
+	MODE			*mode;
 	UIBarButtonItem *saveButton;
 	
 	IBOutlet UITextField *nameField;

@@ -12,7 +12,7 @@
 
 @implementation ViewExerciseModesViewController
 
-@synthesize fetchedResultsController, managedObjectContext, addingManagedObjectContext;
+@synthesize fetchedResultsController, managedObjectContext, addingManagedObjectContext, quantify;
 
 
 
@@ -21,10 +21,24 @@
 
 
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization.
+		[self setQuantify:NO];
+    }
+    return self;
+}
+
+
+
 - (void)viewDidLoad {
+	
     [super viewDidLoad];
 	
 	[self setTitle:@"Categories"];
+	
+	//[self setQuantify:NO];
 	
 	// Configure the save and cancel buttons.
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
@@ -32,7 +46,8 @@
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	self.tableView.allowsSelectionDuringEditing = NO;
+	[[self tableView] setAllowsSelectionDuringEditing:NO];
+//	self.tableView.allowsSelectionDuringEditing = NO;
 	
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -221,19 +236,11 @@
 	[viewExercisesViewController setMode:m];
 		
 	[viewExercisesViewController setManagedObjectContext:[self managedObjectContext]];
-	
+	[viewExercisesViewController setQuantify:[self quantify]];
 	[[self navigationController] pushViewController:viewExercisesViewController animated:YES];
 
 	[viewExercisesViewController release];
 
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-	 // ...
-	 // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
 }
 
 

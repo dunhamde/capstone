@@ -21,13 +21,15 @@
 	NSManagedObjectContext		*managedObjectContext;
 	NSManagedObjectContext		*addingManagedObjectContext;
 	
+	BOOL	quantify;
+	
 }
 
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
 @property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
-
+@property (nonatomic, assign) BOOL quantify;
 
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

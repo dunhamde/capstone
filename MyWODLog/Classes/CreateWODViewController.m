@@ -695,6 +695,7 @@
 		EditViewController *controller = [[EditViewController alloc] init];
 		
 		[controller setTitleName:@"Name"];
+		[controller setPlaceholder:@"Name"];
 		[controller setNotificationName:@"EditSent"];
 		[controller setEditType:EDIT_TYPE_NORMAL];
 		[controller setDefaultText:[self wodName]];
@@ -723,17 +724,18 @@
 	// Case 'Add Exericse...':
 	else if( [cellIdentifier isEqualToString:@"AddCell"] ) {
 		
-		ViewExerciseModesViewController* exercise_category = [[ViewExerciseModesViewController alloc] init];
-		[exercise_category setManagedObjectContext:[self managedObjectContext]];
+		ViewExerciseModesViewController* controller = [[ViewExerciseModesViewController alloc] init];
+		[controller setManagedObjectContext:[self managedObjectContext]];
 		
 		UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 		
 		[[self navigationItem] setBackBarButtonItem:backButton];
 		[backButton release];
 		
-		[[self navigationController] pushViewController:exercise_category animated:YES];
+		[controller setQuantify:[self quantifyExercises]];
+		[[self navigationController] pushViewController:controller animated:YES];
 		
-		[exercise_category release];
+		[controller release];
 		
 	}
 	// Case 'Add Notes...':
@@ -755,6 +757,7 @@
 		EditViewController *controller = [[EditViewController alloc] init];
 		
 		[controller setTitleName:@"Number of Rounds"];
+		[controller setPlaceholder:@"Rounds"];
 		[controller setNotificationName:@"NumRoundsSent"];
 		[controller setEditType:EDIT_TYPE_NUMBER];
 		[controller setDefaultText:[self wodNumRounds]];
@@ -768,6 +771,7 @@
 		EditViewController *controller = [[EditViewController alloc] init];
 		
 		[controller setTitleName:@"Time Limit"];
+		[controller setPlaceholder:@"Time Limit (in minutes)"];
 		[controller setNotificationName:@"TimeLimitSent"];
 		[controller setEditType:EDIT_TYPE_NUMBER];
 		[controller setDefaultText:[self wodTimeLimit]];
