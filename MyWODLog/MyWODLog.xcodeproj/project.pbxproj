@@ -42,7 +42,6 @@
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
 		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
-		65A93246135BCE1C00EE23F8 /* CodeReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A93245135BCE1C00EE23F8 /* CodeReview.m */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
 		65AA386012F5151800907DE3 /* WOD.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA385F12F5151800907DE3 /* WOD.m */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
@@ -104,7 +103,6 @@
 		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
-		65A93245135BCE1C00EE23F8 /* CodeReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeReview.m; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		65AA385E12F5151800907DE3 /* WOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOD.h; sourceTree = "<group>"; };
 		65AA385F12F5151800907DE3 /* WOD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOD.m; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				65A93245135BCE1C00EE23F8 /* CodeReview.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				34CD239412F2640D002A8DC0 /* Pages */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -481,7 +478,6 @@
 				653B14471356A62700BF3C72 /* EditViewController.m in Sources */,
 				34D122FB135ABBE9008B9573 /* SelectWODTypeViewController.m in Sources */,
 				34A445FF135BB42F00F37BBE /* ListEditViewController.m in Sources */,
-				65A93246135BCE1C00EE23F8 /* CodeReview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,9 @@
 
 @implementation ViewWODViewController
 
-@synthesize wod, scoredByLabel, exerciseArray, table; // removed the list label in order to add the tabel
+@synthesize wod, scoredByLabel, wodExerciseArray, table; // removed the list label in order to add the tabel
+@synthesize showNumRounds, showRepRounds, showTimeLimit;
+@synthesize wodName, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 
 
 
@@ -52,8 +54,8 @@
 	
 	// Fill the exercises array with all the WOD's exercsies
 	//exerciseArray = [[[self wod] exercises] allObjects];
-	NSLog(@"%@\n", [[exerciseArray objectAtIndex:0] name]);
-	NSLog(@"count %d\n", [[self exerciseArray] count]);
+	//NSLog(@"%@\n", [[exerciseArray objectAtIndex:0] name]);
+	//NSLog(@"count %d\n", [[self exerciseArray] count]);
 }
 
 
@@ -77,41 +79,316 @@
 	[logScore release];
 }
 
+#pragma mark -
+#pragma mark Table View Controller stuff
+
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSLog(@"number of rows called \n");
-	NSLog(@"count %d\n", [[self exerciseArray] count]);
-	return [[self exerciseArray] count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	
+    return VW_NUM_SECTIONS;
+	
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+    NSString *title = nil;
+	
+    // Return a title or nil as appropriate for the section.
+    switch (section) {
+        case VW_SECTION_DETAILS:
+            title = VW_SECTION_TITLE_DETAILS;
+            break;
+        case VW_SECTION_EXERCISES:
+            title = VW_SECTION_TITLE_EXERCISES;
+            break;
+		case VW_SECTION_NOTES:
+            title = VW_SECTION_TITLE_NOTES;
+            break;
+        default:
+            break;
+    }
+	
+    return title;
+	
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	NSInteger rows;
+	
+	switch (section) {
+        case VW_SECTION_DETAILS:
+			rows = 2;
+			if ([self showTimeLimit]) {
+				rows++;
+			}
+			if ([self showNumRounds]) {
+				rows++;
+			} else if ([self showRepRounds]) {
+				rows++;
+			}
+            break;
+        case VW_SECTION_EXERCISES:
+            rows = [[self wodExerciseArray] count];
+            break;
+        case VW_SECTION_NOTES:
+            rows = 1;
+            break;			
+        default:
+            break;
+    }
+	
+    return rows;
+	
+}
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"cell for row called \n");
-
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+	
+	if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 0 ) {
+		
+		static NSString *NameCellIdentifier = @"NameCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NameCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:NameCellIdentifier] autorelease];
+			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
     }
-    
-    // Configure the cell.
-	[self configureCell:cell atIndexPath:indexPath];
-	
-	
-    return cell;
+	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 1 ) {
+		
+		static NSString *TypeCellIdentifier = @"TypeCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+	}
+	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 && [self wodType] == WOD_TYPE_RRFT ) {
+		
+		static NSString *TypeCellIdentifier = @"RepRoundsCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+	}
+	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 &&
+			 ([self wodType] == WOD_TYPE_RFT || [self wodType] == WOD_TYPE_EMOTM || [self wodType] == WOD_TYPE_AMRAP) ) {
+		
+		static NSString *TypeCellIdentifier = @"TimeLimitCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+	}/*
+	  else if ( [indexPath section] == CW_SECTION_DETAILS && [indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR ) {
+	  
+	  static NSString *TypeCellIdentifier = @"NumRoundsCell";
+	  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
+	  
+	  if (cell == nil) {
+	  cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+	  [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+	  }
+	  
+	  // Configure the cell.
+	  [self configureCell:cell atIndexPath:indexPath];
+	  
+	  return cell;
+	  
+	  }*/
+	else if ( [indexPath section] == VW_SECTION_DETAILS &&
+			 ([indexPath row] == 3 ||([indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR)) ) {
+		
+		static NSString *TypeCellIdentifier = @"NumRoundsCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
+			[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+	}
+	else if ( [indexPath section] == VW_SECTION_EXERCISES && [indexPath row] < [[self wodExerciseArray] count] ) {
+		
+		static NSString *ExerciseCellIdentifier = @"ExerciseCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ExerciseCellIdentifier] autorelease];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+	}
+	else if ( [indexPath section] == VW_SECTION_NOTES ) {
+		
+		static NSString *NotesCellIdentifier = @"NotesCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
+		
+		if (cell == nil) {
+			
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
+			//[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+			//[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+			
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+	}
+	NSLog(@"SHOULDNT BE HERE\n");
+	return 0; // Should never get to this point but the compiler complained
 }
 
 
 
+
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	// Can't we do this by cell name instead of section/row numbers?
+	// i.e.:  [cell reuseIdentifier]  << returns a string
 	
-    // Configure the cell to show the book's title
-	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
-	NSLog(@" EXERCISE INTO TABLE %@",exercise);
-	cell.textLabel.text = [exercise name];
+	NSString *cellIdentifier = [cell reuseIdentifier];
+	
+	if( [cellIdentifier isEqualToString:@"NameCell"] ) {
+		
+		[[cell textLabel] setText:@"Name"];
+		
+		if ([self wodName] != nil) {
+			[[cell detailTextLabel] setText:[self wodName]];
+		} else {
+			[[cell detailTextLabel] setText:@"<WOD NAME HERE>"];
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"TypeCell"] ) {
+		
+		[[cell textLabel] setText:@"Type"];
+		
+		NSString *subText = nil;
+		switch ([self wodType]) {
+			case WOD_TYPE_TIME:
+				subText = WOD_TYPE_TEXT_TIME;
+				break;
+			case WOD_TYPE_RFT:
+				subText = WOD_TYPE_TEXT_RFT;
+				break;
+			case WOD_TYPE_RRFT:
+				subText = WOD_TYPE_TEXT_RRFT;
+				break;
+			case WOD_TYPE_RFMR:
+				subText = WOD_TYPE_TEXT_RFMR;
+				break;
+			case WOD_TYPE_AMRAP:
+				subText = WOD_TYPE_TEXT_AMRAP;
+				break;
+			case WOD_TYPE_EMOTM:
+				subText = WOD_TYPE_TEXT_EMOTM;
+				break;
+			default:
+				subText = WOD_TYPE_TEXT_UNKNOWN;
+				break;
+		}
+		
+		[[cell detailTextLabel] setText:subText];
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
+		
+		if( [indexPath row] < [[self wodExerciseArray] count] ) {
+			EXERCISE *exercise = (EXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
+			[[cell textLabel] setText:[exercise name]];
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"AddCell"] ) {
+		
+		[[cell textLabel] setText:@"Add Exercise..."];
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
+		
+		if ([self wodNotes] != nil && [[self wodNotes] length] > 0) {
+			[[cell textLabel] setText:[self wodNotes]];
+		} else {
+			[[cell textLabel] setText:@"Add Notes..."];
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"NumRoundsCell"] ) {
+		
+		[[cell textLabel] setText:@"# Rounds"];
+		if ([self wodNumRounds] != nil && [[self wodNumRounds] length] > 0) {
+			[[cell detailTextLabel] setText:[self wodNumRounds]];
+		}
+		else {
+			[[cell detailTextLabel] setText:@"<NUM OF ROUNDS HERE>"];
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"TimeLimitCell"] ) {
+		
+		[[cell textLabel] setText:@"Time Limit"];
+		if ([self wodTimeLimit] != nil && [[self wodTimeLimit] length] > 0) {
+			[[cell detailTextLabel] setText:[self wodTimeLimit]];
+		}
+		else {
+			[[cell detailTextLabel] setText:@"<TIME LIMIT HERE>"];
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
+		
+		[[cell textLabel] setText:@"Rep Rounds"];
+		
+	}
+	//	else if( [cellIdentifier isEqualToString:@""] ) {
+	//	}
+	else {
+		//[[cell textLabel] setText:@"Add Exercise..."];
+	}
+	
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

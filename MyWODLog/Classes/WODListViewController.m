@@ -238,7 +238,7 @@
 	[wod_view setCurrentWOD:wod];
 	
 	//TODO: Fix crash when no exercises!
-	[wod_view setExerciseArray:[[wod exercises] allObjects]];
+	[wod_view setWodExerciseArray:[[wod exercises] allObjects]];
 
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];
