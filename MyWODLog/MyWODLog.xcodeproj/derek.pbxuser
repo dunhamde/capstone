@@ -382,14 +382,14 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1171, 962}}";
 			sepNavSelRange = "{1442, 0}";
-			sepNavVisRange = "{635, 1357}";
+			sepNavVisRange = "{347, 1325}";
 		};
 	};
 	34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 5798}}";
-			sepNavSelRange = "{230, 0}";
-			sepNavVisRange = "{0, 1142}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 5863}}";
+			sepNavSelRange = "{1484, 0}";
+			sepNavVisRange = "{839, 1093}";
 			sepNavWindowFrame = "{{15, 188}, {992, 685}}";
 		};
 	};
@@ -503,14 +503,14 @@
 	};
 	65AA385E12F5151800907DE3 /* WOD.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1126, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 754}}";
 			sepNavSelRange = "{213, 0}";
-			sepNavVisRange = "{0, 804}";
+			sepNavVisRange = "{0, 1350}";
 		};
 	};
 	65AA385F12F5151800907DE3 /* WOD.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1126, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 608}}";
 			sepNavSelRange = "{283, 0}";
 			sepNavVisRange = "{0, 284}";
 		};
@@ -610,9 +610,9 @@
 	};
 	65FF40B012E3DEA700DF2F2A /* WODListViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1818, 5070}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1818, 5018}}";
 			sepNavSelRange = "{7859, 0}";
-			sepNavVisRange = "{7513, 508}";
+			sepNavVisRange = "{7493, 1224}";
 			sepNavWindowFrame = "{{15, 320}, {750, 558}}";
 		};
 	};

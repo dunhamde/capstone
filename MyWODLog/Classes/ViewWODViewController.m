@@ -29,11 +29,6 @@
 
 	//Assumes setCurrentWOD is called
 	
-	if( [[wod score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
-		[[self scoredByLabel] setText:@"Time"];
-	} else {
-		[[self scoredByLabel] setText:@"Number of Repetitions"];
-	}
 	/*
 	NSString *exerciseList = [[NSString alloc] init];
 	
@@ -63,7 +58,9 @@
 - (void)setCurrentWOD:(WOD *)w {
 
 	[self setWod:w];
-
+	[self setWodName:[[self wod] name]];
+	[self setWodType:[[self wod] score_type]];
+	
 	[self setTitle:[wod name]];
 
 }
