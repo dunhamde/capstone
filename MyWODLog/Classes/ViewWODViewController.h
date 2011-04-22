@@ -29,6 +29,9 @@
 	//IBOutlet UILabel *exerciseListLabel;
 	IBOutlet UITableView *table;
 	
+	// UI Elements:
+	UIBarButtonItem *logButton;
+	
 	// WOD Attributes:
 	NSArray*	wodExerciseArray;
 	NSString*		wodName;
@@ -50,6 +53,7 @@
 @property (nonatomic, retain) UILabel *scoredByLabel;
 //@property (nonatomic, retain) UILabel *exerciseListLabel;
 @property (nonatomic, retain) IBOutlet UITableView *table;
+@property (nonatomic, retain) UIBarButtonItem *logButton;
 
 @property (nonatomic, assign) BOOL				showTimeLimit;
 @property (nonatomic, assign) BOOL				showNumRounds;
@@ -67,7 +71,7 @@
 
 - (void)setCurrentWOD:(WOD *)w;
 
-- (IBAction)logScorePressed;
+- (IBAction)logScorePressed:(id)sender;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end

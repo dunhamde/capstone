@@ -80,7 +80,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					993,
 					20,
 					48,
 					43,
@@ -119,13 +119,42 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324950769;
-			PBXWorkspaceStateSaveDate = 324950769;
+			PBXPerProjectTemplateStateSaveDate = 325139230;
+			PBXWorkspaceStateSaveDate = 325139230;
 		};
 		perUserProjectItems = {
-			6599D826135E940200C11679 /* PBXTextBookmark */ = 6599D826135E940200C11679 /* PBXTextBookmark */;
-			6599D827135E940200C11679 /* XCBuildMessageTextBookmark */ = 6599D827135E940200C11679 /* XCBuildMessageTextBookmark */;
-			6599D828135E940200C11679 /* PBXTextBookmark */ = 6599D828135E940200C11679 /* PBXTextBookmark */;
+			6599D83F135FFEC000C11679 = 6599D83F135FFEC000C11679 /* XDModelBookmark */;
+			6599D840135FFEC000C11679 = 6599D840135FFEC000C11679 /* PBXTextBookmark */;
+			6599D841135FFEC000C11679 = 6599D841135FFEC000C11679 /* PBXTextBookmark */;
+			6599D842135FFEC000C11679 = 6599D842135FFEC000C11679 /* PBXTextBookmark */;
+			6599D843135FFEC000C11679 = 6599D843135FFEC000C11679 /* PBXTextBookmark */;
+			6599D844135FFEC000C11679 = 6599D844135FFEC000C11679 /* PBXTextBookmark */;
+			6599D845135FFEC000C11679 = 6599D845135FFEC000C11679 /* PBXTextBookmark */;
+			6599D846135FFEC000C11679 = 6599D846135FFEC000C11679 /* PBXTextBookmark */;
+			6599D847135FFEC000C11679 = 6599D847135FFEC000C11679 /* PBXTextBookmark */;
+			65B9555413613DDA00FDBA45 /* XCBuildMessageTextBookmark */ = 65B9555413613DDA00FDBA45 /* XCBuildMessageTextBookmark */;
+			65B9555513613DDA00FDBA45 /* PBXTextBookmark */ = 65B9555513613DDA00FDBA45 /* PBXTextBookmark */;
+			65B9556213613DDE00FDBA45 /* PBXTextBookmark */ = 65B9556213613DDE00FDBA45 /* PBXTextBookmark */;
+			65B9556313613DDE00FDBA45 /* PBXTextBookmark */ = 65B9556313613DDE00FDBA45 /* PBXTextBookmark */;
+			65B9556413613DDE00FDBA45 /* PBXTextBookmark */ = 65B9556413613DDE00FDBA45 /* PBXTextBookmark */;
+			65B9556513613DDE00FDBA45 /* XCBuildMessageTextBookmark */ = 65B9556513613DDE00FDBA45 /* XCBuildMessageTextBookmark */;
+			65B9556613613DDE00FDBA45 /* PBXTextBookmark */ = 65B9556613613DDE00FDBA45 /* PBXTextBookmark */;
+			65B9556D13613E1300FDBA45 /* PBXTextBookmark */ = 65B9556D13613E1300FDBA45 /* PBXTextBookmark */;
+			65B9557013613E2000FDBA45 /* PBXTextBookmark */ = 65B9557013613E2000FDBA45 /* PBXTextBookmark */;
+			65B9557113613E2000FDBA45 /* PBXTextBookmark */ = 65B9557113613E2000FDBA45 /* PBXTextBookmark */;
+			65B9557213613E2000FDBA45 /* PBXTextBookmark */ = 65B9557213613E2000FDBA45 /* PBXTextBookmark */;
+			65B9557513613E2B00FDBA45 /* PBXTextBookmark */ = 65B9557513613E2B00FDBA45 /* PBXTextBookmark */;
+			65B9557613613EB200FDBA45 /* PBXTextBookmark */ = 65B9557613613EB200FDBA45 /* PBXTextBookmark */;
+			65B9557713613F4600FDBA45 /* PBXTextBookmark */ = 65B9557713613F4600FDBA45 /* PBXTextBookmark */;
+			65B9557A13613F7900FDBA45 /* PBXTextBookmark */ = 65B9557A13613F7900FDBA45 /* PBXTextBookmark */;
+			65B9557B13613F7900FDBA45 /* PBXTextBookmark */ = 65B9557B13613F7900FDBA45 /* PBXTextBookmark */;
+			65B9557C13613F7900FDBA45 /* PBXTextBookmark */ = 65B9557C13613F7900FDBA45 /* PBXTextBookmark */;
+			65B9557F13613F8B00FDBA45 /* PBXTextBookmark */ = 65B9557F13613F8B00FDBA45 /* PBXTextBookmark */;
+			65B9558213613F9500FDBA45 /* PBXTextBookmark */ = 65B9558213613F9500FDBA45 /* PBXTextBookmark */;
+			65B955881361400500FDBA45 /* PBXTextBookmark */ = 65B955881361400500FDBA45 /* PBXTextBookmark */;
+			65B955891361400500FDBA45 /* PBXTextBookmark */ = 65B955891361400500FDBA45 /* PBXTextBookmark */;
+			65B9558A1361400500FDBA45 /* PBXTextBookmark */ = 65B9558A1361400500FDBA45 /* PBXTextBookmark */;
+			65B9558B1361400500FDBA45 /* PBXTextBookmark */ = 65B9558B1361400500FDBA45 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 65F4740212989F6400E58B04 /* Source Control */;
 		userBuildSettings = {
@@ -334,16 +363,16 @@
 	};
 	34807F2212E7BB0900885EBB /* CreateWODViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 1443}}";
-			sepNavSelRange = "{1554, 436}";
-			sepNavVisRange = "{839, 1422}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 1430}}";
+			sepNavSelRange = "{1435, 59}";
+			sepNavVisRange = "{1553, 1513}";
 		};
 	};
 	34807F2312E7BB0900885EBB /* CreateWODViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 10777}}";
-			sepNavSelRange = "{11425, 0}";
-			sepNavVisRange = "{18852, 1324}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 10751}}";
+			sepNavSelRange = "{913, 264}";
+			sepNavVisRange = "{835, 1767}";
 			sepNavWindowFrame = "{{61, 273}, {750, 558}}";
 		};
 	};
@@ -378,18 +407,27 @@
 			sepNavVisRange = "{0, 1176}";
 		};
 	};
+	34A445FD135BB42F00F37BBE /* ListEditViewController.m */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{4632, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{4683, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{4733, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5434}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1048, 2470}}";
+			sepNavSelRange = "{5371, 0}";
+			sepNavVisRange = "{4399, 978}";
+			sepNavWindowFrame = "{{15, 228}, {876, 645}}";
+		};
+	};
 	34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 962}}";
-			sepNavSelRange = "{1442, 0}";
-			sepNavVisRange = "{347, 1325}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 1014}}";
+			sepNavSelRange = "{1470, 0}";
+			sepNavVisRange = "{758, 1351}";
 		};
 	};
 	34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 5863}}";
-			sepNavSelRange = "{1484, 0}";
-			sepNavVisRange = "{839, 1093}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 5980}}";
+			sepNavSelRange = "{1848, 0}";
+			sepNavVisRange = "{1579, 966}";
 			sepNavWindowFrame = "{{15, 188}, {992, 685}}";
 		};
 	};
@@ -472,34 +510,90 @@
 			sepNavVisRange = "{2725, 1053}";
 		};
 	};
-	6599D826135E940200C11679 /* PBXTextBookmark */ = {
+	6599D83F135FFEC000C11679 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+	};
+	6599D840135FFEC000C11679 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
-		name = "ViewWODViewController.m: 14";
-		rLen = 0;
-		rLoc = 230;
+		fRef = 34807F2212E7BB0900885EBB /* CreateWODViewController.h */;
+		name = "CreateWODViewController.h: 67";
+		rLen = 436;
+		rLoc = 1554;
 		rType = 0;
-		vrLen = 469;
-		vrLoc = 189;
+		vrLen = 1422;
+		vrLoc = 839;
 	};
-	6599D827135E940200C11679 /* XCBuildMessageTextBookmark */ = {
+	6599D841135FFEC000C11679 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		comments = "Incompatible Objective-C types 'struct NSArray *', expected 'struct NSMutableArray *' when passing argument 1 of 'setWodExerciseArray:' from distinct Objective-C type";
-		fRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */;
-		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 240;
-		rType = 1;
+		fRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */;
+		name = "CreateWODViewController.m: 422";
+		rLen = 0;
+		rLoc = 11425;
+		rType = 0;
+		vrLen = 1324;
+		vrLoc = 18852;
 	};
-	6599D828135E940200C11679 /* PBXTextBookmark */ = {
+	6599D842135FFEC000C11679 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */;
 		name = "WODListViewController.m: 241";
 		rLen = 0;
 		rLoc = 7859;
 		rType = 0;
-		vrLen = 508;
-		vrLoc = 7513;
+		vrLen = 1224;
+		vrLoc = 7493;
+	};
+	6599D843135FFEC000C11679 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 65AA385F12F5151800907DE3 /* WOD.m */;
+		name = "WOD.m: 21";
+		rLen = 0;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 284;
+		vrLoc = 0;
+	};
+	6599D844135FFEC000C11679 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 65AA385E12F5151800907DE3 /* WOD.h */;
+		name = "WOD.h: 12";
+		rLen = 0;
+		rLoc = 213;
+		rType = 0;
+		vrLen = 1350;
+		vrLoc = 0;
+	};
+	6599D845135FFEC000C11679 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 59";
+		rLen = 0;
+		rLoc = 1548;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 347;
+	};
+	6599D846135FFEC000C11679 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 62";
+		rLen = 0;
+		rLoc = 1772;
+		rType = 0;
+		vrLen = 1093;
+		vrLoc = 839;
+	};
+	6599D847135FFEC000C11679 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 300";
+		rLen = 0;
+		rLoc = 9023;
+		rType = 0;
+		vrLen = 1404;
+		vrLoc = 9854;
 	};
 	65AA385E12F5151800907DE3 /* WOD.h */ = {
 		uiCtxt = {
@@ -514,6 +608,234 @@
 			sepNavSelRange = "{283, 0}";
 			sepNavVisRange = "{0, 284}";
 		};
+	};
+	65B9555413613DDA00FDBA45 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Passing argument 1 of 'setWodType:' makes integer from pointer without a cast";
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 66;
+		rType = 1;
+	};
+	65B9555513613DDA00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 507;
+		vrLoc = 1406;
+	};
+	65B9556213613DDE00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */;
+		name = "CreateWODViewController.m: 45";
+		rLen = 264;
+		rLoc = 913;
+		rType = 0;
+		vrLen = 1767;
+		vrLoc = 835;
+	};
+	65B9556313613DDE00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34807F2212E7BB0900885EBB /* CreateWODViewController.h */;
+		name = "CreateWODViewController.h: 64";
+		rLen = 59;
+		rLoc = 1435;
+		rType = 0;
+		vrLen = 1532;
+		vrLoc = 990;
+	};
+	65B9556413613DDE00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 74";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 1353;
+		vrLoc = 741;
+	};
+	65B9556513613DDE00FDBA45 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Passing argument 1 of 'setWodType:' makes integer from pointer without a cast";
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 66;
+		rType = 1;
+	};
+	65B9556613613DDE00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 1110;
+		vrLoc = 1078;
+	};
+	65B9556D13613E1300FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 393;
+		vrLoc = 1520;
+	};
+	65B9557013613E2000FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 1388;
+		vrLoc = 191;
+	};
+	65B9557113613E2000FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 74";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 758;
+	};
+	65B9557213613E2000FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 74";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 1357;
+		vrLoc = 741;
+	};
+	65B9557513613E2B00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 393;
+		vrLoc = 1520;
+	};
+	65B9557613613EB200FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 393;
+		vrLoc = 1520;
+	};
+	65B9557713613F4600FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 393;
+		vrLoc = 1520;
+	};
+	65B9557A13613F7900FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 74";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 1336;
+		vrLoc = 758;
+	};
+	65B9557B13613F7900FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 75";
+		rLen = 0;
+		rLoc = 1850;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 1637;
+	};
+	65B9557C13613F7900FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 79";
+		rLen = 0;
+		rLoc = 1930;
+		rType = 0;
+		vrLen = 1056;
+		vrLoc = 1294;
+	};
+	65B9557F13613F8B00FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 67";
+		rLen = 0;
+		rLoc = 1729;
+		rType = 0;
+		vrLen = 354;
+		vrLoc = 1636;
+	};
+	65B9558213613F9500FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 81";
+		rLen = 0;
+		rLoc = 2004;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 1294;
+	};
+	65B955881361400500FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34807F2212E7BB0900885EBB /* CreateWODViewController.h */;
+		name = "CreateWODViewController.h: 64";
+		rLen = 59;
+		rLoc = 1435;
+		rType = 0;
+		vrLen = 1513;
+		vrLoc = 1553;
+	};
+	65B955891361400500FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620812ECA1B100049AFC /* ViewWODViewController.h */;
+		name = "ViewWODViewController.h: 60";
+		rLen = 0;
+		rLoc = 1470;
+		rType = 0;
+		vrLen = 1351;
+		vrLoc = 758;
+	};
+	65B9558A1361400500FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 78";
+		rLen = 0;
+		rLoc = 1928;
+		rType = 0;
+		vrLen = 951;
+		vrLoc = 1579;
+	};
+	65B9558B1361400500FDBA45 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 75";
+		rLen = 0;
+		rLoc = 1848;
+		rType = 0;
+		vrLen = 966;
+		vrLoc = 1579;
 	};
 	65F473FE12989F4500E58B04 /* MyWODLog */ = {
 		isa = PBXExecutable;

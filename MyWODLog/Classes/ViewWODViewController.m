@@ -11,7 +11,7 @@
 
 @implementation ViewWODViewController
 
-@synthesize wod, scoredByLabel, wodExerciseArray, table; // removed the list label in order to add the tabel
+@synthesize wod, scoredByLabel, wodExerciseArray, table, logButton; // removed the list label in order to add the tabel
 @synthesize showNumRounds, showRepRounds, showTimeLimit;
 @synthesize wodName, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 
@@ -27,6 +27,11 @@
 - (void)viewDidLoad {
 	NSLog(@"view did load called \n");
 
+	[self setLogButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(logScorePressed:)]];
+	[[self logButton] setEnabled:YES];
+	[[self navigationItem] setRightBarButtonItem:[self logButton]];
+	[logButton release];
+	
 	//Assumes setCurrentWOD is called
 	
 	/*
@@ -67,7 +72,7 @@
 
 
 
-- (void)logScorePressed {
+- (IBAction)logScorePressed:(id)sender {
 	
 	LogScoreViewController* logScore = [[LogScoreViewController alloc] init];
 
