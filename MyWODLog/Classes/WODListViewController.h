@@ -17,15 +17,12 @@
 
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
-	//NSManagedObjectContext *addingManagedObjectContext;
-	
 	
 	CreateWODViewController *createWODViewController;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;	    
-//@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, retain) CreateWODViewController *createWODViewController;
 
 

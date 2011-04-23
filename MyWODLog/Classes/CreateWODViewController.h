@@ -11,6 +11,7 @@
 #import "ViewExerciseModesViewController.h"
 #import "SelectWODTypeViewController.h"
 #import	"EditViewController.h"
+#import "ListEditViewController.h"
 
 
 #define CW_SECTION_DETAILS				0

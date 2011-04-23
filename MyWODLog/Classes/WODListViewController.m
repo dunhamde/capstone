@@ -38,15 +38,18 @@
 	
 
 - (void)viewWillAppear {
+	
 	[[self tableView] reloadData];
+	
 }
 
 
 
 - (void)viewDidUnload {
+	
 	// Release any properties that are loaded in viewDidLoad or can be recreated lazily.
 	[self setFetchedResultsController:nil];
-//	self.fetchedResultsController = nil;
+	
 }
 
 
@@ -59,6 +62,7 @@
  */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	//NSLog( @"NUM OF SECTIONS = %d", [[fetchedResultsController sections] count] );
     return [[fetchedResultsController sections] count];
 }
 
@@ -68,6 +72,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+//	NSLog( @"WOD LIST NUM OF OBJECTS = %d", [sectionInfo numberOfObjects] );
 	return [sectionInfo numberOfObjects];
 }
 
@@ -239,6 +244,11 @@
 	
 	//TODO: Fix crash when no exercises!
 	[wod_view setWodExerciseArray:[[wod exercises] allObjects]];
+	
+	// Set Back Button:
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"WODs" style:UIBarButtonItemStylePlain target:nil action:nil];
+	[[self navigationItem] setBackBarButtonItem:backButton];
+	[backButton release];
 
 	[[self navigationController] pushViewController:wod_view animated:YES];
 	[wod_view release];

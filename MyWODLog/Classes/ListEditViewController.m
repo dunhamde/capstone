@@ -27,25 +27,38 @@
 	
 }
 
+
+
 - (void)viewDidLoad {
+	
     [super viewDidLoad];
 	
 	[self setTitle:[self titleName]];
 	
+	
+	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+	
+	
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	
+	[dnc addObserver:self selector:@selector(elementAddedNote:) name:@"ElementSent" object:nil];
+	
+	
+	
 	// Set Save Button:
-    UIBarButtonItem *bbi;
-    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                                                        target:self
-                                                        action:@selector(save:)];
-    [[self navigationItem] setRightBarButtonItem:bbi];
-    [bbi release];
+//    UIBarButtonItem *bbi;
+//    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+//                                                        target:self
+//                                                        action:@selector(save:)];
+//    [[self navigationItem] setRightBarButtonItem:bbi];
+//    [bbi release];
 	
 	// Set Cancel Button:
-    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                        target:self
-                                                        action:@selector(cancel:)];
-    [[self navigationItem] setLeftBarButtonItem:bbi];
-    [bbi release];
+//    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+//                                                        target:self
+//                                                        action:@selector(cancel:)];
+//    [[self navigationItem] setLeftBarButtonItem:bbi];
+ //   [bbi release];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -86,13 +99,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [[self elements] count];
 }
 
 
@@ -107,9 +119,59 @@
     }
     
     // Configure the cell...
+	[self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+    // Configure the cell to show the book's title
+	NSNumber *num = (NSNumber *)[[self elements] objectAtIndex:[indexPath row]];
+	cell.textLabel.text = [num stringValue];
+	
+}
+
+
+
+
+/*
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Configure the cell.
+	[self configureCell:cell atIndexPath:indexPath];
+	
+	
+    return cell;
+}
+
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+    // Configure the cell to show the book's title
+	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
+	NSLog(@" EXERCISE INTO TABLE %@",exercise);
+	cell.textLabel.text = [exercise name];
+}
+
+*/
+
+
+
+
+
+
+
 
 
 /*
@@ -164,6 +226,60 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
     */
+}
+						   
+#pragma mark -
+#pragma mark Notifications
+- (void)elementAddedNote:(NSNotification*)saveNotification {
+	
+	NSDictionary *dict = [saveNotification userInfo];
+	
+	// Update 'WOD Name' and refresh the table
+	NSString *s = [dict objectForKey:@"Text"];
+	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	NSNumber * num = [f numberFromString:s];
+	[f release];
+
+	[[self elements] addObject:num];
+	//[self setWodName:[dict objectForKey:@"Text"]];
+	[[self table] reloadData];
+	
+	// Remove the notification
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@"ElementSent" object:nil];
+	
+}
+
+#pragma mark -
+#pragma mark Save/Cancel Buttons
+						   
+- (IBAction)cancel:(id)sender
+{
+	[[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+
+
+- (IBAction)save:(id)sender
+{
+	
+	// Create a dictionary with the exercise and the quantity and their respective keys
+	/*NSString *returnable;
+	
+	if (self.editField.hidden == YES) {
+		returnable = [[self editBox] text];
+	}
+	else {
+		returnable = [[self editField] text];
+	}
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
+	
+	[[self navigationController] popToRootViewControllerAnimated:YES];*/
+	
 }
 
 

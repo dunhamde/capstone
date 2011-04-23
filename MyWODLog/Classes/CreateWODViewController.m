@@ -783,11 +783,11 @@
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 
 		//TODO:  Change this soon
-		EditViewController *controller = [[EditViewController alloc] init];
+		EditViewController *controller = [[ListEditViewController alloc] init];
 		
 		[controller setTitleName:@"Rep Rounds"];
 		[controller setNotificationName:@"RepRoundsSent"];
-		[controller setEditType:EDIT_TYPE_NUMBER];
+		//[controller setEditType:EDIT_TYPE_NUMBER];
 		[[self navigationController] pushViewController:controller animated:YES];		
 		
 		[controller release];

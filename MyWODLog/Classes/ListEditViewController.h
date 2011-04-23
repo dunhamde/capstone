@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ListEditViewController : UITableViewController {
+@interface ListEditViewController : UITableViewController <UITableViewDelegate> {
 	
 	NSString			*titleName;
 	NSString			*notificationName;
@@ -18,13 +18,22 @@
 	NSMutableArray		*elements;
 }
 
-// Button Action Methods:
-- (void)cancel:(id)sender;
-- (void)save:(id)sender;
+
 
 @property (nonatomic, retain) NSString			*titleName;
 @property (nonatomic, retain) NSString			*notificationName;
 @property (nonatomic, retain) NSMutableArray	*elements;
 
+
+// Button Action Methods:
+- (void)cancel:(id)sender;
+- (void)save:(id)sender;
+
+
+// Notifications:
+- (void)elementAddedNote:(NSNotification*)saveNotification;
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
