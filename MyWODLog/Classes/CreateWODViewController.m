@@ -14,7 +14,7 @@
 
 @synthesize managedObjectContext, delegate, saveButton, table;
 @synthesize readyToSave, quantifyExercises, showNumRounds, showRepRounds, showTimeLimit;
-@synthesize wodName, wodExerciseArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
+@synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 @synthesize repRoundList;
 
 
@@ -27,7 +27,9 @@
     if (self) {
 		
 		[self setWodExerciseArray:[NSMutableArray arrayWithCapacity:0]];
+		[self setWodExerciseQtyArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
+		
     }
 	
     return self;
@@ -180,10 +182,29 @@
 
 	NSDictionary *dict = [saveNotification userInfo];
 	
-	// Update 'Exercises' and refresh the table
-	EXERCISE *e = [dict objectForKey:@"Exercise"];
+	// Update 'Exercises' (and its quantity) and refresh the table
+	EXERCISE *e = (EXERCISE*)[dict objectForKey:@"Exercise"];
 	[[self wodExerciseArray] addObject:e];
+	
+	NSNumber *q = nil;
+	if ([self quantifyExercises]) {
+		NSString *qty = (NSString*)[dict objectForKey:@"Quantity"];
+		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		q = [f numberFromString:qty];
+		[f release];
+	}
+
+	if (q == nil) {
+		////TODO:  does this crash?
+		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
+	} else {
+		[[self wodExerciseQtyArray] addObject:q];
+	}
+
+	
 	[[self table] reloadData];
+	
 	
 	// Remove the notifcation
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -277,7 +298,6 @@
 			[self setShowRepRounds:NO];
 			[self setShowTimeLimit:YES];
 			[self setQuantifyExercises:YES];
-			//TODO: CHECK TO SEE HOW THIS IS SCORED!
 			[self setWodScoreType:WOD_SCORE_TYPE_NONE];
 			break;
 		default:
@@ -660,8 +680,17 @@
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
-			EXERCISE *exercise = (EXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
-			[[cell textLabel] setText:[exercise name]];
+			NSString *exerciseText = nil;
+			NSNumber *qty = (NSNumber *)[[self wodExerciseQtyArray] objectAtIndex:[indexPath row]];
+			EXERCISE *exercise = (EXERCISE *)[[self wodExerciseArray] objectAtIndex:[indexPath row]];
+			
+			if ([qty intValue] > 0) {
+				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",qty,[exercise name]];
+			} else {
+				exerciseText = [exercise name];
+			}						
+			
+			[[cell textLabel] setText:exerciseText];
 		}
 		
 	}
@@ -703,7 +732,6 @@
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 		
-		//TODO: I am working here:
 		[[cell textLabel] setText:@"Rep Rnds"];
 
 		if ([self wodRepRounds] != nil) {
@@ -839,9 +867,6 @@
 	//		[self setRepRoundList:nil];
 	//	}
 
-		
-
-		//TODO:  Change this soon
 		ListEditViewController *controller = [[ListEditViewController alloc] init];
 		
 		[controller setTitleName:@"Rep Rounds"];

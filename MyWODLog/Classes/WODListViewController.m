@@ -164,16 +164,95 @@
 - (void)createWODViewController:(CreateWODViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
-		
+		NSLog(@"SAVING 1");
 		// Create a new WOD in the database with specific attributes:
 		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
-
-		NSSet* set = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
-		[wod setExercises:set];
-		[wod setName:[createWODViewController wodName]];
-		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodType]]];
-		[wod setNotes:[createWODViewController wodNotes]];
 		
+		// Convert the time limit:
+		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		NSNumber *timelimit = [f numberFromString:[createWODViewController wodTimeLimit]];
+		NSNumber *rounds = [f numberFromString:[createWODViewController wodNumRounds]];
+		[f release];
+				NSLog(@"SAVING 2");
+		// Set the regular attributes:
+		[wod setName:[createWODViewController wodName]];
+		[wod setTimelimit:timelimit];
+		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodType]]];
+		[wod setRounds:rounds];
+		[wod setNotes:[createWODViewController wodNotes]];
+				NSLog(@"SAVING 3");
+		// Add exercises:
+		NSSet* exerciseSet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
+		NSSet* exerciseQtySet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseQtyArray]];
+		if ([exerciseSet count] != [exerciseQtySet count]) {
+			NSLog(@"Something went wrong, mix-match of exercises and their quantities!");
+		}
+				NSLog(@"SAVING 4");
+		NSMutableArray* eexList = [NSMutableArray arrayWithCapacity:0];
+
+		NSEnumerator *enumerE = [exerciseSet objectEnumerator];
+		NSEnumerator *enumerQ = [exerciseQtySet objectEnumerator];
+		EXERCISE *e = nil;
+		NSNumber *q = nil;
+				NSLog(@"SAVING 5");
+		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) ) {
+			
+			EEXERCISE* eex = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:managedObjectContext];
+			[eex setExercise:e];
+			[eex setQuantity:q];
+			
+			[eexList addObject:eex];
+			
+		}
+			NSLog(@"SAVING 6");
+		NSSet* eexSet = [[NSSet alloc] initWithArray:eexList];
+		if ([eexSet count] > 0) {
+			[wod setEexercises:eexSet];
+		}
+
+				NSLog(@"SAVING 7");
+		// Add Rep Rounds:
+		NSMutableArray* rroundList = [NSMutableArray arrayWithCapacity:0];
+		NSSet* repRoundSet = [[NSSet alloc] initWithArray:[createWODViewController wodRepRounds]];
+		NSEnumerator *enumerR = [repRoundSet objectEnumerator];
+		NSString *r = nil;
+				NSLog(@"SAVING 8");
+		while ( (r = (NSString*)[enumerR nextObject]) ) {
+			
+			RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:managedObjectContext];
+			[rroundList addObject:rround];
+			
+		}
+				NSLog(@"SAVING 9");
+		NSSet* rroundSet = [[NSSet alloc] initWithArray:rroundList];
+		if ([eexSet count] > 0) {
+			[wod setRrounds:rroundSet];
+		}
+				NSLog(@"SAVING 10");
+		/*
+		 // Check to see if that name doesn't already exist.
+		 NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self wodName] ];
+		 
+		 // Create and configure a fetch request with the wod entity.
+		 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		 NSEntityDescription *entity = [NSEntityDescription entityForName:@"wod" inManagedObjectContext:[self managedObjectContext]];
+		 [fetchRequest setEntity:entity];
+		 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
+		 
+		 NSError *error = nil; 
+		 NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		 
+		 // Throw up an error message if the WOD already exists.
+		 if( error || [array count] > 0) {
+		 
+		 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Already Exists" message: @"Error, a WOD with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		 [alert show];
+		 [alert release];
+		 alert = nil;
+		 
+		 /*/
+				NSLog(@"SAVING 11");
 		// Save the new WOD:
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
@@ -182,17 +261,26 @@
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
-		}
-		[set release];
+		}		NSLog(@"SAVING 12");
+		[eexSet release];
+		[eexList release];
+		[repRoundSet release];
+		[rroundList release];
+		[rroundSet release];
+		[exerciseSet release];
+		[exerciseQtySet release];
+				NSLog(@"SAVING 13");
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+				NSLog(@"SAVING 14");
 	}
 
-	// Clean up
+	// Clean up:
 	[createWODViewController release];
 	[self setCreateWODViewController:nil];
-
-	// Dismiss the modal view to return to the main list
+		NSLog(@"SAVING 15");
+	// Dismiss the modal view to return to the main list:
     [self dismissModalViewControllerAnimated:YES];
+			NSLog(@"SAVING 16");
 }
 
 
@@ -243,7 +331,7 @@
 	[wod_view setCurrentWOD:wod];
 	
 	//TODO: Fix crash when no exercises!
-	[wod_view setWodExerciseArray:[[wod exercises] allObjects]];
+	//[wod_view setWodExerciseArray:[[wod exercises] allObjects]];
 	
 	// Set Back Button:
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"WODs" style:UIBarButtonItemStylePlain target:nil action:nil];

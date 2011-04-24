@@ -524,16 +524,6 @@ NSLog( @"didFinishWithSave");
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		
 	}
-
-	
-	/*EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
-	//NSLog(@"EXERCISE SENT \n %@", e);
-	//[delegate exerciseSelected:m];
-	//NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray initWithObjects:e,nil] forKeys:[NSArray initWithObjects:@"Exericse",@"Quantity",nil]];
-	NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
-
-	[[self navigationController] popToRootViewControllerAnimated:YES]; */
 	
 }
 

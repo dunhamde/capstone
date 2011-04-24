@@ -17,7 +17,6 @@
 		
 	NSFetchedResultsController	*fetchedResultsController;
 	NSManagedObjectContext		*managedObjectContext;
-	//NSManagedObjectContext		*addingManagedObjectContext;
 	
 	CreateExerciseViewController *cevc;
 	
@@ -31,7 +30,6 @@
 
 - (IBAction)createExercise;
 
-//@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 @property (nonatomic, retain) MODE *mode;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
