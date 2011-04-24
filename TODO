@@ -28,6 +28,7 @@ MINOR:
 [ ] Refactor #define's to enums
  - See: UITextAlignment
 [ ] Modify EditVC to not allow you to save with no input
-
+[ ] Check/Confirm to see that if a Mode is deleted, that all of the
+    exercises in that mode also are removed
 BUGS:
 [ ] WOD List -> View WOD Page will crash if WOD doesn't have any exercises
