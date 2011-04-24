@@ -20,9 +20,11 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	
     if (self) {
-		self.elements = [NSMutableArray arrayWithCapacity:0];
+		[self setElements:[NSMutableArray arrayWithCapacity:0]];
     }
+	
     return self;
 	
 }
@@ -35,7 +37,6 @@
 	
 	[self setTitle:[self titleName]];
 	
-	
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
 }
@@ -45,7 +46,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	
     [super viewWillAppear:animated];
-	
 	
 	// Set up notifications
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -113,7 +113,7 @@
 	
     // Configure the cell to show the book's title
 	NSNumber *num = (NSNumber *)[[self elements] objectAtIndex:[indexPath row]];
-	cell.textLabel.text = [num stringValue];
+	[[cell textLabel] setText:[num stringValue]];
 	
 }
 
@@ -129,34 +129,15 @@
 */
 
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		
-		// Delete the managed object.
-	//	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-	//	[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+		[[self elements] removeObjectAtIndex:[indexPath row]];
+		[[self tableView] reloadData];
 		
-	//	NSError *error;
-	//	if (![context save:&error]) {
-			// Update to handle the error appropriately.
-	//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	//		exit(-1);  // Fail
-	//	}
-    }   
+    }
+	
 }
 
 /*
@@ -200,14 +181,6 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
 }
 						   
 #pragma mark -

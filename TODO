@@ -6,7 +6,7 @@ MAJOR:
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
 [x] Add functionality to select method of user input to the Edit Controller[X] Add Notes to database
-[ ] Add rep rounds to CreateWOD page (list view)
+[X] Add rep rounds to CreateWOD page (list view)
 [X] Add # of rounds field and time limit field
 [X] Add WOD Type field instead of switch
 [ ] Add in intermediate database for exercises 
@@ -16,6 +16,9 @@ MAJOR:
 
 
 MINOR:
+[ ] Change ListEditVC to take a style option, make the other style
+ have an Add button as one of the elements in the list (like Exercises on
+ the create wood page)
 [ ] Make a Edit/View List page that is generic like EditViewController but
     is for viewing/editing a generic list
 [X] Change Edit Controller to pass in what the default text should be
@@ -24,6 +27,7 @@ MINOR:
   change it.  Even more useful with notes! [longer text])
 [ ] Refactor #define's to enums
  - See: UITextAlignment
+[ ] Modify EditVC to not allow you to save with no input
 
 BUGS:
 [ ] WOD List -> View WOD Page will crash if WOD doesn't have any exercises
