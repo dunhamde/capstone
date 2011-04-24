@@ -1,18 +1,20 @@
 // 
-//  MODE.m
+//  EEXERCISE.m
 //  MyWODLog
 //
 //  Created by Matthew Dalrymple on 4/23/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MODE.h"
+#import "EEXERCISE.h"
 
 #import "EXERCISE.h"
+#import "WOD.h"
 
-@implementation MODE 
+@implementation EEXERCISE 
 
-@dynamic name;
-@dynamic exercises;
+@dynamic quantity;
+@dynamic exercise;
+@dynamic wods;
 
 @end

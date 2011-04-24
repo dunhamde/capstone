@@ -14,7 +14,6 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */; };
-		341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */ = {isa = PBXBuildFile; fileRef = 341ACABA1317656E00E369D2 /* EXERCISE.m */; };
 		3444C20A133ABA7800184673 /* SetExerciseQuantityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3444C208133ABA7800184673 /* SetExerciseQuantityViewController.m */; };
 		3444C20B133ABA7800184673 /* SetExerciseQuantityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3444C209133ABA7800184673 /* SetExerciseQuantityViewController.xib */; };
 		34807F2512E7BB0900885EBB /* CreateWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34807F2312E7BB0900885EBB /* CreateWODViewController.m */; };
@@ -27,9 +26,14 @@
 		349D34C112EAAE3300419F93 /* ScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349D34BF12EAAE3300419F93 /* ScoresViewController.xib */; };
 		34A445FF135BB42F00F37BBE /* ListEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A445FD135BB42F00F37BBE /* ListEditViewController.m */; };
 		34A44600135BB42F00F37BBE /* ListEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34A445FE135BB42F00F37BBE /* ListEditViewController.xib */; };
+		34B05FEA1363BAE3002991C8 /* RROUND.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FDF1363BAE3002991C8 /* RROUND.m */; };
+		34B05FEB1363BAE3002991C8 /* WOD.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FE11363BAE3002991C8 /* WOD.m */; };
+		34B05FEC1363BAE3002991C8 /* EXERCISE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FE31363BAE3002991C8 /* EXERCISE.m */; };
+		34B05FED1363BAE3002991C8 /* MODE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FE51363BAE3002991C8 /* MODE.m */; };
+		34B05FEE1363BAE3002991C8 /* SCORE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FE71363BAE3002991C8 /* SCORE.m */; };
+		34B05FEF1363BAE3002991C8 /* EEXERCISE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FE91363BAE3002991C8 /* EEXERCISE.m */; };
 		34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */; };
 		34C0620C12ECA1B100049AFC /* ViewWODViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */; };
-		34C28D6D130F728C00FB7C61 /* MODE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28D6C130F728C00FB7C61 /* MODE.m */; };
 		34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */; };
 		34C28DA5130F789200FB7C61 /* CreateExerciseModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */; };
 		34C68BB51315A92700023704 /* CreateExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C68BB31315A92700023704 /* CreateExerciseViewController.m */; };
@@ -43,7 +47,6 @@
 		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
 		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
-		65AA386012F5151800907DE3 /* WOD.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA385F12F5151800907DE3 /* WOD.m */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
 		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
@@ -60,8 +63,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyWODLog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWODLog_Prefix.pch; sourceTree = "<group>"; };
 		3418760E12F22C6D003E97B4 /* MyWODLog.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; name = MyWODLog.xcdatamodel; path = Classes/MyWODLog.xcdatamodel; sourceTree = "<group>"; };
-		341ACAB91317656E00E369D2 /* EXERCISE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXERCISE.h; path = DataClasses/EXERCISE.h; sourceTree = "<group>"; };
-		341ACABA1317656E00E369D2 /* EXERCISE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXERCISE.m; path = DataClasses/EXERCISE.m; sourceTree = "<group>"; };
 		3444C207133ABA7800184673 /* SetExerciseQuantityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetExerciseQuantityViewController.h; path = Classes/SetExerciseQuantityViewController.h; sourceTree = "<group>"; };
 		3444C208133ABA7800184673 /* SetExerciseQuantityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetExerciseQuantityViewController.m; path = Classes/SetExerciseQuantityViewController.m; sourceTree = "<group>"; };
 		3444C209133ABA7800184673 /* SetExerciseQuantityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SetExerciseQuantityViewController.xib; path = Classes/SetExerciseQuantityViewController.xib; sourceTree = "<group>"; };
@@ -80,11 +81,21 @@
 		34A445FC135BB42F00F37BBE /* ListEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListEditViewController.h; path = Classes/ListEditViewController.h; sourceTree = "<group>"; };
 		34A445FD135BB42F00F37BBE /* ListEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListEditViewController.m; path = Classes/ListEditViewController.m; sourceTree = "<group>"; };
 		34A445FE135BB42F00F37BBE /* ListEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListEditViewController.xib; path = Classes/ListEditViewController.xib; sourceTree = "<group>"; };
+		34B05FDE1363BAE3002991C8 /* RROUND.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RROUND.h; path = DataClasses/RROUND.h; sourceTree = "<group>"; };
+		34B05FDF1363BAE3002991C8 /* RROUND.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RROUND.m; path = DataClasses/RROUND.m; sourceTree = "<group>"; };
+		34B05FE01363BAE3002991C8 /* WOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOD.h; path = DataClasses/WOD.h; sourceTree = "<group>"; };
+		34B05FE11363BAE3002991C8 /* WOD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOD.m; path = DataClasses/WOD.m; sourceTree = "<group>"; };
+		34B05FE21363BAE3002991C8 /* EXERCISE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXERCISE.h; path = DataClasses/EXERCISE.h; sourceTree = "<group>"; };
+		34B05FE31363BAE3002991C8 /* EXERCISE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXERCISE.m; path = DataClasses/EXERCISE.m; sourceTree = "<group>"; };
+		34B05FE41363BAE3002991C8 /* MODE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MODE.h; path = DataClasses/MODE.h; sourceTree = "<group>"; };
+		34B05FE51363BAE3002991C8 /* MODE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MODE.m; path = DataClasses/MODE.m; sourceTree = "<group>"; };
+		34B05FE61363BAE3002991C8 /* SCORE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCORE.h; path = DataClasses/SCORE.h; sourceTree = "<group>"; };
+		34B05FE71363BAE3002991C8 /* SCORE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCORE.m; path = DataClasses/SCORE.m; sourceTree = "<group>"; };
+		34B05FE81363BAE3002991C8 /* EEXERCISE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEXERCISE.h; path = DataClasses/EEXERCISE.h; sourceTree = "<group>"; };
+		34B05FE91363BAE3002991C8 /* EEXERCISE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEXERCISE.m; path = DataClasses/EEXERCISE.m; sourceTree = "<group>"; };
 		34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewWODViewController.h; path = Classes/ViewWODViewController.h; sourceTree = "<group>"; };
 		34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewWODViewController.m; path = Classes/ViewWODViewController.m; sourceTree = "<group>"; };
 		34C0620A12ECA1B100049AFC /* ViewWODViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewWODViewController.xib; path = Classes/ViewWODViewController.xib; sourceTree = "<group>"; };
-		34C28D6B130F728C00FB7C61 /* MODE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MODE.h; path = DataClasses/MODE.h; sourceTree = "<group>"; };
-		34C28D6C130F728C00FB7C61 /* MODE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MODE.m; path = DataClasses/MODE.m; sourceTree = "<group>"; };
 		34C28DA1130F789200FB7C61 /* CreateExerciseModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateExerciseModeViewController.h; path = Classes/CreateExerciseModeViewController.h; sourceTree = "<group>"; };
 		34C28DA2130F789200FB7C61 /* CreateExerciseModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateExerciseModeViewController.m; path = Classes/CreateExerciseModeViewController.m; sourceTree = "<group>"; };
 		34C28DA3130F789200FB7C61 /* CreateExerciseModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateExerciseModeViewController.xib; path = Classes/CreateExerciseModeViewController.xib; sourceTree = "<group>"; };
@@ -104,8 +115,6 @@
 		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		65AA385E12F5151800907DE3 /* WOD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOD.h; sourceTree = "<group>"; };
-		65AA385F12F5151800907DE3 /* WOD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOD.m; sourceTree = "<group>"; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPageViewController.h; path = Classes/MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPageViewController.m; path = Classes/MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
@@ -243,12 +252,18 @@
 		34C28D76130F729A00FB7C61 /* CoreData Classes */ = {
 			isa = PBXGroup;
 			children = (
-				34C28D6B130F728C00FB7C61 /* MODE.h */,
-				34C28D6C130F728C00FB7C61 /* MODE.m */,
-				65AA385E12F5151800907DE3 /* WOD.h */,
-				65AA385F12F5151800907DE3 /* WOD.m */,
-				341ACAB91317656E00E369D2 /* EXERCISE.h */,
-				341ACABA1317656E00E369D2 /* EXERCISE.m */,
+				34B05FDE1363BAE3002991C8 /* RROUND.h */,
+				34B05FDF1363BAE3002991C8 /* RROUND.m */,
+				34B05FE01363BAE3002991C8 /* WOD.h */,
+				34B05FE11363BAE3002991C8 /* WOD.m */,
+				34B05FE21363BAE3002991C8 /* EXERCISE.h */,
+				34B05FE31363BAE3002991C8 /* EXERCISE.m */,
+				34B05FE41363BAE3002991C8 /* MODE.h */,
+				34B05FE51363BAE3002991C8 /* MODE.m */,
+				34B05FE61363BAE3002991C8 /* SCORE.h */,
+				34B05FE71363BAE3002991C8 /* SCORE.m */,
+				34B05FE81363BAE3002991C8 /* EEXERCISE.h */,
+				34B05FE91363BAE3002991C8 /* EEXERCISE.m */,
 			);
 			name = "CoreData Classes";
 			sourceTree = "<group>";
@@ -467,17 +482,20 @@
 				34C0620B12ECA1B100049AFC /* ViewWODViewController.m in Sources */,
 				34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */,
 				3418760F12F22C6D003E97B4 /* MyWODLog.xcdatamodel in Sources */,
-				65AA386012F5151800907DE3 /* WOD.m in Sources */,
 				34957627130DF12400895074 /* ViewExerciseModesViewController.m in Sources */,
-				34C28D6D130F728C00FB7C61 /* MODE.m in Sources */,
 				34C28DA4130F789200FB7C61 /* CreateExerciseModeViewController.m in Sources */,
 				34C68BB51315A92700023704 /* CreateExerciseViewController.m in Sources */,
 				34C68BBC1315A9DD00023704 /* ViewExercisesViewController.m in Sources */,
-				341ACABB1317656E00E369D2 /* EXERCISE.m in Sources */,
 				3444C20A133ABA7800184673 /* SetExerciseQuantityViewController.m in Sources */,
 				653B14471356A62700BF3C72 /* EditViewController.m in Sources */,
 				34D122FB135ABBE9008B9573 /* SelectWODTypeViewController.m in Sources */,
 				34A445FF135BB42F00F37BBE /* ListEditViewController.m in Sources */,
+				34B05FEA1363BAE3002991C8 /* RROUND.m in Sources */,
+				34B05FEB1363BAE3002991C8 /* WOD.m in Sources */,
+				34B05FEC1363BAE3002991C8 /* EXERCISE.m in Sources */,
+				34B05FED1363BAE3002991C8 /* MODE.m in Sources */,
+				34B05FEE1363BAE3002991C8 /* SCORE.m in Sources */,
+				34B05FEF1363BAE3002991C8 /* EEXERCISE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

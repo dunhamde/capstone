@@ -2,11 +2,13 @@
 //  WOD.h
 //  MyWODLog
 //
-//  Created by Derek Dunham on 1/29/11.
-//  Copyright 2011 student. All rights reserved.
+//  Created by Matthew Dalrymple on 4/23/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
+
+
 
 #define WOD_SCORE_TYPE_NONE		0
 #define WOD_SCORE_TYPE_TIME		1
@@ -32,27 +34,42 @@
 #define WOD_TYPE_TEXT_EMOTM		@"Each Minute On The Minute"
 
 
+@class EEXERCISE;
+@class RROUND;
+@class SCORE;
+
 @interface WOD :  NSManagedObject  
 {
 }
 
-@property (nonatomic, retain) NSDate * date_created;
+@property (nonatomic, retain) NSNumber * rounds;
 @property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSNumber * timelimit;
+@property (nonatomic, retain) NSDate * date_created;
 @property (nonatomic, retain) NSNumber * score_type;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet* exercises;
+@property (nonatomic, retain) NSSet* scores;
+@property (nonatomic, retain) NSSet* rrounds;
+@property (nonatomic, retain) NSSet* eexercises;
 
 @end
 
 
 @interface WOD (CoreDataGeneratedAccessors)
-- (void)addExercisesObject:(NSManagedObject *)value;
-- (void)removeExercisesObject:(NSManagedObject *)value;
-- (void)addExercises:(NSSet *)value;
-- (void)removeExercises:(NSSet *)value;
+- (void)addScoresObject:(SCORE *)value;
+- (void)removeScoresObject:(SCORE *)value;
+- (void)addScores:(NSSet *)value;
+- (void)removeScores:(NSSet *)value;
+
+- (void)addRroundsObject:(RROUND *)value;
+- (void)removeRroundsObject:(RROUND *)value;
+- (void)addRrounds:(NSSet *)value;
+- (void)removeRrounds:(NSSet *)value;
+
+- (void)addEexercisesObject:(EEXERCISE *)value;
+- (void)removeEexercisesObject:(EEXERCISE *)value;
+- (void)addEexercises:(NSSet *)value;
+- (void)removeEexercises:(NSSet *)value;
 
 @end
-
-
 

@@ -1,18 +1,18 @@
 // 
-//  MODE.m
+//  RROUND.m
 //  MyWODLog
 //
 //  Created by Matthew Dalrymple on 4/23/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MODE.h"
+#import "RROUND.h"
 
-#import "EXERCISE.h"
+#import "WOD.h"
 
-@implementation MODE 
+@implementation RROUND 
 
-@dynamic name;
-@dynamic exercises;
+@dynamic reps;
+@dynamic wods;
 
 @end

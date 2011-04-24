@@ -2,7 +2,7 @@
 //  MODE.h
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 2/18/11.
+//  Created by Matthew Dalrymple on 4/23/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -27,3 +27,4 @@
 - (void)removeExercises:(NSSet *)value;
 
 @end
+

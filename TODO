@@ -30,5 +30,11 @@ MINOR:
 [ ] Modify EditVC to not allow you to save with no input
 [ ] Check/Confirm to see that if a Mode is deleted, that all of the
     exercises in that mode also are removed
+
+
 BUGS:
 [ ] WOD List -> View WOD Page will crash if WOD doesn't have any exercises
+[ ] User adds an exercise to a WOD then adds another, but removes the first
+    exercise from the list (database).  The WOD is still on the create WOD
+    page.
+[ ] What happens when a WOD has an exercise that has been deleted?
