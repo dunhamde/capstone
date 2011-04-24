@@ -141,7 +141,7 @@
  Creates a new book, an AddViewController to manage addition of the book, and a new managed object context for the add controller to keep changes made to the book discrete from the application's managed object context until the book is saved.
  IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context, which would simplify some of the code -- you wouldn't need to merge changes after a save, for example. This implementation, though, illustrates a pattern that may sometimes be useful (where you want to maintain a separate set of edits).  The root view controller sets itself as the delegate of the add controller so that it can be informed when the user has completed the add operation -- either saving or canceling (see addViewController:didFinishWithSave:).
  */
-- (IBAction)createWOD {
+- (void)createWOD {
 
 //	self.createWODViewController = [[CreateWODViewController alloc] init];
 	[self setCreateWODViewController:[[CreateWODViewController alloc] init]];

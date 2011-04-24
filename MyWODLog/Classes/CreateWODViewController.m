@@ -15,6 +15,7 @@
 @synthesize managedObjectContext, delegate, saveButton, table;
 @synthesize readyToSave, quantifyExercises, showNumRounds, showRepRounds, showTimeLimit;
 @synthesize wodName, wodExerciseArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
+@synthesize repRoundList;
 
 
 
@@ -26,7 +27,7 @@
     if (self) {
 		
 		[self setWodExerciseArray:[NSMutableArray arrayWithCapacity:0]];
-		
+		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
     }
 	
     return self;
@@ -75,6 +76,34 @@
 	[dnc addObserver:self selector:@selector(numRoundsChangedNote:) name:@"NumRoundsSent" object:nil];
 	[dnc addObserver:self selector:@selector(repRoundsChangedNote:) name:@"RepRoundsSent" object:nil];
 	
+	// Handle Rep Round (if need be)
+	if ([self repRoundList] != nil) {
+
+		//TODO: Fix memory leak here (repRoundList cannot be released here... or crash later on)
+		// Probably need to actually copy elements into wodRepRounds
+		//[self setWodRepRounds:[[self repRoundList] elements]];
+		//[[self wodRepRounds] release];
+		//[self setWodRepRounds:nil];
+		
+		
+		// Posible solution may be:  Make a get copy of elements method for ListEditVC
+		//  and remove the setter/getters for it (but make a set default elements method)
+		
+		
+		// SOLUTION:  THROW UP MEMORY LEAKS
+		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
+		[[self wodRepRounds] addObjectsFromArray:[[self repRoundList] elements]];
+		
+		// THIS BELOW IS NECESSARY YET CRASHES THE PROGRAM....
+	//	[[self repRoundList] release];
+	//	[self setRepRoundList:nil];
+		
+		
+		[[self table] reloadData];
+
+
+	}
+	 
 }
 
 #pragma mark -
@@ -148,7 +177,7 @@
 
 
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification {
-	
+
 	NSDictionary *dict = [saveNotification userInfo];
 	
 	// Update 'Exercises' and refresh the table
@@ -328,7 +357,7 @@
 #pragma mark Misc. Methods
 
 - (void)evaluateSaveReadiness {
-	
+
 	BOOL activate = NO;
 
 	// Should the user be able to press 'Save' yet?
@@ -425,7 +454,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
 	if ( [indexPath section] == CW_SECTION_DETAILS && [indexPath row] == 0 ) {
 		
 		static NSString *NameCellIdentifier = @"NameCell";
@@ -438,7 +467,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 
     }
@@ -454,7 +483,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 
 	}
@@ -470,7 +499,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 		
 	}
@@ -487,7 +516,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 		
 	}/*
@@ -520,7 +549,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 		
 	}
@@ -535,7 +564,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 
 	}
@@ -554,7 +583,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 	}
 	else {
@@ -571,7 +600,7 @@
 		
 		// Configure the cell.
 		[self configureCell:cell atIndexPath:indexPath];
-		
+
 		return cell;
 
 	}
@@ -579,6 +608,7 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+
 	// Can't we do this by cell name instead of section/row numbers?
 	// i.e.:  [cell reuseIdentifier]  << returns a string
 	
@@ -673,11 +703,32 @@
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 		
-		[[cell textLabel] setText:@"Rep Rounds"];
-		
+		//TODO: I am working here:
+		[[cell textLabel] setText:@"Rep Rnds"];
+
+		if ([self wodRepRounds] != nil) {
+
+			NSString *repRoundsString = [[NSString alloc] init];
+
+			NSEnumerator *enumer = [[self wodRepRounds] objectEnumerator];
+			NSNumber *n;
+			
+			while ((n = (NSNumber*)[enumer nextObject])) {
+				
+				if ([repRoundsString length] > 0) {
+					repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [n stringValue]];
+				} else {
+					repRoundsString = [n stringValue];
+				}
+			}
+			
+			[[cell detailTextLabel] setText:repRoundsString];
+			
+		} else {
+			[[cell detailTextLabel] setText:@""];
+		}
+
 	}
-//	else if( [cellIdentifier isEqualToString:@""] ) {
-//	}
 	else {
 		//[[cell textLabel] setText:@"Add Exercise..."];
 	}
@@ -685,7 +736,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
 	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];		
 	NSString *cellIdentifier = [cell reuseIdentifier];
 	
@@ -781,19 +832,30 @@
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
+		
+		//TODO: THIS CRASHES TOO
+	//	if ([self repRoundList] != nil) {
+	//		[[self repRoundList] release];
+	//		[self setRepRoundList:nil];
+	//	}
+
+		
 
 		//TODO:  Change this soon
-		EditViewController *controller = [[ListEditViewController alloc] init];
+		ListEditViewController *controller = [[ListEditViewController alloc] init];
 		
 		[controller setTitleName:@"Rep Rounds"];
 		[controller setNotificationName:@"RepRoundsSent"];
-		//[controller setEditType:EDIT_TYPE_NUMBER];
+		[controller setAddTitleName:@"Add Round"];
+		[controller setElements:[self wodRepRounds]]; // Set some default elements
 		[[self navigationController] pushViewController:controller animated:YES];		
+
+		[self setRepRoundList:controller];
 		
 		[controller release];
-		
+
 	}
-	
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -26,7 +26,7 @@
 @property (nonatomic, retain) CreateWODViewController *createWODViewController;
 
 
-- (IBAction)createWOD;
+- (void)createWOD;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 

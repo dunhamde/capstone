@@ -29,6 +29,8 @@
 	IBOutlet UITextField	*editField;
 	IBOutlet UITextView		*editBox;
 	
+	BOOL popToRoot;
+	
 }
 
 // Button Action Methods:
@@ -48,6 +50,7 @@
 @property (nonatomic, retain) NSString *placeholder;
 @property (nonatomic, retain) IBOutlet UITextField *editField;
 @property (nonatomic, retain) IBOutlet UITextView *editBox;
+@property (nonatomic, assign) BOOL popToRoot;
 
 
 

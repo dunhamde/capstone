@@ -49,6 +49,8 @@
 	NSMutableArray*	wodRepRounds;
 	int				wodScoreType;
 	
+	ListEditViewController* repRoundList;
+	
 	// Flags:
 	BOOL readyToSave;
 	
@@ -74,6 +76,8 @@
 @property (nonatomic, retain) NSString*			wodNumRounds;
 @property (nonatomic, retain) NSMutableArray*	wodRepRounds;
 @property (nonatomic, assign) int				wodScoreType;
+
+@property (nonatomic, retain) ListEditViewController* repRoundList;
 
 @property (nonatomic, assign) BOOL				readyToSave;
 @property (nonatomic, assign) BOOL				quantifyExercises;

@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditViewController.h"
 
 
 @interface ListEditViewController : UITableViewController <UITableViewDelegate> {
 	
 	NSString			*titleName;
 	NSString			*notificationName;
+	NSString			*addTitleName;
 	UIBarButtonItem		*saveButton;
 	
 	NSMutableArray		*elements;
@@ -22,12 +24,13 @@
 
 @property (nonatomic, retain) NSString			*titleName;
 @property (nonatomic, retain) NSString			*notificationName;
+@property (nonatomic, retain) NSString			*addTitleName;
 @property (nonatomic, retain) NSMutableArray	*elements;
 
 
 // Button Action Methods:
-- (void)cancel:(id)sender;
-- (void)save:(id)sender;
+- (void)addElement;
+
 
 
 // Notifications:

@@ -11,18 +11,19 @@
 
 @implementation EditViewController
 
-@synthesize titleName, notificationName, editField, editBox, editType, defaultText, placeholder;
+@synthesize titleName, notificationName, editField, editBox, editType, defaultText, placeholder, popToRoot;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
- self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
- if (self) {
- // Custom initialization.
- }
- return self;
- }
- */
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self) {
+		// Custom initialization.
+		[self setPopToRoot:YES];
+	}
+	return self;
+}
+ 
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -148,7 +149,13 @@
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
 	
-	[[self navigationController] popToRootViewControllerAnimated:YES];
+	if ([self popToRoot]) {
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+	} else {
+		[[self navigationController] popViewControllerAnimated:YES];
+	}
+
+	
 	
 }
 

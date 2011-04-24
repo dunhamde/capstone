@@ -11,7 +11,7 @@
 
 @implementation ListEditViewController
 
-@synthesize titleName, notificationName, elements;
+@synthesize titleName, notificationName, elements, addTitleName;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -38,38 +38,22 @@
 	
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
 	
+    [super viewWillAppear:animated];
+	
+	
+	// Set up notifications
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-	
 	[dnc addObserver:self selector:@selector(elementAddedNote:) name:@"ElementSent" object:nil];
 	
-	
-	
-	// Set Save Button:
-//    UIBarButtonItem *bbi;
-//    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-//                                                        target:self
-//                                                        action:@selector(save:)];
-//    [[self navigationItem] setRightBarButtonItem:bbi];
-//    [bbi release];
-	
-	// Set Cancel Button:
-//    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-//                                                        target:self
-//                                                        action:@selector(cancel:)];
-//    [[self navigationItem] setLeftBarButtonItem:bbi];
- //   [bbi release];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -137,44 +121,6 @@
 
 
 /*
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell.
-	[self configureCell:cell atIndexPath:indexPath];
-	
-	
-    return cell;
-}
-
-
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	
-    // Configure the cell to show the book's title
-	EXERCISE *exercise = (EXERCISE *)[exerciseArray objectAtIndex:indexPath.row];
-	NSLog(@" EXERCISE INTO TABLE %@",exercise);
-	cell.textLabel.text = [exercise name];
-}
-
-*/
-
-
-
-
-
-
-
-
-
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
@@ -196,7 +142,22 @@
     }   
 }
 */
-
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		// Delete the managed object.
+	//	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	//	[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+		
+	//	NSError *error;
+	//	if (![context save:&error]) {
+			// Update to handle the error appropriately.
+	//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	//		exit(-1);  // Fail
+	//	}
+    }   
+}
 
 /*
 // Override to support rearranging the table view.
@@ -205,13 +166,34 @@
 */
 
 
-/*
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    return NO;
 }
-*/
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+	
+    [super setEditing:editing animated:animated];
+	
+	[[self navigationItem] setHidesBackButton:editing animated:YES];
+	
+	if (editing) {
+		
+		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addElement)];
+		[[self navigationItem] setLeftBarButtonItem:addButton animated:animated];
+		[addButton release];
+		
+	}
+	else {
+		
+		[[self navigationItem] setLeftBarButtonItem:nil animated:NO];
+		
+	}
+	
+}
+
 
 
 #pragma mark -
@@ -230,6 +212,7 @@
 						   
 #pragma mark -
 #pragma mark Notifications
+
 - (void)elementAddedNote:(NSNotification*)saveNotification {
 	
 	NSDictionary *dict = [saveNotification userInfo];
@@ -241,9 +224,11 @@
 	NSNumber * num = [f numberFromString:s];
 	[f release];
 
-	[[self elements] addObject:num];
-	//[self setWodName:[dict objectForKey:@"Text"]];
-	[[self table] reloadData];
+	if (num != nil) {
+		[[self elements] addObject:num];
+		[[self tableView] reloadData];
+	}
+	
 	
 	// Remove the notification
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -254,34 +239,22 @@
 #pragma mark -
 #pragma mark Save/Cancel Buttons
 						   
-- (IBAction)cancel:(id)sender
-{
-	[[self navigationController] popToRootViewControllerAnimated:YES];
-}
 
 
-
-- (IBAction)save:(id)sender
-{
+- (void)addElement {
 	
-	// Create a dictionary with the exercise and the quantity and their respective keys
-	/*NSString *returnable;
+	EditViewController *controller = [[EditViewController alloc] init];
 	
-	if (self.editField.hidden == YES) {
-		returnable = [[self editBox] text];
-	}
-	else {
-		returnable = [[self editField] text];
-	}
+	[controller setTitleName:[self addTitleName]];
+	[controller setNotificationName:@"ElementSent"];
+	[controller setEditType:EDIT_TYPE_NUMBER];
+	[controller setPopToRoot:NO];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+	[[self navigationController] pushViewController:controller animated:YES];		
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
-	
-	[[self navigationController] popToRootViewControllerAnimated:YES];*/
+	[controller release];
 	
 }
-
 
 #pragma mark -
 #pragma mark Memory management
