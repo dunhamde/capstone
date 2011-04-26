@@ -263,9 +263,9 @@
 			exit(-1);  // Fail
 		}		NSLog(@"SAVING 12");
 		[eexSet release];
-		[eexList release];
+		//[eexList release];
 		[repRoundSet release];
-		[rroundList release];
+		//[rroundList release];
 		[rroundSet release];
 		[exerciseSet release];
 		[exerciseQtySet release];
