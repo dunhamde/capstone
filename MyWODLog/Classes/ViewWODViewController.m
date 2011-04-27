@@ -64,7 +64,7 @@
 
 	[self setWod:w];
 	[self setWodName:[[self wod] name]];
-	[self setWodType:[[self wod] score_type]];
+	[self setWodType:[[[self wod] score_type] intValue]];
 	
 	[self setTitle:[wod name]];
 
