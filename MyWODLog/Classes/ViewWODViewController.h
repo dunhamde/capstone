@@ -23,24 +23,24 @@
 
 @interface ViewWODViewController : UIViewController <UITableViewDelegate> {
 
-	WOD *wod;
+	WOD						*wod;
 	
-	IBOutlet UILabel *scoredByLabel;
 	//IBOutlet UILabel *exerciseListLabel;
-	IBOutlet UITableView *table;
+	IBOutlet UILabel		*scoredByLabel;
+	IBOutlet UITableView	*table;
 	
 	// UI Elements:
-	UIBarButtonItem *logButton;
+	UIBarButtonItem			*logButton;
 	
 	// WOD Attributes:
-	NSArray*	wodExerciseArray;
-	NSString*		wodName;
-	int				wodType;
-	NSString*		wodNotes;
-	NSString*		wodTimeLimit;
-	NSString*		wodNumRounds;
-	NSMutableArray*	wodRepRounds;
-	int				wodScoreType;
+	NSArray*				wodExerciseArray;
+	NSString*				wodName;
+	int						wodType;
+	NSString*				wodNotes;
+	NSString*				wodTimeLimit;
+	NSString*				wodNumRounds;
+	NSMutableArray*			wodRepRounds;
+	int						wodScoreType;
 	
 	// Flags:
 	

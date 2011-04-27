@@ -340,13 +340,16 @@
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
 			EEXERCISE *eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
-			[[cell textLabel] setText:[[eexercise exercise] name]];
+			NSString* exerciseText = nil;
+			if ([[eexercise quantity] intValue] > 0) {
+				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",[[eexercise quantity] stringValue],[[eexercise exercise] name]];
+			} else {
+				exerciseText = [[eexercise exercise] name];
+			}
+
+			
+			[[cell textLabel] setText:exerciseText];
 		}
-		
-	}
-	else if( [cellIdentifier isEqualToString:@"AddCell"] ) {
-		
-		[[cell textLabel] setText:@"Add Exercise..."];
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
@@ -354,7 +357,7 @@
 		if ([self wodNotes] != nil && [[self wodNotes] length] > 0) {
 			[[cell textLabel] setText:[self wodNotes]];
 		} else {
-			[[cell textLabel] setText:@"Add Notes..."];
+			[[cell textLabel] setText:@"N/A"];
 		}
 		
 	}
