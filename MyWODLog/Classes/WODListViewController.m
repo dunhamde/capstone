@@ -331,7 +331,7 @@
 	[wod_view setCurrentWOD:wod];
 	
 	//TODO: Fix crash when no exercises!
-	//[wod_view setWodExerciseArray:[[wod exercises] allObjects]];
+	[wod_view setWodExerciseArray:[[wod eexercises] allObjects]];
 	
 	// Set Back Button:
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"WODs" style:UIBarButtonItemStylePlain target:nil action:nil];

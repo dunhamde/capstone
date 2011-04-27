@@ -339,8 +339,8 @@
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
-			EXERCISE *exercise = (EXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
-			[[cell textLabel] setText:[exercise name]];
+			EEXERCISE *eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
+			[[cell textLabel] setText:[[eexercise exercise] name]];
 		}
 		
 	}
