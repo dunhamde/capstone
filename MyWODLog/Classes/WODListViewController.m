@@ -183,16 +183,23 @@
 		[wod setNotes:[createWODViewController wodNotes]];
 				NSLog(@"SAVING 3");
 		// Add exercises:
-		NSSet* exerciseSet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
-		NSSet* exerciseQtySet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseQtyArray]];
-		if ([exerciseSet count] != [exerciseQtySet count]) {
+//		NSSet* exerciseSet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
+//		NSSet* exerciseQtySet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseQtyArray]];
+		
+		NSMutableArray* exerciseArray = [createWODViewController wodExerciseArray];
+		NSMutableArray* exerciseQtyArray = [createWODViewController wodExerciseQtyArray];
+		
+	//	NSLog( @"EA: %d,  EQA: %d", [[createWODViewController wodExerciseArray] count], [[createWODViewController wodExerciseQtyArray] count] );
+	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
+		if ([exerciseArray count] != [exerciseQtyArray count]) {
 			NSLog(@"Something went wrong, mix-match of exercises and their quantities!");
 		}
+	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
 				NSLog(@"SAVING 4");
 		NSMutableArray* eexList = [NSMutableArray arrayWithCapacity:0];
 
-		NSEnumerator *enumerE = [exerciseSet objectEnumerator];
-		NSEnumerator *enumerQ = [exerciseQtySet objectEnumerator];
+		NSEnumerator *enumerE = [exerciseArray objectEnumerator];
+		NSEnumerator *enumerQ = [exerciseQtyArray objectEnumerator];
 		EXERCISE *e = nil;
 		NSNumber *q = nil;
 				NSLog(@"SAVING 5");
@@ -267,8 +274,8 @@
 		[repRoundSet release];
 		//[rroundList release];
 		[rroundSet release];
-		[exerciseSet release];
-		[exerciseQtySet release];
+		//[exerciseSet release];
+		//[exerciseQtySet release];
 				NSLog(@"SAVING 13");
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 				NSLog(@"SAVING 14");
