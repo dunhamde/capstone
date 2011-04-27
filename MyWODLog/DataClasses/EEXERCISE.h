@@ -27,6 +27,10 @@
 - (void)removeWodsObject:(WOD *)value;
 - (void)addWods:(NSSet *)value;
 - (void)removeWods:(NSSet *)value;
-
+// Adding these below got rid of the warnings:  (remove them if crashes occur)
+- (void)setQuantity:(NSNumber *)value;
+- (void)quantity;
+- (void)setExercise:(EXERCISE *)value;
+- (void)exercise;
 @end
 
