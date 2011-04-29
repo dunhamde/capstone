@@ -13,6 +13,7 @@
 
 @synthesize wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date;
 @synthesize time_in_seconds, hours, minutes, seconds;
+@synthesize saveButton;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -30,6 +31,12 @@
 	[super viewDidLoad];
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
+	
+	// Configure the save button.
+	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
+	[[self saveButton] setEnabled:YES];
+	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
+	[saveButton release];
 	
 	NSLog(@"Score Type: %@", [wod score_type]);
 	switch ([[wod score_type] intValue]) {
@@ -73,11 +80,18 @@
 		[self setHours:[conversionInfo hour]];
 		[self setMinutes:[conversionInfo minute]];
 		[self setSeconds:[conversionInfo second]];
-		 
+		
+		NSString *placeholder = [[[[NSNumber numberWithInt:minutes] stringValue] stringByAppendingString:@":"] stringByAppendingString:[[NSNumber numberWithInt:seconds] stringValue]];
+		[timeField setPlaceholder:placeholder];
 		[timeButton setTitle:@"Start Timer!" forState:UIControlStateNormal];
 	}	
 }
 
+- (IBAction)save:(id)sender	{
+	
+	[delegate logScoreViewController:self didFinishWithSave:YES];
+	[[self navigationController] popViewControllerAnimated:YES];
+}
 
 
 /*

@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "WOD.h"
 
+@protocol LogScoreViewControllerDelegate;
+
 @interface LogScoreViewController : UIViewController {
+	
+	id <LogScoreViewControllerDelegate> delegate;
 	WOD *wod;
 	NSDate *date, *start_date;
 	int hours, minutes, seconds;
 	NSTimeInterval time_in_seconds;
+	
+	// UI Elements:
+	UIBarButtonItem *saveButton;
 	
 	IBOutlet UIButton		*timeButton;	
 	IBOutlet UITextField	*timeField;
@@ -26,6 +33,8 @@
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSDate *start_date;
 
+@property (nonatomic, retain) UIBarButtonItem *saveButton;
+
 @property (nonatomic, assign) NSTimeInterval time_in_seconds;
 @property (nonatomic, assign) int hours;
 @property (nonatomic, assign) int minutes;
@@ -37,7 +46,11 @@
 @property (nonatomic, retain) IBOutlet UILabel	*timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel	*repsLabel;
 
-- (IBAction) timeButtonPressed;
+- (IBAction)timeButtonPressed;
+- (IBAction)save:(id)sender;
 
+@end
 
+@protocol LogScoreViewControllerDelegate
+- (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save;
 @end

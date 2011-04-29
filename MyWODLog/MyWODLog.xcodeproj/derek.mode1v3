@@ -271,6 +271,7 @@
 								<string>34CD237812F26297002A8DC0</string>
 								<string>34CD237912F262AE002A8DC0</string>
 								<string>34CD237A12F262D0002A8DC0</string>
+								<string>34CD237712F26266002A8DC0</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>34C28D76130F729A00FB7C61</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -285,7 +286,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {186, 692}}</string>
+							<string>{{0, 141}, {186, 692}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -334,30 +335,35 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>650E3D40136A5230000CF013</string>
+										<string>650E3DB5136A7669000CF013</string>
 										<key>history</key>
 										<array>
 											<string>6599D843135FFEC000C11679</string>
 											<string>6599D844135FFEC000C11679</string>
 											<string>65B955981361463F00FDBA45</string>
-											<string>658C6C69136786DA00653AEA</string>
-											<string>658BA4611367958B004C4CAA</string>
-											<string>652C5C941367BB18008C9F40</string>
-											<string>652C5C951367BB18008C9F40</string>
-											<string>65EFD46D136A2C940007F198</string>
-											<string>65EFD46E136A2C940007F198</string>
 											<string>65EFD46F136A2C940007F198</string>
-											<string>65EFD471136A2C940007F198</string>
-											<string>65EFD474136A2C940007F198</string>
-											<string>65EFD48C136A2FF20007F198</string>
-											<string>65EFD48D136A2FF20007F198</string>
 											<string>65EFD495136A37750007F198</string>
 											<string>65EFD496136A37750007F198</string>
 											<string>65EFD4CF136A3E1A0007F198</string>
 											<string>65EFD4D0136A3E1A0007F198</string>
-											<string>650E3D2F136A505A000CF013</string>
-											<string>650E3D3E136A5230000CF013</string>
-											<string>650E3D3F136A5230000CF013</string>
+											<string>650E3D8B136A74C1000CF013</string>
+											<string>650E3D8C136A74C1000CF013</string>
+											<string>650E3D8D136A74C1000CF013</string>
+											<string>650E3D8F136A74C1000CF013</string>
+											<string>650E3D90136A74C1000CF013</string>
+											<string>650E3D91136A74C1000CF013</string>
+											<string>650E3D92136A74C1000CF013</string>
+											<string>650E3D94136A74C1000CF013</string>
+											<string>650E3D95136A74C1000CF013</string>
+											<string>650E3D96136A74C1000CF013</string>
+											<string>650E3D97136A74C1000CF013</string>
+											<string>650E3D98136A74C1000CF013</string>
+											<string>650E3D99136A74C1000CF013</string>
+											<string>650E3DA5136A757D000CF013</string>
+											<string>650E3DA6136A757D000CF013</string>
+											<string>650E3DA7136A757D000CF013</string>
+											<string>650E3DAD136A7637000CF013</string>
+											<string>650E3DAE136A7637000CF013</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -555,7 +561,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>650E3D41136A5230000CF013</string>
+		<string>650E3DB6136A7669000CF013</string>
 		<string>650E3D0A136A4656000CF013</string>
 		<string>650E3D05136A461C000CF013</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -585,7 +591,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>LogScoreViewController.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -602,6 +608,8 @@
 							<string>318pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

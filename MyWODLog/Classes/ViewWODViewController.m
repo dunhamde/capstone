@@ -14,6 +14,7 @@
 @synthesize wod, scoredByLabel, wodExerciseArray, table, logButton; // removed the list label in order to add the tabel
 @synthesize showNumRounds, showRepRounds, showTimeLimit;
 @synthesize wodName, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
+@synthesize logScoreViewController, managedObjectContext, fetchedResultsController;
 
 
 
@@ -396,6 +397,84 @@
 	}
 	
 }
+
+- (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
+	
+	if (save) {		
+		// Create a new WOD in the database with specific attributes:
+		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
+		[score setCompleted:[NSNumber numberWithInt:1]];
+		[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
+		[score setWod:[controller wod]];
+		
+		// Save the new WOD:
+		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		[dnc addObserver:self selector:@selector(logScoreControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+		NSError *error;
+		if (![managedObjectContext save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}		
+		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+	}
+	
+	// Clean up:
+	[logScoreViewController release];
+	[self setLogScoreViewController:nil];
+	// Dismiss the modal view to return to the main list:
+    [self dismissModalViewControllerAnimated:YES];
+	
+	
+}
+
+- (void)logScoreControllerContextDidSave:(NSNotification*)saveNotification {
+	
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
+}
+
+#pragma mark -
+#pragma mark Fetched results controller
+
+
+
+/**
+ Returns the fetched results controller. Creates and configures the controller if necessary.
+ */
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
+    if (fetchedResultsController != nil) {
+        return fetchedResultsController;
+    }
+    
+	// Create and configure a fetch request with the 'wod' entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	// Create the sort descriptors array.
+	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+	[fetchRequest setSortDescriptors:sortDescriptors];
+	
+	
+	// Create and initialize the fetch results controller.
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
+	[self setFetchedResultsController:aFetchedResultsController];
+	//	self.fetchedResultsController = aFetchedResultsController;
+	[[self fetchedResultsController] setDelegate:self];
+	//	fetchedResultsController.delegate = self;
+	
+	// Memory management.
+	[aFetchedResultsController release];
+	[fetchRequest release];
+	[nameDescriptor release];
+	
+	return fetchedResultsController;
+}    
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*

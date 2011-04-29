@@ -21,9 +21,12 @@
 
 #define VW_NUM_SECTIONS					3
 
-@interface ViewWODViewController : UIViewController <UITableViewDelegate> {
+@interface ViewWODViewController : UIViewController <UITableViewDelegate, LogScoreViewControllerDelegate> {
 
 	WOD						*wod;
+	LogScoreViewController	*logScoreViewController;
+	NSManagedObjectContext  *managedObjectContext;
+	NSFetchedResultsController	*fetchedResultsController;
 	
 	//IBOutlet UILabel *exerciseListLabel;
 	IBOutlet UILabel		*scoredByLabel;
@@ -50,6 +53,10 @@
 }
 
 @property (nonatomic, retain) WOD *wod;
+@property (nonatomic, retain) LogScoreViewController *logScoreViewController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic, retain) UILabel *scoredByLabel;
 //@property (nonatomic, retain) UILabel *exerciseListLabel;
 @property (nonatomic, retain) IBOutlet UITableView *table;
