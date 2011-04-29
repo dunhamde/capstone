@@ -11,12 +11,9 @@
 
 @implementation LogScoreViewController
 
+@synthesize wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date;
+@synthesize time_in_seconds, hours, minutes, seconds;
 
-- (id)init {
-	[self setTitle:@"Log Score for <WOD>"];
-	
-	return self;
-}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -29,12 +26,59 @@
 }
 */
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
+	NSString *title = @"Log Score for ";
+	[self setTitle:[title stringByAppendingString:[wod name]]];
+	
+	NSLog(@"Score Type: %@", [wod score_type]);
+	switch ([[wod score_type] intValue]) {
+        case WOD_SCORE_TYPE_NONE:
+            break;
+        case WOD_SCORE_TYPE_TIME:
+            self.repsField.hidden = YES;
+			self.repsField.enabled = NO;
+			self.repsLabel.hidden = YES;
+			self.repsLabel.enabled = NO;
+            break;
+		case WOD_SCORE_TYPE_REPS:
+            break;
+		case WOD_SCORE_TYPE_RNDS:
+            break;
+        default:
+            break;
+    }
+	
 }
-*/
+
+- (void)timeButtonPressed	{
+		
+	if ([[[[self timeButton] titleLabel] text] isEqualToString:@"Start Timer!"]) {
+		[self setStart_date:[NSDate date]];
+		[timeButton setTitle:@"Stop Timer!" forState:UIControlStateNormal];
+	} else {
+		[self setDate:[NSDate date]];
+		[self setTime_in_seconds:[date timeIntervalSinceDate:start_date]];
+		// Found this next secion on stackoverflow for getting minutes and seconds between two dates
+		
+		// Get the system calendar
+		NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+			
+		// Get conversion to hours, minutes, seconds
+		unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit; 
+		
+		NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:[self start_date]  toDate:[self date]  options:0];
+		
+		NSLog(@"Conversion: %dhours %dmin %dsec",[conversionInfo hour], [conversionInfo minute], [conversionInfo second]);
+		[self setHours:[conversionInfo hour]];
+		[self setMinutes:[conversionInfo minute]];
+		[self setSeconds:[conversionInfo second]];
+		 
+		[timeButton setTitle:@"Start Timer!" forState:UIControlStateNormal];
+	}	
+}
+
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

@@ -75,7 +75,8 @@
 - (IBAction)logScorePressed:(id)sender {
 	
 	LogScoreViewController* logScore = [[LogScoreViewController alloc] init];
-
+	
+	[logScore setWod:[self wod]];
 	[[self navigationController] pushViewController:logScore animated:YES];
 
 	[logScore release];
