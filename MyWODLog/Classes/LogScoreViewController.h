@@ -27,6 +27,7 @@
 	IBOutlet UITextField	*repsField;	
 	IBOutlet UILabel		*timeLabel;
 	IBOutlet UILabel		*repsLabel;
+	IBOutlet UITextField	*dateField;
 }
 
 @property (nonatomic, retain) WOD *wod;
@@ -45,6 +46,7 @@
 @property (nonatomic, retain) IBOutlet UITextField	*repsField;
 @property (nonatomic, retain) IBOutlet UILabel	*timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel	*repsLabel;
+@property (nonatomic, retain) IBOutlet UITextField	*dateField;
 
 - (IBAction)timeButtonPressed;
 - (IBAction)save:(id)sender;

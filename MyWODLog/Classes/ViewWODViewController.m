@@ -406,6 +406,7 @@
 		[score setCompleted:[NSNumber numberWithInt:1]];
 		[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
 		[score setWod:[controller wod]];
+		[score setDate:[controller date]]; 
 		
 		// Save the new WOD:
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];

@@ -11,7 +11,7 @@
 
 @implementation LogScoreViewController
 
-@synthesize wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date;
+@synthesize wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date, dateField;
 @synthesize time_in_seconds, hours, minutes, seconds;
 @synthesize saveButton;
 
@@ -38,6 +38,14 @@
 	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
 	[saveButton release];
 	
+	// Set dateField to current date by default
+	
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	[format setDateFormat:@"MM/dd/yyyy"];
+	NSString *curDate = [format stringFromDate:[NSDate date]];
+	[[self dateField] setText:curDate];
+	
+	// Configure UI elements dependent on the score type
 	NSLog(@"Score Type: %@", [wod score_type]);
 	switch ([[wod score_type] intValue]) {
         case WOD_SCORE_TYPE_NONE:

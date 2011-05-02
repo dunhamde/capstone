@@ -17,5 +17,6 @@
 @dynamic completed;
 @dynamic time;
 @dynamic wod;
+@dynamic date;
 
 @end

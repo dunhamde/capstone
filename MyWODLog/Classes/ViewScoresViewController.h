@@ -12,7 +12,16 @@
 @interface ViewScoresViewController : UIViewController {
 	
 	UIToolbar *toolbar;
+	IBOutlet UITableView *table;
+	
+	NSArray	*curScores;
 
 }
+
+@property (nonatomic, retain) IBOutlet UITableView *table;
+
+@property (nonatomic, retain) NSArray	*curScores;
+
+
 
 @end
