@@ -44,7 +44,8 @@
 	[backButton release];
 	
 	scores = [[ScoresViewController alloc] init];
-	
+	//scores.managedObjectContext = [self managedObjectContext];
+
 	[[self navigationController] pushViewController:scores animated:YES];
 	
 	[scores release];

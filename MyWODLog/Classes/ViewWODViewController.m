@@ -7,6 +7,7 @@
 //
 
 #import "ViewWODViewController.h"
+#import "MyWODLogAppDelegate.h"
 
 
 @implementation ViewWODViewController
@@ -32,6 +33,11 @@
 	[[self logButton] setEnabled:YES];
 	[[self navigationItem] setRightBarButtonItem:[self logButton]];
 	[logButton release];
+	
+	if (managedObjectContext == nil) 
+        managedObjectContext = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
+	
+
 	
 	//Assumes setCurrentWOD is called
 	
@@ -78,6 +84,7 @@
 	LogScoreViewController* logScore = [[LogScoreViewController alloc] init];
 	
 	[logScore setWod:[self wod]];
+	[logScore setDelegate:self];
 	[[self navigationController] pushViewController:logScore animated:YES];
 
 	[logScore release];
@@ -399,7 +406,7 @@
 }
 
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
-	
+	NSLog(@"LOG SCORE VIEW CONTROLLER DID FINISH DAMNIT");
 	if (save) {		
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
@@ -407,6 +414,7 @@
 		[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
 		[score setWod:[controller wod]];
 		[score setDate:[controller date]]; 
+		NSLog(@"Saving score: %@",score);
 		
 		// Save the new WOD:
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];

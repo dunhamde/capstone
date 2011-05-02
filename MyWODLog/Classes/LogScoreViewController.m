@@ -11,7 +11,7 @@
 
 @implementation LogScoreViewController
 
-@synthesize wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date, dateField;
+@synthesize delegate, wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date, dateField;
 @synthesize time_in_seconds, hours, minutes, seconds;
 @synthesize saveButton;
 
@@ -96,7 +96,7 @@
 }
 
 - (IBAction)save:(id)sender	{
-	
+	NSLog(@"SAVING LOG");
 	[delegate logScoreViewController:self didFinishWithSave:YES];
 	[[self navigationController] popViewControllerAnimated:YES];
 }

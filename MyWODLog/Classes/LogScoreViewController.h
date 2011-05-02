@@ -30,6 +30,7 @@
 	IBOutlet UITextField	*dateField;
 }
 
+@property (nonatomic, assign) id <LogScoreViewControllerDelegate> delegate;
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSDate *start_date;
