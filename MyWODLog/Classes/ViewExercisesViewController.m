@@ -139,7 +139,7 @@
 		if (![context save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			//exit(-1);  // Fail
+			exit(-1);  // Fail
 		}
 	}
 	

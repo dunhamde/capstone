@@ -276,7 +276,6 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	//TODO: delete exercises associated with it and stuff...
 	if( editingStyle == UITableViewCellEditingStyleDelete ) {
 		// Delete the managed object.
 		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
@@ -328,15 +327,18 @@
     [super setEditing:editing animated:animated];
 	
 	
-	[self.navigationItem setHidesBackButton:editing animated:YES];
+//	[self.navigationItem setHidesBackButton:editing animated:YES];
+	[[self navigationItem] setHidesBackButton:editing animated:YES];
 	
 	if (editing) {
 		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createExerciseMode:)];
-		[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
+//		[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
+		[[self navigationItem] setLeftBarButtonItem:addButton animated:animated];
 		[addButton release];
 	}
 	else {
-		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		//[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		[[self navigationItem] setLeftBarButtonItem:nil animated:NO];
 		//[self setLeftBarButton:YES];
 	}	
 }
@@ -403,8 +405,11 @@
 	
 	// Create and initialize the fetch results controller.
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-	self.fetchedResultsController = aFetchedResultsController;
-	fetchedResultsController.delegate = self;
+	
+	[self setFetchedResultsController:aFetchedResultsController];
+//	self.fetchedResultsController = aFetchedResultsController;
+	[[self fetchedResultsController] setDelegate:self];
+//	fetchedResultsController.delegate = self;
 
 	// Memory management.
 	[aFetchedResultsController release];
@@ -459,11 +464,13 @@
 	switch(type) {
 			
 		case NSFetchedResultsChangeInsert:
-			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+//			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self tableView] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+//			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 	}
 }
@@ -472,7 +479,8 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	[self.tableView endUpdates];
+	//[self.tableView endUpdates];
+	[[self tableView] endUpdates];
 }
 
 
