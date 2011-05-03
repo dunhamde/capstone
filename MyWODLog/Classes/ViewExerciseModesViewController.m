@@ -250,7 +250,8 @@
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
 		//cell.textLabel.text = mode.name;
-		cell.textLabel.text = [NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]];
+		//cell.textLabel.text = [NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]];
+		[[cell textLabel] setText:[NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]]];
 
 	} else {
 		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );
@@ -275,6 +276,7 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+	//TODO: delete exercises associated with it and stuff...
 	if( editingStyle == UITableViewCellEditingStyleDelete ) {
 		// Delete the managed object.
 		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
@@ -420,14 +422,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-	[self.tableView beginUpdates];
+	[[self tableView] beginUpdates];
 }
 
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	
-	UITableView *tableView = self.tableView;
+	UITableView *tableView = [self tableView];
 	
 	switch(type) {
 			

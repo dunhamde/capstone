@@ -164,7 +164,7 @@
 - (void)createWODViewController:(CreateWODViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
-		NSLog(@"SAVING 1");
+
 		// Create a new WOD in the database with specific attributes:
 		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
 		
@@ -174,14 +174,14 @@
 		NSNumber *timelimit = [f numberFromString:[createWODViewController wodTimeLimit]];
 		NSNumber *rounds = [f numberFromString:[createWODViewController wodNumRounds]];
 		[f release];
-				NSLog(@"SAVING 2");
+
 		// Set the regular attributes:
 		[wod setName:[createWODViewController wodName]];
 		[wod setTimelimit:timelimit];
 		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodType]]];
 		[wod setRounds:rounds];
 		[wod setNotes:[createWODViewController wodNotes]];
-				NSLog(@"SAVING 3");
+
 		// Add exercises:
 //		NSSet* exerciseSet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
 //		NSSet* exerciseQtySet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseQtyArray]];
@@ -195,14 +195,14 @@
 			NSLog(@"Something went wrong, mix-match of exercises and their quantities!");
 		}
 	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
-				NSLog(@"SAVING 4");
+
 		NSMutableArray* eexList = [NSMutableArray arrayWithCapacity:0];
 
 		NSEnumerator *enumerE = [exerciseArray objectEnumerator];
 		NSEnumerator *enumerQ = [exerciseQtyArray objectEnumerator];
 		EXERCISE *e = nil;
 		NSNumber *q = nil;
-				NSLog(@"SAVING 5");
+
 		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) ) {
 			
 			EEXERCISE* eex = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:managedObjectContext];
@@ -212,31 +212,31 @@
 			[eexList addObject:eex];
 			
 		}
-			NSLog(@"SAVING 6");
+
 		NSSet* eexSet = [[NSSet alloc] initWithArray:eexList];
 		if ([eexSet count] > 0) {
 			[wod setEexercises:eexSet];
 		}
 
-				NSLog(@"SAVING 7");
+
 		// Add Rep Rounds:
 		NSMutableArray* rroundList = [NSMutableArray arrayWithCapacity:0];
 		NSSet* repRoundSet = [[NSSet alloc] initWithArray:[createWODViewController wodRepRounds]];
 		NSEnumerator *enumerR = [repRoundSet objectEnumerator];
 		NSString *r = nil;
-				NSLog(@"SAVING 8");
+
 		while ( (r = (NSString*)[enumerR nextObject]) ) {
 			
 			RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:managedObjectContext];
 			[rroundList addObject:rround];
 			
 		}
-				NSLog(@"SAVING 9");
+
 		NSSet* rroundSet = [[NSSet alloc] initWithArray:rroundList];
 		if ([eexSet count] > 0) {
 			[wod setRrounds:rroundSet];
 		}
-				NSLog(@"SAVING 10");
+
 		/*
 		 // Check to see if that name doesn't already exist.
 		 NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self wodName] ];
@@ -259,26 +259,24 @@
 		 alert = nil;
 		 
 		 /*/
-				NSLog(@"SAVING 11");
+
 		// Save the new WOD:
+		//TODO: why are we adding an observer here? ahh its for the merging to update the list with the FRC
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 		NSError *error;
-		if (![managedObjectContext save:&error]) {
+		if (![[self managedObjectContext] save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
-		}		NSLog(@"SAVING 12");
+		}
+		
 		[eexSet release];
-		//[eexList release];
 		[repRoundSet release];
-		//[rroundList release];
 		[rroundSet release];
-		//[exerciseSet release];
-		//[exerciseQtySet release];
-				NSLog(@"SAVING 13");
+
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
-				NSLog(@"SAVING 14");
+
 	}
 
 	// Clean up:

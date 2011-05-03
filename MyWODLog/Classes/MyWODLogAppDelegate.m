@@ -24,18 +24,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Create MainPageViewController
-	mpvc = [[MainPageViewController alloc] init];
-	mpvc.managedObjectContext = self.managedObjectContext;
+	[self setMpvc:[[MainPageViewController alloc] init]];
+	[[self mpvc] setManagedObjectContext:[self managedObjectContext]];
 
 	
 	// Create an instance of a UINavigationController
 	// its stack contains only itemsViewController
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mpvc];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[self mpvc]];
 	
 	//Place navigation controller's view in the window hierarchy
-	[window addSubview:[navController view]];
+	[[self window] addSubview:[navController view]];
 	
-    [window makeKeyAndVisible];
+    [[self window] makeKeyAndVisible];
+	
+	if ([self needsDefaultData]) {
+		[self generateDefaultData];
+	}
     
     return YES;
 }
@@ -84,7 +88,7 @@
 - (void)saveContext {
     
     NSError *error = nil;
-	NSManagedObjectContext *managedObjectContext_ = self.managedObjectContext;
+	NSManagedObjectContext *managedObjectContext_ = [self managedObjectContext];
     if (managedObjectContext_ != nil) {
         if ([managedObjectContext_ hasChanges] && ![managedObjectContext_ save:&error]) {
             /*
@@ -113,13 +117,14 @@
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
 - (NSManagedObjectContext *)managedObjectContext {
-    NSLog(@"Creating managed object context");
+
     if (managedObjectContext != nil) {
         return managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
+//		    NSLog(@"Creating managed object context");
         managedObjectContext = [[NSManagedObjectContext alloc] init];
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
@@ -200,6 +205,133 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
+#pragma mark -
+#pragma mark Default Data
+
+
+
+- (BOOL)needsDefaultData {
+	BOOL need = NO;
+	
+	//NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self wodName] ];
+	
+	// Create and configure a fetch request with the wod entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"exercise" inManagedObjectContext:[self managedObjectContext]];
+	[fetchRequest setEntity:entity];
+	//[fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
+	
+	NSError *error = nil; 
+	NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	// Throw up an error message if the WOD already exists.
+	if( error || [array count] <= 0) {
+		NSLog(@"NEEDS TO GENERATE DEFAULT DATA");
+		need = YES;
+	} else {
+		NSLog(@"DOES NOT NEED TO GENERATE DEFAULT DATA");
+	}
+
+	return need;
+}
+
+
+
+- (void)generateDefaultData {
+	
+	//TODO: should everything be capitalized?
+	
+	MODE*		m = nil;
+	EXERCISE*	e = nil;
+	
+	// Add everything to the MOC
+	m = [self addMode:@"Gymnastics"];
+	e = [self addExerciseToMode:m withName:@"Muscle up"];
+	e = [self addExerciseToMode:m withName:@"Air squat"];
+	e = [self addExerciseToMode:m withName:@"Sit up"];
+	e = [self addExerciseToMode:m withName:@"Pull up"];
+	e = [self addExerciseToMode:m withName:@"Push up"];
+	e = [self addExerciseToMode:m withName:@"Handstand push up"];
+	e = [self addExerciseToMode:m withName:@"Turkish get up"];
+	e = [self addExerciseToMode:m withName:@"Walking lunge"];
+	e = [self addExerciseToMode:m withName:@"Kipping pull up"];
+	e = [self addExerciseToMode:m withName:@"Ring dips"];
+	e = [self addExerciseToMode:m withName:@"Wall balls"];
+	e = [self addExerciseToMode:m withName:@"Rope climb"];
+	
+	m = [self addMode:@"Mobility"];
+	e = [self addExerciseToMode:m withName:@"100 m run"];
+	e = [self addExerciseToMode:m withName:@"200 m run"];
+	e = [self addExerciseToMode:m withName:@"400 m run"];
+	e = [self addExerciseToMode:m withName:@"800 m run"];
+	e = [self addExerciseToMode:m withName:@"1 mile run"];
+	e = [self addExerciseToMode:m withName:@"5 mile run"];
+	e = [self addExerciseToMode:m withName:@"Any sprint distance"];
+	e = [self addExerciseToMode:m withName:@"500 m row"];
+	e = [self addExerciseToMode:m withName:@"1000 m row"];
+	e = [self addExerciseToMode:m withName:@"2000 m row"];
+	e = [self addExerciseToMode:m withName:@"Burpee"];
+	e = [self addExerciseToMode:m withName:@"Box jump"];
+	e = [self addExerciseToMode:m withName:@"Jump rope"];
+	e = [self addExerciseToMode:m withName:@"Double unders"];
+	
+	m = [self addMode:@"Weight Lifting"];
+	e = [self addExerciseToMode:m withName:@"Front squat"];
+	e = [self addExerciseToMode:m withName:@"Back squat"];
+	e = [self addExerciseToMode:m withName:@"Clean & Jerk"];
+	e = [self addExerciseToMode:m withName:@"Hang power clean"];
+	e = [self addExerciseToMode:m withName:@"Deadlift"];
+	e = [self addExerciseToMode:m withName:@"Thruster"];
+	e = [self addExerciseToMode:m withName:@"Snatch"];
+	e = [self addExerciseToMode:m withName:@"Power press"];
+	e = [self addExerciseToMode:m withName:@"Bench press"];
+	e = [self addExerciseToMode:m withName:@"Overhead squats"];
+	e = [self addExerciseToMode:m withName:@"Power snatch"];
+	e = [self addExerciseToMode:m withName:@"Sumo deadlift"];
+	e = [self addExerciseToMode:m withName:@"Kettlebell swing"];
+/*	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""];
+	e = [self addExerciseToMode:m withName:@""]; */
+	
+	
+	
+	//m = [self addMode:@"Gymnastics"];
+	
+	// Finally save everything in the MOC:
+	NSError *error;
+	if (![[self managedObjectContext] save:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
+	
+}
+
+- (MODE*)addMode:(NSString*)name {
+	MODE* mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
+	
+	[mode setName:name];
+	
+	return mode;
+}
+
+- (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name {
+	EXERCISE* exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:[self managedObjectContext]];
+	
+	[exercise setName:name];
+	[exercise setModes:mode];
+	
+	return exercise;
+	
+	
+}
 
 
 #pragma mark -

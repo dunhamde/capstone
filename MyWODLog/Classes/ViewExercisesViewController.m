@@ -139,7 +139,7 @@
 		if (![context save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			exit(-1);  // Fail
+			//exit(-1);  // Fail
 		}
 	}
 	
@@ -490,7 +490,8 @@ NSLog( @"didFinishWithSave");
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	[self.tableView endUpdates];
+	//[self.tableView endUpdates];
+	[[self tableView] endUpdates];
 }
 
 

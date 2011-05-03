@@ -21,11 +21,13 @@
 	
 	// Set the back button to say "Home" instead of the title of this page
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:nil action:nil];
-	self.navigationItem.backBarButtonItem = backButton;
+//	self.navigationItem.backBarButtonItem = backButton;
+	[[self navigationItem] setBackBarButtonItem:backButton];
 	[backButton release];
 	
 	wodList = [[WODListViewController alloc] init];
-	wodList.managedObjectContext = [self managedObjectContext];
+	[wodList setManagedObjectContext:[self managedObjectContext]];
+//	wodList.managedObjectContext = [self managedObjectContext];
 	
 	[[self navigationController] pushViewController:wodList animated:YES];
 	
@@ -40,7 +42,8 @@
 	
 	// Set the back button to say "Home" instead of the title of this page
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:nil action:nil];
-	self.navigationItem.backBarButtonItem = backButton;
+	[[self navigationItem] setBackBarButtonItem:backButton];
+//	self.navigationItem.backBarButtonItem = backButton;
 	[backButton release];
 	
 	scores = [[ScoresViewController alloc] init];
