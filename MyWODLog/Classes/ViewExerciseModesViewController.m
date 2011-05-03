@@ -281,6 +281,7 @@
 		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
 	
+		NSLog(@"ACTUALLY DELETING");
 		NSError *error;
 		if (![context save:&error]) {
 			// Update to handle the error appropriately.
@@ -443,6 +444,7 @@
 			break;
 			
 		case NSFetchedResultsChangeDelete:
+			NSLog(@"DELETING IN DID CHAGNE OBJECT");
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
@@ -469,6 +471,7 @@
 			break;
 			
 		case NSFetchedResultsChangeDelete:
+			NSLog(@"DELETING IN DID cHANGE SECTION");
 //			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;

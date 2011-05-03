@@ -244,6 +244,7 @@
 	
 	MODE*		m = nil;
 	EXERCISE*	e = nil;
+	WOD*		w = nil;
 	
 	// Add everything to the MOC
 	m = [self addMode:@"Gymnastics"];
@@ -261,16 +262,16 @@
 	e = [self addExerciseToMode:m withName:@"Rope climb"];
 	
 	m = [self addMode:@"Mobility"];
-	e = [self addExerciseToMode:m withName:@"100 m run"];
-	e = [self addExerciseToMode:m withName:@"200 m run"];
-	e = [self addExerciseToMode:m withName:@"400 m run"];
-	e = [self addExerciseToMode:m withName:@"800 m run"];
-	e = [self addExerciseToMode:m withName:@"1 mile run"];
-	e = [self addExerciseToMode:m withName:@"5 mile run"];
+	e = [self addExerciseToMode:m withName:@"Run 100 meters"];
+	e = [self addExerciseToMode:m withName:@"Run 200 meters"];
+	e = [self addExerciseToMode:m withName:@"Run 400 meters"];
+	e = [self addExerciseToMode:m withName:@"Run 800 meters"];
+	e = [self addExerciseToMode:m withName:@"Run 1 mile"];
+	e = [self addExerciseToMode:m withName:@"Run 5 miles"];
 	e = [self addExerciseToMode:m withName:@"Any sprint distance"];
-	e = [self addExerciseToMode:m withName:@"500 m row"];
-	e = [self addExerciseToMode:m withName:@"1000 m row"];
-	e = [self addExerciseToMode:m withName:@"2000 m row"];
+	e = [self addExerciseToMode:m withName:@"Row 500 meters"];
+	e = [self addExerciseToMode:m withName:@"Row 1000 meters"];
+	e = [self addExerciseToMode:m withName:@"Row 2000 meters"];
 	e = [self addExerciseToMode:m withName:@"Burpee"];
 	e = [self addExerciseToMode:m withName:@"Box jump"];
 	e = [self addExerciseToMode:m withName:@"Jump rope"];
@@ -300,9 +301,37 @@
 	e = [self addExerciseToMode:m withName:@""];
 	e = [self addExerciseToMode:m withName:@""]; */
 	
-	
-	
-	//m = [self addMode:@"Gymnastics"];
+	w = [self addWOD:@"Amanda"];
+	w = [self addWOD:@"Angie"];	
+	w = [self addWOD:@"Annie"];
+	w = [self addWOD:@"Barbara"];
+	w = [self addWOD:@"Betty"];	
+	w = [self addWOD:@"Candy"];
+	w = [self addWOD:@"Chelsea"];
+	w = [self addWOD:@"Charlotte"];	
+	w = [self addWOD:@"Christine"];
+	w = [self addWOD:@"Cindy"];
+	w = [self addWOD:@"Diane"];	
+	w = [self addWOD:@"Elizabeth"];
+	w = [self addWOD:@"Eva"];
+	w = [self addWOD:@"Fran"];	
+	w = [self addWOD:@"GI Jane"];
+	w = [self addWOD:@"Grace"];
+	w = [self addWOD:@"Gwen"];	
+	w = [self addWOD:@"Helen"];
+	w = [self addWOD:@"Isabel"];
+	w = [self addWOD:@"Jackie"];
+	w = [self addWOD:@"Karen"];
+	w = [self addWOD:@"Kelly"];
+	w = [self addWOD:@"Linda"];	
+	w = [self addWOD:@"Lola"];
+	w = [self addWOD:@"Lynne"];
+	w = [self addWOD:@"Mary"];	
+	w = [self addWOD:@"Maggie"];
+	w = [self addWOD:@"Nancy"];
+	w = [self addWOD:@"Nasty Girls"];	
+	w = [self addWOD:@"Nicole"];
+	w = [self addWOD:@"Pukie Brewster"];
 	
 	// Finally save everything in the MOC:
 	NSError *error;
@@ -314,22 +343,40 @@
 	
 }
 
+
+
+- (WOD*)addWOD:(NSString*)name {
+	
+	WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:[self managedObjectContext]];
+	
+	[wod setName:name];
+	
+	return wod;
+	
+}
+
+
+
 - (MODE*)addMode:(NSString*)name {
+	
 	MODE* mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
 	
 	[mode setName:name];
 	
 	return mode;
+	
 }
 
+
+
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name {
+	
 	EXERCISE* exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:[self managedObjectContext]];
 	
 	[exercise setName:name];
 	[exercise setModes:mode];
 	
 	return exercise;
-	
 	
 }
 

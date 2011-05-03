@@ -44,6 +44,7 @@
 
 - (MODE*)addMode:(NSString*)name;
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name;
+- (WOD*)addWOD:(NSString*)name;
 
 
 @end
