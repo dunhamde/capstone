@@ -46,6 +46,7 @@
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
 		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
 		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
+		659314B6136F76DB0050F6BA /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
@@ -114,6 +115,8 @@
 		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
+		659314B4136F76DB0050F6BA /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
+		659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPageViewController.h; path = Classes/MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPageViewController.m; path = Classes/MainPageViewController.m; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				659314B1136F76880050F6BA /* Table Cells */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				34CD239412F2640D002A8DC0 /* Pages */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -398,6 +402,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		659314B1136F76880050F6BA /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				659314B4136F76DB0050F6BA /* ScoreTableViewCell.h */,
+				659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */,
+			);
+			name = "Table Cells";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -496,6 +509,7 @@
 				34B05FED1363BAE3002991C8 /* MODE.m in Sources */,
 				34B05FEE1363BAE3002991C8 /* SCORE.m in Sources */,
 				34B05FEF1363BAE3002991C8 /* EEXERCISE.m in Sources */,
+				659314B6136F76DB0050F6BA /* ScoreTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,12 @@
 
 #import "ViewScoresViewController.h"
 #import "MyWODLogAppDelegate.h"
+#import "SCORE.h"
+#import "ScoreTableViewCell.h"
 
 @implementation ViewScoresViewController
 
-@synthesize  fetchedResultsController, managedObjectContext, curScores;
+@synthesize  fetchedResultsController, managedObjectContext, curScores,table;
 
 - (id)init {
 	// Call the superclass's designated initializer
@@ -73,31 +75,26 @@
 }
 
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-	NSLog(@"TABLES");
-    static NSString *CellIdentifier = @"Cell";
+    // Dequeue or if necessary create a ScoreTableViewCell, then set its recipe to the recipe for the current row.
+    static NSString *ScoreCellIdentifier = @"ScoreCellIdentifier";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    ScoreTableViewCell *scoreCell = (ScoreTableViewCell *)[tableView dequeueReusableCellWithIdentifier:ScoreCellIdentifier];
+    if (scoreCell == nil) {
+        scoreCell = [[[ScoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScoreCellIdentifier] autorelease];
+		//scoreCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    // Configure the cell.
-	[self configureCell:cell atIndexPath:indexPath];
-    return cell;
+	[self configureCell:scoreCell atIndexPath:indexPath];
+    
+    return scoreCell;
 }
 
 
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	
-    // Configure the cell to show the book's title
-	//WOD *wod = [fetchedResultsController objectAtIndexPath:indexPath];
-	//[[cell textLabel] setText:[wod name]];
-	//	cell.textLabel.text = wod.name;
+- (void)configureCell:(ScoreTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    // Configure the cell
+	SCORE *newscore = (SCORE *)[fetchedResultsController objectAtIndexPath:indexPath];
+    cell.score = newscore;
 }
 
 
@@ -161,14 +158,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-	[[self tableView] beginUpdates];
+	[[self table] beginUpdates];
 }
 
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	
-	UITableView *tableView = [self tableView];
+	UITableView *tableView = [self table];
 	
 	switch(type) {
 			
@@ -198,11 +195,11 @@
 	switch(type) {
 			
 		case NSFetchedResultsChangeInsert:
-			[[self tableView] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self table] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self table] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 	}
 }
@@ -211,7 +208,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	[[self tableView] endUpdates];
+	[[self table] endUpdates];
 }
 
 

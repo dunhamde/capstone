@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface ViewScoresViewController : UITableViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 	
 	UIToolbar *toolbar;
+	IBOutlet UITableView	*table;
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
 	NSArray	*curScores;
@@ -20,7 +21,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
-
+@property (nonatomic, retain) UITableView *table;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
