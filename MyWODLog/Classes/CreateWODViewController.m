@@ -290,7 +290,7 @@
 			[self setShowNumRounds:NO];
 			[self setShowRepRounds:NO];
 			[self setShowTimeLimit:YES];  // Although it is optional
-			[self setQuantifyExercises:YES];
+			[self setQuantifyExercises:NO];
 			[self setWodScoreType:WOD_SCORE_TYPE_RNDS];
 			break;
 		case WOD_TYPE_EMOTM:

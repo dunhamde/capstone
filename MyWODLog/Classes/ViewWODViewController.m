@@ -72,6 +72,7 @@
 	[self setWod:w];
 	[self setWodName:[[self wod] name]];
 	[self setWodType:[[[self wod] score_type] intValue]];
+	[self setWodNotes:[[self wod] notes]];
 	
 	[self setTitle:[wod name]];
 
