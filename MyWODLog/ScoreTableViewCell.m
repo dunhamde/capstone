@@ -7,6 +7,7 @@
 //
 
 #import "ScoreTableViewCell.h"
+#include <math.h>
 
 #pragma mark -
 #pragma mark SubviewFrames category
@@ -111,8 +112,15 @@
         score = [newScore retain];
 	}
 	wodNameLabel.text = [[score wod] name];
-	dateLabel.text = score.date.description;
-	scoreLabel.text = score.time.stringValue;
+	
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	[format setDateFormat:@"MM/dd/yyyy"];
+	dateLabel.text = [format stringFromDate:[score date]];
+	[format release];
+	
+	int minutes = floor([score.time doubleValue]/60);
+	int seconds = trunc([score.time doubleValue] - minutes * 60);
+	scoreLabel.text = [NSString stringWithFormat:@"%d min %d sec", minutes, seconds];
 }
 
 
