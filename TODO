@@ -1,12 +1,17 @@
 # TODO file for My WOD Log
 #  Created by: Matthew Dalrymple
-#  Last Updated: Tuesday, 3 May 2011
+#  Last Updated: Thursday, 5 May 2011
 
 MAJOR:
+[ ] Fix add exercises to accomidate WODs like 'Nicole'
+[ ] Create WOD Page: On WOD Type change remove all Exercises
+[ ] Create WOD Page: Don't allow Add Exercise if no WOD Type
+[ ] Create WOD Page: Delete Exercise on select and confirm
 [ ] Load in default data on start
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
-[x] Add functionality to select method of user input to the Edit Controller[X] Add Notes to database
+[x] Add functionality to select method of user input to the Edit Controller
+[X] Add Notes to database
 [X] Add rep rounds to CreateWOD page (list view)
 [X] Add # of rounds field and time limit field
 [X] Add WOD Type field instead of switch
@@ -16,6 +21,8 @@ MAJOR:
 [X] Update Display WOD Page to reflect new Create WOD page
 
 MINOR:
+[ ] Make a Settings page (that shows up in iOS Settings app, not our app)
+ - Put an about page for now
 [ ] Change ListEditVC to take a style option, make the other style
  have an Add button as one of the elements in the list (like Exercises on
  the create wood page)
