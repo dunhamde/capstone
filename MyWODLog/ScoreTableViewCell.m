@@ -118,9 +118,19 @@
 	dateLabel.text = [format stringFromDate:[score date]];
 	[format release];
 	
-	int minutes = floor([score.time doubleValue]/60);
-	int seconds = trunc([score.time doubleValue] - minutes * 60);
-	scoreLabel.text = [NSString stringWithFormat:@"%d min %d sec", minutes, seconds];
+	if ([[[score wod] score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
+		int minutes = floor([score.time doubleValue]/60);
+		int seconds = trunc([score.time doubleValue] - minutes * 60);
+		scoreLabel.text = [NSString stringWithFormat:@"%d min %d sec", minutes, seconds];
+		
+	}
+	else if ([[[score wod] score_type] intValue] == WOD_SCORE_TYPE_REPS ) 
+		scoreLabel.text = [NSString stringWithFormat:@"%d reps", [[score reps] intValue]];
+	else {
+		scoreLabel.text = [NSString stringWithFormat:@"%d rounds", [[score rounds] intValue]];
+	}
+
+
 }
 
 

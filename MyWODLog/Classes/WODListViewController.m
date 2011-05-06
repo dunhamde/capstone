@@ -178,7 +178,7 @@
 		// Set the regular attributes:
 		[wod setName:[createWODViewController wodName]];
 		[wod setTimelimit:timelimit];
-		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodType]]];
+		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodScoreType]]];
 		[wod setRounds:rounds];
 		[wod setNotes:[createWODViewController wodNotes]];
 

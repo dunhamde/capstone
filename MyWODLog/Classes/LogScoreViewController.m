@@ -11,7 +11,7 @@
 
 @implementation LogScoreViewController
 
-@synthesize delegate, wod, timeField, repsField, timeLabel, repsLabel, timeButton, date, start_date, dateField;
+@synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField;
 @synthesize time_in_seconds, hours, minutes, seconds;
 @synthesize saveButton;
 
@@ -31,7 +31,8 @@
 	[super viewDidLoad];
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
-	
+	self.hiddenButton.enabled = NO;
+
 	// Configure the save button.
 	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
 	[[self saveButton] setEnabled:YES];
@@ -44,26 +45,32 @@
 	[format setDateFormat:@"MM/dd/yyyy"];
 	NSString *curDate = [format stringFromDate:[NSDate date]];
 	[[self dateField] setText:curDate];
-	
+	[self setDate:[NSDate date]];
+
 	// Configure UI elements dependent on the score type
 	NSLog(@"Score Type: %@", [wod score_type]);
 	switch ([[wod score_type] intValue]) {
         case WOD_SCORE_TYPE_NONE:
+			self.scoreLabel.text = @"Time";
             break;
         case WOD_SCORE_TYPE_TIME:
-            self.repsField.hidden = YES;
-			self.repsField.enabled = NO;
-			self.repsLabel.hidden = YES;
-			self.repsLabel.enabled = NO;
+			self.scoreLabel.text = @"Time";
             break;
 		case WOD_SCORE_TYPE_REPS:
+			self.scoreLabel.text = @"Reps";
+			self.timeButton.hidden = YES;
+			self.timeButton.enabled = NO;
+			self.scoreField.keyboardType = UIKeyboardTypeNumberPad;
             break;
 		case WOD_SCORE_TYPE_RNDS:
+			self.scoreLabel.text = @"Rounds";
+			self.timeButton.hidden = YES;
+			self.timeButton.enabled = NO;
+			self.scoreField.keyboardType = UIKeyboardTypeNumberPad;
             break;
         default:
             break;
-    }
-	
+    }	
 }
 
 - (void)timeButtonPressed	{
@@ -74,7 +81,7 @@
 	} else {
 		[self setDate:[NSDate date]];
 		[self setTime_in_seconds:[date timeIntervalSinceDate:start_date]];
-		// Found this next secion on stackoverflow for getting minutes and seconds between two dates
+		// Found this next section on stackoverflow for getting minutes and seconds between two dates
 		
 		// Get the system calendar
 		NSCalendar *sysCalendar = [NSCalendar currentCalendar];
@@ -90,9 +97,26 @@
 		[self setSeconds:[conversionInfo second]];
 		
 		NSString *placeholder = [[[[NSNumber numberWithInt:minutes] stringValue] stringByAppendingString:@":"] stringByAppendingString:[[NSNumber numberWithInt:seconds] stringValue]];
-		[timeField setPlaceholder:placeholder];
+		[scoreField setPlaceholder:placeholder];
 		[timeButton setTitle:@"Start Timer!" forState:UIControlStateNormal];
 	}	
+}
+
+- (void)scoreFieldTouched {
+	//NSLog(@"score TOUCHED");
+	[hiddenButton setUserInteractionEnabled:YES];
+	self.hiddenButton.enabled = YES;
+}
+
+- (void)hiddenButtonTouched {
+	//NSLog(@"hidden TOUCHED");
+	self.hiddenButton.enabled = NO;
+	[scoreField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
 }
 
 - (IBAction)save:(id)sender	{

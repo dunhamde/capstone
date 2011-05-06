@@ -11,7 +11,7 @@
 
 @protocol LogScoreViewControllerDelegate;
 
-@interface LogScoreViewController : UIViewController {
+@interface LogScoreViewController : UIViewController <UITextFieldDelegate> {
 	
 	id <LogScoreViewControllerDelegate> delegate;
 	WOD *wod;
@@ -22,11 +22,10 @@
 	// UI Elements:
 	UIBarButtonItem *saveButton;
 	
-	IBOutlet UIButton		*timeButton;	
-	IBOutlet UITextField	*timeField;
-	IBOutlet UITextField	*repsField;	
-	IBOutlet UILabel		*timeLabel;
-	IBOutlet UILabel		*repsLabel;
+	IBOutlet UIButton		*timeButton;
+	IBOutlet UIButton		*hiddenButton;
+	IBOutlet UITextField	*scoreField;
+	IBOutlet UILabel		*scoreLabel;
 	IBOutlet UITextField	*dateField;
 }
 
@@ -43,14 +42,15 @@
 @property (nonatomic, assign) int seconds;
 
 @property (nonatomic, retain) IBOutlet UIButton	*timeButton;
-@property (nonatomic, retain) IBOutlet UITextField	*timeField;
-@property (nonatomic, retain) IBOutlet UITextField	*repsField;
-@property (nonatomic, retain) IBOutlet UILabel	*timeLabel;
-@property (nonatomic, retain) IBOutlet UILabel	*repsLabel;
+@property (nonatomic, retain) IBOutlet UIButton	*hiddenButton;
+@property (nonatomic, retain) IBOutlet UITextField	*scoreField;
+@property (nonatomic, retain) IBOutlet UILabel	*scoreLabel;
 @property (nonatomic, retain) IBOutlet UITextField	*dateField;
 
 - (IBAction)timeButtonPressed;
 - (IBAction)save:(id)sender;
+- (IBAction)scoreFieldTouched;
+- (IBAction)hiddenButtonTouched;
 
 @end
 

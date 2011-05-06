@@ -407,14 +407,30 @@
 }
 
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
-	NSLog(@"LOG SCORE VIEW CONTROLLER DID FINISH DAMNIT");
 	if (save) {		
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
 		[score setCompleted:[NSNumber numberWithInt:1]];
-		[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
 		[score setWod:[controller wod]];
 		[score setDate:[controller date]]; 
+		
+		switch ([[[controller wod] score_type] intValue]) {
+			case WOD_SCORE_TYPE_NONE:
+				[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
+				break;
+			case WOD_SCORE_TYPE_TIME:
+				[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
+				break;
+			case WOD_SCORE_TYPE_REPS:
+				[score setReps:[NSNumber numberWithDouble:[[[controller scoreField] text] intValue]]];
+				break;
+			case WOD_SCORE_TYPE_RNDS:
+				[score setRounds:[NSNumber numberWithDouble:[[[controller scoreField] text] intValue]]];
+				break;
+			default:
+				break;
+		}	
+		
 		NSLog(@"Saving score: %@",score);
 		
 		// Save the new WOD:

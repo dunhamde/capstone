@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import	"SCORE.h"
+#import "WOD.h"
 
 @interface ScoreTableViewCell : UITableViewCell {
 
