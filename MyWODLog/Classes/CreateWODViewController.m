@@ -14,6 +14,7 @@
 
 @synthesize managedObjectContext, delegate, saveButton, table;
 @synthesize readyToSave, quantifyExercises, showNumRounds, showRepRounds, showTimeLimit;
+@synthesize exerciseToAdd, exerciseQtyToAdd;
 @synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 @synthesize repRoundList;
 
@@ -77,7 +78,7 @@
 	[dnc addObserver:self selector:@selector(timeLimitChangedNote:) name:@"TimeLimitSent" object:nil];
 	[dnc addObserver:self selector:@selector(numRoundsChangedNote:) name:@"NumRoundsSent" object:nil];
 	[dnc addObserver:self selector:@selector(repRoundsChangedNote:) name:@"RepRoundsSent" object:nil];
-	
+	[dnc addObserver:self selector:@selector(metricSavedNote:) name:@"MetricSent" object:nil];
 	// Handle Rep Round (if need be)
 	if ([self repRoundList] != nil) {
 
@@ -150,16 +151,6 @@
 	} else if ([self readyToSave]) {
 		
 		NSLog(@"Saved with text: %@", [self wodName]);
-		
-		//int scoreType;
-		// Set the score type based on the UISwitch position
-		/*
-		if ( (switchButton.on) ) {
-			[self setWodType:WOD_SCORE_TYPE_TIME];
-		} else {
-			[self setWodType:WOD_SCORE_TYPE_REPS];
-		}*/
-	//	[wod setScore_type:[NSNumber numberWithInt:scoreType]];
 
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {
@@ -170,6 +161,26 @@
 		 [someError release];
 		 */
 	}
+	
+}
+
+
+
+- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*) metric {
+	
+	[[self wodExerciseArray] addObject:exercise];
+	
+	if (qty == nil) {
+		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
+	} else {
+		[[self wodExerciseQtyArray] addObject:qty];
+	}
+	
+	[[self table] reloadData];
+
+	
+	// See if this change will allow us to save
+	[self evaluateSaveReadiness];
 	
 }
 
@@ -195,7 +206,7 @@
 		[f release];
 	}
 
-	if (q == nil) {
+/*	if (q == nil) {
 		////TODO:  does this crash?
 		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
 	} else {
@@ -204,14 +215,33 @@
 
 	
 	[[self table] reloadData];
-	
-	
+*/	
+
+	if ([e requiresMetric] > 0) {
+		
+		EditViewController *controller = [[EditViewController alloc] init];
+		
+		[controller setTitleName:@"Set Exercise's Metric"];
+		[controller setPlaceholder:[e name]];
+		[controller setNotificationName:@"MetricSent"];
+		[controller setEditType:EDIT_TYPE_NUMBER];
+//		[controller setDefaultText:[self wodTimeLimit]];
+		[[self navigationController] pushViewController:controller animated:YES];		
+		
+		[controller release];
+		
+	} else {
+		
+		[self addExerciseElement:e quantity:q metric:nil];
+		
+	}
+
 	// Remove the notifcation
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
 	
 	// See if this change will allow us to save
-	[self evaluateSaveReadiness];
+//	[self evaluateSaveReadiness];
 	
 }
 
@@ -371,6 +401,21 @@
 
 }
 
+
+- (void)metricSavedNote:(NSNotification*)saveNotification {
+	
+	NSDictionary *dict = [saveNotification userInfo];
+	NSString *metric = [dict objectForKey:@"Text"];
+	
+	
+
+	
+	[[self table] reloadData];
+	
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@"MetricSent" object:nil];
+	
+}
 
 
 #pragma mark -

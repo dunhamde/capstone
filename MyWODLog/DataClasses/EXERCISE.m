@@ -2,7 +2,7 @@
 //  EXERCISE.m
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 4/23/11.
+//  Created by Matthew Dalrymple on 5/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,8 +13,10 @@
 
 @implementation EXERCISE 
 
+@dynamic requiresMetric;
+@dynamic quantifiable;
 @dynamic name;
-@dynamic modes;
 @dynamic eexercises;
+@dynamic modes;
 
 @end

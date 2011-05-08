@@ -11,7 +11,8 @@
 
 @implementation CreateExerciseViewController
 
-@synthesize exercise, name, nameField, delegate;
+//@synthesize exercise;
+@synthesize name, nameField, delegate, metricRequired, quantifiable;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -86,9 +87,6 @@
 	
 		[self setName:[nameField text]];
 	
-		//[[self exercise] setName:[name copy]];
-		
-		NSLog( @"Setting name to: %@", [self name] );
 
 		[delegate createExerciseViewController:self didFinishWithSave:YES];
 	}
@@ -116,7 +114,7 @@
 
 
 - (void)dealloc {
-//	[exercise release];
+
 	[name release];
     [super dealloc];
 }

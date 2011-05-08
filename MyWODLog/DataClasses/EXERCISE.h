@@ -2,7 +2,7 @@
 //  EXERCISE.h
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 4/23/11.
+//  Created by Matthew Dalrymple on 5/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,9 +15,11 @@
 {
 }
 
+@property (nonatomic, retain) NSNumber * requiresMetric;
+@property (nonatomic, retain) NSNumber * quantifiable;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) MODE * modes;
 @property (nonatomic, retain) NSSet* eexercises;
+@property (nonatomic, retain) MODE * modes;
 
 @end
 

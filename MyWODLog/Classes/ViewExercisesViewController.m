@@ -231,7 +231,7 @@
 
 - (void)createExerciseViewController:(CreateExerciseViewController *)controller didFinishWithSave:(BOOL)save
 {
-NSLog( @"didFinishWithSave");
+
 	if (save) {
 		
 		// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
@@ -245,6 +245,9 @@ NSLog( @"didFinishWithSave");
 		
 		[e setName:[[self cevc] name]];
 		[e setModes:[self mode]];
+		[e setQuantifiable:[[[self cevc] quantifiable] isOn]];
+		[e setRequiresMetric:[[[self cevc] metricRequired] isOn]];
+		
 		[[self mode] addExercisesObject:e];
 		
 		

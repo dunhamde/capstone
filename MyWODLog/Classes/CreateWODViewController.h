@@ -59,6 +59,9 @@
 	BOOL showTimeLimit;
 	BOOL showNumRounds;
 	BOOL showRepRounds;
+	
+	EXERCISE*		exerciseToAdd;
+	NSNumber*		exerciseQtyToAdd;
 
 }
 
@@ -87,16 +90,19 @@
 @property (nonatomic, assign) BOOL				showNumRounds;
 @property (nonatomic, assign) BOOL				showRepRounds;
 
+@property (nonatomic, retain) EXERCISE*			exerciseToAdd;
+@property (nonatomic, retain) NSNumber*			exerciseQtyToAdd;
+
 
 // Notifications:
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification;
 - (void)nameChangedNote:(NSNotification*)saveNotification;
 - (void)notesChangedNote:(NSNotification*)saveNotification;
 - (void)typeChangedNote:(NSNotification*)saveNotification;
-
 - (void)timeLimitChangedNote:(NSNotification*)saveNotification;
 - (void)numRoundsChangedNote:(NSNotification*)saveNotification;
 - (void)repRoundsChangedNote:(NSNotification*)saveNotification;
+- (void)metricSavedNote:(NSNotification*)saveNotification;
 
 // Misc Methods:
 
@@ -105,6 +111,7 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 
+- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*) metric;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
