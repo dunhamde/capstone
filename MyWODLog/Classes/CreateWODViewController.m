@@ -221,7 +221,7 @@
 		
 		EditViewController *controller = [[EditViewController alloc] init];
 		
-		[controller setTitleName:@"Set Exercise's Metric"];
+		[controller setTitleName:@"Metric"];
 		[controller setPlaceholder:[e name]];
 		[controller setNotificationName:@"MetricSent"];
 		[controller setEditType:EDIT_TYPE_NUMBER];

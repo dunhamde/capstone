@@ -233,99 +233,35 @@
 {
 
 	if (save) {
-		
-		// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-		//NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-		//[self setAddingManagedObjectContext:addingContext];
-		//[addingContext release];
-		
-		//[managedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-		
+
 		EXERCISE *e = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:managedObjectContext];
 		
 		[e setName:[[self cevc] name]];
 		[e setModes:[self mode]];
-		[e setQuantifiable:[[[self cevc] quantifiable] isOn]];
-		[e setRequiresMetric:[[[self cevc] metricRequired] isOn]];
+
+		NSNumber* quant = [[NSNumber alloc] initWithBool:[[[self cevc] quantifiable] isOn]];
+		NSNumber* metri = [[NSNumber alloc] initWithBool:[[[self cevc] metricRequired] isOn]];
 		
+		[e setQuantifiable:quant];
+		[e setRequiresMetric:metri];
+
 		[[self mode] addExercisesObject:e];
-		
-		
-		/*Update*/
-		/*NSString *modeQuery = [NSString stringWithFormat:@"name == '%@'", [[self mode] name]];
-		NSLog(@"Query: %@", modeQuery);
-		
-		
-		// Create and configure a fetch request with the Book entity.
-		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:addingManagedObjectContext];
-		[fetchRequest setEntity:entity];
-		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:modeQuery]];
-		
-		NSError *error0 = nil; 
-		NSArray *array = [addingManagedObjectContext executeFetchRequest:fetchRequest error:&error0];
-		if (!error0 && [array count] > 0) {
-			NSLog(@"COUNT=%d", [array count]);
-			MODE *m = [array objectAtIndex:0];
-			NSLog(@"Setting Mode" );
-			[lastExerciseAdded setModes:m];
-			[m addExercisesObject:lastExerciseAdded];
-			
-			// Save back to database
-			if (![addingManagedObjectContext save:&error0]) {
-				// Update to handle the error appropriately.
-				NSLog(@"Unresolved error %@, %@", error0, [error0 userInfo]);
-				exit(-1);  // Fail
-			}
-			
-			
-			NSLog(@"SET MODES CALLED");
-		}*/
-		
-		
-		/*
-		 The new book is associated with the add controller's managed object context.
-		 This is good because it means that any edits that are made don't affect the application's main managed object context -- it's a way of keeping disjoint edits in a separate scratchpad -- but it does make it more difficult to get the new book registered with the fetched results controller.
-		 First, you have to save the new book.  This means it will be added to the persistent store.  Then you can retrieve a corresponding managed object into the application delegate's context.  Normally you might do this using a fetch or using objectWithID: -- for example
-		 
-		 NSManagedObjectID *newBookID = [controller.book objectID];
-		 NSManagedObject *newBook = [applicationContext objectWithID:newBookID];
-		 
-		 These techniques, though, won't update the fetch results controller, which only observes change notifications in its context.
-		 You don't want to tell the fetch result controller to perform its fetch again because this is an expensive operation.
-		 You can, though, update the main context using mergeChangesFromContextDidSaveNotification: which will emit change notifications that the fetch results controller will observe.
-		 To do this:
-		 1	Register as an observer of the add controller's change notifications
-		 2	Perform the save
-		 3	In the notification method (addControllerContextDidSave:), merge the changes
-		 4	Unregister as an observer
-		 */
-	//	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		
-	//	[dnc addObserver:self selector:@selector(createExerciseControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+	
 
 		NSError *error;
 
-		/*if (addingManagedObjectContext == NULL) {
-			NSLog(@"AMOC IS NULL");
-		}*/
 		if (![managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-	//	[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
-		//NSLog( @"HERE B1" );
+
 	}
 
-	// Release the adding managed object context.
-	//[self setAddingManagedObjectContext:nil];
-//NSLog( @"HERE B2" );
+
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
-	//NSLog( @"HERE B3" );
-	//[[self fetchedResultsController] release];
-	//[self setFetchedResultsController:nil];
+	
 }
 
 
