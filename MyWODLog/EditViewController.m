@@ -11,8 +11,8 @@
 
 @implementation EditViewController
 
-@synthesize titleName, notificationName, editField, editField2, editBox, editType, defaultText, placeholder, popToRoot;
-@synthesize enableEditField2;
+@synthesize titleName, notificationName, editField, editBox, editType, defaultText, placeholder, popToRoot;
+@synthesize enableEditField2, editField2, defaultText2, placeholder2;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
@@ -85,7 +85,7 @@
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
 			if ([self enableEditField2]) {
-				self.editField2.keyboardTYpe = UIKeyboardTypeDefault;
+				self.editField2.keyboardType = UIKeyboardTypeDefault;
 				self.editField2.hidden = NO;
 				self.editField2.enabled = YES;
 			}
@@ -96,7 +96,7 @@
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
 			if ([self enableEditField2]) {
-				self.editField2.keyboardTYpe = UIKeyboardTypeNumberPad;
+				self.editField2.keyboardType = UIKeyboardTypeNumberPad;
 				self.editField2.hidden = NO;
 				self.editField2.enabled = YES;
 			}
