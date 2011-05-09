@@ -74,6 +74,8 @@
         default:
             break;
     }	
+	
+	[format release];
 
 
 }
@@ -117,6 +119,23 @@
 	//NSLog(@"hidden TOUCHED");
 	self.hiddenButton.enabled = NO;
 	[scoreField resignFirstResponder];
+	
+	// Check to see if the user is trying to stop setting the date. If the hiddenButton is pressed while the Date Picker is up, close it.
+	if ([dateField isFirstResponder]) {
+		[dateField	resignFirstResponder];
+		
+		NSDateFormatter *format = [[NSDateFormatter alloc] init];
+		[format setDateFormat:@"MM/dd/yyyy"];
+		NSString *newDate = [format stringFromDate:[datePicker date]];
+		[[self dateField] setText:newDate];
+		[self setDate:[datePicker date]];
+	}
+}
+
+- (void)dateFieldTouched {
+	//NSLog(@"score TOUCHED");
+	[hiddenButton setUserInteractionEnabled:YES];
+	self.hiddenButton.enabled = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

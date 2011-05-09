@@ -53,6 +53,7 @@
 - (IBAction)save:(id)sender;
 - (IBAction)scoreFieldTouched;
 - (IBAction)hiddenButtonTouched;
+- (IBAction)dateFieldTouched;
 
 @end
 
