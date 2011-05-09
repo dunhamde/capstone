@@ -21,6 +21,7 @@
 	
 	// UI Elements:
 	UIBarButtonItem *saveButton;
+	UIDatePicker	*datePicker;
 	
 	IBOutlet UIButton		*timeButton;
 	IBOutlet UIButton		*hiddenButton;
@@ -35,6 +36,7 @@
 @property (nonatomic, retain) NSDate *start_date;
 
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
+@property (nonatomic, retain) UIDatePicker *datePicker;
 
 @property (nonatomic, assign) NSTimeInterval time_in_seconds;
 @property (nonatomic, assign) int hours;

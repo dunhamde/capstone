@@ -281,14 +281,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
-									<integer>12</integer>
+									<integer>17</integer>
+									<integer>16</integer>
 									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 34}, {186, 692}}</string>
+							<string>{{0, 170}, {186, 692}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -325,7 +325,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewScoresViewController.m</string>
+								<string>LogScoreViewController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -333,11 +333,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewScoresViewController.m</string>
+										<string>LogScoreViewController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>65BFAFE01377910A00A211F4</string>
+										<string>65BFB0081377A35700A211F4</string>
 										<key>history</key>
 										<array>
 											<string>6599D843135FFEC000C11679</string>
@@ -348,7 +348,6 @@
 											<string>65C1946F136E5A6000DB7AC5</string>
 											<string>65C19470136E5A6000DB7AC5</string>
 											<string>65C19471136E5A6000DB7AC5</string>
-											<string>65C19473136E5A6000DB7AC5</string>
 											<string>65C19499136E5D7900DB7AC5</string>
 											<string>65931492136F6FC30050F6BA</string>
 											<string>656842E61373586D00836EB7</string>
@@ -358,27 +357,28 @@
 											<string>6568435C137374CB00836EB7</string>
 											<string>6568435D137374CB00836EB7</string>
 											<string>656843671373763900836EB7</string>
-											<string>656843681373763900836EB7</string>
-											<string>6568436C1373778900836EB7</string>
 											<string>6568440113738C3600836EB7</string>
 											<string>6568440213738C3600836EB7</string>
 											<string>6568440313738C3600836EB7</string>
 											<string>6568440413738C3600836EB7</string>
 											<string>6568440513738C3600836EB7</string>
 											<string>6568440613738C3600836EB7</string>
-											<string>6568440A13738C3600836EB7</string>
 											<string>6568440B13738C3600836EB7</string>
 											<string>6568440F13738C3600836EB7</string>
 											<string>6568441013738C3600836EB7</string>
 											<string>6568441713738CA800836EB7</string>
-											<string>6568441C13738D8900836EB7</string>
 											<string>6568441D13738D8900836EB7</string>
-											<string>6568442A13738FBA00836EB7</string>
-											<string>6568443013738FD900836EB7</string>
 											<string>65BFAFCE13778C6D00A211F4</string>
 											<string>65BFAFCF13778C6D00A211F4</string>
 											<string>65BFAFD81377909D00A211F4</string>
-											<string>65BFAFD91377909D00A211F4</string>
+											<string>65BFAFE9137795D000A211F4</string>
+											<string>65BFAFEA137795D000A211F4</string>
+											<string>65BFB0001377A32700A211F4</string>
+											<string>65BFB0011377A32700A211F4</string>
+											<string>65BFB0021377A32700A211F4</string>
+											<string>65BFB0031377A32700A211F4</string>
+											<string>65BFB0041377A32700A211F4</string>
+											<string>65BFB0051377A32700A211F4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -576,11 +576,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>65BFAFDF137790AF00A211F4</string>
+		<string>65BFB0071377A32700A211F4</string>
 		<string>65BFAFD313778C6D00A211F4</string>
 		<string>65BFAF79137773D600A211F4</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6599D804135E5AF900C11679</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/derek/capstone/MyWODLog/MyWODLog.xcodeproj</string>
 	</array>
@@ -606,7 +606,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewScoresViewController.m</string>
+								<string>WODListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -677,7 +677,7 @@
 			<key>WindowToolGUID</key>
 			<string>6599D804135E5AF900C11679</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

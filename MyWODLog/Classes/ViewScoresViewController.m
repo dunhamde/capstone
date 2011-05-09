@@ -60,21 +60,27 @@
 }
 
 - (IBAction)toggleSort	{
-	
-	NSLog(@"TOGGLE");
-	
+
 	selectedUnit = [segmentedControl selectedSegmentIndex];
-	NSSortDescriptor *nameDescriptor;
+	NSSortDescriptor *nameDescriptor, *timeDescriptor, *roundDescriptor, *repDescriptor;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
 	NSString	*key;
+	NSArray *sortDescriptors;
+	
 	if (selectedUnit == DATE_INDEX) {
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
 		key = @"date";
+		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 	} else {
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"wod.name" ascending:YES];
+		timeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+		roundDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rounds" ascending:YES];
+		repDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reps" ascending:YES];
+		
 		key = @"wod.name";
+		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, timeDescriptor, roundDescriptor, repDescriptor, nil];
+
 	}
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	[fetchRequest setEntity:entity];

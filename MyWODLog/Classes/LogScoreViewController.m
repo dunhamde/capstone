@@ -13,7 +13,7 @@
 
 @synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField;
 @synthesize time_in_seconds, hours, minutes, seconds;
-@synthesize saveButton;
+@synthesize saveButton,datePicker;
 
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -32,6 +32,9 @@
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
 	self.hiddenButton.enabled = NO;
+	
+	datePicker = [[UIDatePicker alloc] init];
+	dateField.inputView = datePicker; 
 
 	// Configure the save button.
 	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
@@ -71,6 +74,8 @@
         default:
             break;
     }	
+
+
 }
 
 - (void)timeButtonPressed	{
@@ -126,6 +131,7 @@
 }
 
 
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -145,11 +151,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.datePicker = nil;
 }
 
 
 - (void)dealloc {
     [super dealloc];
+	
 }
 
 
