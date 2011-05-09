@@ -13,7 +13,7 @@
 
 @implementation ViewScoresViewController
 
-@synthesize  fetchedResultsController, managedObjectContext, curScores,table;
+@synthesize  fetchedResultsController, managedObjectContext, curScores,table, filterLabel, segmentedControl;
 
 - (id)init {
 	// Call the superclass's designated initializer
@@ -22,6 +22,9 @@
 	toolbar = [[UIToolbar alloc] init];
 	toolbar.barStyle = UIBarStyleDefault;
 	[toolbar sizeToFit];
+	
+
+	
 	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
 	// Set the title of the nav bar to WOD List when WODListViewController
@@ -38,6 +41,12 @@
 	
     [super viewDidLoad];
 	
+	filterLabel.backgroundColor = [UIColor clearColor];
+	filterLabel.font = [UIFont boldSystemFontOfSize: 15.0f];
+	filterLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	filterLabel.textAlignment = UITextAlignmentCenter;
+	
+	
 	if (managedObjectContext == nil) 
         managedObjectContext = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
 	
@@ -48,6 +57,37 @@
 		exit(-1);  // Fail
 	}
 	
+}
+
+- (IBAction)toggleSort	{
+	
+	NSLog(@"TOGGLE");
+	
+	selectedUnit = [segmentedControl selectedSegmentIndex];
+	NSSortDescriptor *nameDescriptor;
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+	NSString	*key;
+	if (selectedUnit == DATE_INDEX) {
+		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+		key = @"date";
+	} else {
+		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"wod.name" ascending:YES];
+		key = @"wod.name";
+	}
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setSortDescriptors:sortDescriptors];
+	[fetchRequest setEntity:entity];
+	[fetchedResultsController initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:key cacheName:@"Root"];	
+	
+	NSError *error;
+	if (![[self fetchedResultsController] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
+	
+	[table reloadData];
 }
 
 #pragma mark -
@@ -76,6 +116,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	NSLog(@"CELL");
     // Dequeue or if necessary create a ScoreTableViewCell, then set its recipe to the recipe for the current row.
     static NSString *ScoreCellIdentifier = @"ScoreCellIdentifier";
     
@@ -137,7 +179,6 @@
 	// Create and initialize the fetch results controller.
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
 	[self setFetchedResultsController:aFetchedResultsController];
-	NSLog(@"Fetched results", fetchedResultsController);
 	//	self.fetchedResultsController = aFetchedResultsController;
 	[[self fetchedResultsController] setDelegate:self];
 	//	fetchedResultsController.delegate = self;

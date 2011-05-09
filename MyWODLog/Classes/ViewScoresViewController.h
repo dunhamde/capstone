@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#define DATE_INDEX 0
+#define WOD_INDEX 1
+
 @interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 	
 	UIToolbar *toolbar;
@@ -16,16 +19,20 @@
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
 	NSArray	*curScores;
+	IBOutlet UILabel *filterLabel;
+	IBOutlet UISegmentedControl	*segmentedControl;
+	NSUInteger	selectedUnit;
 
 }
 
+- (IBAction)toggleSort;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain) UITableView *table;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-
-
+@property (nonatomic, retain) IBOutlet UILabel	*filterLabel;
+@property (nonatomic, retain) IBOutlet UISegmentedControl	*segmentedControl;
 @property (nonatomic, retain) NSArray	*curScores;
 
 
