@@ -11,7 +11,8 @@
 
 @implementation EditViewController
 
-@synthesize titleName, notificationName, editField, editBox, editType, defaultText, placeholder, popToRoot;
+@synthesize titleName, notificationName, editField, editField2, editBox, editType, defaultText, placeholder, popToRoot;
+@synthesize enableEditField2;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
@@ -20,6 +21,7 @@
 	if (self) {
 		// Custom initialization.
 		[self setPopToRoot:YES];
+		[self setEnableEditField2:NO];
 	}
 	return self;
 }
@@ -73,27 +75,38 @@
 
 - (void)initCustomEditPreferences
 {
-	
 	// Center Text Field Text:
 	self.editField.textAlignment = UITextAlignmentCenter;
+	self.editField2.textAlignment = UITextAlignmentCenter;
 	
 	switch ([self editType]) {
 		case EDIT_TYPE_NORMAL:
 			self.editField.keyboardType = UIKeyboardTypeDefault;
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
+			if ([self enableEditField2]) {
+				self.editField2.keyboardTYpe = UIKeyboardTypeDefault;
+				self.editField2.hidden = NO;
+				self.editField2.enabled = YES;
+			}
 			self.editBox.hidden = YES;
 			break;
 		case EDIT_TYPE_NUMBER:
 			self.editField.keyboardType = UIKeyboardTypeNumberPad;
 			self.editField.hidden = NO;
 			self.editField.enabled = YES;
+			if ([self enableEditField2]) {
+				self.editField2.keyboardTYpe = UIKeyboardTypeNumberPad;
+				self.editField2.hidden = NO;
+				self.editField2.enabled = YES;
+			}
 			self.editBox.hidden = YES;
-			//self.editBox.enabled = NO;
 			break;
 		case EDIT_TYPE_TEXTBOX:
 			self.editField.hidden = YES;
 			self.editField.enabled = NO;
+			self.editField2.hidden = YES;
+			self.editField2.enabled = NO;
 			self.editBox.keyboardType = UIKeyboardTypeDefault;
 			self.editBox.hidden = NO;
 			break;
@@ -125,6 +138,8 @@
 	
 }
 
+
+
 - (IBAction)cancel:(id)sender
 {
 	[[self navigationController] popToRootViewControllerAnimated:YES];
@@ -137,15 +152,27 @@
 	
 	// Create a dictionary with the exercise and the quantity and their respective keys
 	NSString *returnable;
+	NSString *returnable2;
 	
 	if (self.editField.hidden == YES) {
 		returnable = [[self editBox] text];
 	}
 	else {
 		returnable = [[self editField] text];
+		if ([self enableEditField2]) {
+			returnable2 = [[self editField2] text];
+		}
 	}
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+	NSDictionary *dict = nil;
+	
+	if ([self enableEditField2]) {
+		dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,returnable2,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,DICTIONARY_KEY2,nil]];
+	} else {
+		dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+	}
+
+	
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
 	
@@ -154,7 +181,6 @@
 	} else {
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
-
 	
 	
 }
