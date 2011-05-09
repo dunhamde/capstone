@@ -14,6 +14,7 @@
 #define EDIT_TYPE_TEXTBOX	3
 
 #define DICTIONARY_KEY		@"Text"
+#define DICTIONARY_KEY2		@"Text2"
 
 
 @interface EditViewController : UIViewController {
@@ -24,12 +25,16 @@
 	NSString	*notificationName;
 	NSString	*defaultText;
 	NSString	*placeholder;
+	NSString	*defaultText2;
+	NSString	*placeholder2;
 	
 	UIBarButtonItem			*saveButton;
 	IBOutlet UITextField	*editField;
+	IBOutlet UITextField	*editField2;
 	IBOutlet UITextView		*editBox;
 	
 	BOOL popToRoot;
+	BOOL enableEditField2;
 	
 }
 
@@ -43,14 +48,21 @@
 - (NSString*)dictionaryKey;
 
 
+
 @property (nonatomic, assign) int editType;
 @property (nonatomic, retain) NSString *titleName;
 @property (nonatomic, retain) NSString *notificationName;
+
 @property (nonatomic, retain) NSString *defaultText;
 @property (nonatomic, retain) NSString *placeholder;
+@property (nonatomic, retain) NSString *defaultText2;
+@property (nonatomic, retain) NSString *placeholder2;
+
 @property (nonatomic, retain) IBOutlet UITextField *editField;
+@property (nonatomic, retain) IBOutlet UITextField *editField2;
 @property (nonatomic, retain) IBOutlet UITextView *editBox;
 @property (nonatomic, assign) BOOL popToRoot;
+@property (nonatomic, assign) BOOL enableEditField2;
 
 
 

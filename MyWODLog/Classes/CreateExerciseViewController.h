@@ -18,10 +18,12 @@
 	
 	id <CreateExerciseViewControllerDelegate> delegate;
 	
-	EXERCISE *exercise;
+//	EXERCISE *exercise;
 
 	
 	IBOutlet UITextField *nameField;
+	IBOutlet UISwitch *metricRequired;
+	IBOutlet UISwitch *quantifiable;
 	
 	NSString *name;
 	
@@ -32,8 +34,10 @@
 - (void)save:(id)sender;
 
 @property (nonatomic, assign) id <CreateExerciseViewControllerDelegate> delegate;
-@property (nonatomic, retain) EXERCISE *exercise;
+//@property (nonatomic, retain) EXERCISE *exercise;
 @property (nonatomic, retain) UITextField *nameField;
+@property (nonatomic, retain) UISwitch *metricRequired;
+@property (nonatomic, retain) UISwitch *quantifiable;
 @property (nonatomic, retain) NSString *name;
 
 @end

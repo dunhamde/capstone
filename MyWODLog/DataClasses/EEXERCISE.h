@@ -2,7 +2,7 @@
 //  EEXERCISE.h
 //  MyWODLog
 //
-//  Created by Matthew Dalrymple on 4/23/11.
+//  Created by Matthew Dalrymple on 5/7/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,8 +16,9 @@
 }
 
 @property (nonatomic, retain) NSNumber * quantity;
-@property (nonatomic, retain) EXERCISE * exercise;
+@property (nonatomic, retain) NSString * metric;
 @property (nonatomic, retain) NSSet* wods;
+@property (nonatomic, retain) EXERCISE * exercise;
 
 @end
 
@@ -27,10 +28,6 @@
 - (void)removeWodsObject:(WOD *)value;
 - (void)addWods:(NSSet *)value;
 - (void)removeWods:(NSSet *)value;
-// Adding these below got rid of the warnings:  (remove them if crashes occur)
-- (void)setQuantity:(NSNumber *)value;
-- (NSNumber*)quantity;
-- (void)setExercise:(EXERCISE *)value;
-- (EXERCISE*)exercise;
+
 @end
 
