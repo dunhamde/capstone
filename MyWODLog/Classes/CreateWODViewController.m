@@ -14,8 +14,7 @@
 
 @synthesize managedObjectContext, delegate, saveButton, table;
 @synthesize readyToSave, quantifyExercises, showNumRounds, showRepRounds, showTimeLimit;
-@synthesize exerciseToAdd, exerciseQtyToAdd;
-@synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
+@synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodExerciseMetricArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 @synthesize repRoundList;
 
 
@@ -29,6 +28,7 @@
 		
 		[self setWodExerciseArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodExerciseQtyArray:[NSMutableArray arrayWithCapacity:0]];
+		[self setWodExerciseMetricArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
 		
     }
@@ -78,7 +78,7 @@
 	[dnc addObserver:self selector:@selector(timeLimitChangedNote:) name:@"TimeLimitSent" object:nil];
 	[dnc addObserver:self selector:@selector(numRoundsChangedNote:) name:@"NumRoundsSent" object:nil];
 	[dnc addObserver:self selector:@selector(repRoundsChangedNote:) name:@"RepRoundsSent" object:nil];
-	[dnc addObserver:self selector:@selector(metricSavedNote:) name:@"MetricSent" object:nil];
+
 	// Handle Rep Round (if need be)
 	if ([self repRoundList] != nil) {
 
@@ -176,6 +176,13 @@
 		[[self wodExerciseQtyArray] addObject:qty];
 	}
 	
+	if (metric == nil) {
+		[[self wodExerciseMetricArray] addObject:@""];
+	} else {
+		[[self wodExerciseMetricArray] addObject:metric];
+	}
+
+	
 	[[self table] reloadData];
 
 	
@@ -191,9 +198,10 @@
 
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification {
 
+NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	NSDictionary *dict = [saveNotification userInfo];
 	
-	// Update 'Exercises' (and its quantity) and refresh the table
+	// Update 'Exercises' (and its quantity and metric) and refresh the table
 	EXERCISE *e = (EXERCISE*)[dict objectForKey:@"Exercise"];
 	[[self wodExerciseArray] addObject:e];
 	
@@ -205,44 +213,28 @@
 		q = [f numberFromString:qty];
 		[f release];
 	}
-
-/*	if (q == nil) {
-		////TODO:  does this crash?
-		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
-	} else {
-		[[self wodExerciseQtyArray] addObject:q];
-	}
-
 	
-	[[self table] reloadData];
-*/	
+	NSString *m = (NSString*)[dict objectForKey:@"Metric"];
 
 	if ([e requiresMetric] > 0) {
 		
-		EditViewController *controller = [[EditViewController alloc] init];
-		
-		[controller setTitleName:@"Metric"];
-		[controller setPlaceholder:[e name]];
-		[controller setNotificationName:@"MetricSent"];
-		[controller setEditType:EDIT_TYPE_NUMBER];
-//		[controller setDefaultText:[self wodTimeLimit]];
-		[[self navigationController] pushViewController:controller animated:YES];		
-		
-		[controller release];
+		[self addExerciseElement:e quantity:q metric:m];
 		
 	} else {
 		
 		[self addExerciseElement:e quantity:q metric:nil];
 		
 	}
+	
+	[[self table] reloadData];
 
 	// Remove the notifcation
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@"ExerciseSelected" object:nil];
 	
 	// See if this change will allow us to save
-//	[self evaluateSaveReadiness];
-	
+	[self evaluateSaveReadiness];
+NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 }
 
 
@@ -399,22 +391,6 @@
 	// See if this change will allow us to save
 	[self evaluateSaveReadiness];
 
-}
-
-
-- (void)metricSavedNote:(NSNotification*)saveNotification {
-	
-	NSDictionary *dict = [saveNotification userInfo];
-	NSString *metric = [dict objectForKey:@"Text"];
-	
-	
-
-	
-	[[self table] reloadData];
-	
-	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-	[dnc removeObserver:self name:@"MetricSent" object:nil];
-	
 }
 
 

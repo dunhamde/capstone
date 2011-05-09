@@ -11,18 +11,20 @@
 
 @implementation SetExerciseQuantityViewController
 
-@synthesize exercise, quantityField;
+@synthesize exercise, quantityField, metricField, getMetric, getQuantity;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization.
+		[self setGetMetric:NO];
+		[self setGetQuantity:NO];
     }
     return self;
 }
-*/
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -30,7 +32,30 @@
     
 	[super viewDidLoad];
 	
-	[self setTitle:@"Set Quantity"];
+	if ([self getMetric] && [self getQuantity]) {
+		[self setTitle:@"Set Quantity and Metric"];
+		self.metricField.enabled = YES;
+		self.metricField.hidden = NO;
+		self.metricField.placeholder = @"Weight/Distance/Other Metric";
+		self.quantityField.enabled = YES;
+		self.quantityField.hidden = NO;
+		self.quantityField.placeholder = @"Quantity";
+	} else if ([self getQuantity]) {
+		[self setTitle:@"Set Quantity"];
+		self.metricField.enabled = NO;
+		self.metricField.hidden = YES;
+		self.quantityField.enabled = YES;
+		self.quantityField.hidden = NO;
+		self.quantityField.placeholder = @"Quantity";
+	} else {
+		[self setTitle:@"Set Metric"];
+		self.metricField.enabled = NO;
+		self.metricField.hidden = YES;
+		self.quantityField.enabled = YES;
+		self.quantityField.hidden = NO;
+		self.quantityField.placeholder = @"Weight/Distance/Other Metric";
+	}
+
 	
 	UIBarButtonItem *bbi;
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
@@ -56,11 +81,24 @@
 	
 	if ([[[self quantityField] text] length] > 0 ) {
 		
+		NSString *metric = nil;
+		NSString *quantity = nil;
+		
+		if ([self getMetric] && [self getQuantity]) {
+			metric = [[self metricField] text];
+			quantity = [[self quantityField] text];
+		} else if ([self getQuantity]) {
+			metric = @"";
+			quantity = [[self quantityField] text];
+		} else {
+			quantity = @"";
+			metric = [[self quantityField] text];
+		}
+		
 		// Create a dictionary with the exercise and the quantity and their respective keys
-		NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self exercise],[[self quantityField] text],nil] forKeys:[NSArray arrayWithObjects:@"Exercise",@"Quantity",nil]];
-		//NSDictionary *dict = [NSDictionary dictionaryWithObject:[self exercise] forKey:@"Exercise"];
+		NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self exercise],quantity,metric,nil] forKeys:[NSArray arrayWithObjects:@"Exercise",@"Quantity",@"Metric",nil]];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
-	
+NSLog(@"EXERCISE SELECTED SENT");
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		
 	}

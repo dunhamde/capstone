@@ -15,6 +15,10 @@
 	EXERCISE *exercise;
 	
 	IBOutlet UITextField *quantityField;
+	IBOutlet UITextField *metricField;
+	
+	BOOL getQuantity;
+	BOOL getMetric;
 
 }
 
@@ -22,5 +26,8 @@
 
 @property (nonatomic, retain) EXERCISE *exercise;
 @property (nonatomic, retain) UITextField *quantityField;
+@property (nonatomic, retain) UITextField *metricField;
+@property (nonatomic, assign) BOOL getQuantity;
+@property (nonatomic, assign) BOOL getMetric;
 
 @end

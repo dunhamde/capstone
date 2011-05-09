@@ -42,6 +42,7 @@
 	// WOD Attributes:
 	NSMutableArray*	wodExerciseArray;
 	NSMutableArray*	wodExerciseQtyArray;
+	NSMutableArray* wodExerciseMetricArray;
 	NSString*		wodName;
 	int				wodType;
 	NSString*		wodNotes;
@@ -59,9 +60,6 @@
 	BOOL showTimeLimit;
 	BOOL showNumRounds;
 	BOOL showRepRounds;
-	
-	EXERCISE*		exerciseToAdd;
-	NSNumber*		exerciseQtyToAdd;
 
 }
 
@@ -74,6 +72,7 @@
 
 @property (nonatomic, retain) NSMutableArray*	wodExerciseArray;
 @property (nonatomic, retain) NSMutableArray*	wodExerciseQtyArray;
+@property (nonatomic, retain) NSMutableArray*	wodExerciseMetricArray;
 @property (nonatomic, retain) NSString*			wodName;
 @property (nonatomic, assign) int				wodType;
 @property (nonatomic, retain) NSString*			wodNotes;
@@ -90,8 +89,6 @@
 @property (nonatomic, assign) BOOL				showNumRounds;
 @property (nonatomic, assign) BOOL				showRepRounds;
 
-@property (nonatomic, retain) EXERCISE*			exerciseToAdd;
-@property (nonatomic, retain) NSNumber*			exerciseQtyToAdd;
 
 
 // Notifications:
@@ -102,7 +99,7 @@
 - (void)timeLimitChangedNote:(NSNotification*)saveNotification;
 - (void)numRoundsChangedNote:(NSNotification*)saveNotification;
 - (void)repRoundsChangedNote:(NSNotification*)saveNotification;
-- (void)metricSavedNote:(NSNotification*)saveNotification;
+
 
 // Misc Methods:
 

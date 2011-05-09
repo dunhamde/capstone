@@ -119,7 +119,7 @@
 	[[self editField] setAutocorrectionType:UITextAutocorrectionTypeNo];
 	[[self editBox] setAutocorrectionType:UITextAutocorrectionTypeNo];
 	
-	// Set default text:
+	// Set default text #1:
 	if ([self defaultText] != nil && [[self defaultText] length] > 0) {
 		if (self.editBox.hidden) {
 			self.editField.text = [self defaultText];
@@ -134,7 +134,17 @@
 		}
 
 	}
-
+	
+	// Set default text #2:
+	if ([self defaultText2] != nil && [[self defaultText2] length] > 0) {
+		if (self.editBox.hidden) {
+			self.editField2.text = [self defaultText2];
+		}
+	} else if ([self placeholder2] != nil && [[self placeholder2] length] > 0) {
+		if (self.editBox.hidden) {
+			self.editField2.placeholder = [self placeholder2];
+		}
+	}
 	
 }
 

@@ -164,7 +164,7 @@
 - (void)createWODViewController:(CreateWODViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
-
+		NSLog(@"GOT TO DID FINISH WITH SAVE");
 		// Create a new WOD in the database with specific attributes:
 		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
 		
@@ -188,6 +188,7 @@
 		
 		NSMutableArray* exerciseArray = [createWODViewController wodExerciseArray];
 		NSMutableArray* exerciseQtyArray = [createWODViewController wodExerciseQtyArray];
+		NSMutableArray* exerciseMetricArray = [createWODViewController wodExerciseMetricArray];
 		
 	//	NSLog( @"EA: %d,  EQA: %d", [[createWODViewController wodExerciseArray] count], [[createWODViewController wodExerciseQtyArray] count] );
 	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
@@ -200,15 +201,19 @@
 
 		NSEnumerator *enumerE = [exerciseArray objectEnumerator];
 		NSEnumerator *enumerQ = [exerciseQtyArray objectEnumerator];
+		NSEnumerator *enumerM = [exerciseMetricArray objectEnumerator];
 		EXERCISE *e = nil;
 		NSNumber *q = nil;
+		NSString *m = nil;
 
-		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) ) {
+		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) && (m = (NSString*)[enumerM nextObject]) ) {
 			
 			EEXERCISE* eex = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:managedObjectContext];
 			[eex setExercise:e];
 			[eex setQuantity:q];
-			
+			if ([m length] > 0) {
+				[eex setMetric:m];
+			}
 			[eexList addObject:eex];
 			
 		}

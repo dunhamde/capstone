@@ -443,19 +443,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	
-	if ([self quantify]) {
+	EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
+	
+	if ([self quantify] || [[e requiresMetric] boolValue] ) {
 		
 	
 		SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
-		[seqvc setExercise:[fetchedResultsController objectAtIndexPath:indexPath]];
+		[seqvc setExercise:e];
 	
 		[[self navigationController] pushViewController:seqvc animated:YES];
 	
 		[seqvc release];
 		
 	} else {
-		
-		EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
+	
 
 		//NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray initWithObjects:e,nil] forKeys:[NSArray initWithObjects:@"Exericse",@"Quantity",nil]];
 		NSDictionary *dict = [NSDictionary dictionaryWithObject:e forKey:@"Exercise"];
