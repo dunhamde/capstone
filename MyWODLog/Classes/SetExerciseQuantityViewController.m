@@ -31,6 +31,14 @@
 - (void)viewDidLoad {
     
 	[super viewDidLoad];
+
+	
+	UIBarButtonItem *bbi;
+    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                        target:self
+                                                        action:@selector(save:)];
+    [[self navigationItem] setRightBarButtonItem:bbi];
+    [bbi release];
 	
 	if ([self getMetric] && [self getQuantity]) {
 		[self setTitle:@"Set Quantity and Metric"];
@@ -55,14 +63,6 @@
 		self.quantityField.hidden = NO;
 		self.quantityField.placeholder = @"Weight/Distance/Other Metric";
 	}
-
-	
-	UIBarButtonItem *bbi;
-    bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                                                        target:self
-                                                        action:@selector(save:)];
-    [[self navigationItem] setRightBarButtonItem:bbi];
-    [bbi release];
 	
 }
 
@@ -70,6 +70,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+
 	
 	[[self quantityField] becomeFirstResponder];
 	

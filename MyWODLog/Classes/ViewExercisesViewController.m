@@ -445,11 +445,21 @@
 	
 	EXERCISE *e = [fetchedResultsController objectAtIndexPath:indexPath];
 	
-	if ([self quantify] || [[e requiresMetric] boolValue] ) {
+	if ([self quantify] && [[e quantifiable] boolValue] || [[e requiresMetric] boolValue] ) {
 		
 	
 		SetExerciseQuantityViewController *seqvc = [[SetExerciseQuantityViewController alloc] init];
 		[seqvc setExercise:e];
+		[seqvc setGetMetric:NO];
+		[seqvc setGetQuantity:NO];
+		
+		if ([[e requiresMetric] boolValue]) {
+			[seqvc setGetMetric:YES];
+		}
+		
+		if ([[e quantifiable] boolValue]) {
+			[seqvc setGetQuantity:YES];
+		}
 	
 		[[self navigationController] pushViewController:seqvc animated:YES];
 	
