@@ -13,29 +13,18 @@
 
 @synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField;
 @synthesize time_in_seconds, hours, minutes, seconds;
-@synthesize saveButton,datePicker;
+@synthesize saveButton, datePicker, timePicker, pickerView;
 
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
-	self.hiddenButton.enabled = NO;
+	self.hiddenButton.enabled = NO;	
 	
 	datePicker = [[UIDatePicker alloc] init];
 	dateField.inputView = datePicker; 
-
+	
 	// Configure the save button.
 	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
 	[[self saveButton] setEnabled:YES];
@@ -55,9 +44,11 @@
 	switch ([[wod score_type] intValue]) {
         case WOD_SCORE_TYPE_NONE:
 			self.scoreLabel.text = @"Time";
+			self.scoreField.inputView = pickerView;
             break;
         case WOD_SCORE_TYPE_TIME:
 			self.scoreLabel.text = @"Time";
+			self.scoreField.inputView = timePicker;
             break;
 		case WOD_SCORE_TYPE_REPS:
 			self.scoreLabel.text = @"Reps";
@@ -103,19 +94,22 @@
 		[self setMinutes:[conversionInfo minute]];
 		[self setSeconds:[conversionInfo second]];
 		
-		NSString *placeholder = [[[[NSNumber numberWithInt:minutes] stringValue] stringByAppendingString:@":"] stringByAppendingString:[[NSNumber numberWithInt:seconds] stringValue]];
-		[scoreField setPlaceholder:placeholder];
+		NSString *placeholder = [NSString stringWithFormat:@"%i:%.2i",[conversionInfo minute],[conversionInfo second]];
+		[scoreField setText:placeholder];
 		[timeButton setTitle:@"Start Timer!" forState:UIControlStateNormal];
 	}	
 }
 
 - (void)scoreFieldTouched {
+
 	//NSLog(@"score TOUCHED");
 	[hiddenButton setUserInteractionEnabled:YES];
 	self.hiddenButton.enabled = YES;
 }
 
 - (void)hiddenButtonTouched {
+	
+	NSLog(@"subviews %@", [timePicker subviews]);
 	//NSLog(@"hidden TOUCHED");
 	self.hiddenButton.enabled = NO;
 	[scoreField resignFirstResponder];
@@ -129,7 +123,9 @@
 		NSString *newDate = [format stringFromDate:[datePicker date]];
 		[[self dateField] setText:newDate];
 		[self setDate:[datePicker date]];
+		[format release];
 	}
+	
 }
 
 - (void)dateFieldTouched {
@@ -149,15 +145,101 @@
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
+#pragma mark -
+#pragma mark UIPickerViewDelegate delegate methods
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component	{
+	NSInteger min = [timePicker selectedRowInComponent:MINUTES_COMPONENT];
+	NSInteger sec = [timePicker selectedRowInComponent:SECONDS_COMPONENT];
+	[self setTime_in_seconds:(sec + (min * 60))];
+	[scoreField setText:[NSString stringWithFormat:@"%i:%.2i",min,sec]];
+	
 }
-*/
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+	
+	UIView *returnView = nil;
+	
+	// Reuse the label if possible, otherwise create and configure a new one.
+	if ((view.tag == VIEW_TAG) || (view.tag == LABEL_TAG)) {
+		returnView = view;
+	}
+	else {
+        if (component == MINUTES_COMPONENT) {
+            returnView = [self labelCellWithWidth:MINUTES_COMPONENT_WIDTH rightOffset:MINUTES_LABEL_WIDTH];
+        }
+        else {
+            returnView = [self labelCellWithWidth:SECONDS_COMPONENT_WIDTH rightOffset:SECONDS_LABEL_WIDTH];
+        }
+	}
+	
+	// The text shown in the component is just the number of the component.
+	NSString *text = [NSString stringWithFormat:@"%d", row];
+	
+	// Where to set the text in depends on what sort of view it is.
+	UILabel *theLabel = nil;
+	if (returnView.tag == VIEW_TAG) {
+		theLabel = (UILabel *)[returnView viewWithTag:SUB_LABEL_TAG];
+	}
+	else {
+		theLabel = (UILabel *)returnView;
+	}
+    
+	theLabel.text = text;
+	return returnView;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+	
+	if (component == MINUTES_COMPONENT) {
+		return MINUTES_COMPONENT_WIDTH;
+	}
+
+	return SECONDS_COMPONENT_WIDTH;
+}
+
+
+#pragma mark -
+#pragma mark UIPickerViewDataSource delegate methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView	{
+	
+	// Needs components for showing minutes and seconds
+	return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component	{
+	
+	// Both minutes and seconds require 59 rows
+	return 59;
+}
+
+#pragma mark -
+#pragma mark Misc. methods
+
+- (UIView *)labelCellWithWidth:(CGFloat)width rightOffset:(CGFloat)offset {
+	
+	// Create a new view that contains a label offset from the right.
+	CGRect frame = CGRectMake(0.0, 0.0, width, 32.0);
+	UIView *view = [[[UIView alloc] initWithFrame:frame] autorelease];
+	view.tag = VIEW_TAG;
+	
+	frame.size.width = width - offset;
+	UILabel *subLabel = [[UILabel alloc] initWithFrame:frame];
+	subLabel.textAlignment = UITextAlignmentRight;
+	subLabel.backgroundColor = [UIColor clearColor];
+	subLabel.font = [UIFont systemFontOfSize:24.0];
+	subLabel.userInteractionEnabled = NO;
+	
+	subLabel.tag = SUB_LABEL_TAG;
+	
+	[view addSubview:subLabel];
+	[subLabel release];
+	return view;
+}
+
+#pragma mark -
+#pragma mark Memory methods
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -171,6 +253,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	self.datePicker = nil;
+	self.timePicker = nil;
 }
 
 

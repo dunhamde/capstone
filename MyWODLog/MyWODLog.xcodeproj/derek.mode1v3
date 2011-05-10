@@ -288,7 +288,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 170}, {186, 692}}</string>
+							<string>{{0, 0}, {186, 692}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -337,7 +337,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>653CC20B1378998600FF38B5</string>
+										<string>653CC3761378F85E00FF38B5</string>
 										<key>history</key>
 										<array>
 											<string>6599D843135FFEC000C11679</string>
@@ -365,19 +365,19 @@
 											<string>6568440B13738C3600836EB7</string>
 											<string>6568440F13738C3600836EB7</string>
 											<string>6568441013738C3600836EB7</string>
-											<string>6568441713738CA800836EB7</string>
 											<string>65BFAFCE13778C6D00A211F4</string>
-											<string>65BFAFCF13778C6D00A211F4</string>
 											<string>65BFAFD81377909D00A211F4</string>
 											<string>65BFAFE9137795D000A211F4</string>
 											<string>65BFAFEA137795D000A211F4</string>
-											<string>65BFB0001377A32700A211F4</string>
-											<string>65BFB0011377A32700A211F4</string>
 											<string>65BFB0021377A32700A211F4</string>
-											<string>653CC2071378998600FF38B5</string>
-											<string>653CC2081378998600FF38B5</string>
-											<string>653CC2091378998600FF38B5</string>
-											<string>653CC20A1378998600FF38B5</string>
+											<string>653CC21413789F4300FF38B5</string>
+											<string>653CC21513789F4300FF38B5</string>
+											<string>653CC2DE1378D8EF00FF38B5</string>
+											<string>653CC2EA1378E43900FF38B5</string>
+											<string>653CC3681378F63800FF38B5</string>
+											<string>653CC3691378F63800FF38B5</string>
+											<string>653CC36A1378F63800FF38B5</string>
+											<string>653CC36B1378F63800FF38B5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -575,7 +575,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>653CC20C1378998600FF38B5</string>
+		<string>653CC3771378F85E00FF38B5</string>
 		<string>653CC2001378981F00FF38B5</string>
 		<string>653CC1FA1378964C00FF38B5</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -605,7 +605,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>WODListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -622,6 +622,8 @@
 							<string>318pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

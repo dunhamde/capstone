@@ -9,9 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "WOD.h"
 
+#define MINUTES_COMPONENT 0
+#define MINUTES_COMPONENT_WIDTH 110
+#define MINUTES_LABEL_WIDTH 60
+
+#define SECONDS_COMPONENT 1
+#define SECONDS_COMPONENT_WIDTH 106
+#define SECONDS_LABEL_WIDTH 56
+
+// Identifies for component views
+#define VIEW_TAG 41
+#define SUB_LABEL_TAG 42
+#define LABEL_TAG 43
+
 @protocol LogScoreViewControllerDelegate;
 
-@interface LogScoreViewController : UIViewController <UITextFieldDelegate> {
+@interface LogScoreViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
 	
 	id <LogScoreViewControllerDelegate> delegate;
 	WOD *wod;
@@ -23,11 +36,13 @@
 	UIBarButtonItem *saveButton;
 	UIDatePicker	*datePicker;
 	
+	IBOutlet UIPickerView	*timePicker;
 	IBOutlet UIButton		*timeButton;
 	IBOutlet UIButton		*hiddenButton;
 	IBOutlet UITextField	*scoreField;
 	IBOutlet UILabel		*scoreLabel;
 	IBOutlet UITextField	*dateField;
+	IBOutlet UIView			*pickerView;
 }
 
 @property (nonatomic, assign) id <LogScoreViewControllerDelegate> delegate;
@@ -37,6 +52,8 @@
 
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) UIDatePicker *datePicker;
+@property (nonatomic, retain) IBOutlet UIPickerView *timePicker;
+@property (nonatomic, retain) IBOutlet UIView *pickerView;
 
 @property (nonatomic, assign) NSTimeInterval time_in_seconds;
 @property (nonatomic, assign) int hours;
@@ -54,6 +71,7 @@
 - (IBAction)scoreFieldTouched;
 - (IBAction)hiddenButtonTouched;
 - (IBAction)dateFieldTouched;
+- (UIView *)labelCellWithWidth:(CGFloat)width rightOffset:(CGFloat)offset;
 
 @end
 
