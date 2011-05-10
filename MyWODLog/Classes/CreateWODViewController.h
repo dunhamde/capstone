@@ -108,7 +108,7 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 
-- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*) metric;
+- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*)metric;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 

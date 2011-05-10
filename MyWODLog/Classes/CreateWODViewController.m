@@ -66,6 +66,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	NSLog(@"VIEW WILL APPEAR");
 
 	// Register for exercises saved notifications
 	
@@ -106,6 +107,7 @@
 
 
 	}
+	NSLog(@"END VIEW WILL APPEAR");
 	 
 }
 
@@ -121,7 +123,7 @@
 
 
 - (IBAction)save:(id)sender {
-
+	NSLog(@"CW SAVE");
 	// Error check that save is possible:
 	if ([self wodName] == nil) {
 		return;
@@ -161,19 +163,23 @@
 		 [someError release];
 		 */
 	}
-	
+	NSLog(@"CW SAVE END");
 }
 
 
 
-- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*) metric {
+- (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*)metric {
+	
+	NSLog(@"ADDING ELEMENT");
 	
 	[[self wodExerciseArray] addObject:exercise];
 	
 	if (qty == nil) {
 		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
+		NSLog(@"QTY IS NULL SO ADDING IT ALL COOL LIKE");
 	} else {
 		[[self wodExerciseQtyArray] addObject:qty];
+		NSLog(@"QTY IS NO NULL!!:  %@",qty);
 	}
 	
 	if (metric == nil) {
@@ -182,13 +188,13 @@
 		[[self wodExerciseMetricArray] addObject:metric];
 	}
 
-	
+
 	[[self table] reloadData];
 
-	
+
 	// See if this change will allow us to save
 	[self evaluateSaveReadiness];
-	
+
 }
 
 
@@ -203,11 +209,12 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	
 	// Update 'Exercises' (and its quantity and metric) and refresh the table
 	EXERCISE *e = (EXERCISE*)[dict objectForKey:@"Exercise"];
-	[[self wodExerciseArray] addObject:e];
+	//[[self wodExerciseArray] addObject:e];
 	
 	NSNumber *q = nil;
 	if ([self quantifyExercises]) {
 		NSString *qty = (NSString*)[dict objectForKey:@"Quantity"];
+		NSLog(@"qty= %@", qty);
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		q = [f numberFromString:qty];
@@ -216,6 +223,9 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	
 	NSString *m = (NSString*)[dict objectForKey:@"Metric"];
 
+	NSLog(@"E: %@   []   Q: %@    []  M:  %@", e, q, m);
+	
+	
 	if ([e requiresMetric] > 0) {
 		
 		[self addExerciseElement:e quantity:q metric:m];
@@ -226,7 +236,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 		
 	}
 	
-	[[self table] reloadData];
+	//[[self table] reloadData];
 
 	// Remove the notifcation
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -702,9 +712,12 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
 			NSString *exerciseText = nil;
+			NSLog(@"DOES IT CRASH HERE?");
+			//TODO: Crashes here!
 			NSNumber *qty = (NSNumber *)[[self wodExerciseQtyArray] objectAtIndex:[indexPath row]];
+			NSLog(@" OR IS IT HERE?");
 			EXERCISE *exercise = (EXERCISE *)[[self wodExerciseArray] objectAtIndex:[indexPath row]];
-			
+			NSLog(@"MAYBE?");
 			if ([qty intValue] > 0) {
 				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",qty,[exercise name]];
 			} else {

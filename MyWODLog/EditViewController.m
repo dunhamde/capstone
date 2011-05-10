@@ -79,6 +79,9 @@
 	self.editField.textAlignment = UITextAlignmentCenter;
 	self.editField2.textAlignment = UITextAlignmentCenter;
 	
+	self.editField2.enabled = NO;
+	self.editField2.hidden = YES;
+	
 	switch ([self editType]) {
 		case EDIT_TYPE_NORMAL:
 			self.editField.keyboardType = UIKeyboardTypeDefault;
