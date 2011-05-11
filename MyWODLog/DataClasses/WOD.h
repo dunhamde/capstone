@@ -47,6 +47,7 @@
 @property (nonatomic, retain) NSNumber * timelimit;
 @property (nonatomic, retain) NSDate * date_created;
 @property (nonatomic, retain) NSNumber * score_type;
+@property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet* scores;
 @property (nonatomic, retain) NSSet* rrounds;

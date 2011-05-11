@@ -19,6 +19,7 @@
 @dynamic timelimit;
 @dynamic date_created;
 @dynamic score_type;
+@dynamic type;
 @dynamic name;
 @dynamic scores;
 @dynamic rrounds;

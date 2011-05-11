@@ -2,8 +2,13 @@
 #  Created by: Matthew Dalrymple
 #  Last Updated: Thursday, 5 May 2011
 
+# [ ] -- Needs to be done
+# [-] -- Half finished/needs work
+# [X] -- Completed
+
+
 MAJOR:
-[ ] Fix add exercises to accomidate WODs like 'Nicole'
+[-] Fix add exercises to accomidate WODs like 'Nicole'
 [ ] Create WOD Page: On WOD Type change remove all Exercises
 [ ] Create WOD Page: Don't allow Add Exercise if no WOD Type
 [ ] Create WOD Page: Delete Exercise on select and confirm
@@ -21,6 +26,9 @@ MAJOR:
 [X] Update Display WOD Page to reflect new Create WOD page
 
 MINOR:
+[ ] Add Alert to Add Exercise page to confirm the user adds a pound symbol
+    '#' (or other symbol we want to use) to the exercise name to replace with
+    the metric when added to a WOD
 [ ] Make a Settings page (that shows up in iOS Settings app, not our app)
  - Put an about page for now
 [ ] Change ListEditVC to take a style option, make the other style

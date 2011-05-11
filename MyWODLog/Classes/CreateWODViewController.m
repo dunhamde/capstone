@@ -170,7 +170,7 @@
 
 - (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*)metric {
 	
-	NSLog(@"ADDING ELEMENT");
+
 	
 	[[self wodExerciseArray] addObject:exercise];
 	

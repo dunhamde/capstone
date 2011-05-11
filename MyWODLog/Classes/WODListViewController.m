@@ -179,6 +179,7 @@
 		[wod setName:[createWODViewController wodName]];
 		[wod setTimelimit:timelimit];
 		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodScoreType]]];
+		[wod setType:[NSNumber numberWithInt:[createWODViewController wodType]]];
 		[wod setRounds:rounds];
 		[wod setNotes:[createWODViewController wodNotes]];
 

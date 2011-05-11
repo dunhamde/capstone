@@ -13,6 +13,7 @@
 
 @implementation EEXERCISE 
 
+@dynamic name;
 @dynamic quantity;
 @dynamic metric;
 @dynamic wods;

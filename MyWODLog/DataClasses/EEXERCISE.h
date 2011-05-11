@@ -15,6 +15,7 @@
 {
 }
 
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * quantity;
 @property (nonatomic, retain) NSString * metric;
 @property (nonatomic, retain) NSSet* wods;
@@ -28,6 +29,9 @@
 - (void)removeWodsObject:(WOD *)value;
 - (void)addWods:(NSSet *)value;
 - (void)removeWods:(NSSet *)value;
-
+- (EXERCISE*)exercise;
+- (void)setExercise:(EXERCISE *)value;
+- (NSNumber*)quantity;
+- (void)setQuantity:(NSNumber *)value;
 @end
 

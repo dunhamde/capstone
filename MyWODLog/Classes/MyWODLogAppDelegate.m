@@ -245,6 +245,19 @@
 	MODE*		m = nil;
 	EXERCISE*	e = nil;
 	WOD*		w = nil;
+	RROUND*		r = nil;
+	
+//(EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired {
+	NSMutableArray* amandaRounds = [NSMutableArray arrayWithCapacity:0];
+	
+	
+	r = [self addRepRound:@"9"];
+	[amandaRounds addObject:r];
+	r = [self addRepRound:@"7"];
+	[amandaRounds addObject:r];
+	r = [self addRepRound:@"5"];
+	[amandaRounds addObject:r];
+	
 	
 	// Add everything to the MOC
 	m = [self addMode:@"Gymnastics"];
@@ -262,16 +275,19 @@
 	e = [self addExerciseToMode:m withName:@"Rope climb"];
 	
 	m = [self addMode:@"Mobility"];
-	e = [self addExerciseToMode:m withName:@"Run 100 meters"];
-	e = [self addExerciseToMode:m withName:@"Run 200 meters"];
-	e = [self addExerciseToMode:m withName:@"Run 400 meters"];
-	e = [self addExerciseToMode:m withName:@"Run 800 meters"];
-	e = [self addExerciseToMode:m withName:@"Run 1 mile"];
-	e = [self addExerciseToMode:m withName:@"Run 5 miles"];
+//	e = [self addExerciseToMode:m withName:@"Run 100 meters"];
+	e = [self addExerciseToMode:m withName:@"Run # meter(s)" isQuantifiable:NO requiresMetric:YES];
+//	e = [self addExerciseToMode:m withName:@"Run 200 meters"];
+//	e = [self addExerciseToMode:m withName:@"Run 400 meters"];
+//	e = [self addExerciseToMode:m withName:@"Run 800 meters"];
+	e = [self addExerciseToMode:m withName:@"Run # mile(s)" isQuantifiable:NO requiresMetric:YES];
+	//e = [self addExerciseToMode:m withName:@"Run 1 mile"];
+	//e = [self addExerciseToMode:m withName:@"Run 5 miles"];
 	e = [self addExerciseToMode:m withName:@"Any sprint distance"];
-	e = [self addExerciseToMode:m withName:@"Row 500 meters"];
-	e = [self addExerciseToMode:m withName:@"Row 1000 meters"];
-	e = [self addExerciseToMode:m withName:@"Row 2000 meters"];
+	e = [self addExerciseToMode:m withName:@"Row # meter(s)" isQuantifiable:NO requiresMetric:YES];
+//	e = [self addExerciseToMode:m withName:@"Row 500 meters"];
+//	e = [self addExerciseToMode:m withName:@"Row 1000 meters"];
+//	e = [self addExerciseToMode:m withName:@"Row 2000 meters"];
 	e = [self addExerciseToMode:m withName:@"Burpee"];
 	e = [self addExerciseToMode:m withName:@"Box jump"];
 	e = [self addExerciseToMode:m withName:@"Jump rope"];
@@ -286,6 +302,7 @@
 	e = [self addExerciseToMode:m withName:@"Thruster"];
 	e = [self addExerciseToMode:m withName:@"Snatch"];
 	e = [self addExerciseToMode:m withName:@"Power press"];
+	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
 	e = [self addExerciseToMode:m withName:@"Bench press"];
 	e = [self addExerciseToMode:m withName:@"Overhead squats"];
 	e = [self addExerciseToMode:m withName:@"Power snatch"];
@@ -302,6 +319,7 @@
 	e = [self addExerciseToMode:m withName:@""]; */
 	
 	w = [self addWOD:@"Amanda"];
+//	[w setScore_type:[[NSNumber alloc] initWithInt:]];
 	w = [self addWOD:@"Angie"];	
 	w = [self addWOD:@"Annie"];
 	w = [self addWOD:@"Barbara"];
@@ -375,9 +393,37 @@
 	
 	[exercise setName:name];
 	[exercise setModes:mode];
+	[exercise setQuantifiable:[[NSNumber alloc] initWithBool:YES]];
+	[exercise setRequiresMetric:[[NSNumber alloc] initWithBool:NO]];
 	
 	return exercise;
 	
+}
+
+
+- (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired {
+
+	EXERCISE* exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:[self managedObjectContext]];
+	
+	[exercise setName:name];
+	[exercise setModes:mode];
+	[exercise setQuantifiable:[[NSNumber alloc] initWithBool:quantifiable]];
+	[exercise setRequiresMetric:[[NSNumber alloc] initWithBool:metricRequired]];
+	
+	return exercise;
+
+}
+
+- (RROUND*)addRepRound:(NSString*)numReps {
+	
+	RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:[self managedObjectContext]];
+	
+	//TODO: check to see if rround is already in the DB... if it is return it
+	// or keep a list of them for this... i.e. a mutable array
+	
+	[rround setReps:numReps];
+	
+	return rround;
 }
 
 

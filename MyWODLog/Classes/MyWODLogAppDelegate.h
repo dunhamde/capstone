@@ -11,6 +11,7 @@
 #import "MODE.h"
 #import "EXERCISE.h"
 #import "WOD.h"
+#import "RROUND.h"
 
 @class MainPageViewController;
 
@@ -44,7 +45,9 @@
 
 - (MODE*)addMode:(NSString*)name;
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name;
+- (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired;
 - (WOD*)addWOD:(NSString*)name;
+- (RROUND*)addRepRound:(NSString*)numReps;
 
 
 @end
