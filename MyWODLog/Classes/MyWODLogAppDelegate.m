@@ -14,6 +14,8 @@
 
 @synthesize window;
 @synthesize mpvc;
+@synthesize repRounds;
+@synthesize exercises;
 
 
 #pragma mark -
@@ -241,27 +243,24 @@
 - (void)generateDefaultData {
 	
 	//TODO: should everything be capitalized?
+	[self setExercises:[NSMutableArray arrayWithCapacity:0]];
+	[self setRepRounds:[NSMutableArray arrayWithCapacity:0]];
 	
-	MODE*		m = nil;
-	EXERCISE*	e = nil;
-	WOD*		w = nil;
-	RROUND*		r = nil;
-	
-//(EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired {
-	NSMutableArray* amandaRounds = [NSMutableArray arrayWithCapacity:0];
-	
-	
-	r = [self addRepRound:@"9"];
-	[amandaRounds addObject:r];
-	r = [self addRepRound:@"7"];
-	[amandaRounds addObject:r];
-	r = [self addRepRound:@"5"];
-	[amandaRounds addObject:r];
+	MODE*			m = nil;
+	EXERCISE*		e = nil;
+	WOD*			w = nil;
+	RROUND*			r = nil;
+	EEXERCISE*		ee = nil;
+	NSEnumerator*	enumer = nil;
 	
 	
 	// Add everything to the MOC
 	m = [self addMode:@"Gymnastics"];
-	e = [self addExerciseToMode:m withName:@"Muscle up"];
+	e = [self addExerciseToMode:m withName:@"MUSCLE-UPS"];
+	e = [self addExerciseToMode:m withName:@"PULL-UPS"];
+	e = [self addExerciseToMode:m withName:@"PUSH-UPS"];
+	e = [self addExerciseToMode:m withName:@"SIT-UPS"];
+	e = [self addExerciseToMode:m withName:@"SQUATS"];
 	e = [self addExerciseToMode:m withName:@"Air squat"];
 	e = [self addExerciseToMode:m withName:@"Sit up"];
 	e = [self addExerciseToMode:m withName:@"Pull up"];
@@ -275,19 +274,10 @@
 	e = [self addExerciseToMode:m withName:@"Rope climb"];
 	
 	m = [self addMode:@"Mobility"];
-//	e = [self addExerciseToMode:m withName:@"Run 100 meters"];
 	e = [self addExerciseToMode:m withName:@"Run # meter(s)" isQuantifiable:NO requiresMetric:YES];
-//	e = [self addExerciseToMode:m withName:@"Run 200 meters"];
-//	e = [self addExerciseToMode:m withName:@"Run 400 meters"];
-//	e = [self addExerciseToMode:m withName:@"Run 800 meters"];
 	e = [self addExerciseToMode:m withName:@"Run # mile(s)" isQuantifiable:NO requiresMetric:YES];
-	//e = [self addExerciseToMode:m withName:@"Run 1 mile"];
-	//e = [self addExerciseToMode:m withName:@"Run 5 miles"];
 	e = [self addExerciseToMode:m withName:@"Any sprint distance"];
 	e = [self addExerciseToMode:m withName:@"Row # meter(s)" isQuantifiable:NO requiresMetric:YES];
-//	e = [self addExerciseToMode:m withName:@"Row 500 meters"];
-//	e = [self addExerciseToMode:m withName:@"Row 1000 meters"];
-//	e = [self addExerciseToMode:m withName:@"Row 2000 meters"];
 	e = [self addExerciseToMode:m withName:@"Burpee"];
 	e = [self addExerciseToMode:m withName:@"Box jump"];
 	e = [self addExerciseToMode:m withName:@"Jump rope"];
@@ -302,25 +292,73 @@
 	e = [self addExerciseToMode:m withName:@"Thruster"];
 	e = [self addExerciseToMode:m withName:@"Snatch"];
 	e = [self addExerciseToMode:m withName:@"Power press"];
-	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
+//	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
 	e = [self addExerciseToMode:m withName:@"Bench press"];
 	e = [self addExerciseToMode:m withName:@"Overhead squats"];
 	e = [self addExerciseToMode:m withName:@"Power snatch"];
 	e = [self addExerciseToMode:m withName:@"Sumo deadlift"];
 	e = [self addExerciseToMode:m withName:@"Kettlebell swing"];
-/*	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""];
-	e = [self addExerciseToMode:m withName:@""]; */
+	e = [self addExerciseToMode:m withName:@"SNATCH, # POUNDS"];
+
 	
-	w = [self addWOD:@"Amanda"];
-//	[w setScore_type:[[NSNumber alloc] initWithInt:]];
-	w = [self addWOD:@"Angie"];	
+	/*
+	 #define WOD_SCORE_TYPE_NONE		0
+	 #define WOD_SCORE_TYPE_TIME		1
+	 #define WOD_SCORE_TYPE_REPS		2
+	 #define WOD_SCORE_TYPE_RNDS		3
+	 
+	 #define WOD_TYPE_UNKNOWN		0
+	 #define WOD_TYPE_TIME			1
+	 #define WOD_TYPE_RFT			2	// Rounds For Time (RFT)
+	 #define WOD_TYPE_RRFT			3	// Rep Rounds For Time (RRFT)
+	 #define WOD_TYPE_RFMR			4	// Rounds For Max Rep (RFMR)
+	 #define WOD_TYPE_AMRAP			5	// As Many Rounds As Possible (AMRAP)
+	 #define WOD_TYPE_EMOTM			6	// Each Minute On The Minute (EMOTM)
+	 */
+	
+	// #### [AMANDA] ####
+	w = [self addWOD:@"AMANDA"];
+	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
+	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
+	
+	NSMutableArray* amandaRounds = [NSMutableArray arrayWithCapacity:0];
+	
+	r = [self addRepRound:@"9"];
+	[amandaRounds addObject:r];
+	r = [self addRepRound:@"7"];
+	[amandaRounds addObject:r];
+	r = [self addRepRound:@"5"];
+	[amandaRounds addObject:r];
+	
+	enumer = [amandaRounds objectEnumerator];
+	while( (r = (RROUND*)[enumer nextObject]) ) {
+		[w addRroundsObject:r];
+	}
+	
+	ee = [self addEExercise:@"SNATCH, # POUNDS" quantity:0 metric:@"135"];
+	[w addEexercisesObject:ee];
+	ee = [self addEExercise:@"MUSCLE-UPS" quantity:0 metric:nil];
+	[w addEexercisesObject:ee];
+	// #### [/AMANDA] ####
+	
+	
+	
+	// #### [ANGIE] ####
+	w = [self addWOD:@"ANGIE"];
+	
+	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
+	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
+
+	ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil];
+	[w addEexercisesObject:ee];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil];
+	[w addEexercisesObject:ee];
+	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil];
+	[w addEexercisesObject:ee];
+	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil];
+	[w addEexercisesObject:ee];
+	// #### [/ANGIE] ####
+	
 	w = [self addWOD:@"Annie"];
 	w = [self addWOD:@"Barbara"];
 	w = [self addWOD:@"Betty"];	
@@ -396,6 +434,8 @@
 	[exercise setQuantifiable:[[NSNumber alloc] initWithBool:YES]];
 	[exercise setRequiresMetric:[[NSNumber alloc] initWithBool:NO]];
 	
+	[[self exercises] addObject:exercise];
+	
 	return exercise;
 	
 }
@@ -410,20 +450,64 @@
 	[exercise setQuantifiable:[[NSNumber alloc] initWithBool:quantifiable]];
 	[exercise setRequiresMetric:[[NSNumber alloc] initWithBool:metricRequired]];
 	
+	[[self exercises] addObject:exercise];
+	
 	return exercise;
 
 }
 
+
+
 - (RROUND*)addRepRound:(NSString*)numReps {
+	
+	// If the rep round is already in the DB, return it instead of creating a new one
+	NSEnumerator *enumerR = [[self repRounds] objectEnumerator];
+	RROUND* r = nil;
+	
+	while ( (r = (RROUND*)[enumerR nextObject]) ) {
+		if ( [[r reps] isEqualToString:numReps] ) {
+			return r;
+		}
+	}
 	
 	RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:[self managedObjectContext]];
 	
-	//TODO: check to see if rround is already in the DB... if it is return it
-	// or keep a list of them for this... i.e. a mutable array
-	
 	[rround setReps:numReps];
 	
+	[[self repRounds] addObject:rround];
+	
 	return rround;
+}
+
+
+- (EEXERCISE*)addEExercise:(NSString*)exerciseName quantity:(int)qty metric:(NSString*)met {
+	
+	NSLog(@"----1");
+	// If the rep round is already in the DB, return it instead of creating a new one
+	NSEnumerator *enumerE = [[self exercises] objectEnumerator];
+	EXERCISE* e = nil;
+	
+	while ( (e = (EXERCISE*)[enumerE nextObject]) ) {
+		if ( [[e name] isEqualToString:exerciseName] ) {
+			break;
+		}
+	}
+	NSLog(@"----2");
+	if (e != nil) {
+		NSLog(@"----3");
+		EEXERCISE* ee = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:[self managedObjectContext]];
+	NSLog(@"----4 name = %@", exerciseName);
+		//TODO: replace name's '#' symbol with metric if exercise requires metric
+		[ee setExercise:e];
+		[ee setName:exerciseName];
+		[ee setQuantity:[[NSNumber alloc] initWithInt:qty]];
+		[ee setMetric:met];
+		
+		return ee;
+		
+	}
+	
+	return nil;
 }
 
 

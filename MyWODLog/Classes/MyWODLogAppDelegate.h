@@ -23,6 +23,12 @@
 	
 	MainPageViewController			*mpvc;
     UIWindow						*window;
+	
+	
+	NSMutableArray					*repRounds;
+	NSMutableArray					*exercises;
+//	NSMutableArray					*
+	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow							*window;
@@ -32,7 +38,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel			*managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 
-
+@property (nonatomic, retain) NSMutableArray							*repRounds;
+@property (nonatomic, retain) NSMutableArray							*exercises;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
@@ -48,6 +55,7 @@
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired;
 - (WOD*)addWOD:(NSString*)name;
 - (RROUND*)addRepRound:(NSString*)numReps;
+- (EEXERCISE*)addEExercise:(NSString*)exerciseName quantity:(int)qty metric:(NSString*)met;
 
 
 @end
