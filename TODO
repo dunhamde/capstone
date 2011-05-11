@@ -1,6 +1,6 @@
 # TODO file for My WOD Log
 #  Created by: Matthew Dalrymple
-#  Last Updated: Thursday, 5 May 2011
+#  Last Updated: Tuesday, 10 May 2011
 
 # [ ] -- Needs to be done
 # [-] -- Half finished/needs work
@@ -26,6 +26,7 @@ MAJOR:
 [X] Update Display WOD Page to reflect new Create WOD page
 
 MINOR:
+[ ] Add a 'view scores for this wod' button on a WOD's page
 [ ] Add Alert to Add Exercise page to confirm the user adds a pound symbol
     '#' (or other symbol we want to use) to the exercise name to replace with
     the metric when added to a WOD
