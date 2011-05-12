@@ -48,7 +48,7 @@
             break;
         case WOD_SCORE_TYPE_TIME:
 			self.scoreLabel.text = @"Time";
-			self.scoreField.inputView = timePicker;
+			self.scoreField.inputView = pickerView;
             break;
 		case WOD_SCORE_TYPE_REPS:
 			self.scoreLabel.text = @"Reps";

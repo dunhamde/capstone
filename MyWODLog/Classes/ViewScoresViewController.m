@@ -85,7 +85,7 @@
 	
 	CGRect frame = self.notesView.frame;
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:.75];
+	[UIView setAnimationDuration:.5];
 	
 	[self.view addSubview:notesView];
 	frame.origin.y = 480;
@@ -173,7 +173,7 @@
 	//  UIView *view = self.view;
 	CGRect frame = self.notesView.frame;
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:.75];
+	[UIView setAnimationDuration:.5];
 	
 	[self.view addSubview:notesView];
 	frame.origin.y = 116;
