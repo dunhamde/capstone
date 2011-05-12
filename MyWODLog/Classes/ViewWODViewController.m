@@ -413,6 +413,7 @@
 		[score setCompleted:[NSNumber numberWithInt:1]];
 		[score setWod:[controller wod]];
 		[score setDate:[controller date]]; 
+		[score setNotes:[controller logNotes]];
 		
 		switch ([[[controller wod] score_type] intValue]) {
 			case WOD_SCORE_TYPE_NONE:

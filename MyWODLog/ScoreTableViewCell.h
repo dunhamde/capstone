@@ -17,6 +17,8 @@
     UILabel *wodNameLabel;
     UILabel *dateLabel;
     UILabel *scoreLabel;
+	UILabel *notesLabel;
+
 }
 
 @property (nonatomic, retain) SCORE *score;
@@ -24,6 +26,7 @@
 @property (nonatomic, retain) UILabel *wodNameLabel;
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) UILabel *scoreLabel;
+@property (nonatomic, retain) UILabel *notesLabel;
 
 @end
 

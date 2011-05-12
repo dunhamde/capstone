@@ -16,6 +16,8 @@
 - (CGRect)_wodNameFrame;
 - (CGRect)_dateFrame;
 - (CGRect)_scoreFrame;
+- (CGRect)_notesFrame;
+
 @end
 
 #pragma mark -
@@ -23,7 +25,7 @@
 
 @implementation ScoreTableViewCell
 
-@synthesize score, wodNameLabel, dateLabel, scoreLabel;
+@synthesize score, wodNameLabel, dateLabel, scoreLabel, notesLabel;
 
 
 #pragma mark -
@@ -53,6 +55,13 @@
         [wodNameLabel setTextColor:[UIColor blackColor]];
         [wodNameLabel setHighlightedTextColor:[UIColor whiteColor]];
         [self.contentView addSubview:wodNameLabel];
+		
+		notesLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [notesLabel setFont:[UIFont systemFontOfSize:12.0]];
+        [notesLabel setTextColor:[UIColor darkGrayColor]];
+        [notesLabel setHighlightedTextColor:[UIColor whiteColor]];
+		notesLabel.textAlignment = UITextAlignmentRight;
+        [self.contentView addSubview:notesLabel];
     }
 	
     return self;
@@ -70,6 +79,7 @@
 	
     [wodNameLabel setFrame:[self _wodNameFrame]];
     [dateLabel setFrame:[self _dateFrame]];
+	[notesLabel setFrame:[self _notesFrame]];
     [scoreLabel setFrame:[self _scoreFrame]];
     /*if (self.editing) {
         prepTimeLabel.alpha = 0.0;
@@ -84,6 +94,7 @@
 #define TEXT_LEFT_MARGIN    8.0
 #define TEXT_RIGHT_MARGIN   5.0
 #define SCORE_WIDTH     80.0
+#define NOTES_WIDTH		200.0
 
 /*
  Return the frame of the various subviews -- these are dependent on the editing state of the cell.
@@ -102,6 +113,11 @@
     return CGRectMake(contentViewBounds.size.width - SCORE_WIDTH - TEXT_RIGHT_MARGIN, 4.0, SCORE_WIDTH, 16.0);
 }
 
+- (CGRect)_notesFrame {
+	CGRect contentViewBounds = self.contentView.bounds;
+	return CGRectMake(contentViewBounds.size.width / 2, 22.0, contentViewBounds.size.width / 2 - 5, 16.0);
+}
+
 
 #pragma mark -
 #pragma mark Score set accessor
@@ -117,6 +133,7 @@
 	[format setDateFormat:@"MM/dd/yyyy"];
 	dateLabel.text = [format stringFromDate:[score date]];
 	[format release];
+	notesLabel.text = [score notes];
 	
 	if ([[[score wod] score_type] intValue] == WOD_SCORE_TYPE_TIME ) {
 		int minutes = floor([score.time doubleValue]/60);

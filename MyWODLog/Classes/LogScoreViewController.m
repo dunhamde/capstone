@@ -11,9 +11,9 @@
 
 @implementation LogScoreViewController
 
-@synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField;
+@synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField, logNotes;
 @synthesize time_in_seconds, hours, minutes, seconds;
-@synthesize saveButton, datePicker, timePicker, pickerView;
+@synthesize saveButton, datePicker, timePicker, pickerView, notesButton;
 
 
 - (void)viewDidLoad {
@@ -68,6 +68,42 @@
 	
 	[format release];
 
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	NSLog(@"VIEW WILL APPEAR");
+	// Register for exercises saved notifications
+	
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	
+	[dnc addObserver:self selector:@selector(notesChangedNote:) name:@"LogNotesSent" object:nil];
+
+}
+
+- (void)notesChangedNote:(NSNotification*)saveNotification {
+	
+	NSDictionary *dict = [saveNotification userInfo];
+	
+	// Update 'Notes' and refresh the table
+	[self setLogNotes:[dict objectForKey:@"Text"]];
+	
+	// Remove the notification
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@":LogNotesSent" object:nil];
+}
+
+- (void)notesButtonPressed	{
+	EditViewController *controller = [[EditViewController alloc] init];
+	
+	[controller setTitleName:@"Log Notes"];
+	[controller setNotificationName:@"LogNotesSent"];
+	[controller setEditType:EDIT_TYPE_TEXTBOX];
+	[controller setDefaultText:[self logNotes]];
+	[controller setPopToRoot:NO];
+	[[self navigationController] pushViewController:controller animated:YES];		
+	
+	[controller release];
 
 }
 

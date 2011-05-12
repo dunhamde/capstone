@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) WOD * wod;
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * notes;
 
 @end
 

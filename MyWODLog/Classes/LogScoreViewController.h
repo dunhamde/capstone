@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WOD.h"
+#import "EditViewController.h"
 
 #define MINUTES_COMPONENT 0
 #define MINUTES_COMPONENT_WIDTH 110
@@ -31,6 +32,7 @@
 	NSDate *date, *start_date;
 	int hours, minutes, seconds;
 	NSTimeInterval time_in_seconds;
+	NSString *logNotes;
 	
 	// UI Elements:
 	UIBarButtonItem *saveButton;
@@ -43,12 +45,14 @@
 	IBOutlet UILabel		*scoreLabel;
 	IBOutlet UITextField	*dateField;
 	IBOutlet UIView			*pickerView;
+	IBOutlet UIButton		*notesButton;
 }
 
 @property (nonatomic, assign) id <LogScoreViewControllerDelegate> delegate;
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSDate *start_date;
+@property (nonatomic, retain) NSString *logNotes;
 
 @property (nonatomic, retain) UIBarButtonItem *saveButton;
 @property (nonatomic, retain) UIDatePicker *datePicker;
@@ -65,7 +69,9 @@
 @property (nonatomic, retain) IBOutlet UITextField	*scoreField;
 @property (nonatomic, retain) IBOutlet UILabel	*scoreLabel;
 @property (nonatomic, retain) IBOutlet UITextField	*dateField;
+@property (nonatomic, retain) IBOutlet UIButton	*notesButton;
 
+- (IBAction)notesButtonPressed;
 - (IBAction)timeButtonPressed;
 - (IBAction)save:(id)sender;
 - (IBAction)scoreFieldTouched;

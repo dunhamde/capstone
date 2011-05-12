@@ -18,5 +18,6 @@
 @dynamic time;
 @dynamic wod;
 @dynamic date;
+@dynamic notes;
 
 @end
