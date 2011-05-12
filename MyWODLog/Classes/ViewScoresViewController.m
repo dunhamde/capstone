@@ -14,25 +14,47 @@
 @implementation ViewScoresViewController
 
 @synthesize  fetchedResultsController, managedObjectContext, curScores,table, filterLabel, segmentedControl;
+@synthesize	 notesView, notesTitleLabel, notesTextView;
 
-- (id)init {
-	// Call the superclass's designated initializer
-	//[super initWithStyle:UITableViewStyleGrouped];
-	
-	toolbar = [[UIToolbar alloc] init];
-	toolbar.barStyle = UIBarStyleDefault;
-	[toolbar sizeToFit];
-	
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 
-	
-	//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
-	
-	// Set the title of the nav bar to WOD List when WODListViewController
-	// is on top of the stack
-	[self setTitle:@"Scores"];
-//	[[self navigationController] toolbarHidden:NO];
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		
+		self.notesView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 300)] 
+					 autorelease];
+		[self.notesView setBackgroundColor:[UIColor blackColor]];
+		[self.notesView setAlpha:.87];
 
-//	self.navigationController.toolbarHidden = YES;
+		// Title
+		notesTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+		notesTitleLabel.font = [UIFont boldSystemFontOfSize:17];
+		notesTitleLabel.textAlignment = UITextAlignmentCenter;
+		notesTitleLabel.textColor = [UIColor whiteColor];
+		notesTitleLabel.backgroundColor = [UIColor clearColor];
+		[self.notesView addSubview:notesTitleLabel];
+		
+		// Message
+		notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, 300, 270)];
+		notesTextView.font = [UIFont systemFontOfSize:15];
+		notesTextView.textAlignment = UITextAlignmentLeft;
+		notesTextView.textColor = [UIColor whiteColor];
+		notesTextView.backgroundColor = [UIColor clearColor];
+		notesTextView.editable = NO;
+		[self.notesView addSubview:notesTextView];
+
+		UITapGestureRecognizer *touch = 
+		[[UITapGestureRecognizer alloc] initWithTarget:self 
+												action:@selector(notesViewTouched:)];
+		[self.notesView addGestureRecognizer:touch];
+		[touch release];
+		
+		//[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
+		
+		// Set the title of the nav bar to WOD List when WODListViewController
+		// is on top of the stack
+		[self setTitle:@"Scores"];
+	}
+
 	
 	return self;
 }
@@ -57,6 +79,21 @@
 		exit(-1);  // Fail
 	}
 	
+}
+
+- (void)notesViewTouched:(UITapGestureRecognizer *)recognizer {
+	
+	CGRect frame = self.notesView.frame;
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.75];
+	
+	[self.view addSubview:notesView];
+	frame.origin.y = 480;
+	self.notesView.frame = frame;
+	
+	[UIView commitAnimations];
+	
+	table.allowsSelection = YES;
 }
 
 - (IBAction)toggleSort	{
@@ -120,6 +157,46 @@
 	return [sectionInfo numberOfObjects];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath	{
+	
+	table.allowsSelection = NO;
+	
+	NSDateFormatter *format = [[[NSDateFormatter alloc] init] autorelease];
+	[format setDateFormat:@"MM/dd/yyyy"];
+	SCORE	*score = [fetchedResultsController objectAtIndexPath:indexPath];
+
+	NSString	*date = [format stringFromDate:[score date]];
+	NSString	*wodName = [[score wod] name];
+	notesTextView.text = [score notes];
+	notesTitleLabel.text = [NSString stringWithFormat:@"%@ - %@", date, wodName];
+	
+	//  UIView *view = self.view;
+	CGRect frame = self.notesView.frame;
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.75];
+	
+	[self.view addSubview:notesView];
+	frame.origin.y = 116;
+	self.notesView.frame = frame;
+	
+	[UIView commitAnimations];
+
+	
+	/*NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	[format setDateFormat:@"MM/dd/yyyy"];
+	NSString	*date = [format stringFromDate:[score date]];
+	NSString	*wodName = [[score wod] name];
+	
+	[controller setTitleName:[NSString stringWithFormat:@"%@ - %@", date, wodName]];
+	[controller setEditType:EDIT_TYPE_TEXTBOX];
+	[controller setDefaultText:[score notes]];
+	[controller setPopToRoot:NO];
+	[[self navigationController] pushViewController:controller animated:YES];		
+	
+	[controller release];
+	[format release];*/
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
@@ -131,6 +208,8 @@
     if (scoreCell == nil) {
         scoreCell = [[[ScoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScoreCellIdentifier] autorelease];
 		//scoreCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		[scoreCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
     }
     
 	[self configureCell:scoreCell atIndexPath:indexPath];

@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>657581F8137B541900D236CC</string>
+						<string>657582B2137B81C000D236CC</string>
 						<key>history</key>
 						<array>
 							<string>657581B6137B4DE200D236CC</string>
@@ -323,8 +323,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>19</integer>
+									<integer>17</integer>
+									<integer>15</integer>
 									<integer>8</integer>
 									<integer>0</integer>
 								</array>
@@ -367,7 +367,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LogScoreViewController.m</string>
+								<string>ViewScoresViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -375,18 +375,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LogScoreViewController.m</string>
+										<string>ViewScoresViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>657581F7137B541900D236CC</string>
+										<string>657582B1137B81C000D236CC</string>
 										<key>history</key>
 										<array>
 											<string>6599D843135FFEC000C11679</string>
 											<string>6599D844135FFEC000C11679</string>
 											<string>65C193BB136E458A00DB7AC5</string>
 											<string>65C1946E136E5A6000DB7AC5</string>
-											<string>65C1946F136E5A6000DB7AC5</string>
 											<string>65C19470136E5A6000DB7AC5</string>
 											<string>65C19471136E5A6000DB7AC5</string>
 											<string>65C19499136E5D7900DB7AC5</string>
@@ -404,23 +403,24 @@
 											<string>6568440613738C3600836EB7</string>
 											<string>6568440B13738C3600836EB7</string>
 											<string>6568440F13738C3600836EB7</string>
-											<string>6568441013738C3600836EB7</string>
-											<string>65BFAFCE13778C6D00A211F4</string>
 											<string>65BFB0021377A32700A211F4</string>
-											<string>653CC2DE1378D8EF00FF38B5</string>
-											<string>653CC2EA1378E43900FF38B5</string>
-											<string>653CC3691378F63800FF38B5</string>
 											<string>657581C7137B500800D236CC</string>
 											<string>657581C9137B500800D236CC</string>
 											<string>657581DB137B509100D236CC</string>
-											<string>657581EF137B541900D236CC</string>
 											<string>657581F0137B541900D236CC</string>
 											<string>657581F1137B541900D236CC</string>
 											<string>657581F2137B541900D236CC</string>
-											<string>657581F3137B541900D236CC</string>
-											<string>657581F4137B541900D236CC</string>
 											<string>657581F5137B541900D236CC</string>
-											<string>657581F6137B541900D236CC</string>
+											<string>657582A4137B819F00D236CC</string>
+											<string>657582A5137B819F00D236CC</string>
+											<string>657582A6137B819F00D236CC</string>
+											<string>657582A7137B819F00D236CC</string>
+											<string>657582A8137B819F00D236CC</string>
+											<string>657582A9137B819F00D236CC</string>
+											<string>657582AA137B819F00D236CC</string>
+											<string>657582AB137B819F00D236CC</string>
+											<string>657582AC137B819F00D236CC</string>
+											<string>657582AD137B819F00D236CC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -618,7 +618,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>657581F9137B541900D236CC</string>
+		<string>657582B0137B819F00D236CC</string>
 		<string>657581E0137B509100D236CC</string>
 		<string>657581D6137B500800D236CC</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -649,7 +649,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>MyWODLogAppDelegate.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -666,6 +666,8 @@
 							<string>318pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
