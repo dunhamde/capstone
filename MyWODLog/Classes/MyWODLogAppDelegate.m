@@ -42,7 +42,6 @@
 	if ([self needsDefaultData]) {
 		[self generateDefaultData];
 	}
-    
     return YES;
 }
 
@@ -234,8 +233,11 @@
 	} else {
 		NSLog(@"DOES NOT NEED TO GENERATE DEFAULT DATA");
 	}
-
+	
+	[fetchRequest release];
+	
 	return need;
+
 }
 
 
@@ -911,7 +913,7 @@
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
-	
+
 }
 
 

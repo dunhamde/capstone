@@ -126,7 +126,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	NSInteger rows;
+	NSInteger rows = 0;
 	
 	switch (section) {
         case VW_SECTION_DETAILS:
@@ -356,7 +356,7 @@
 			} else {
 				exerciseText = [[eexercise exercise] name];
 			}
-
+			
 			
 			[[cell textLabel] setText:exerciseText];
 		}
@@ -499,7 +499,7 @@
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	
+	[sortDescriptors release];
 	return fetchedResultsController;
 }    
 
@@ -538,12 +538,16 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    [wodExerciseArray release];
+	self.wodExerciseArray = nil;
+	[wodRepRounds release];
+	[wod release];
+	// Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
+	[wodExerciseArray dealloc];
     [super dealloc];
 }
 

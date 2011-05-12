@@ -163,6 +163,7 @@
 		 [someError release];
 		 */
 	}
+	[fetchRequest release];
 	NSLog(@"CW SAVE END");
 }
 
@@ -473,7 +474,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	NSInteger rows;
+	NSInteger rows = 0;
 	
 	switch (section) {
         case CW_SECTION_DETAILS:
@@ -784,8 +785,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 				}
 			}
 			
-			[[cell detailTextLabel] setText:repRoundsString];
-			
+			[[cell detailTextLabel] setText:repRoundsString];			
 		} else {
 			[[cell detailTextLabel] setText:@""];
 		}
@@ -828,6 +828,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 		[backButton release];
 		
 		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
 		
 	}
 	// Case '<EXERCISE>':
@@ -932,6 +933,10 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	[saveButton release];
+	[wodExerciseArray release];
+	[wodExerciseQtyArray release];
+	[wodExerciseMetricArray release];
+	[wodRepRounds release];
 	[self setSaveButton:nil];
 
 }

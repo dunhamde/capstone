@@ -393,7 +393,7 @@
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
-	
+	[sortDescriptors release];
 	return fetchedResultsController;
 }    
 

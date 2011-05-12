@@ -67,12 +67,11 @@
     }	
 	
 	[format release];
-
+	[title release];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSLog(@"VIEW WILL APPEAR");
 	// Register for exercises saved notifications
 	
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -145,8 +144,6 @@
 
 - (void)hiddenButtonTouched {
 	
-	NSLog(@"subviews %@", [timePicker subviews]);
-	//NSLog(@"hidden TOUCHED");
 	self.hiddenButton.enabled = NO;
 	[scoreField resignFirstResponder];
 	
@@ -166,7 +163,7 @@
 
 - (void)dateFieldTouched {
 	//NSLog(@"score TOUCHED");
-	[hiddenButton setUserInteractionEnabled:YES];
+	//[hiddenButton setUserInteractionEnabled:YES];
 	self.hiddenButton.enabled = YES;
 }
 

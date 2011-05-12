@@ -367,6 +367,7 @@
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[nameDescriptor release];
+	[sortDescriptors release];
 //	NSLog( @"HEREZ2" );
 	return fetchedResultsController;
 }

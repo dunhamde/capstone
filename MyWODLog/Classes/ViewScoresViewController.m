@@ -108,6 +108,7 @@
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
 		key = @"date";
 		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+		[nameDescriptor release];
 	} else {
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"wod.name" ascending:YES];
 		timeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
@@ -116,13 +117,20 @@
 		
 		key = @"wod.name";
 		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, timeDescriptor, roundDescriptor, repDescriptor, nil];
+		[timeDescriptor release];
+		[roundDescriptor release];
+		[repDescriptor release];
+		[nameDescriptor release];
+
 
 	}
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	[fetchRequest setEntity:entity];
 	[fetchedResultsController initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:key cacheName:@"Root"];	
-	
+	[sortDescriptors release];
+	[fetchRequest release];
+
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
