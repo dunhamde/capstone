@@ -6,13 +6,22 @@
 # [-] -- Half finished/needs work
 # [X] -- Completed
 
+WEEKEND PLANS:
+[ ] Get exporting working -M/D
+[ ] Get View WOD Page working with rep rounds -M
+[ ] Merge itermediate score page with main page -D
+[ ] Log Score Page redo with table view -M/D
+[ ] Don't allow save with no input on wod name (any)
+LOWER PRIORITY WEEEKEND PLANS:
+[ ] Sentence case all inputted data / viewing wods
+[ ] Make sure all data put into database is either ALL CAPS or lower case
 
 MAJOR:
-[-] Fix add exercises to accomidate WODs like 'Nicole'
+[X] Fix add exercises to accomidate WODs like 'Nicole'
 [ ] Create WOD Page: On WOD Type change remove all Exercises
 [ ] Create WOD Page: Don't allow Add Exercise if no WOD Type
 [ ] Create WOD Page: Delete Exercise on select and confirm
-[ ] Load in default data on start
+[-] Load in default data on start
 [x] Fix "Timer" switch so that it works (not sure how to test)
 [x] Change Edit Controller to have custom notification name
 [x] Add functionality to select method of user input to the Edit Controller

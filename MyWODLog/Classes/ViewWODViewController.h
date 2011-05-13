@@ -26,7 +26,7 @@
 	WOD							*wod;
 	LogScoreViewController		*logScoreViewController;
 	NSManagedObjectContext		*managedObjectContext;
-	NSFetchedResultsController	*fetchedResultsController;
+	NSFetchedResultsController	*fetchedResultsController;  //TODO: comment this out
 	
 	IBOutlet UILabel			*scoredByLabel;
 	IBOutlet UITableView		*table;
