@@ -16,6 +16,7 @@
 @dynamic name;
 @dynamic quantity;
 @dynamic metric;
+@dynamic order;
 @dynamic wods;
 @dynamic exercise;
 

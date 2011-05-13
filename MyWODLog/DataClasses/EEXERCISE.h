@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * quantity;
 @property (nonatomic, retain) NSString * metric;
+@property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSSet* wods;
 @property (nonatomic, retain) EXERCISE * exercise;
 

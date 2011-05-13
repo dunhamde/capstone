@@ -346,7 +346,19 @@
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
-			EEXERCISE *eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
+			
+			// Find the correct next eexercise
+			NSEnumerator *enumer = [wodExerciseArray objectEnumerator];
+			EEXERCISE *eexercise = nil;
+			
+			while ( (eexercise = (EEXERCISE*)[enumer nextObject]) ) {
+					if ( [indexPath row] + 1 == [[eexercise order] intValue] ) {
+						break;
+					}
+			}
+			//eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
+			
+			
 			NSString* exerciseText = nil;
 			NSString *ename = nil;
 			

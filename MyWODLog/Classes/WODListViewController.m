@@ -206,6 +206,8 @@
 		EXERCISE *e = nil;
 		NSNumber *q = nil;
 		NSString *m = nil;
+		
+		int order = 1;
 
 		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) && (m = (NSString*)[enumerM nextObject]) ) {
 			
@@ -228,7 +230,12 @@
 			if ([m length] > 0) {
 				[eex setMetric:m];
 			}
+			
+			[eex setOrder:[[NSNumber alloc] initWithInt:order]];
+			
 			[eexList addObject:eex];
+			
+			order++;
 			
 		}
 

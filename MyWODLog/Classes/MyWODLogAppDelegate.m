@@ -359,9 +359,9 @@
 		[w addRroundsObject:r];
 	}
 	
-	ee = [self addEExercise:@"SNATCH, # POUNDS" quantity:0 metric:@"135"];
+	ee = [self addEExercise:@"SNATCH, # POUNDS" quantity:0 metric:@"135" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"MUSCLE-UPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"MUSCLE-UPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// #### [/AMANDA] ####
 	
@@ -375,13 +375,13 @@
 
 	NSMutableArray *angieExercises = [NSMutableArray arrayWithCapacity:0];
 	
-	ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil order:1];
 	[angieExercises addObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil order:2];
 	[angieExercises addObject:ee];
-	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil];
+	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil order:3];
 	[angieExercises addObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil order:4];
 	[angieExercises addObject:ee];
 	
 	
@@ -416,9 +416,9 @@
 	r = [self addRepRound:@"10"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"DOUBLE-UNDERS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"DOUBLE-UNDERS" quantity:0 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SIT-UPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"SIT-UPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/ANNIE]
 	
@@ -432,13 +432,13 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"PULL-UPS" quantity:20 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:20 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:30 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:30 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SIT-UPS" quantity:40 metric:nil];
+	ee = [self addEExercise:@"SIT-UPS" quantity:40 metric:nil order:3];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:50 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:50 metric:nil order:4];
 	[w addEexercisesObject:ee];
 	// [/BARBARA]
 	
@@ -452,9 +452,9 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"PUSH PRESS, # POUNDS" quantity:12 metric:@"135"];
+	ee = [self addEExercise:@"PUSH PRESS, # POUNDS" quantity:12 metric:@"135" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:20 metric:@"24"];
+	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:20 metric:@"24" order:2];
 	[w addEexercisesObject:ee];
 	// [/BETTY]
 	
@@ -468,11 +468,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"PULL-UPS" quantity:20 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:20 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:40 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:40 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:60 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:60 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/CANDY]
 	
@@ -485,11 +485,11 @@
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_EMOTM]];
 	[w setTimelimit:[[NSNumber alloc] initWithInt:30]];
 	
-	ee = [self addEExercise:@"PULL-UPS" quantity:5 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:5 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:15 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:15 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/CHELSEA]
 	
@@ -508,9 +508,9 @@
 	r = [self addRepRound:@"9"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"OVERHEAD SQUATS, # POUNDS" quantity:0 metric:@"95"];
+	ee = [self addEExercise:@"OVERHEAD SQUATS, # POUNDS" quantity:0 metric:@"95" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SUMO-DEADLIFT HIGH-PULL" quantity:0 metric:nil];
+	ee = [self addEExercise:@"SUMO-DEADLIFT HIGH-PULL" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/CHARLOTTE]
 	
@@ -524,11 +524,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:3]];
 	
-	ee = [self addEExercise:@"ROW # METERS" quantity:0 metric:@"500"];
+	ee = [self addEExercise:@"ROW # METERS" quantity:0 metric:@"500" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"DEADLIFT, BODY WEIGHT" quantity:12 metric:nil];
+	ee = [self addEExercise:@"DEADLIFT, BODY WEIGHT" quantity:12 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:21 metric:@"24"];
+	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:21 metric:@"24" order:3];
 	[w addEexercisesObject:ee];
 	// [/CHRISTINE]
 	
@@ -542,11 +542,11 @@
 	
 	[w setTimelimit:[[NSNumber alloc] initWithInt:20]];
 	
-	ee = [self addEExercise:@"PULL-UPS" quantity:5 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:5 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:15 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:15 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/CINDY]
 	
@@ -565,9 +565,9 @@
 	r = [self addRepRound:@"9"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"DEADLIFT, # POUNDS" quantity:0 metric:@"225"];
+	ee = [self addEExercise:@"DEADLIFT, # POUNDS" quantity:0 metric:@"225" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/DIANE]
 	
@@ -586,9 +586,9 @@
 	r = [self addRepRound:@"9"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"CLEAN, # POUNDS" quantity:0 metric:@"135"];
+	ee = [self addEExercise:@"CLEAN, # POUNDS" quantity:0 metric:@"135" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"RING DIPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"RING DIPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/ELIZABETH]
 	
@@ -602,11 +602,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"800"];
+	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"800" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"KETTLEBELL SWING, # POODS" quantity:30 metric:@"2"];
+	ee = [self addEExercise:@"KETTLEBELL SWING, # POODS" quantity:30 metric:@"2" order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:30 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:30 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/EVA]
 	
@@ -625,9 +625,9 @@
 	r = [self addRepRound:@"9"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"THRUSTERS, # POUNDS" quantity:0 metric:@"95"];
+	ee = [self addEExercise:@"THRUSTERS, # POUNDS" quantity:0 metric:@"95" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/FRAN]
 	
@@ -639,7 +639,7 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 
-	ee = [self addEExercise:@"BURPEE-PULL-UPS" quantity:100 metric:nil];
+	ee = [self addEExercise:@"BURPEE-PULL-UPS" quantity:100 metric:nil order:1];
 	[w addEexercisesObject:ee];
 	// [/GI JANE]
 	
@@ -651,7 +651,7 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 	
-	ee = [self addEExercise:@"CLEAN & JERK, # POUNDS" quantity:30 metric:@"135"];
+	ee = [self addEExercise:@"CLEAN & JERK, # POUNDS" quantity:30 metric:@"135" order:1];
 	[w addEexercisesObject:ee];
 	// [/GRACE]
 	
@@ -670,9 +670,9 @@
 	r = [self addRepRound:@"6"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"TOUCH AND GO" quantity:0 metric:nil];
+	ee = [self addEExercise:@"TOUCH AND GO" quantity:0 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"CLEAN & JERK" quantity:0 metric:nil];
+	ee = [self addEExercise:@"CLEAN & JERK" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/GWEN]
 	
@@ -686,11 +686,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:3]];
 	
-	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400"];
+	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"KETTLEBELL SWING, # POODS" quantity:21 metric:@"1.5"];
+	ee = [self addEExercise:@"KETTLEBELL SWING, # POODS" quantity:21 metric:@"1.5" order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:12 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:12 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/HELEN]
 	
@@ -702,7 +702,7 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 	
-	ee = [self addEExercise:@"SNATCH, # POUNDS" quantity:30 metric:@"135"];
+	ee = [self addEExercise:@"SNATCH, # POUNDS" quantity:30 metric:@"135" order:1];
 	[w addEexercisesObject:ee];
 	// [/ISABEL]
 	
@@ -714,9 +714,9 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 	
-	ee = [self addEExercise:@"ROW # METERS" quantity:0 metric:@"1000"];
+	ee = [self addEExercise:@"ROW # METERS" quantity:0 metric:@"1000" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"THRUSTERS, # POUNDS" quantity:50 metric:@"45"];
+	ee = [self addEExercise:@"THRUSTERS, # POUNDS" quantity:50 metric:@"45" order:2];
 	[w addEexercisesObject:ee];
 	// [/JACKIE]
 	
@@ -728,7 +728,7 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 	
-	ee = [self addEExercise:@"WALL-BALL SHOTS, # POUNDS" quantity:150 metric:@"20"];
+	ee = [self addEExercise:@"WALL-BALL SHOTS, # POUNDS" quantity:150 metric:@"20" order:1];
 	[w addEexercisesObject:ee];
 	// [/KAREN]
 	
@@ -742,11 +742,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:3]];
 	
-	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400"];
+	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:30 metric:@"24"];
+	ee = [self addEExercise:@"BOX JUMP, # INCH BOX" quantity:30 metric:@"24" order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"WALL-BALL SHOTS, # POUNDS" quantity:30 metric:@"20"];
+	ee = [self addEExercise:@"WALL-BALL SHOTS, # POUNDS" quantity:30 metric:@"20" order:3];
 	[w addEexercisesObject:ee];
 	// [/KELLY]
 	
@@ -779,11 +779,11 @@
 	r = [self addRepRound:@"1"];
 	[w addRroundsObject:r];
 	
-	ee = [self addEExercise:@"DEADLIFT, # BODY WEIGHT" quantity:0 metric:@"1 1/2"];
+	ee = [self addEExercise:@"DEADLIFT, # BODY WEIGHT" quantity:0 metric:@"1 1/2" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"BENCH, BODY WEIGHT" quantity:0 metric:nil];
+	ee = [self addEExercise:@"BENCH, BODY WEIGHT" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"CLEAN, # BODY WEIGHT" quantity:0 metric:@"3/4"];
+	ee = [self addEExercise:@"CLEAN, # BODY WEIGHT" quantity:0 metric:@"3/4" order:3];
 	[w addEexercisesObject:ee];
 	// [/LINDA]
 	
@@ -797,11 +797,11 @@
 	
 	[w setTimelimit:[[NSNumber alloc] initWithInt:20]];
 	
-	ee = [self addEExercise:@"L PULL-UPS" quantity:5 metric:nil];
+	ee = [self addEExercise:@"L PULL-UPS" quantity:5 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:10 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"WALKING LUNGES" quantity:15 metric:nil];
+	ee = [self addEExercise:@"WALKING LUNGES" quantity:15 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/LOLA]
 	
@@ -813,9 +813,9 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_REPS]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RFMR]];
 	
-	ee = [self addEExercise:@"BENCH PRESS, BODY WEIGHT" quantity:0 metric:nil];
+	ee = [self addEExercise:@"BENCH PRESS, BODY WEIGHT" quantity:0 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:0 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	// [/LYNNE]
 	
@@ -829,11 +829,11 @@
 	
 	[w setTimelimit:[[NSNumber alloc] initWithInt:20]];
 	
-	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:5 metric:nil];
+	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:5 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"ONE-LEGGED SQUATS" quantity:10 metric:nil];
+	ee = [self addEExercise:@"ONE-LEGGED SQUATS" quantity:10 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:15 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:15 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/MARY]
 	
@@ -847,11 +847,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:20 metric:nil];
+	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:20 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PULL-UPS" quantity:40 metric:nil];
+	ee = [self addEExercise:@"PULL-UPS" quantity:40 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"ONE-LEGGED SQUATS" quantity:60 metric:nil];
+	ee = [self addEExercise:@"ONE-LEGGED SQUATS" quantity:60 metric:nil order:3];
 	[w addEexercisesObject:ee];
 	// [/MAGGIE]
 	
@@ -865,9 +865,9 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:5]];
 	
-	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400"];
+	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"OVERHEAD SQUATS, # POUNDS" quantity:15 metric:@"95"];
+	ee = [self addEExercise:@"OVERHEAD SQUATS, # POUNDS" quantity:15 metric:@"95" order:2];
 	[w addEexercisesObject:ee];
 	// [/NANCY]
 	
@@ -881,11 +881,11 @@
 	
 	[w setRounds:[[NSNumber alloc] initWithInt:3]];
 	
-	ee = [self addEExercise:@"SQUATS" quantity:50 metric:nil];
+	ee = [self addEExercise:@"SQUATS" quantity:50 metric:nil order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"MUSCLE-UPS" quantity:7 metric:nil];
+	ee = [self addEExercise:@"MUSCLE-UPS" quantity:7 metric:nil order:2];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"HANG POWER CLEAN, # POUNDS" quantity:10 metric:@"135"];
+	ee = [self addEExercise:@"HANG POWER CLEAN, # POUNDS" quantity:10 metric:@"135" order:3];
 	[w addEexercisesObject:ee];
 	// [/NASTY GIRLS]
 	
@@ -899,9 +899,9 @@
 	
 	[w setTimelimit:[[NSNumber alloc] initWithInt:20]];
 	
-	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400"];
+	ee = [self addEExercise:@"RUN # METERS" quantity:0 metric:@"400" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"MAX REP PULL-UPS" quantity:10 metric:nil];
+	ee = [self addEExercise:@"MAX REP PULL-UPS" quantity:10 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	[w setNotes:@"Note the number of pull-ups completed each round"];
 	// [/NICOLE]
@@ -914,7 +914,7 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 	
-	ee = [self addEExercise:@"BURPEES" quantity:150 metric:nil];
+	ee = [self addEExercise:@"BURPEES" quantity:150 metric:nil order:1];
 	[w addEexercisesObject:ee];
 	// [/PUKIE BREWSTER]
 	
@@ -1011,7 +1011,7 @@
 }
 
 
-- (EEXERCISE*)addEExercise:(NSString*)exerciseName quantity:(int)qty metric:(NSString*)met {
+- (EEXERCISE*)addEExercise:(NSString*)exerciseName quantity:(int)qty metric:(NSString*)met order:(int)o {
 	
 	// If the rep round is already in the DB, return it instead of creating a new one
 	NSEnumerator *enumerE = [[self exercises] objectEnumerator];
@@ -1041,6 +1041,7 @@
 		[ee setName:ename];
 		[ee setQuantity:[[NSNumber alloc] initWithInt:qty]];
 		[ee setMetric:met];
+		[ee setOrder:[[NSNumber alloc] initWithInt:o]];
 		
 		return ee;
 		
