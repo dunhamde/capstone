@@ -19,11 +19,10 @@
 
 
 
-- (id)init {
-	//[self setTitle:@"<WOD Name>"];
-	
+- (id)init {	
 	return self;
 }
+
 
 
 - (void)viewDidLoad {
@@ -74,6 +73,10 @@
 	[self setWodType:[[[self wod] score_type] intValue]];
 	[self setWodNotes:[[self wod] notes]];
 	
+	if ([[w timelimit] intValue] > 0) {
+		[self setShowTimeLimit:YES];
+	}
+	
 	[self setTitle:[wod name]];
 
 }
@@ -91,8 +94,12 @@
 	[logScore release];
 }
 
+
+
 #pragma mark -
 #pragma mark Table View Controller stuff
+
+
 
 // Customize the number of rows in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -100,6 +107,8 @@
     return VW_NUM_SECTIONS;
 	
 }
+
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
@@ -123,6 +132,8 @@
     return title;
 	
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
@@ -190,7 +201,8 @@
 		return cell;
 		
 	}
-	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 && [self wodType] == WOD_TYPE_RRFT ) {
+	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 && [[[self wod] type] intValue] == WOD_TYPE_RRFT ) {
+	//else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 ) {
 		
 		static NSString *TypeCellIdentifier = @"RepRoundsCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
@@ -207,7 +219,7 @@
 		
 	}
 	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 &&
-			 ([self wodType] == WOD_TYPE_RFT || [self wodType] == WOD_TYPE_EMOTM || [self wodType] == WOD_TYPE_AMRAP) ) {
+			 ([[[self wod] type] intValue] == WOD_TYPE_RFT || [[[self wod] type] intValue] == WOD_TYPE_EMOTM || [[[self wod] type] intValue] == WOD_TYPE_AMRAP) ) {
 		
 		static NSString *TypeCellIdentifier = @"TimeLimitCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
@@ -222,25 +234,9 @@
 		
 		return cell;
 		
-	}/*
-	  else if ( [indexPath section] == CW_SECTION_DETAILS && [indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR ) {
-	  
-	  static NSString *TypeCellIdentifier = @"NumRoundsCell";
-	  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
-	  
-	  if (cell == nil) {
-	  cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-	  [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	  }
-	  
-	  // Configure the cell.
-	  [self configureCell:cell atIndexPath:indexPath];
-	  
-	  return cell;
-	  
-	  }*/
+	}
 	else if ( [indexPath section] == VW_SECTION_DETAILS &&
-			 ([indexPath row] == 3 ||([indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR)) ) {
+			 ([indexPath row] == 3 ||([indexPath row] == 2 && [[[self wod] type] intValue] == WOD_TYPE_RFMR)) ) {
 		
 		static NSString *TypeCellIdentifier = @"NumRoundsCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
@@ -289,8 +285,9 @@
 		
 		return cell;
 	}
-	NSLog(@"SHOULDNT BE HERE\n");
-	return 0; // Should never get to this point but the compiler complained
+
+	NSLog(@"SECTION= %d    ROW= %d", [indexPath section], [indexPath row]);
+	return nil;
 }
 
 
@@ -307,8 +304,8 @@
 		
 		[[cell textLabel] setText:@"Name"];
 		
-		if ([self wodName] != nil) {
-			[[cell detailTextLabel] setText:[self wodName]];
+		if ([[self wod] name] != nil) {
+			[[cell detailTextLabel] setText:[[self wod] name]];
 		} else {
 			[[cell detailTextLabel] setText:@"<WOD NAME HERE>"];
 		}
@@ -319,7 +316,7 @@
 		[[cell textLabel] setText:@"Type"];
 		
 		NSString *subText = nil;
-		switch ([self wodType]) {
+		switch ([[[self wod] type] intValue]) {
 			case WOD_TYPE_TIME:
 				subText = WOD_TYPE_TEXT_TIME;
 				break;
@@ -351,10 +348,18 @@
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
 			EEXERCISE *eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
 			NSString* exerciseText = nil;
-			if ([[eexercise quantity] intValue] > 0) {
-				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",[[eexercise quantity] stringValue],[[eexercise exercise] name]];
+			NSString *ename = nil;
+			
+			if ([eexercise name] != nil && [[eexercise name] length] > 0) {
+				ename = [eexercise name];
 			} else {
-				exerciseText = [[eexercise exercise] name];
+				ename = [[eexercise exercise] name];
+			}
+			
+			if ([[eexercise quantity] intValue] > 0) {
+				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",[[eexercise quantity] stringValue],ename];
+			} else {
+				exerciseText = ename;
 			}
 			
 			
@@ -364,8 +369,8 @@
 	}
 	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
 		
-		if ([self wodNotes] != nil && [[self wodNotes] length] > 0) {
-			[[cell textLabel] setText:[self wodNotes]];
+		if ([[self wod] notes] != nil && [[[self wod] notes] length] > 0) {
+			[[cell textLabel] setText:[[self wod] notes]];
 		} else {
 			[[cell textLabel] setText:@"N/A"];
 		}
@@ -374,8 +379,8 @@
 	else if( [cellIdentifier isEqualToString:@"NumRoundsCell"] ) {
 		
 		[[cell textLabel] setText:@"# Rounds"];
-		if ([self wodNumRounds] != nil && [[self wodNumRounds] length] > 0) {
-			[[cell detailTextLabel] setText:[self wodNumRounds]];
+		if ([[self wod] rounds] != nil && [[[self wod] rounds] intValue] > 0) {
+			[[cell detailTextLabel] setText:[[[self wod] rounds] stringValue]];
 		}
 		else {
 			[[cell detailTextLabel] setText:@"<NUM OF ROUNDS HERE>"];
@@ -385,8 +390,8 @@
 	else if( [cellIdentifier isEqualToString:@"TimeLimitCell"] ) {
 		
 		[[cell textLabel] setText:@"Time Limit"];
-		if ([self wodTimeLimit] != nil && [[self wodTimeLimit] length] > 0) {
-			[[cell detailTextLabel] setText:[self wodTimeLimit]];
+		if ( [[self wod] timelimit] != nil && [[[self wod] timelimit] intValue] > 0) {
+			[[cell detailTextLabel] setText:[[[self wod] timelimit] stringValue]];
 		}
 		else {
 			[[cell detailTextLabel] setText:@"<TIME LIMIT HERE>"];
@@ -398,13 +403,12 @@
 		[[cell textLabel] setText:@"Rep Rounds"];
 		
 	}
-	//	else if( [cellIdentifier isEqualToString:@""] ) {
-	//	}
 	else {
-		//[[cell textLabel] setText:@"Add Exercise..."];
 	}
 	
 }
+
+
 
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
 	if (save) {		

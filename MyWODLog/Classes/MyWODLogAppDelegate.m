@@ -373,14 +373,28 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_TIME]];
 
+	NSMutableArray *angieExercises = [NSMutableArray arrayWithCapacity:0];
+	
 	ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil];
+	[angieExercises addObject:ee];
+	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil];
+	[angieExercises addObject:ee];
+	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil];
+	[angieExercises addObject:ee];
+	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil];
+	[angieExercises addObject:ee];
+	
+	
+	NSSet *angieSet = [[NSSet alloc] initWithArray:angieExercises];
+	[w setEexercises:angieSet];
+	/*ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil];
 	[w addEexercisesObject:ee];
 	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil];
 	[w addEexercisesObject:ee];
 	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil];
 	[w addEexercisesObject:ee];
 	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil];
-	[w addEexercisesObject:ee];
+	[w addEexercisesObject:ee];*/
 	// #### [/ANGIE] ####
 
 	
@@ -1013,9 +1027,18 @@
 
 		EEXERCISE* ee = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:[self managedObjectContext]];
 
-		//TODO: replace name's '#' symbol with metric if exercise requires metric
+		// Replace '#' with the actual metric
+		NSString* ename = exerciseName;
+		
+		if ([[e requiresMetric] boolValue]) {
+			
+			NSRange range = [exerciseName rangeOfString:@"#"];
+			ename = [exerciseName stringByReplacingCharactersInRange:range withString:met];
+			
+		}
+
 		[ee setExercise:e];
-		[ee setName:exerciseName];
+		[ee setName:ename];
 		[ee setQuantity:[[NSNumber alloc] initWithInt:qty]];
 		[ee setMetric:met];
 		

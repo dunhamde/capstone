@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSSet* wods;
 @property (nonatomic, retain) EXERCISE * exercise;
 
+
 @end
 
 

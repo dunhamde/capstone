@@ -14,7 +14,7 @@
 
 @synthesize managedObjectContext, delegate, saveButton, table;
 @synthesize readyToSave, quantifyExercises, showNumRounds, showRepRounds, showTimeLimit;
-@synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodExerciseMetricArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
+@synthesize wodName, wodExerciseArray, wodExerciseQtyArray, wodExerciseMetricArray, wodExerciseNameArray, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 @synthesize repRoundList;
 
 
@@ -29,6 +29,7 @@
 		[self setWodExerciseArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodExerciseQtyArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodExerciseMetricArray:[NSMutableArray arrayWithCapacity:0]];
+		[self setWodExerciseNameArray:[NSMutableArray arrayWithCapacity:0]];
 		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
 		
     }
@@ -170,17 +171,15 @@
 
 
 - (void)addExerciseElement:(EXERCISE*)exercise quantity:(NSNumber*)qty metric:(NSString*)metric {
-	
 
-	
+	NSString *ename = [exercise name];
+
 	[[self wodExerciseArray] addObject:exercise];
 	
 	if (qty == nil) {
 		[[self wodExerciseQtyArray] addObject:[[NSNumber alloc] initWithInt:0]];
-		NSLog(@"QTY IS NULL SO ADDING IT ALL COOL LIKE");
 	} else {
 		[[self wodExerciseQtyArray] addObject:qty];
-		NSLog(@"QTY IS NO NULL!!:  %@",qty);
 	}
 	
 	if (metric == nil) {
@@ -188,7 +187,16 @@
 	} else {
 		[[self wodExerciseMetricArray] addObject:metric];
 	}
-
+	
+	// If there is a metric, then convert the name to include it
+	if ([[exercise requiresMetric] boolValue]) {
+		
+		NSRange range = [[exercise name] rangeOfString:@"#"];
+		ename = [[exercise name] stringByReplacingCharactersInRange:range withString:metric];
+		
+	}
+	
+	[[self wodExerciseNameArray] addObject:ename];
 
 	[[self table] reloadData];
 
@@ -205,17 +213,14 @@
 
 - (void)exerciseSelectedNote:(NSNotification*)saveNotification {
 
-NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	NSDictionary *dict = [saveNotification userInfo];
 	
 	// Update 'Exercises' (and its quantity and metric) and refresh the table
 	EXERCISE *e = (EXERCISE*)[dict objectForKey:@"Exercise"];
-	//[[self wodExerciseArray] addObject:e];
 	
 	NSNumber *q = nil;
 	if ([self quantifyExercises]) {
 		NSString *qty = (NSString*)[dict objectForKey:@"Quantity"];
-		NSLog(@"qty= %@", qty);
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		q = [f numberFromString:qty];
@@ -224,8 +229,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	
 	NSString *m = (NSString*)[dict objectForKey:@"Metric"];
 
-	NSLog(@"E: %@   []   Q: %@    []  M:  %@", e, q, m);
-	
+
 	
 	if ([e requiresMetric] > 0) {
 		
@@ -236,8 +240,6 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 		[self addExerciseElement:e quantity:q metric:nil];
 		
 	}
-	
-	//[[self table] reloadData];
 
 	// Remove the notifcation
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -245,7 +247,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT");
 	
 	// See if this change will allow us to save
 	[self evaluateSaveReadiness];
-NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
+
 }
 
 
@@ -449,6 +451,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 }
 
 
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
     NSString *title = nil;
@@ -471,6 +474,8 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
     return title;
 	
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
@@ -571,23 +576,7 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 
 		return cell;
 		
-	}/*
-	else if ( [indexPath section] == CW_SECTION_DETAILS && [indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR ) {
-		
-		static NSString *TypeCellIdentifier = @"NumRoundsCell";
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
-		
-		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-			[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-		}
-		
-		// Configure the cell.
-		[self configureCell:cell atIndexPath:indexPath];
-		
-		return cell;
-		
-	}*/
+	}
 	else if ( [indexPath section] == CW_SECTION_DETAILS &&
 			 ([indexPath row] == 3 ||([indexPath row] == 2 && [self wodType] == WOD_TYPE_RFMR)) ) {
 		
@@ -712,20 +701,20 @@ NSLog(@"EXERCISE SELECTED NOTIFCATION AT DONE");
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
 		
 		if( [indexPath row] < [[self wodExerciseArray] count] ) {
+			
 			NSString *exerciseText = nil;
-			NSLog(@"DOES IT CRASH HERE?");
-			//TODO: Crashes here!
 			NSNumber *qty = (NSNumber *)[[self wodExerciseQtyArray] objectAtIndex:[indexPath row]];
-			NSLog(@" OR IS IT HERE?");
-			EXERCISE *exercise = (EXERCISE *)[[self wodExerciseArray] objectAtIndex:[indexPath row]];
-			NSLog(@"MAYBE?");
+			//EXERCISE *exercise = (EXERCISE *)[[self wodExerciseArray] objectAtIndex:[indexPath row]];
+			NSString *ename = (NSString *)[[self wodExerciseNameArray] objectAtIndex:[indexPath row]];
+
 			if ([qty intValue] > 0) {
-				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",qty,[exercise name]];
+				exerciseText = [[NSString alloc] initWithFormat:@"%@ %@",qty,ename];
 			} else {
-				exerciseText = [exercise name];
+				exerciseText = ename;
 			}						
 			
 			[[cell textLabel] setText:exerciseText];
+			
 		}
 		
 	}

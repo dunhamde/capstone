@@ -210,6 +210,19 @@
 		while ((e = (EXERCISE*)[enumerE nextObject]) && (q = (NSNumber*)[enumerQ nextObject]) && (m = (NSString*)[enumerM nextObject]) ) {
 			
 			EEXERCISE* eex = (EEXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"eexercise" inManagedObjectContext:managedObjectContext];
+			
+			// Replace '#' with the actual metric
+			NSString* ename = [e name];
+			
+			if ([[e requiresMetric] boolValue]) {
+				
+				NSRange range = [[e name] rangeOfString:@"#"];
+				ename = [[e name] stringByReplacingCharactersInRange:range withString:m];
+			
+			}
+			
+			[eex setName:ename];
+			
 			[eex setExercise:e];
 			[eex setQuantity:q];
 			if ([m length] > 0) {

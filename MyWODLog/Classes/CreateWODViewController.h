@@ -43,6 +43,7 @@
 	NSMutableArray*	wodExerciseArray;
 	NSMutableArray*	wodExerciseQtyArray;
 	NSMutableArray* wodExerciseMetricArray;
+	NSMutableArray* wodExerciseNameArray;
 	NSString*		wodName;
 	int				wodType;
 	NSString*		wodNotes;
@@ -73,6 +74,7 @@
 @property (nonatomic, retain) NSMutableArray*	wodExerciseArray;
 @property (nonatomic, retain) NSMutableArray*	wodExerciseQtyArray;
 @property (nonatomic, retain) NSMutableArray*	wodExerciseMetricArray;
+@property (nonatomic, retain) NSMutableArray*	wodExerciseNameArray;
 @property (nonatomic, retain) NSString*			wodName;
 @property (nonatomic, assign) int				wodType;
 @property (nonatomic, retain) NSString*			wodNotes;

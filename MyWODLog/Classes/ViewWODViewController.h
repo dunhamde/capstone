@@ -23,14 +23,13 @@
 
 @interface ViewWODViewController : UIViewController <UITableViewDelegate, LogScoreViewControllerDelegate> {
 
-	WOD						*wod;
-	LogScoreViewController	*logScoreViewController;
-	NSManagedObjectContext  *managedObjectContext;
+	WOD							*wod;
+	LogScoreViewController		*logScoreViewController;
+	NSManagedObjectContext		*managedObjectContext;
 	NSFetchedResultsController	*fetchedResultsController;
 	
-	//IBOutlet UILabel *exerciseListLabel;
-	IBOutlet UILabel		*scoredByLabel;
-	IBOutlet UITableView	*table;
+	IBOutlet UILabel			*scoredByLabel;
+	IBOutlet UITableView		*table;
 	
 	// UI Elements:
 	UIBarButtonItem			*logButton;
@@ -46,35 +45,33 @@
 	int						wodScoreType;
 	
 	// Flags:
-	
 	BOOL showTimeLimit;
 	BOOL showNumRounds;
 	BOOL showRepRounds;
 }
 
-@property (nonatomic, retain) WOD *wod;
-@property (nonatomic, retain) LogScoreViewController *logScoreViewController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) WOD							*wod;
+@property (nonatomic, retain) LogScoreViewController		*logScoreViewController;
+@property (nonatomic, retain) NSManagedObjectContext		*managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController	*fetchedResultsController;
 
-@property (nonatomic, retain) UILabel *scoredByLabel;
-//@property (nonatomic, retain) UILabel *exerciseListLabel;
-@property (nonatomic, retain) IBOutlet UITableView *table;
-@property (nonatomic, retain) UIBarButtonItem *logButton;
+@property (nonatomic, retain) UILabel						*scoredByLabel;
+@property (nonatomic, retain) IBOutlet UITableView			*table;
+@property (nonatomic, retain) UIBarButtonItem				*logButton;
 
-@property (nonatomic, assign) BOOL				showTimeLimit;
-@property (nonatomic, assign) BOOL				showNumRounds;
-@property (nonatomic, assign) BOOL				showRepRounds;
+@property (nonatomic, assign) BOOL							showTimeLimit;
+@property (nonatomic, assign) BOOL							showNumRounds;
+@property (nonatomic, assign) BOOL							showRepRounds;
 
 
-@property (nonatomic, retain) NSArray*	wodExerciseArray;
-@property (nonatomic, retain) NSString*			wodName;
-@property (nonatomic, assign) int				wodType;
-@property (nonatomic, retain) NSString*			wodNotes;
-@property (nonatomic, retain) NSString*			wodTimeLimit;
-@property (nonatomic, retain) NSString*			wodNumRounds;
-@property (nonatomic, retain) NSMutableArray*	wodRepRounds;
-@property (nonatomic, assign) int				wodScoreType;
+@property (nonatomic, retain) NSArray*						wodExerciseArray;
+@property (nonatomic, retain) NSString*						wodName;
+@property (nonatomic, assign) int							wodType;
+@property (nonatomic, retain) NSString*						wodNotes;
+@property (nonatomic, retain) NSString*						wodTimeLimit;
+@property (nonatomic, retain) NSString*						wodNumRounds;
+@property (nonatomic, retain) NSMutableArray*				wodRepRounds;
+@property (nonatomic, assign) int							wodScoreType;
 
 - (void)setCurrentWOD:(WOD *)w;
 
