@@ -27,7 +27,6 @@
 	
 	NSMutableArray					*repRounds;
 	NSMutableArray					*exercises;
-//	NSMutableArray					*
 	
 }
 

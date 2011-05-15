@@ -79,6 +79,9 @@
 		exit(-1);  // Fail
 	}
 	
+	
+	[self exportAllData];
+	
 }
 
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer {
@@ -233,7 +236,22 @@
 }
 
 
-
+- (void)exportAllData {
+	
+	NSUInteger i = 0;
+	//[NSIndexPath indexPathWithIndex:i];
+	//SCORE *newscore = (SCORE *)[fetchedResultsController objectAtIndexPath:indexPath];
+	
+	NSURL *url = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] applicationDocumentsDirectory];
+	NSLog(@"URL: %@", [url absoluteURL]);
+//	CHCSVWriter *csvWriter = [[CHCSVWriter alloc] initWithCSVFile:<#(*)outputFile#> atomic:YES];
+	
+	for (id obj in [[self fetchedResultsController] fetchedObjects]) {
+		
+		SCORE *score = (SCORE*)obj;
+		
+	}
+}
 
 #pragma mark -
 #pragma mark Selection and moving
