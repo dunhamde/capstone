@@ -236,21 +236,107 @@
 }
 
 
+#pragma mark -
+#pragma mark Data Exporting
+
+
+/*
+ @property (nonatomic, retain) NSNumber * reps;
+ @property (nonatomic, retain) NSNumber * rounds;
+ @property (nonatomic, retain) NSNumber * completed;
+ @property (nonatomic, retain) NSNumber * time;
+ @property (nonatomic, retain) WOD * wod;
+ @property (nonatomic, retain) NSDate * date;
+ @property (nonatomic, retain) NSString * notes;*/
+
 - (void)exportAllData {
 	
-	NSUInteger i = 0;
-	//[NSIndexPath indexPathWithIndex:i];
-	//SCORE *newscore = (SCORE *)[fetchedResultsController objectAtIndexPath:indexPath];
+	// Get the current date/time and format it
+	NSDateFormatter *timestampFormat = [[[NSDateFormatter alloc] init] autorelease];
+	[timestampFormat setDateFormat:@"yyyyMMddHHmmss"];
+	NSString	*timestamp = [timestampFormat stringFromDate:[NSDate date]];
+
+	// Generate the path/filename
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *docDir = [paths objectAtIndex:0];
+	NSString *filename = [NSString stringWithFormat:@"mywodlog-%@.csv", timestamp];
+	NSString *file = [docDir stringByAppendingPathComponent:filename];
 	
-	NSURL *url = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] applicationDocumentsDirectory];
-	NSLog(@"URL: %@", [url absoluteURL]);
-//	CHCSVWriter *csvWriter = [[CHCSVWriter alloc] initWithCSVFile:<#(*)outputFile#> atomic:YES];
+	NSDateFormatter *format = [[[NSDateFormatter alloc] init] autorelease];
+	[format setDateFormat:@"MM-dd-yyyy HH:mm"];
+	
+	//CHCSVWriter *csvWriter = [[[CHCSVWriter alloc] initWithCSVFile:filename atomic:YES] autorelease];
+	CHCSVWriter *csvWriter = [[CHCSVWriter alloc] initWithCSVFile:file atomic:YES];
+	
+	// Write the header line
+	[csvWriter writeLineOfFields:@"Date",@"WOD",@"WOD Type",@"Score",@"Score Type",@"Rx",nil];
 	
 	for (id obj in [[self fetchedResultsController] fetchedObjects]) {
 		
 		SCORE *score = (SCORE*)obj;
 		
+		NSString *RxString = nil;
+		
+		if ([[score Rx] boolValue]) {
+			RxString = @"YES";
+		} else {
+			RxString = @"NO";
+		}
+
+		
+		NSString *scoreString = nil;
+		
+		if ([[score time] intValue] > 0) {
+			scoreString = [[score time] stringValue];
+		} else if ([[score rounds] intValue] > 0) {
+			scoreString = [[score rounds] stringValue];
+		} else if ([[score reps] intValue] > 0) {
+			scoreString = [[score reps] stringValue];
+		} else if ([[score completed] boolValue]) {
+			scoreString = @"1";
+		} else {
+			scoreString = @"0";
+		}
+		
+		WOD *w = [score wod];
+
+		// Write the fields
+		[csvWriter writeField:[format stringFromDate:[score date]]];
+		[csvWriter writeField:[[w name] capitalizedString]];
+		[csvWriter writeField:[WOD wodTypeToString:[[w type] intValue]]];
+		[csvWriter writeField:scoreString];
+		[csvWriter writeField:[WOD wodScoreTypeToString:[[w score_type] intValue]]];
+		[csvWriter writeField:RxString];
+		[csvWriter writeLine];
+		
 	}
+	
+	[csvWriter release];
+	
+	NSData *attachment = [NSData dataWithContentsOfFile:file];
+	
+	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+	[controller setMailComposeDelegate:self];
+//	[controller.mailComposeDelegate = self;
+	[controller setSubject:[NSString stringWithFormat:@"My WOD Log data as of: %@", [format stringFromDate:[NSDate date]]]];
+	[controller setMessageBody:@"The data is attached" isHTML:NO];
+	[controller addAttachmentData:attachment mimeType:@"text/csv" fileName:filename];
+	if (controller) [self presentModalViewController:controller animated:YES];
+	[controller release];
+	
+}
+
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+
+	if (result == MFMailComposeResultSent) {
+		NSLog(@"It's away!");
+	} else {
+		NSLog(@"IT ISN'T AWAY!");
+	}
+
+	[self dismissModalViewControllerAnimated:YES];
+	
 }
 
 #pragma mark -

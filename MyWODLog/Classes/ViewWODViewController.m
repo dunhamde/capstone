@@ -43,9 +43,9 @@
 - (void)setCurrentWOD:(WOD *)w {
 
 	[self setWod:w];
-	[self setWodName:[[self wod] name]];
-	[self setWodType:[[[self wod] score_type] intValue]];
-	[self setWodNotes:[[self wod] notes]];
+	//[self setWodName:[[self wod] name]];
+	//[self setWodType:[[[self wod] score_type] intValue]];
+	//[self setWodNotes:[[self wod] notes]];
 	
 	if ([[w timelimit] intValue] > 0) {
 		[self setShowTimeLimit:YES];
@@ -260,7 +260,6 @@
 		return cell;
 	}
 
-	NSLog(@"SECTION= %d    ROW= %d", [indexPath section], [indexPath row]);
 	return nil;
 }
 
@@ -279,7 +278,7 @@
 		[[cell textLabel] setText:@"Name"];
 		
 		if ([[self wod] name] != nil) {
-			[[cell detailTextLabel] setText:[[self wod] name]];
+			[[cell detailTextLabel] setText:[[[self wod] name] capitalizedString]];
 		} else {
 			[[cell detailTextLabel] setText:@"<WOD NAME HERE>"];
 		}

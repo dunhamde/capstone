@@ -21,6 +21,7 @@
 @property (nonatomic, retain) WOD * wod;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * notes;
+@property (nonatomic, retain) NSNumber * Rx;
 
 @end
 

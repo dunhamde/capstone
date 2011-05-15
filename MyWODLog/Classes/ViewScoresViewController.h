@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+//#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "CHCSVWriter.h"
 
 #define DATE_INDEX 0
 #define WOD_INDEX 1
 
-@interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate> {
 	
 	//UIToolbar *toolbar;
 	IBOutlet UITableView	*table;

@@ -19,5 +19,6 @@
 @dynamic wod;
 @dynamic date;
 @dynamic notes;
+@dynamic Rx;
 
 @end
