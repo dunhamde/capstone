@@ -427,10 +427,10 @@
 				[score setTime:[NSNumber numberWithDouble:[controller time_in_seconds]]];
 				break;
 			case WOD_SCORE_TYPE_REPS:
-				[score setReps:[NSNumber numberWithDouble:[[[controller scoreField] text] intValue]]];
+				[score setReps:[NSNumber numberWithInt:[controller scoreNum]]];
 				break;
 			case WOD_SCORE_TYPE_RNDS:
-				[score setRounds:[NSNumber numberWithDouble:[[[controller scoreField] text] intValue]]];
+				[score setRounds:[NSNumber numberWithInt:[controller scoreNum]]];
 				break;
 			default:
 				break;

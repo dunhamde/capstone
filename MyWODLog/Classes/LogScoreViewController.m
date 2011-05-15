@@ -12,7 +12,7 @@
 @implementation LogScoreViewController
 
 @synthesize delegate, wod, scoreField, timeButton, hiddenButton, date, start_date, logNotes, table, dateFormatted;
-@synthesize time_in_seconds, hours, minutes, seconds, editingDate, editingScore;
+@synthesize time_in_seconds, hours, minutes, seconds, scoreNum, editingDate, editingScore;
 @synthesize datePicker, timePicker, pickerView, datePickerView;
 
 
@@ -58,7 +58,22 @@
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	
 	[dnc addObserver:self selector:@selector(notesChangedNote:) name:@"LogNotesSent" object:nil];
+	[dnc addObserver:self selector:@selector(scoreNote:) name:@"ScoreSent" object:nil];
 
+
+}
+
+- (void)scoreNote:(NSNotification*)saveNotification {
+	NSLog(@"SCORE SENT");
+	// Update 'Score' and refresh the table
+	NSDictionary *dict = [saveNotification userInfo];
+
+	[self setScoreNum:[[dict objectForKey:@"Text"] intValue]];
+	
+	// Remove the notification
+	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver:self name:@":ScoreSent" object:nil];
+	[table reloadData];
 }
 
 - (void)notesChangedNote:(NSNotification*)saveNotification {
@@ -336,7 +351,7 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ScoreCellIdentifier] autorelease];
-			[cell setAccessoryView:timeButton];
+			//[cell setAccessoryView:timeButton];
 		}
 		
 		// Configure the cell.
@@ -382,24 +397,31 @@
 				break;
 			case WOD_SCORE_TYPE_TIME:
 				[[cell textLabel] setText:@"Time"];
+				if (time_in_seconds != 0) {
+					int min = floor(time_in_seconds /60);
+					int sec = trunc(time_in_seconds - min * 60);
+					[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%d min %d sec", min, sec]];					
+				}
 				break;
 			case WOD_SCORE_TYPE_REPS:
 				[[cell textLabel] setText:@"Reps"];
+				if ([self scoreNum] != 0) {
+					[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%i", scoreNum]];
+				}
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 				break;
 			case WOD_SCORE_TYPE_RNDS:
 				[[cell textLabel] setText:@"Rounds"];
+				if ([self scoreNum] != 0) {
+					[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%i", scoreNum]];
+				}
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 				break;
 			default:
 				break;
 		}			
 		
-		if (time_in_seconds != 0) {
-			int min = floor(time_in_seconds /60);
-			int sec = trunc(time_in_seconds - min * 60);
-			[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%d min %d sec", min, sec]];
-			
-			
-		}
+
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
@@ -433,19 +455,46 @@
 	}
 	else if ([indexPath section] == LS_SECTION_SCORE && [indexPath row] == 0 ) {	
 		
-		table.allowsSelection = NO;
-		self.editingScore = YES;
-		self.hiddenButton.enabled = YES;
-		
-		CGRect frame = self.pickerView.frame;
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:.5];
-		
-		[self.view addSubview:pickerView];
-		frame.origin.y = 200;
-		self.pickerView.frame = frame;
-		
-		[UIView commitAnimations];
+		if ([WOD wodScoreTypeToString:[[wod score_type] intValue] ] == @"Time") {
+			table.allowsSelection = NO;
+			self.editingScore = YES;
+			self.hiddenButton.enabled = YES;
+			
+			CGRect frame = self.pickerView.frame;
+			[UIView beginAnimations:nil context:NULL];
+			[UIView setAnimationDuration:.5];
+			
+			[self.view addSubview:pickerView];
+			frame.origin.y = 200;
+			self.pickerView.frame = frame;
+			
+			[UIView commitAnimations];
+		}
+		if ([WOD wodScoreTypeToString:[[wod score_type] intValue] ] == @"Reps") {
+			EditViewController *controller = [[EditViewController alloc] init];
+			
+			[controller setTitleName:@"Reps"];
+			[controller setNotificationName:@"ScoreSent"];
+			[controller setEditType:EDIT_TYPE_NUMBER];
+			[controller setDefaultText:nil];
+			[controller setPopToRoot:NO];
+			[[self navigationController] pushViewController:controller animated:YES];		
+			
+			[controller release];
+		}
+		if ([WOD wodScoreTypeToString:[[wod score_type] intValue] ] == @"Rounds") {
+			EditViewController *controller = [[EditViewController alloc] init];
+			
+			[controller setTitleName:@"Rounds"];
+			[controller setNotificationName:@"ScoreSent"];
+			[controller setEditType:EDIT_TYPE_NUMBER];
+			[controller setDefaultText:nil];
+			[controller setPopToRoot:NO];
+			[[self navigationController] pushViewController:controller animated:YES];		
+			
+			[controller release];
+		}
+
 	} else {
 		EditViewController *controller = [[EditViewController alloc] init];
 		

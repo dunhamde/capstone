@@ -43,7 +43,7 @@
 	id <LogScoreViewControllerDelegate> delegate;
 	WOD *wod;
 	NSDate *date, *start_date;
-	int hours, minutes, seconds;
+	int hours, minutes, seconds, scoreNum;
 	NSTimeInterval time_in_seconds;
 	NSString *logNotes;
 	NSString *dateFormatted;
@@ -83,6 +83,7 @@
 @property (nonatomic, assign) int hours;
 @property (nonatomic, assign) int minutes;
 @property (nonatomic, assign) int seconds;
+@property (nonatomic, assign) int scoreNum;
 
 @property (nonatomic, retain) IBOutlet UIButton	*timeButton;
 @property (nonatomic, retain) IBOutlet UIButton	*hiddenButton;

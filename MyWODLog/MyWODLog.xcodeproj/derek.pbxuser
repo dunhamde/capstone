@@ -2,9 +2,9 @@
 {
 	1D3623240D0F684500981E51 /* MyWODLogAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 819}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 858}}";
 			sepNavSelRange = "{485, 0}";
-			sepNavVisRange = "{3, 1284}";
+			sepNavVisRange = "{0, 1318}";
 			sepNavWindowFrame = "{{15, 188}, {992, 685}}";
 		};
 	};
@@ -237,6 +237,23 @@
 			65CE7DA4137FADF100B01B1B /* PBXTextBookmark */ = 65CE7DA4137FADF100B01B1B /* PBXTextBookmark */;
 			65CE7DA5137FADF100B01B1B /* PBXTextBookmark */ = 65CE7DA5137FADF100B01B1B /* PBXTextBookmark */;
 			65CE7DA6137FADF100B01B1B /* PBXTextBookmark */ = 65CE7DA6137FADF100B01B1B /* PBXTextBookmark */;
+			65CE7DE2138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE2138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE3138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE3138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE4138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE4138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE5138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE5138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE6138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE6138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE7138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE7138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE8138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE8138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DE9138075B200B01B1B /* PBXTextBookmark */ = 65CE7DE9138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DEA138075B200B01B1B /* PBXTextBookmark */ = 65CE7DEA138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DEB138075B200B01B1B /* PBXTextBookmark */ = 65CE7DEB138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DEC138075B200B01B1B /* PBXTextBookmark */ = 65CE7DEC138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DED138075B200B01B1B /* PBXTextBookmark */ = 65CE7DED138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DEE138075B200B01B1B /* PBXTextBookmark */ = 65CE7DEE138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DEF138075B200B01B1B /* PBXTextBookmark */ = 65CE7DEF138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DF0138075B200B01B1B /* PBXTextBookmark */ = 65CE7DF0138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DF1138075B200B01B1B /* PBXTextBookmark */ = 65CE7DF1138075B200B01B1B /* PBXTextBookmark */;
+			65CE7DF2138075B200B01B1B /* PBXTextBookmark */ = 65CE7DF2138075B200B01B1B /* PBXTextBookmark */;
 			65E5E05E137F30B8007ED924 = 65E5E05E137F30B8007ED924 /* PBXTextBookmark */;
 			65E5E05F137F30B8007ED924 = 65E5E05F137F30B8007ED924 /* PBXTextBookmark */;
 		};
@@ -470,26 +487,25 @@
 	};
 	34957625130DF12400895074 /* ViewExerciseModesViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1818, 5837}}";
-			sepNavSelRange = "{5484, 595}";
-			sepNavVisRange = "{4912, 1641}";
+			sepNavIntBoundsRect = "{{0, 0}, {1818, 6253}}";
+			sepNavSelRange = "{5799, 0}";
+			sepNavVisRange = "{9384, 1064}";
 			sepNavWindowFrame = "{{38, 167}, {992, 685}}";
 		};
 	};
 	349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 689}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 715}}";
 			sepNavSelRange = "{797, 0}";
-			sepNavVisRange = "{47, 1470}";
+			sepNavVisRange = "{47, 1552}";
 			sepNavWindowFrame = "{{15, 228}, {876, 645}}";
 		};
 	};
 	349D34B012EAAA4200419F93 /* ViewScoresViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(*)outputFile\";\n            r = \"{8424, 17}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 13044}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 5174}}";
-			sepNavSelRange = "{4384, 1}";
-			sepNavVisRange = "{227, 1784}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 6253}}";
+			sepNavSelRange = "{9830, 0}";
+			sepNavVisRange = "{6907, 1703}";
 		};
 	};
 	349D34BD12EAAE3300419F93 /* ScoresViewController.h */ = {
@@ -501,9 +517,9 @@
 	};
 	349D34BE12EAAE3300419F93 /* ScoresViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 1053}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1014}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 1053}}";
+			sepNavSelRange = "{412, 0}";
+			sepNavVisRange = "{0, 1134}";
 		};
 	};
 	34A445FD135BB42F00F37BBE /* ListEditViewController.m */ = {
@@ -523,16 +539,16 @@
 	};
 	34B05FE01363BAE3002991C8 /* WOD.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 975}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 1092}}";
 			sepNavSelRange = "{209, 19}";
-			sepNavVisRange = "{575, 1437}";
+			sepNavVisRange = "{466, 1634}";
 		};
 	};
 	34B05FE11363BAE3002991C8 /* WOD.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 583}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 1235}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 411}";
+			sepNavVisRange = "{137, 897}";
 		};
 	};
 	34B05FE41363BAE3002991C8 /* MODE.h */ = {
@@ -551,16 +567,16 @@
 	};
 	34B05FE61363BAE3002991C8 /* SCORE.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 573}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 635}}";
 			sepNavSelRange = "{563, 0}";
-			sepNavVisRange = "{0, 564}";
+			sepNavVisRange = "{0, 609}";
 		};
 	};
 	34B05FE71363BAE3002991C8 /* SCORE.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 573}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 635}}";
 			sepNavSelRange = "{311, 0}";
-			sepNavVisRange = "{0, 318}";
+			sepNavVisRange = "{0, 331}";
 		};
 	};
 	34C0620812ECA1B100049AFC /* ViewWODViewController.h */ = {
@@ -572,9 +588,9 @@
 	};
 	34C0620912ECA1B100049AFC /* ViewWODViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 8528}}";
-			sepNavSelRange = "{2595, 499}";
-			sepNavVisRange = "{2450, 738}";
+			sepNavIntBoundsRect = "{{0, 0}, {1132, 8047}}";
+			sepNavSelRange = "{12283, 0}";
+			sepNavVisRange = "{11627, 1707}";
 			sepNavWindowFrame = "{{15, 188}, {992, 685}}";
 		};
 	};
@@ -645,17 +661,17 @@
 	};
 	34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 1313}}";
-			sepNavSelRange = "{2782, 0}";
-			sepNavVisRange = "{1269, 1831}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 1326}}";
+			sepNavSelRange = "{2560, 0}";
+			sepNavVisRange = "{1351, 1803}";
 			sepNavWindowFrame = "{{15, 228}, {876, 645}}";
 		};
 	};
 	34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 6370}}";
-			sepNavSelRange = "{11825, 0}";
-			sepNavVisRange = "{11324, 1188}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 6851}}";
+			sepNavSelRange = "{2683, 0}";
+			sepNavVisRange = "{2076, 1882}";
 			sepNavWindowFrame = "{{15, 228}, {876, 645}}";
 		};
 	};
@@ -754,7 +770,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 398";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 1941;
 		vrLoc = 2562;
@@ -764,23 +780,23 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 398";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 1553;
 		vrLoc = 11238;
 	};
 	653B14441356A62700BF3C72 /* EditViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1105, 975}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 949}}";
 			sepNavSelRange = "{768, 0}";
-			sepNavVisRange = "{137, 966}";
+			sepNavVisRange = "{0, 891}";
 		};
 	};
 	653B14451356A62700BF3C72 /* EditViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1244, 2860}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1272, 3198}}";
 			sepNavSelRange = "{2244, 0}";
-			sepNavVisRange = "{4475, 1263}";
+			sepNavVisRange = "{3063, 1413}";
 		};
 	};
 	656842E61373586D00836EB7 /* PBXTextBookmark */ = {
@@ -1086,7 +1102,7 @@
 		comments = "'dateViewTouched' undeclared (first use in this function)";
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		rLen = 0;
-		rLoc = 371;
+		rLoc = 388;
 		rType = 1;
 	};
 	65CE7C9C137F8B2900B01B1B /* PBXTextBookmark */ = {
@@ -1094,7 +1110,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 396";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 697;
 		vrLoc = 11675;
@@ -1124,7 +1140,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 396";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 1559;
 		vrLoc = 10813;
@@ -1134,7 +1150,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 397";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 1604;
 		vrLoc = 10813;
@@ -1154,7 +1170,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 91";
 		rLen = 0;
-		rLoc = 2698;
+		rLoc = 2752;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 1355;
@@ -1174,7 +1190,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 163";
 		rLen = 0;
-		rLoc = 4605;
+		rLoc = 5161;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 4396;
@@ -1184,7 +1200,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 163";
 		rLen = 0;
-		rLoc = 4605;
+		rLoc = 5161;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 4282;
@@ -1194,7 +1210,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 165";
 		rLen = 0;
-		rLoc = 4610;
+		rLoc = 5166;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 4539;
@@ -1204,7 +1220,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 54";
 		rLen = 0;
-		rLoc = 1345;
+		rLoc = 1355;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 986;
@@ -1214,7 +1230,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 390";
 		rLen = 0;
-		rLoc = 10897;
+		rLoc = 11455;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 11210;
@@ -1274,7 +1290,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 16";
 		rLen = 0;
-		rLoc = 507;
+		rLoc = 517;
 		rType = 0;
 		vrLen = 1660;
 		vrLoc = 45;
@@ -1284,7 +1300,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 94";
 		rLen = 0;
-		rLoc = 2698;
+		rLoc = 2752;
 		rType = 0;
 		vrLen = 1650;
 		vrLoc = 797;
@@ -1294,7 +1310,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 94";
 		rLen = 0;
-		rLoc = 2698;
+		rLoc = 2752;
 		rType = 0;
 		vrLen = 1672;
 		vrLoc = 775;
@@ -1304,7 +1320,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 94";
 		rLen = 0;
-		rLoc = 2698;
+		rLoc = 2752;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 93;
@@ -1324,7 +1340,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 26";
 		rLen = 0;
-		rLoc = 690;
+		rLoc = 700;
 		rType = 0;
 		vrLen = 1672;
 		vrLoc = 45;
@@ -1334,9 +1350,9 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 461";
 		rLen = 0;
-		rLoc = 12307;
+		rLoc = 13255;
 		rType = 0;
-		vrLen = 1079;
+		vrLen = 913;
 		vrLoc = 12788;
 	};
 	65CE7D03137F965100B01B1B /* PBXTextBookmark */ = {
@@ -1344,9 +1360,9 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 460";
 		rLen = 0;
-		rLoc = 12293;
+		rLoc = 13241;
 		rType = 0;
-		vrLen = 1079;
+		vrLen = 913;
 		vrLoc = 12788;
 	};
 	65CE7D07137F966200B01B1B /* PBXTextBookmark */ = {
@@ -1354,9 +1370,9 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 460";
 		rLen = 0;
-		rLoc = 12293;
+		rLoc = 13241;
 		rType = 0;
-		vrLen = 1079;
+		vrLen = 913;
 		vrLoc = 12788;
 	};
 	65CE7D0B137F967500B01B1B /* PBXTextBookmark */ = {
@@ -1364,9 +1380,9 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 460";
 		rLen = 0;
-		rLoc = 12293;
+		rLoc = 13241;
 		rType = 0;
-		vrLen = 1079;
+		vrLen = 913;
 		vrLoc = 12788;
 	};
 	65CE7D0F137F968600B01B1B /* PBXTextBookmark */ = {
@@ -1374,9 +1390,9 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 460";
 		rLen = 0;
-		rLoc = 12293;
+		rLoc = 13241;
 		rType = 0;
-		vrLen = 1079;
+		vrLen = 913;
 		vrLoc = 12788;
 	};
 	65CE7D21137F9B2500B01B1B /* PBXTextBookmark */ = {
@@ -1414,7 +1430,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 53";
 		rLen = 0;
-		rLoc = 1269;
+		rLoc = 1279;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 774;
@@ -1424,7 +1440,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 34";
 		rLen = 0;
-		rLoc = 1115;
+		rLoc = 1125;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 0;
@@ -1434,7 +1450,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 45";
 		rLen = 0;
-		rLoc = 1509;
+		rLoc = 1519;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 233;
@@ -1444,7 +1460,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 428";
 		rLen = 0;
-		rLoc = 11935;
+		rLoc = 12883;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 11933;
@@ -1454,7 +1470,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 430";
 		rLen = 0;
-		rLoc = 12009;
+		rLoc = 12957;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 11948;
@@ -1464,7 +1480,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 130";
 		rLen = 0;
-		rLoc = 3904;
+		rLoc = 4409;
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 3778;
@@ -1474,7 +1490,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 131";
 		rLen = 0;
-		rLoc = 3934;
+		rLoc = 4439;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 3779;
@@ -1484,7 +1500,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 124";
 		rLen = 0;
-		rLoc = 3487;
+		rLoc = 3992;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 3808;
@@ -1494,7 +1510,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 434";
 		rLen = 0;
-		rLoc = 12101;
+		rLoc = 13049;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 12016;
@@ -1504,7 +1520,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 435";
 		rLen = 0;
-		rLoc = 12101;
+		rLoc = 13049;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 12079;
@@ -1514,7 +1530,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 434";
 		rLen = 0;
-		rLoc = 12101;
+		rLoc = 13049;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 12190;
@@ -1524,7 +1540,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 434";
 		rLen = 0;
-		rLoc = 12101;
+		rLoc = 13049;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 12201;
@@ -1544,7 +1560,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 434";
 		rLen = 0;
-		rLoc = 12101;
+		rLoc = 13049;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 11963;
@@ -1554,7 +1570,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 307";
 		rLen = 0;
-		rLoc = 8975;
+		rLoc = 9531;
 		rType = 0;
 		vrLen = 1412;
 		vrLoc = 8612;
@@ -1564,7 +1580,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 133";
 		rLen = 0;
-		rLoc = 4123;
+		rLoc = 4628;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 3807;
@@ -1574,7 +1590,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 29";
 		rLen = 0;
-		rLoc = 923;
+		rLoc = 933;
 		rType = 0;
 		vrLen = 1475;
 		vrLoc = 192;
@@ -1584,7 +1600,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 133";
 		rLen = 0;
-		rLoc = 3833;
+		rLoc = 4338;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 3656;
@@ -1594,7 +1610,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 94";
 		rLen = 0;
-		rLoc = 2842;
+		rLoc = 2896;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 1191;
@@ -1604,7 +1620,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 113";
 		rLen = 0;
-		rLoc = 3455;
+		rLoc = 3960;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 503;
@@ -1614,7 +1630,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 39";
 		rLen = 0;
-		rLoc = 1315;
+		rLoc = 1325;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 503;
@@ -1624,7 +1640,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 74";
 		rLen = 0;
-		rLoc = 2018;
+		rLoc = 2028;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 775;
@@ -1634,7 +1650,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 449";
 		rLen = 0;
-		rLoc = 12504;
+		rLoc = 14777;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 12284;
@@ -1644,7 +1660,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 461";
 		rLen = 0;
-		rLoc = 13210;
+		rLoc = 15188;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 12298;
@@ -1654,7 +1670,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 30";
 		rLen = 0;
-		rLoc = 815;
+		rLoc = 825;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 192;
@@ -1664,7 +1680,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 32";
 		rLen = 0;
-		rLoc = 889;
+		rLoc = 899;
 		rType = 0;
 		vrLen = 1461;
 		vrLoc = 232;
@@ -1714,7 +1730,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 74";
 		rLen = 0;
-		rLoc = 2018;
+		rLoc = 2028;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 1369;
@@ -1724,7 +1740,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 405";
 		rLen = 0;
-		rLoc = 11367;
+		rLoc = 12537;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 11316;
@@ -1734,7 +1750,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 409";
 		rLen = 0;
-		rLoc = 11513;
+		rLoc = 12538;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 11319;
@@ -1744,7 +1760,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 92";
 		rLen = 0;
-		rLoc = 2782;
+		rLoc = 2836;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 1343;
@@ -1754,7 +1770,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 76";
 		rLen = 0;
-		rLoc = 2177;
+		rLoc = 2682;
 		rType = 0;
 		vrLen = 1563;
 		vrLoc = 1531;
@@ -1764,7 +1780,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 373";
 		rLen = 0;
-		rLoc = 10900;
+		rLoc = 11458;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 10123;
@@ -1774,7 +1790,7 @@
 		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
 		name = "LogScoreViewController.m: 408";
 		rLen = 0;
-		rLoc = 11825;
+		rLoc = 12773;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 11324;
@@ -1784,7 +1800,7 @@
 		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
 		name = "LogScoreViewController.h: 92";
 		rLen = 0;
-		rLoc = 2782;
+		rLoc = 2836;
 		rType = 0;
 		vrLen = 1831;
 		vrLoc = 1269;
@@ -1818,6 +1834,176 @@
 		rType = 0;
 		vrLen = 738;
 		vrLoc = 2450;
+	};
+	65CE7DE2138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 349D34BE12EAAE3300419F93 /* ScoresViewController.m */;
+		name = "ScoresViewController.m: 26";
+		rLen = 0;
+		rLoc = 412;
+		rType = 0;
+		vrLen = 1134;
+		vrLoc = 0;
+	};
+	65CE7DE3138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 65F474061298A1B000E58B04 /* MainPageViewController.h */;
+		name = "MainPageViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 529;
+		vrLoc = 0;
+	};
+	65CE7DE4138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */;
+		name = "MainPageViewController.m: 45";
+		rLen = 0;
+		rLoc = 1210;
+		rType = 0;
+		vrLen = 1346;
+		vrLoc = 0;
+	};
+	65CE7DE5138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* MyWODLogAppDelegate.h */;
+		name = "MyWODLogAppDelegate.h: 22";
+		rLen = 0;
+		rLoc = 485;
+		rType = 0;
+		vrLen = 1318;
+		vrLoc = 0;
+	};
+	65CE7DE6138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 349D34AF12EAAA4200419F93 /* ViewScoresViewController.h */;
+		name = "ViewScoresViewController.h: 28";
+		rLen = 0;
+		rLoc = 797;
+		rType = 0;
+		vrLen = 1552;
+		vrLoc = 47;
+	};
+	65CE7DE7138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 349D34B012EAAA4200419F93 /* ViewScoresViewController.m */;
+		name = "ViewScoresViewController.m: 295";
+		rLen = 0;
+		rLoc = 9830;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 6907;
+	};
+	65CE7DE8138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 653B14441356A62700BF3C72 /* EditViewController.h */;
+		name = "EditViewController.h: 43";
+		rLen = 0;
+		rLoc = 768;
+		rType = 0;
+		vrLen = 891;
+		vrLoc = 0;
+	};
+	65CE7DE9138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 653B14451356A62700BF3C72 /* EditViewController.m */;
+		name = "EditViewController.m: 83";
+		rLen = 0;
+		rLoc = 2244;
+		rType = 0;
+		vrLen = 1413;
+		vrLoc = 3063;
+	};
+	65CE7DEA138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34B05FE11363BAE3002991C8 /* WOD.m */;
+		name = "WOD.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 897;
+		vrLoc = 137;
+	};
+	65CE7DEB138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34F60F6012ED4D05004186AF /* LogScoreViewController.h */;
+		name = "LogScoreViewController.h: 86";
+		rLen = 0;
+		rLoc = 2560;
+		rType = 0;
+		vrLen = 1803;
+		vrLoc = 1351;
+	};
+	65CE7DEC138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34957625130DF12400895074 /* ViewExerciseModesViewController.m */;
+		name = "ViewExerciseModesViewController.m: 199";
+		rLen = 0;
+		rLoc = 5799;
+		rType = 0;
+		vrLen = 1064;
+		vrLoc = 9384;
+	};
+	65CE7DED138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34B05FE01363BAE3002991C8 /* WOD.h */;
+		name = "WOD.h: 14";
+		rLen = 19;
+		rLoc = 209;
+		rType = 0;
+		vrLen = 1634;
+		vrLoc = 466;
+	};
+	65CE7DEE138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34B05FE71363BAE3002991C8 /* SCORE.m */;
+		name = "SCORE.m: 21";
+		rLen = 0;
+		rLoc = 311;
+		rType = 0;
+		vrLen = 331;
+		vrLoc = 0;
+	};
+	65CE7DEF138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34B05FE61363BAE3002991C8 /* SCORE.h */;
+		name = "SCORE.h: 24";
+		rLen = 0;
+		rLoc = 563;
+		rType = 0;
+		vrLen = 609;
+		vrLoc = 0;
+	};
+	65CE7DF0138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */;
+		name = "LogScoreViewController.m: 92";
+		rLen = 0;
+		rLoc = 2683;
+		rType = 0;
+		vrLen = 1882;
+		vrLoc = 2076;
+	};
+	65CE7DF1138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 430";
+		rLen = 0;
+		rLoc = 12378;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 11354;
+	};
+	65CE7DF2138075B200B01B1B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 34C0620912ECA1B100049AFC /* ViewWODViewController.m */;
+		name = "ViewWODViewController.m: 428";
+		rLen = 0;
+		rLoc = 12283;
+		rType = 0;
+		vrLen = 1707;
+		vrLoc = 11627;
 	};
 	65E5E05E137F30B8007ED924 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1911,7 +2097,7 @@
 	};
 	65F474061298A1B000E58B04 /* MainPageViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1105, 612}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 529}";
 			sepNavWindowFrame = "{{15, 315}, {750, 558}}";
@@ -1921,7 +2107,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1105, 1274}}";
 			sepNavSelRange = "{1210, 0}";
-			sepNavVisRange = "{0, 1074}";
+			sepNavVisRange = "{0, 1346}";
 		};
 	};
 	65FF40AF12E3DEA700DF2F2A /* WODListViewController.h */ = {
