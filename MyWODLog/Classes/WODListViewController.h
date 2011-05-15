@@ -19,6 +19,7 @@
 	NSManagedObjectContext *managedObjectContext;
 	
 	CreateWODViewController *createWODViewController;
+	
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-//#import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "CHCSVWriter.h"
 
@@ -18,36 +17,39 @@
 @interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate> {
 	
 	//UIToolbar *toolbar;
-	IBOutlet UITableView	*table;
-	NSFetchedResultsController *fetchedResultsController;
-	NSManagedObjectContext *managedObjectContext;
-	NSArray	*curScores;
-	IBOutlet UILabel *filterLabel;
+	IBOutlet UITableView		*table;
+	NSFetchedResultsController	*fetchedResultsController;
+	NSManagedObjectContext		*managedObjectContext;
+	NSArray						*curScores;
+	IBOutlet UILabel			*filterLabel;
 	IBOutlet UISegmentedControl	*segmentedControl;
-	NSUInteger	selectedUnit;
+	NSUInteger					selectedUnit;
 	
-	UIView	*notesView;
-	UILabel	*notesTitleLabel;
-	UITextView	*notesTextView;
+	UIView						*notesView;
+	UILabel						*notesTitleLabel;
+	UITextView					*notesTextView;
 
 }
+
+
 
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer;
 - (IBAction)toggleSort;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
 - (void)exportAllData;
 
-@property (nonatomic, retain) UITableView *table;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) IBOutlet UILabel	*filterLabel;
-@property (nonatomic, retain) IBOutlet UISegmentedControl	*segmentedControl;
-@property (nonatomic, retain) NSArray	*curScores;
 
-@property (nonatomic, retain) UIView	*notesView;
-@property (nonatomic, retain) UILabel	*notesTitleLabel;
-@property (nonatomic, retain) UITextView	*notesTextView;
+
+@property (nonatomic, retain) UITableView					*table;
+@property (nonatomic, retain) NSFetchedResultsController	*fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext		*managedObjectContext;
+@property (nonatomic, retain) IBOutlet UILabel				*filterLabel;
+@property (nonatomic, retain) IBOutlet UISegmentedControl	*segmentedControl;
+@property (nonatomic, retain) NSArray						*curScores;
+
+@property (nonatomic, retain) UIView						*notesView;
+@property (nonatomic, retain) UILabel						*notesTitleLabel;
+@property (nonatomic, retain) UITextView					*notesTextView;
 
 
 

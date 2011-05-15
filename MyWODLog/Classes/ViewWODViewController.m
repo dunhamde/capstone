@@ -12,15 +12,53 @@
 
 @implementation ViewWODViewController
 
-@synthesize wod, scoredByLabel, wodExerciseArray, table, logButton; // removed the list label in order to add the tabel
+@synthesize wod, scoredByLabel, table, logButton; // removed the list label in order to add the tabel
 @synthesize showNumRounds, showRepRounds, showTimeLimit;
-@synthesize wodName, wodNotes, wodType, wodTimeLimit, wodNumRounds, wodRepRounds, wodScoreType;
 @synthesize logScoreViewController, managedObjectContext, fetchedResultsController;
+@synthesize	notesView, notesTitleLabel, notesTextView;
 
-
-
-- (id)init {	
+/*
+- (id)init {
+	self = [super init];
 	return self;
+}*/
+
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+		
+        self.notesView = [[[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 300)] 
+						  autorelease];
+		[self.notesView setBackgroundColor:[UIColor blackColor]];
+		[self.notesView setAlpha:.87];
+		
+		// Title
+		notesTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+		notesTitleLabel.font = [UIFont boldSystemFontOfSize:17];
+		notesTitleLabel.textAlignment = UITextAlignmentCenter;
+		notesTitleLabel.textColor = [UIColor whiteColor];
+		notesTitleLabel.backgroundColor = [UIColor clearColor];
+		[self.notesView addSubview:notesTitleLabel];
+		
+		// Message
+		notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, 300, 270)];
+		notesTextView.font = [UIFont systemFontOfSize:15];
+		notesTextView.textAlignment = UITextAlignmentLeft;
+		notesTextView.textColor = [UIColor whiteColor];
+		notesTextView.backgroundColor = [UIColor clearColor];
+		notesTextView.editable = NO;
+		[self.notesView addSubview:notesTextView];
+		
+		UITapGestureRecognizer *touch = 
+		[[UITapGestureRecognizer alloc] initWithTarget:self 
+												action:@selector(notesViewTouched:)];
+		[self.notesView addGestureRecognizer:touch];
+		[touch release];
+		
+    }
+    return self;
 }
 
 
@@ -32,10 +70,6 @@
 	[[self navigationItem] setRightBarButtonItem:[self logButton]];
 	[logButton release];
 	
-	if (managedObjectContext == nil) {
-        managedObjectContext = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
-	}
-	
 }
 
 
@@ -43,15 +77,12 @@
 - (void)setCurrentWOD:(WOD *)w {
 
 	[self setWod:w];
-	//[self setWodName:[[self wod] name]];
-	//[self setWodType:[[[self wod] score_type] intValue]];
-	//[self setWodNotes:[[self wod] notes]];
 	
 	if ([[w timelimit] intValue] > 0) {
 		[self setShowTimeLimit:YES];
 	}
 	
-	[self setTitle:[[wod name] capitalizedString]];
+	[self setTitle:[[[self wod] name] capitalizedString]];
 
 }
 
@@ -66,12 +97,13 @@
 	[[self navigationController] pushViewController:logScore animated:YES];
 
 	[logScore release];
+	
 }
 
 
 
 #pragma mark -
-#pragma mark Table View Controller stuff
+#pragma mark Table View Controller Methods
 
 
 
@@ -126,7 +158,7 @@
 			}
             break;
         case VW_SECTION_EXERCISES:
-            rows = [[self wodExerciseArray] count];
+			rows = [[[[self wod] eexercises] allObjects] count];
             break;
         case VW_SECTION_NOTES:
             rows = 1;
@@ -150,7 +182,6 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:NameCellIdentifier] autorelease];
-			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
@@ -166,7 +197,6 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
@@ -176,14 +206,12 @@
 		
 	}
 	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 && [[[self wod] type] intValue] == WOD_TYPE_RRFT ) {
-	//else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 ) {
 		
 		static NSString *TypeCellIdentifier = @"RepRoundsCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
@@ -193,14 +221,15 @@
 		
 	}
 	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 &&
-			 ([[[self wod] type] intValue] == WOD_TYPE_RFT || [[[self wod] type] intValue] == WOD_TYPE_EMOTM || [[[self wod] type] intValue] == WOD_TYPE_AMRAP) ) {
+			 ([[[self wod] type] intValue] == WOD_TYPE_RFT ||
+			  [[[self wod] type] intValue] == WOD_TYPE_EMOTM ||
+			  [[[self wod] type] intValue] == WOD_TYPE_AMRAP) ) {
 		
 		static NSString *TypeCellIdentifier = @"TimeLimitCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
@@ -217,7 +246,7 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:TypeCellIdentifier] autorelease];
-			[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+			//[cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 		}
 		
 		// Configure the cell.
@@ -226,8 +255,7 @@
 		return cell;
 		
 	}
-	else if ( [indexPath section] == VW_SECTION_EXERCISES && [indexPath row] < [[self wodExerciseArray] count] ) {
-		
+	else if ( [indexPath section] == VW_SECTION_EXERCISES && [indexPath row] < [[[[self wod] eexercises] allObjects] count] ) {	
 		static NSString *ExerciseCellIdentifier = @"ExerciseCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
 		
@@ -247,11 +275,7 @@
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
 		
 		if (cell == nil) {
-			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
-			//[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
-			//[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-			
 		}
 		
 		// Configure the cell.
@@ -265,11 +289,7 @@
 
 
 
-
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	// Can't we do this by cell name instead of section/row numbers?
-	// i.e.:  [cell reuseIdentifier]  << returns a string
 	
 	NSString *cellIdentifier = [cell reuseIdentifier];
 	
@@ -280,7 +300,7 @@
 		if ([[self wod] name] != nil) {
 			[[cell detailTextLabel] setText:[[[self wod] name] capitalizedString]];
 		} else {
-			[[cell detailTextLabel] setText:@"<WOD NAME HERE>"];
+			[[cell detailTextLabel] setText:@"<No name found>"];
 		}
 		
 	}
@@ -318,10 +338,10 @@
 	}
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
 		
-		if( [indexPath row] < [[self wodExerciseArray] count] ) {
+		if( [indexPath row] < [[[[self wod] eexercises] allObjects] count] ) {
 			
 			// Find the correct next eexercise
-			NSEnumerator *enumer = [wodExerciseArray objectEnumerator];
+			NSEnumerator *enumer = [[[[self wod] eexercises] allObjects] objectEnumerator];
 			EEXERCISE *eexercise = nil;
 			
 			while ( (eexercise = (EEXERCISE*)[enumer nextObject]) ) {
@@ -329,8 +349,6 @@
 						break;
 					}
 			}
-			//eexercise = (EEXERCISE *)[wodExerciseArray objectAtIndex:[indexPath row]];
-			
 			
 			NSString* exerciseText = nil;
 			NSString *ename = nil;
@@ -346,7 +364,6 @@
 			} else {
 				exerciseText = ename;
 			}
-			
 			
 			[[cell textLabel] setText:[exerciseText capitalizedString]];
 		}
@@ -368,7 +385,7 @@
 			[[cell detailTextLabel] setText:[[[self wod] rounds] stringValue]];
 		}
 		else {
-			[[cell detailTextLabel] setText:@"<NUM OF ROUNDS HERE>"];
+			[[cell detailTextLabel] setText:@"<No round limit>"];
 		}
 		
 	}
@@ -376,10 +393,11 @@
 		
 		[[cell textLabel] setText:@"Time Limit"];
 		if ( [[self wod] timelimit] != nil && [[[self wod] timelimit] intValue] > 0) {
-			[[cell detailTextLabel] setText:[[[self wod] timelimit] stringValue]];
+			NSString *timelimit = [[[self wod] timelimit] stringValue];
+			[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@ minutes", timelimit]];
 		}
 		else {
-			[[cell detailTextLabel] setText:@"<TIME LIMIT HERE>"];
+			[[cell detailTextLabel] setText:@"<No time limit>"];
 		}
 		
 	}
@@ -397,7 +415,8 @@
 
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
 	
-	if (save) {		
+	if (save) {
+		
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
 		[score setCompleted:[NSNumber numberWithInt:1]];
@@ -427,119 +446,147 @@
 		// Save the new WOD:
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(logScoreControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+		
 		NSError *error;
 		if (![managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
-		}		
+		}
+		
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+		
 	}
 	
 	// Clean up:
 	[logScoreViewController release];
 	[self setLogScoreViewController:nil];
+	
 	// Dismiss the modal view to return to the main list:
     [self dismissModalViewControllerAnimated:YES];
 	
-	
 }
+
+
 
 - (void)logScoreControllerContextDidSave:(NSNotification*)saveNotification {
 	
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	// Merging changes causes the fetched results controller to update its results
-	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];
+	
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];		
+	NSString *cellIdentifier = [cell reuseIdentifier];
+	
+	// Case 'WOD Name':
+	if( [cellIdentifier isEqualToString:@"NameCell"] ) {
+		
+	}
+	// Case 'WOD Type':
+	else if( [cellIdentifier isEqualToString:@"TypeCell"] ) {
+		
+	}
+	// Case '<EXERCISE>':
+	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
+		// Do nothing...
+	}
+	// Case 'Add Exericse...':
+	else if( [cellIdentifier isEqualToString:@"AddCell"] ) {
+		
+	}
+	// Case 'Notes...':
+	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
+		
+		 table.allowsSelection = NO;
+		 
+		 notesTextView.text = [[self wod] notes];
+		 notesTitleLabel.text = @"Notes";		 
+		 //  UIView *view = self.view;
+		 CGRect frame = self.notesView.frame;
+		 [UIView beginAnimations:nil context:NULL];
+		 [UIView setAnimationDuration:.5];
+		 
+		 [self.view addSubview:notesView];
+		 frame.origin.y = 116;
+		 self.notesView.frame = frame;
+		 
+		 [UIView commitAnimations];
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"NumRoundsCell"] ) {
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"TimeLimitCell"] ) {
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
+		
+	}
+	
+}
+
+
 
 #pragma mark -
-#pragma mark Fetched results controller
+#pragma mark Notes
 
 
 
-/**
- Returns the fetched results controller. Creates and configures the controller if necessary.
- */
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
-    if (fetchedResultsController != nil) {
-        return fetchedResultsController;
-    }
-    
-	// Create and configure a fetch request with the 'wod' entity.
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
-	[fetchRequest setEntity:entity];
+- (void)notesViewTouched:(UITapGestureRecognizer *)recognizer {
 	
-	// Create the sort descriptors array.
-	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
-	[fetchRequest setSortDescriptors:sortDescriptors];
+	CGRect frame = self.notesView.frame;
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.5];
 	
+	[self.view addSubview:notesView];
+	frame.origin.y = 480;
+	self.notesView.frame = frame;
 	
-	// Create and initialize the fetch results controller.
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-	[self setFetchedResultsController:aFetchedResultsController];
-	//	self.fetchedResultsController = aFetchedResultsController;
-	[[self fetchedResultsController] setDelegate:self];
-	//	fetchedResultsController.delegate = self;
+	[UIView commitAnimations];
 	
-	// Memory management.
-	[aFetchedResultsController release];
-	[fetchRequest release];
-	[nameDescriptor release];
-	[sortDescriptors release];
-	return fetchedResultsController;
-}    
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
+	table.allowsSelection = YES;
+	
 }
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+
+#pragma mark -
+#pragma mark Memory management
+
+
 
 - (void)didReceiveMemoryWarning {
+	
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc. that aren't in use.
+	
 }
+
+
 
 - (void)viewDidUnload {
+	
     [super viewDidUnload];
-    [wodExerciseArray release];
-	self.wodExerciseArray = nil;
-	[wodRepRounds release];
+
 	[wod release];
-	// Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
+
+
 - (void)dealloc {
-	[wodExerciseArray dealloc];
+	
     [super dealloc];
+	
 }
+
 
 
 @end

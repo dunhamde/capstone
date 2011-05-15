@@ -25,29 +25,20 @@
 
 	WOD							*wod;
 	LogScoreViewController		*logScoreViewController;
-	NSManagedObjectContext		*managedObjectContext;
-	NSFetchedResultsController	*fetchedResultsController;  //TODO: comment this out
-	
+		
+	// UI Elements:
 	IBOutlet UILabel			*scoredByLabel;
 	IBOutlet UITableView		*table;
-	
-	// UI Elements:
-	UIBarButtonItem			*logButton;
-	
-	// WOD Attributes:
-	NSArray*				wodExerciseArray;
-	NSString*				wodName;
-	int						wodType;
-	NSString*				wodNotes;
-	NSString*				wodTimeLimit;
-	NSString*				wodNumRounds;
-	NSMutableArray*			wodRepRounds;
-	int						wodScoreType;
+	UIBarButtonItem				*logButton;
+	UIView						*notesView;
+	UILabel						*notesTitleLabel;
+	UITextView					*notesTextView;
 	
 	// Flags:
 	BOOL showTimeLimit;
 	BOOL showNumRounds;
 	BOOL showRepRounds;
+	
 }
 
 @property (nonatomic, retain) WOD							*wod;
@@ -55,27 +46,23 @@
 @property (nonatomic, retain) NSManagedObjectContext		*managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController	*fetchedResultsController;
 
-@property (nonatomic, retain) UILabel						*scoredByLabel;
-@property (nonatomic, retain) IBOutlet UITableView			*table;
 @property (nonatomic, retain) UIBarButtonItem				*logButton;
+@property (nonatomic, retain) IBOutlet UITableView			*table;
+@property (nonatomic, retain) UILabel						*scoredByLabel;
+@property (nonatomic, retain) UIView						*notesView;
+@property (nonatomic, retain) UILabel						*notesTitleLabel;
+@property (nonatomic, retain) UITextView					*notesTextView;
 
 @property (nonatomic, assign) BOOL							showTimeLimit;
 @property (nonatomic, assign) BOOL							showNumRounds;
 @property (nonatomic, assign) BOOL							showRepRounds;
 
 
-@property (nonatomic, retain) NSArray*						wodExerciseArray;
-@property (nonatomic, retain) NSString*						wodName;
-@property (nonatomic, assign) int							wodType;
-@property (nonatomic, retain) NSString*						wodNotes;
-@property (nonatomic, retain) NSString*						wodTimeLimit;
-@property (nonatomic, retain) NSString*						wodNumRounds;
-@property (nonatomic, retain) NSMutableArray*				wodRepRounds;
-@property (nonatomic, assign) int							wodScoreType;
-
 - (void)setCurrentWOD:(WOD *)w;
-
 - (IBAction)logScorePressed:(id)sender;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)notesViewTouched:(UITapGestureRecognizer *)recognizer;
+
+
 
 @end

@@ -13,8 +13,8 @@
 
 @implementation ViewScoresViewController
 
-@synthesize  fetchedResultsController, managedObjectContext, curScores,table, filterLabel, segmentedControl;
-@synthesize	 notesView, notesTitleLabel, notesTextView;
+@synthesize fetchedResultsController, managedObjectContext, curScores, table, filterLabel, segmentedControl;
+@synthesize	notesView, notesTitleLabel, notesTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 
@@ -240,14 +240,6 @@
 #pragma mark Data Exporting
 
 
-/*
- @property (nonatomic, retain) NSNumber * reps;
- @property (nonatomic, retain) NSNumber * rounds;
- @property (nonatomic, retain) NSNumber * completed;
- @property (nonatomic, retain) NSNumber * time;
- @property (nonatomic, retain) WOD * wod;
- @property (nonatomic, retain) NSDate * date;
- @property (nonatomic, retain) NSString * notes;*/
 
 - (void)exportAllData {
 	
@@ -273,8 +265,10 @@
 	
 	for (id obj in [[self fetchedResultsController] fetchedObjects]) {
 		
-		SCORE *score = (SCORE*)obj;
+		SCORE	*score = (SCORE*)obj;
+		WOD		*wod = [score wod];
 		
+		// Generate 'Rx' field data
 		NSString *RxString = nil;
 		
 		if ([[score Rx] boolValue]) {
@@ -284,6 +278,7 @@
 		}
 
 		
+		// Generate 'Score' field data
 		NSString *scoreString = nil;
 		
 		if ([[score time] intValue] > 0) {
@@ -298,14 +293,12 @@
 			scoreString = @"0";
 		}
 		
-		WOD *w = [score wod];
-
 		// Write the fields
 		[csvWriter writeField:[format stringFromDate:[score date]]];
-		[csvWriter writeField:[[w name] capitalizedString]];
-		[csvWriter writeField:[WOD wodTypeToString:[[w type] intValue]]];
+		[csvWriter writeField:[[wod name] capitalizedString]];
+		[csvWriter writeField:[WOD wodTypeToString:[[wod type] intValue]]];
 		[csvWriter writeField:scoreString];
-		[csvWriter writeField:[WOD wodScoreTypeToString:[[w score_type] intValue]]];
+		[csvWriter writeField:[WOD wodScoreTypeToString:[[wod score_type] intValue]]];
 		[csvWriter writeField:RxString];
 		[csvWriter writeLine];
 		
@@ -313,39 +306,47 @@
 	
 	[csvWriter release];
 	
+	
+	// Send the CSV file via e-mail
 	NSData *attachment = [NSData dataWithContentsOfFile:file];
 	
 	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
 	[controller setMailComposeDelegate:self];
-//	[controller.mailComposeDelegate = self;
 	[controller setSubject:[NSString stringWithFormat:@"My WOD Log data as of: %@", [format stringFromDate:[NSDate date]]]];
 	[controller setMessageBody:@"The data is attached" isHTML:NO];
 	[controller addAttachmentData:attachment mimeType:@"text/csv" fileName:filename];
-	if (controller) [self presentModalViewController:controller animated:YES];
+	if (controller) {
+		[self presentModalViewController:controller animated:YES];
+	}
 	[controller release];
 	
 }
 
 
+
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 
 	if (result == MFMailComposeResultSent) {
-		NSLog(@"It's away!");
 	} else {
-		NSLog(@"IT ISN'T AWAY!");
 	}
 
 	[self dismissModalViewControllerAnimated:YES];
 	
 }
 
+
+
 #pragma mark -
 #pragma mark Selection and moving
+
+
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // The table view should not be re-orderable.
     return NO;
 }
+
+
 
 #pragma mark -
 #pragma mark Fetched results controller
@@ -376,9 +377,7 @@
 	// Create and initialize the fetch results controller.
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
 	[self setFetchedResultsController:aFetchedResultsController];
-	//	self.fetchedResultsController = aFetchedResultsController;
 	[[self fetchedResultsController] setDelegate:self];
-	//	fetchedResultsController.delegate = self;
 	
 	// Memory management.
 	[aFetchedResultsController release];

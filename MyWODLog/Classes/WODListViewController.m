@@ -24,7 +24,7 @@
 	
 	// Set the title of the nav bar to WOD List when WODListViewController
 	// is on top of the stack
-	[self setTitle:@"WOD List"];
+	[self setTitle:@"WODs"];
 	
 	// Perform Fetch of WODs
 	NSError *error;
@@ -362,7 +362,7 @@
 	[wod_view setCurrentWOD:wod];
 	
 	//TODO: Fix crash when no exercises!
-	[wod_view setWodExerciseArray:[[wod eexercises] allObjects]];
+	//[wod_view setWodExerciseArray:[[wod eexercises] allObjects]];
 	
 	// Set Back Button:
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"WODs" style:UIBarButtonItemStylePlain target:nil action:nil];
