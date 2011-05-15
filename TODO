@@ -1,20 +1,20 @@
 # TODO file for My WOD Log
 #  Created by: Matthew Dalrymple
-#  Last Updated: Tuesday, 10 May 2011
+#  Last Updated: Saturday, 14 May 2011
 
 # [ ] -- Needs to be done
 # [-] -- Half finished/needs work
 # [X] -- Completed
 
 WEEKEND PLANS:
-[ ] Get exporting working -M/D
+[X] Get exporting working -M/D
 [ ] Get View WOD Page working with rep rounds -M
 [ ] Merge itermediate score page with main page -D
 [ ] Log Score Page redo with table view -M/D
-[ ] Don't allow save with no input on wod name (any)
+[X] Don't allow save with no input on wod name (any)
 LOWER PRIORITY WEEEKEND PLANS:
-[ ] Sentence case all inputted data / viewing wods
-[ ] Make sure all data put into database is either ALL CAPS or lower case
+[X] Sentence case all inputted data / viewing wods
+[X] Make sure all data put into database is either ALL CAPS or lower case
 
 MAJOR:
 [X] Fix add exercises to accomidate WODs like 'Nicole'
@@ -52,7 +52,7 @@ MINOR:
   change it.  Even more useful with notes! [longer text])
 [ ] Refactor #define's to enums
  - See: UITextAlignment
-[ ] Modify EditVC to not allow you to save with no input
+[X] Modify EditVC to not allow you to save with no input
 [X] Check/Confirm to see that if a Mode is deleted, that all of the
     exercises in that mode also are removed
 

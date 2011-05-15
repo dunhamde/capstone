@@ -396,6 +396,7 @@
 
 
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
+	
 	if (save) {		
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];

@@ -34,6 +34,7 @@
 	IBOutlet UITextView		*editBox;
 	
 	BOOL popToRoot;
+	BOOL requireInputToSave;
 	BOOL enableEditField2;
 	
 }
@@ -58,11 +59,13 @@
 @property (nonatomic, retain) NSString *defaultText2;
 @property (nonatomic, retain) NSString *placeholder2;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, retain) IBOutlet UITextField *editField;
 @property (nonatomic, retain) IBOutlet UITextField *editField2;
 @property (nonatomic, retain) IBOutlet UITextView *editBox;
 @property (nonatomic, assign) BOOL popToRoot;
 @property (nonatomic, assign) BOOL enableEditField2;
+@property (nonatomic, assign) BOOL requireInputToSave;
 
 
 

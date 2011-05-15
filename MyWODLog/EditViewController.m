@@ -11,7 +11,8 @@
 
 @implementation EditViewController
 
-@synthesize titleName, notificationName, editField, editBox, editType, defaultText, placeholder, popToRoot;
+@synthesize titleName, notificationName, saveButton, editField, editBox, editType, defaultText, placeholder;
+@synthesize popToRoot, requireInputToSave;
 @synthesize enableEditField2, editField2, defaultText2, placeholder2;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -22,6 +23,7 @@
 		// Custom initialization.
 		[self setPopToRoot:YES];
 		[self setEnableEditField2:NO];
+		[self setRequireInputToSave:YES];
 	}
 	return self;
 }
@@ -40,6 +42,7 @@
     bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                         target:self
                                                         action:@selector(save:)];
+	[self setSaveButton:bbi];
     [[self navigationItem] setRightBarButtonItem:bbi];
     [bbi release];
 	
@@ -75,6 +78,7 @@
 
 - (void)initCustomEditPreferences
 {
+
 	// Center Text Field Text:
 	self.editField.textAlignment = UITextAlignmentCenter;
 	self.editField2.textAlignment = UITextAlignmentCenter;
@@ -162,39 +166,63 @@
 
 - (IBAction)save:(id)sender
 {
+	BOOL canSave = YES;
 	
-	// Create a dictionary with the exercise and the quantity and their respective keys
-	NSString *returnable;
-	NSString *returnable2;
-	
-	if (self.editField.hidden == YES) {
-		returnable = [[self editBox] text];
-	}
-	else {
-		returnable = [[self editField] text];
-		if ([self enableEditField2]) {
-			returnable2 = [[self editField2] text];
+	if ([self requireInputToSave]) {
+		if (![[self editField] isHidden] && [[[self editField] text] length] == 0) {
+			canSave = NO;
+		}
+		if (![[self editField2] isHidden] && [[[self editField2] text] length] == 0) {
+			canSave = NO;
+		}
+		if (![[self editBox] isHidden] && [[[self editBox] text] length] == 0) {
+			canSave = NO;
 		}
 	}
 	
-	NSDictionary *dict = nil;
 	
-	if ([self enableEditField2]) {
-		dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,returnable2,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,DICTIONARY_KEY2,nil]];
+	if (canSave) {
+		
+		// Create a dictionary with the exercise and the quantity and their respective keys
+		NSString *returnable;
+		NSString *returnable2;
+		
+		if (self.editField.hidden == YES) {
+			returnable = [[self editBox] text];
+		}
+		else {
+			returnable = [[self editField] text];
+			if ([self enableEditField2]) {
+				returnable2 = [[self editField2] text];
+			}
+		}
+		
+		NSDictionary *dict = nil;
+		
+		if ([self enableEditField2]) {
+			dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,returnable2,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,DICTIONARY_KEY2,nil]];
+		} else {
+			dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+		}
+		
+		
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
+		
+		if ([self popToRoot]) {
+			[[self navigationController] popToRootViewControllerAnimated:YES];
+		} else {
+			[[self navigationController] popViewControllerAnimated:YES];
+		}
+		
 	} else {
-		dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:returnable,nil] forKeys:[NSArray arrayWithObjects:DICTIONARY_KEY,nil]];
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message: @"Input is required to save" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		alert = nil;
+		
 	}
-
-	
-
-	[[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:nil userInfo:dict];
-	
-	if ([self popToRoot]) {
-		[[self navigationController] popToRootViewControllerAnimated:YES];
-	} else {
-		[[self navigationController] popViewControllerAnimated:YES];
-	}
-	
 	
 }
 
