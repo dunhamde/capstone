@@ -67,14 +67,7 @@
 
 
 
-- (void)cancel:(id)sender {
-	//TODO:  Get this to work (needs a delegate)
-	// Hack for now to get this off of the screen
-	  //(And this doesn't work anymore because its in a new nav controller)
-//	[[self navigationController] popViewControllerAnimated:YES];
-	
-//	[delegate addExerciseViewController:self didFinishWithSave:NO];
-}
+
 
 
 
@@ -86,10 +79,10 @@
 	[createExerciseModeViewController setDelegate:self];
 	[createExerciseModeViewController setManagedObjectContext:[self managedObjectContext]];
 	
-	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+
 	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	[self setAddingManagedObjectContext:addingContext];
-//	self.addingManagedObjectContext = addingContext;
+
 	[addingContext release];
 	
 	if( fetchedResultsController == NULL ) {
@@ -101,10 +94,10 @@
 	
 	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:addingContext];
 
-//	createExerciseModeViewController.mode = (MODE *)[NSEntityDescription insertNewObjectForEntityForName:@"mode" inManagedObjectContext:managedObjectContext];
+
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseModeViewController];
 	
-    [self.navigationController presentModalViewController:navController animated:YES];
+    [[self navigationController] presentModalViewController:navController animated:YES];
 	
 	[createExerciseModeViewController release];
 	[navController release];
@@ -116,56 +109,33 @@
  * Create Exercise Mode controller's delegate method; informs the delegate that the add operation has completed, and indicates whether the user saved the new book.
  */
 - (void)createExerciseModeViewController:(CreateExerciseModeViewController *)controller didFinishWithSave:(BOOL)save {
-//- (void)createExerciseModeViewController:(CreateExerciseModeViewController *)controller didFinishWithSave:(BOOL)save;
-	
-	NSLog( @"I'm Ron Burgundy?" );
 	
 	if (save) {
-		/*
-		 The new book is associated with the add controller's managed object context.
-		 This is good because it means that any edits that are made don't affect the application's main managed object context -- it's a way of keeping disjoint edits in a separate scratchpad -- but it does make it more difficult to get the new book registered with the fetched results controller.
-		 First, you have to save the new book.  This means it will be added to the persistent store.  Then you can retrieve a corresponding managed object into the application delegate's context.  Normally you might do this using a fetch or using objectWithID: -- for example
-		 
-		 NSManagedObjectID *newBookID = [controller.book objectID];
-		 NSManagedObject *newBook = [applicationContext objectWithID:newBookID];
-		 
-		 These techniques, though, won't update the fetch results controller, which only observes change notifications in its context.
-		 You don't want to tell the fetch result controller to perform its fetch again because this is an expensive operation.
-		 You can, though, update the main context using mergeChangesFromContextDidSaveNotification: which will emit change notifications that the fetch results controller will observe.
-		 To do this:
-		 1	Register as an observer of the add controller's change notifications
-		 2	Perform the save
-		 3	In the notification method (addControllerContextDidSave:), merge the changes
-		 4	Unregister as an observer
-		 */
 
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createExerciseModeControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 	
 		NSError *error;
-		if (addingManagedObjectContext == NULL) {
-			NSLog( @"ADDING MOC IS NULL" );
-		}
-		NSLog(@"In Save 2.5");
-		if( addingManagedObjectContext == NULL )
-			NSLog(@"ADDING MOC IS NULL");
+
 		if (![addingManagedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-		NSLog(@"PAST 2.5");
 
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
 
 	}
+	
 	// Release the adding managed object context.
-//	self.addingManagedObjectContext = nil;
 	[self setAddingManagedObjectContext:nil];
 
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+	
 }
+
+
 
 /**
  Notification from the add controller's context's save operation. This is used to update the fetched results controller's managed object context with the new book instead of performing a fetch (which would be a much more computationally expensive operation).
@@ -174,20 +144,10 @@
 	
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	// Merging changes causes the fetched results controller to update its results
-	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
-}
-
-
-
-- (void)setLeftBarButton:(Boolean)animated {
-	
-	/*
-	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-	[self.navigationItem setLeftBarButtonItem:cancelButton animated:animated];
-	[cancelButton release];
-	*/
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];
 	
 }
+
 
 
 
@@ -227,6 +187,8 @@
     return cell;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	ViewExercisesViewController *viewExercisesViewController = [[ViewExercisesViewController alloc] init];
@@ -244,14 +206,14 @@
 }
 
 
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
     // Configure the cell to show the book's title
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
-		//cell.textLabel.text = mode.name;
-		//cell.textLabel.text = [NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]];
-		[[cell textLabel] setText:[NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]]];
+		[[cell textLabel] setText:[[mode name] capitalizedString]];
+//		[[cell textLabel] setText:[NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]]];
 
 	} else {
 		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );

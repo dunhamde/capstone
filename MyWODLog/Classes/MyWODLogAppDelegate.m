@@ -257,7 +257,7 @@
 	
 	
 	// Add everything to the MOC
-	m = [self addMode:@"Gymnastics"];
+	m = [self addMode:@"GYMNASTICS"];
 	e = [self addExerciseToMode:m withName:@"MUSCLE-UPS"];
 	e = [self addExerciseToMode:m withName:@"PULL-UPS"];
 	e = [self addExerciseToMode:m withName:@"PUSH-UPS"];
@@ -285,7 +285,7 @@
 ////	e = [self addExerciseToMode:m withName:@"Wall balls"];
 ////	e = [self addExerciseToMode:m withName:@"Rope climb"];
 	
-	m = [self addMode:@"Mobility"];
+	m = [self addMode:@"MOBILITY"];
 	e = [self addExerciseToMode:m withName:@"DOUBLE-UNDERS"];
 	e = [self addExerciseToMode:m withName:@"BOX JUMP, # INCH BOX" isQuantifiable:YES requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"ROW # METERS" isQuantifiable:NO requiresMetric:YES];
@@ -300,7 +300,7 @@
 ////	e = [self addExerciseToMode:m withName:@"Jump rope"];
 	//e = [self addExerciseToMode:m withName:@"Double unders"];
 	
-	m = [self addMode:@"Weight Lifting"];
+	m = [self addMode:@"WEIGHT LIFTING"];
 ////	e = [self addExerciseToMode:m withName:@"Front squat"];
 ////	e = [self addExerciseToMode:m withName:@"Back squat"];
 //	e = [self addExerciseToMode:m withName:@"Clean & Jerk"];

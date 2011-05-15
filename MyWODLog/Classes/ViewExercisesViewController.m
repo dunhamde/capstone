@@ -112,7 +112,8 @@
 //	EXERCISE *exercise = [[mode exercises] anyObject];
 	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (exercise) {
-		cell.textLabel.text = [exercise name];
+		[[cell textLabel] setText:[[exercise name] capitalizedString]];
+//		cell.textLabel.text = [exercise name];
 		//[[cell textLabel] setText:[exercise name]];
 	} else {
 		NSLog( @"Exercise is NULL for a cell at row %d", [indexPath row] );
@@ -221,7 +222,7 @@
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
 	
-    [self.navigationController presentModalViewController:navController animated:YES];
+    [[self navigationController] presentModalViewController:navController animated:YES];
 	
 	[createExerciseViewController release];
 	[navController release];
@@ -236,7 +237,7 @@
 
 		EXERCISE *e = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:managedObjectContext];
 		
-		[e setName:[[self cevc] name]];
+		[e setName:[[[self cevc] name] uppercaseString]];
 		[e setModes:[self mode]];
 
 		NSNumber* quant = [[NSNumber alloc] initWithBool:[[[self cevc] quantifiable] isOn]];

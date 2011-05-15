@@ -99,7 +99,7 @@
 	
     // Configure the cell to show the book's title
 	WOD *wod = [fetchedResultsController objectAtIndexPath:indexPath];
-	[[cell textLabel] setText:[wod name]];
+	[[cell textLabel] setText:[[wod name] capitalizedString]];
 //	cell.textLabel.text = wod.name;
 }
 
@@ -164,7 +164,7 @@
 - (void)createWODViewController:(CreateWODViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
-		NSLog(@"GOT TO DID FINISH WITH SAVE");
+
 		// Create a new WOD in the database with specific attributes:
 		WOD* wod = (WOD *)[NSEntityDescription insertNewObjectForEntityForName:@"wod" inManagedObjectContext:managedObjectContext];
 		
@@ -176,7 +176,7 @@
 		[f release];
 
 		// Set the regular attributes:
-		[wod setName:[createWODViewController wodName]];
+		[wod setName:[[createWODViewController wodName] uppercaseString]];
 		[wod setTimelimit:timelimit];
 		[wod setScore_type:[NSNumber numberWithInt:[createWODViewController wodScoreType]]];
 		[wod setType:[NSNumber numberWithInt:[createWODViewController wodType]]];
@@ -223,7 +223,7 @@
 			
 			}
 			
-			[eex setName:ename];
+			[eex setName:[ename uppercaseString]];
 			
 			[eex setExercise:e];
 			[eex setQuantity:q];

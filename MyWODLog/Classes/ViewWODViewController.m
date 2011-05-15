@@ -26,42 +26,16 @@
 
 
 - (void)viewDidLoad {
-	NSLog(@"view did load called \n");
 
 	[self setLogButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(logScorePressed:)]];
 	[[self logButton] setEnabled:YES];
 	[[self navigationItem] setRightBarButtonItem:[self logButton]];
 	[logButton release];
 	
-	if (managedObjectContext == nil) 
+	if (managedObjectContext == nil) {
         managedObjectContext = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext]; 
-	
-
-	
-	//Assumes setCurrentWOD is called
-	
-	/*
-	NSString *exerciseList = [[NSString alloc] init];
-	
-	NSEnumerator *enumer = [[wod exercises] objectEnumerator];
-	EXERCISE* e;
-
-	while ((e = (EXERCISE*)[enumer nextObject])) {
-
-		if ([exerciseList length] > 0) {
-			exerciseList = [NSString stringWithFormat:@"%@\n\n%@", exerciseList, [e name]];
-		} else {
-			exerciseList = [e name];
-		}
-		
 	}
-	//[myString stringByAppendingString:@" is just a test"];
-	[[self exerciseListLabel] setText:exerciseList];*/
 	
-	// Fill the exercises array with all the WOD's exercsies
-	//exerciseArray = [[[self wod] exercises] allObjects];
-	//NSLog(@"%@\n", [[exerciseArray objectAtIndex:0] name]);
-	//NSLog(@"count %d\n", [[self exerciseArray] count]);
 }
 
 
@@ -77,7 +51,7 @@
 		[self setShowTimeLimit:YES];
 	}
 	
-	[self setTitle:[wod name]];
+	[self setTitle:[[wod name] capitalizedString]];
 
 }
 
@@ -375,7 +349,7 @@
 			}
 			
 			
-			[[cell textLabel] setText:exerciseText];
+			[[cell textLabel] setText:[exerciseText capitalizedString]];
 		}
 		
 	}
