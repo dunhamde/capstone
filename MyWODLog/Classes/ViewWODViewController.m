@@ -17,11 +17,10 @@
 @synthesize logScoreViewController, managedObjectContext, fetchedResultsController;
 @synthesize	notesView, notesTitleLabel, notesTextView;
 
-/*
-- (id)init {
-	self = [super init];
-	return self;
-}*/
+
+
+#pragma mark -
+#pragma mark Initialize and load methods
 
 
 
@@ -70,7 +69,16 @@
 	[[self navigationItem] setRightBarButtonItem:[self logButton]];
 	[logButton release];
 	
+	if (managedObjectContext == nil) {
+        managedObjectContext = [(MyWODLogAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+	}
+	
 }
+
+
+
+#pragma mark -
+#pragma mark Misc methods
 
 
 
@@ -303,37 +311,18 @@
 			[[cell detailTextLabel] setText:@"<No name found>"];
 		}
 		
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
 	}
 	else if( [cellIdentifier isEqualToString:@"TypeCell"] ) {
 		
 		[[cell textLabel] setText:@"Type"];
 		
-		NSString *subText = nil;
-		switch ([[[self wod] type] intValue]) {
-			case WOD_TYPE_TIME:
-				subText = WOD_TYPE_TEXT_TIME;
-				break;
-			case WOD_TYPE_RFT:
-				subText = WOD_TYPE_TEXT_RFT;
-				break;
-			case WOD_TYPE_RRFT:
-				subText = WOD_TYPE_TEXT_RRFT;
-				break;
-			case WOD_TYPE_RFMR:
-				subText = WOD_TYPE_TEXT_RFMR;
-				break;
-			case WOD_TYPE_AMRAP:
-				subText = WOD_TYPE_TEXT_AMRAP;
-				break;
-			case WOD_TYPE_EMOTM:
-				subText = WOD_TYPE_TEXT_EMOTM;
-				break;
-			default:
-				subText = WOD_TYPE_TEXT_UNKNOWN;
-				break;
-		}
+		
+		NSString *subText = [WOD wodTypeToString:[[[self wod] type] intValue]];
 		
 		[[cell detailTextLabel] setText:subText];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"ExerciseCell"] ) {
@@ -366,6 +355,7 @@
 			}
 			
 			[[cell textLabel] setText:[exerciseText capitalizedString]];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		
 	}
@@ -388,6 +378,8 @@
 			[[cell detailTextLabel] setText:@"<No round limit>"];
 		}
 		
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
 	}
 	else if( [cellIdentifier isEqualToString:@"TimeLimitCell"] ) {
 		
@@ -400,10 +392,13 @@
 			[[cell detailTextLabel] setText:@"<No time limit>"];
 		}
 		
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 		
 		[[cell textLabel] setText:@"Rep Rounds"];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		
 	}
 	else {
@@ -416,7 +411,7 @@
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
 	
 	if (save) {
-		
+		NSLog(@"SAVING SCORE");
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
 		[score setCompleted:[NSNumber numberWithInt:1]];
@@ -469,15 +464,6 @@
 
 
 
-- (void)logScoreControllerContextDidSave:(NSNotification*)saveNotification {
-	
-	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-	// Merging changes causes the fetched results controller to update its results
-	[context mergeChangesFromContextDidSaveNotification:saveNotification];
-	
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];		
@@ -502,20 +488,23 @@
 	// Case 'Notes...':
 	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
 		
-		 table.allowsSelection = NO;
-		 
-		 notesTextView.text = [[self wod] notes];
-		 notesTitleLabel.text = @"Notes";		 
-		 //  UIView *view = self.view;
-		 CGRect frame = self.notesView.frame;
-		 [UIView beginAnimations:nil context:NULL];
-		 [UIView setAnimationDuration:.5];
-		 
-		 [self.view addSubview:notesView];
-		 frame.origin.y = 116;
-		 self.notesView.frame = frame;
-		 
-		 [UIView commitAnimations];
+		if ([[[self wod] notes] length] > 0) {
+			table.allowsSelection = NO;
+			notesTextView.text = [[self wod] notes];
+			notesTitleLabel.text = @"Notes";
+			
+			CGRect frame = self.notesView.frame;
+			[UIView beginAnimations:nil context:NULL];
+			[UIView setAnimationDuration:.5];
+			
+			[self.view addSubview:notesView];
+			frame.origin.y = 116;
+			self.notesView.frame = frame;
+			
+			[UIView commitAnimations];
+			
+		}
+		[[self table] deselectRowAtIndexPath:indexPath animated:YES];
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"NumRoundsCell"] ) {
@@ -527,6 +516,21 @@
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 		
 	}
+	
+}
+
+
+
+#pragma mark -
+#pragma mark Log Score Delegate
+
+
+
+- (void)logScoreControllerContextDidSave:(NSNotification*)saveNotification {
+	
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];
 	
 }
 
@@ -551,6 +555,49 @@
 	
 	table.allowsSelection = YES;
 	
+}
+
+
+
+#pragma mark -
+#pragma mark Fetched results controller
+
+
+
+/**
+ Returns the fetched results controller. Creates and configures the controller if necessary.
+ */
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
+    if (fetchedResultsController != nil) {
+        return fetchedResultsController;
+    }
+    
+	// Create and configure a fetch request with the 'wod' entity.
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	// Create the sort descriptors array.
+	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+	[fetchRequest setSortDescriptors:sortDescriptors];
+	
+	
+	// Create and initialize the fetch results controller.
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
+	[self setFetchedResultsController:aFetchedResultsController];
+	//	self.fetchedResultsController = aFetchedResultsController;
+	[[self fetchedResultsController] setDelegate:self];
+	//	fetchedResultsController.delegate = self;
+	
+	// Memory management.
+	[aFetchedResultsController release];
+	[fetchRequest release];
+	[nameDescriptor release];
+	[sortDescriptors release];
+	return fetchedResultsController;
 }
 
 

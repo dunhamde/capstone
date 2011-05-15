@@ -25,6 +25,8 @@
 
 	WOD							*wod;
 	LogScoreViewController		*logScoreViewController;
+	NSManagedObjectContext		*managedObjectContext;
+	NSFetchedResultsController	*fetchedResultsController;
 		
 	// UI Elements:
 	IBOutlet UILabel			*scoredByLabel;
@@ -56,7 +58,6 @@
 @property (nonatomic, assign) BOOL							showTimeLimit;
 @property (nonatomic, assign) BOOL							showNumRounds;
 @property (nonatomic, assign) BOOL							showRepRounds;
-
 
 - (void)setCurrentWOD:(WOD *)w;
 - (IBAction)logScorePressed:(id)sender;
