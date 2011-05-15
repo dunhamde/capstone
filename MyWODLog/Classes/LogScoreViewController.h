@@ -23,9 +23,22 @@
 #define SUB_LABEL_TAG 42
 #define LABEL_TAG 43
 
+// Table defines
+#define LS_SECTION_DATE					0
+#define LS_SECTION_SCORE				1
+#define	LS_SECTION_NOTES				2
+#define LS_SECTION_TITLE_DATE			@""
+#define LS_SECTION_TITLE_SCORE			@"Score"
+#define LS_SECTION_TITLE_NOTES			@"Notes"
+#define LS_NUM_SECTIONS 3
+
+#define LS_NUM_ROWS	3
+
 @protocol LogScoreViewControllerDelegate;
 
-@interface LogScoreViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface LogScoreViewController : UIViewController < UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+	
+	IBOutlet UITableView		*table;
 	
 	id <LogScoreViewControllerDelegate> delegate;
 	WOD *wod;
@@ -33,31 +46,38 @@
 	int hours, minutes, seconds;
 	NSTimeInterval time_in_seconds;
 	NSString *logNotes;
+	NSString *dateFormatted;
+	BOOL editingDate, editingScore;
 	
 	// UI Elements:
-	UIBarButtonItem *saveButton;
-	UIDatePicker	*datePicker;
+	IBOutlet UIDatePicker	*datePicker;
+	IBOutlet UIView			*datePickerView;
+	
+//	UITextField	*dateView;
 	
 	IBOutlet UIPickerView	*timePicker;
 	IBOutlet UIButton		*timeButton;
 	IBOutlet UIButton		*hiddenButton;
 	IBOutlet UITextField	*scoreField;
-	IBOutlet UILabel		*scoreLabel;
-	IBOutlet UITextField	*dateField;
 	IBOutlet UIView			*pickerView;
-	IBOutlet UIButton		*notesButton;
 }
+
+@property (nonatomic, retain) IBOutlet UITableView			*table;
 
 @property (nonatomic, assign) id <LogScoreViewControllerDelegate> delegate;
 @property (nonatomic, retain) WOD *wod;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSDate *start_date;
 @property (nonatomic, retain) NSString *logNotes;
+@property (nonatomic, retain) NSString *dateFormatted;
+@property (nonatomic, assign) BOOL	editingDate;
+@property (nonatomic, assign) BOOL	editingScore;
 
-@property (nonatomic, retain) UIBarButtonItem *saveButton;
+//@property (nonatomic, retain) UITextField	*dateView;
 @property (nonatomic, retain) UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UIPickerView *timePicker;
 @property (nonatomic, retain) IBOutlet UIView *pickerView;
+@property (nonatomic, retain) IBOutlet UIView *datePickerView;
 
 @property (nonatomic, assign) NSTimeInterval time_in_seconds;
 @property (nonatomic, assign) int hours;
@@ -67,16 +87,11 @@
 @property (nonatomic, retain) IBOutlet UIButton	*timeButton;
 @property (nonatomic, retain) IBOutlet UIButton	*hiddenButton;
 @property (nonatomic, retain) IBOutlet UITextField	*scoreField;
-@property (nonatomic, retain) IBOutlet UILabel	*scoreLabel;
-@property (nonatomic, retain) IBOutlet UITextField	*dateField;
-@property (nonatomic, retain) IBOutlet UIButton	*notesButton;
 
-- (IBAction)notesButtonPressed;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (IBAction)timeButtonPressed;
 - (IBAction)save:(id)sender;
-- (IBAction)scoreFieldTouched;
 - (IBAction)hiddenButtonTouched;
-- (IBAction)dateFieldTouched;
 - (UIView *)labelCellWithWidth:(CGFloat)width rightOffset:(CGFloat)offset;
 
 @end

@@ -7,28 +7,35 @@
 //
 
 #import "LogScoreViewController.h"
-
+#import <math.h>
 
 @implementation LogScoreViewController
 
-@synthesize delegate, wod, scoreField, scoreLabel, timeButton, hiddenButton, date, start_date, dateField, logNotes;
-@synthesize time_in_seconds, hours, minutes, seconds;
-@synthesize saveButton, datePicker, timePicker, pickerView, notesButton;
+@synthesize delegate, wod, scoreField, timeButton, hiddenButton, date, start_date, logNotes, table, dateFormatted;
+@synthesize time_in_seconds, hours, minutes, seconds, editingDate, editingScore;
+@synthesize datePicker, timePicker, pickerView, datePickerView;
 
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
-	self.hiddenButton.enabled = NO;	
+	self.hiddenButton.enabled = NO;
 	
-	datePicker = [[UIDatePicker alloc] init];
-	dateField.inputView = datePicker; 
+	CGRect frame = self.datePickerView.frame;
+	frame.origin.x = 0;
+	frame.origin.y = 480;
+	self.datePickerView.frame = frame;
 	
+	frame = self.pickerView.frame;
+	frame.origin.x = 0;
+	frame.origin.y = 480;
+	self.pickerView.frame = frame;
+		
 	// Configure the save button.
-	[self setSaveButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)]];
-	[[self saveButton] setEnabled:YES];
-	[[self navigationItem] setRightBarButtonItem:[self saveButton]];
+	UIBarButtonItem	*saveButton;
+	saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+	[[self navigationItem] setRightBarButtonItem:saveButton];
 	[saveButton release];
 	
 	// Set dateField to current date by default
@@ -36,35 +43,9 @@
 	NSDateFormatter *format = [[NSDateFormatter alloc] init];
 	[format setDateFormat:@"MM/dd/yyyy"];
 	NSString *curDate = [format stringFromDate:[NSDate date]];
-	[[self dateField] setText:curDate];
+	//[[self dateField] setText:curDate];
 	[self setDate:[NSDate date]];
-
-	// Configure UI elements dependent on the score type
-	NSLog(@"Score Type: %@", [wod score_type]);
-	switch ([[wod score_type] intValue]) {
-        case WOD_SCORE_TYPE_NONE:
-			self.scoreLabel.text = @"Time";
-			self.scoreField.inputView = pickerView;
-            break;
-        case WOD_SCORE_TYPE_TIME:
-			self.scoreLabel.text = @"Time";
-			self.scoreField.inputView = pickerView;
-            break;
-		case WOD_SCORE_TYPE_REPS:
-			self.scoreLabel.text = @"Reps";
-			self.timeButton.hidden = YES;
-			self.timeButton.enabled = NO;
-			self.scoreField.keyboardType = UIKeyboardTypeNumberPad;
-            break;
-		case WOD_SCORE_TYPE_RNDS:
-			self.scoreLabel.text = @"Rounds";
-			self.timeButton.hidden = YES;
-			self.timeButton.enabled = NO;
-			self.scoreField.keyboardType = UIKeyboardTypeNumberPad;
-            break;
-        default:
-            break;
-    }	
+	[self setDateFormatted:curDate];
 	
 	[format release];
 	[title release];
@@ -92,19 +73,7 @@
 	[dnc removeObserver:self name:@":LogNotesSent" object:nil];
 }
 
-- (void)notesButtonPressed	{
-	EditViewController *controller = [[EditViewController alloc] init];
-	
-	[controller setTitleName:@"Log Notes"];
-	[controller setNotificationName:@"LogNotesSent"];
-	[controller setEditType:EDIT_TYPE_TEXTBOX];
-	[controller setDefaultText:[self logNotes]];
-	[controller setPopToRoot:NO];
-	[[self navigationController] pushViewController:controller animated:YES];		
-	
-	[controller release];
 
-}
 
 - (void)timeButtonPressed	{
 		
@@ -135,35 +104,52 @@
 	}	
 }
 
-- (void)scoreFieldTouched {
-
-	//NSLog(@"score TOUCHED");
-	[hiddenButton setUserInteractionEnabled:YES];
-	self.hiddenButton.enabled = YES;
-}
 
 - (void)hiddenButtonTouched {
-	
 	self.hiddenButton.enabled = NO;
-	[scoreField resignFirstResponder];
 	
 	// Check to see if the user is trying to stop setting the date. If the hiddenButton is pressed while the Date Picker is up, close it.
-	if ([dateField isFirstResponder]) {
-		[dateField	resignFirstResponder];
+	if (editingDate) {
 		
+		CGRect frame = self.datePickerView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
+		
+		frame.origin.y = 480;
+		self.datePickerView.frame = frame;
+		
+		[UIView commitAnimations];
+		
+		table.allowsSelection = YES;
 		NSDateFormatter *format = [[NSDateFormatter alloc] init];
 		[format setDateFormat:@"MM/dd/yyyy"];
 		NSString *newDate = [format stringFromDate:[datePicker date]];
-		[[self dateField] setText:newDate];
+		NSLog(@"%@",newDate);
+		[self setDateFormatted:newDate];	
 		[self setDate:[datePicker date]];
 		[format release];
+		[table reloadData];
+	}
+	else if (editingScore) {
+		CGRect frame = self.pickerView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
+		
+		frame.origin.y = 480;
+		self.pickerView.frame = frame;
+		
+		[UIView commitAnimations];
+		
+		table.allowsSelection = YES;
+
+		[table reloadData];
 	}
 	
 }
 
-- (void)dateFieldTouched {
-	//NSLog(@"score TOUCHED");
-	//[hiddenButton setUserInteractionEnabled:YES];
+- (void)dateViewTouched:(UITapGestureRecognizer *)recognizer {
+
+	 
 	self.hiddenButton.enabled = YES;
 }
 
@@ -184,9 +170,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component	{
 	NSInteger min = [timePicker selectedRowInComponent:MINUTES_COMPONENT];
 	NSInteger sec = [timePicker selectedRowInComponent:SECONDS_COMPONENT];
-	[self setTime_in_seconds:(sec + (min * 60))];
-	[scoreField setText:[NSString stringWithFormat:@"%i:%.2i",min,sec]];
-	
+	[self setTime_in_seconds:(sec + (min * 60))];	
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
@@ -270,6 +254,211 @@
 	[subLabel release];
 	return view;
 }
+
+#pragma mark - 
+#pragma mark Tableview methods
+
+// Customize the number of rows in the table view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	
+    return LS_NUM_SECTIONS;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+    NSString *title = nil;
+	
+    // Return a title or nil as appropriate for the section.
+    switch (section) {
+        case LS_SECTION_DATE:
+            title = LS_SECTION_TITLE_DATE;
+            break;
+        case LS_SECTION_SCORE:
+            title = LS_SECTION_TITLE_SCORE;
+            break;
+		case LS_SECTION_NOTES:
+            title = LS_SECTION_TITLE_NOTES;
+            break;
+        default:
+            break;
+    }
+	
+    return title;
+	
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	NSInteger rows = 0;
+	
+	switch (section) {
+        case LS_SECTION_DATE:
+			rows = 1;
+            break;
+        case LS_SECTION_SCORE:
+            rows = 1;
+            break;
+        case LS_SECTION_NOTES:
+            rows = 1;
+            break;			
+        default:
+            break;
+    }
+	
+    return rows;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ( [indexPath section] == LS_SECTION_DATE && [indexPath row] == 0 ) {
+		
+		static NSString *DateCellIdentifier = @"DateCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DateCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DateCellIdentifier] autorelease];
+			
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+		
+    }
+	else if ( [indexPath section] == LS_SECTION_SCORE && [indexPath row] == 0 ) {
+		
+		static NSString *ScoreCellIdentifier = @"ScoreCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ScoreCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ScoreCellIdentifier] autorelease];
+			[cell setAccessoryView:timeButton];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+	}
+	else if ( [indexPath section] == LS_SECTION_NOTES && [indexPath row] == 0 ) {
+		
+		static NSString *NotesCellIdentifier = @"NotesCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NotesCellIdentifier];
+		
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NotesCellIdentifier] autorelease];
+		}
+		
+		// Configure the cell.
+		[self configureCell:cell atIndexPath:indexPath];
+		
+		return cell;
+	}
+	
+	return nil;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	// Can't we do this by cell name instead of section/row numbers?
+	// i.e.:  [cell reuseIdentifier]  << returns a string
+	
+	NSString *cellIdentifier = [cell reuseIdentifier];
+	
+	if( [cellIdentifier isEqualToString:@"DateCell"] ) {
+		
+		[[cell textLabel] setText:@"Date"];
+		[[cell detailTextLabel] setText:dateFormatted];
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"ScoreCell"] ) {
+		
+		switch ([[wod score_type] intValue]) {
+			case WOD_SCORE_TYPE_NONE:
+				[[cell textLabel] setText:@"Completed"];
+				break;
+			case WOD_SCORE_TYPE_TIME:
+				[[cell textLabel] setText:@"Time"];
+				break;
+			case WOD_SCORE_TYPE_REPS:
+				[[cell textLabel] setText:@"Reps"];
+				break;
+			case WOD_SCORE_TYPE_RNDS:
+				[[cell textLabel] setText:@"Rounds"];
+				break;
+			default:
+				break;
+		}			
+		
+		if (time_in_seconds != 0) {
+			int min = floor(time_in_seconds /60);
+			int sec = trunc(time_in_seconds - min * 60);
+			[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%d min %d sec", min, sec]];
+			
+			
+		}
+		
+	}
+	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
+		
+		if ([self logNotes] != nil && [[self logNotes] length] > 0) {
+			[[cell textLabel] setText:[self logNotes]];
+		} else {
+			[[cell textLabel] setText:@"Add Notes..."];
+		}
+	}		
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ( [indexPath section] == LS_SECTION_DATE && [indexPath row] == 0 ) {	
+
+		table.allowsSelection = NO;
+		self.editingDate = YES;
+		self.hiddenButton.enabled = YES;
+
+		CGRect frame = self.datePickerView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
+		
+		[self.view addSubview:datePickerView];
+		frame.origin.y = 200;
+		self.datePickerView.frame = frame;
+		
+		[UIView commitAnimations];
+		
+		
+	}
+	else if ([indexPath section] == LS_SECTION_SCORE && [indexPath row] == 0 ) {	
+		
+		table.allowsSelection = NO;
+		self.editingScore = YES;
+		self.hiddenButton.enabled = YES;
+		
+		CGRect frame = self.pickerView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
+		
+		[self.view addSubview:pickerView];
+		frame.origin.y = 200;
+		self.pickerView.frame = frame;
+		
+		[UIView commitAnimations];
+	} else {
+		EditViewController *controller = [[EditViewController alloc] init];
+		
+		[controller setTitleName:@"Log Notes"];
+		[controller setNotificationName:@"LogNotesSent"];
+		[controller setEditType:EDIT_TYPE_TEXTBOX];
+		[controller setDefaultText:[self logNotes]];
+		[controller setPopToRoot:NO];
+		[[self navigationController] pushViewController:controller animated:YES];		
+		
+		[controller release];
+	}
+
+}
+
 
 #pragma mark -
 #pragma mark Memory methods
