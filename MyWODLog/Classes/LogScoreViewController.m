@@ -129,6 +129,7 @@
 		[self setDate:[datePicker date]];
 		[format release];
 		[table reloadData];
+		self.editingDate = NO;
 	}
 	else if (editingScore) {
 		CGRect frame = self.pickerView.frame;
@@ -143,6 +144,7 @@
 		table.allowsSelection = YES;
 
 		[table reloadData];
+		self.editingScore = NO;
 	}
 	
 }
