@@ -11,9 +11,9 @@
 
 @implementation LogScoreViewController
 
-@synthesize delegate, wod, scoreField, timeButton, hiddenButton, date, start_date, logNotes, table, dateFormatted;
-@synthesize time_in_seconds, hours, minutes, seconds, scoreNum, editingDate, editingScore;
-@synthesize datePicker, timePicker, pickerView, datePickerView;
+@synthesize delegate, wod, scoreField, hiddenButton, date, logNotes, table, dateFormatted, start;
+@synthesize time_in_seconds, scoreNum, editingDate, editingScore, timeButton, timer;
+@synthesize datePicker, timePicker, pickerView, datePickerView, stopWatchView, stopWatchButton;
 
 
 - (void)viewDidLoad {
@@ -21,6 +21,15 @@
 	NSString *title = @"Log Score for ";
 	[self setTitle:[title stringByAppendingString:[wod name]]];
 	self.hiddenButton.enabled = NO;
+	
+	timeButton = [[UIButton alloc] initWithFrame:CGRectMake(75, 9, 60, 30)]; 
+	[timeButton setTitle:@"Start!" forState:UIControlStateNormal];
+	[timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	[[timeButton titleLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+	UITapGestureRecognizer *tap = 
+	[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(timeButtonPressed:)];
+	[timeButton addGestureRecognizer:tap];
+	[self makeButtonShiny:timeButton withBackgroundColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:.80]];
 	
 	CGRect frame = self.datePickerView.frame;
 	frame.origin.x = 0;
@@ -31,6 +40,17 @@
 	frame.origin.x = 0;
 	frame.origin.y = 480;
 	self.pickerView.frame = frame;
+	
+	frame = self.stopWatchView.frame;
+	frame.origin.x = 0;
+	frame.origin.y = 480;
+	self.stopWatchView.frame = frame;
+	
+	[self makeButtonShiny:stopWatchButton withBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:.87]];
+	[stopWatchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	
+	[self.view addSubview:stopWatchView];
+
 		
 	// Configure the save button.
 	UIBarButtonItem	*saveButton;
@@ -49,6 +69,7 @@
 	
 	[format release];
 	[title release];
+	[tap release];
 
 }
 
@@ -59,7 +80,7 @@
 	
 	[dnc addObserver:self selector:@selector(notesChangedNote:) name:@"LogNotesSent" object:nil];
 	[dnc addObserver:self selector:@selector(scoreNote:) name:@"ScoreSent" object:nil];
-
+	[table reloadData];
 
 }
 
@@ -88,34 +109,57 @@
 	[dnc removeObserver:self name:@":LogNotesSent" object:nil];
 }
 
+- (void)updateTimer:(NSTimer*)timer {
+	NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+	NSTimeInterval interval = now - [self start];
+	int seconds = (int)interval;
+	
+	[stopWatchButton setTitle:[NSString stringWithFormat:@"%02d:%02d", (seconds/60)%60, seconds%60] forState:UIControlStateNormal];
+	[self setTime_in_seconds:seconds];
+}
 
-
-- (void)timeButtonPressed	{
+- (void)timeButtonPressed:(UITapGestureRecognizer *)recognizer {
 		
-	if ([[[[self timeButton] titleLabel] text] isEqualToString:@"Start Timer!"]) {
-		[self setStart_date:[NSDate date]];
-		[timeButton setTitle:@"Stop Timer!" forState:UIControlStateNormal];
+	if ([[[[self timeButton] titleLabel] text] isEqualToString:@"Start!"]) {
+		[stopWatchButton setTitle:[NSString stringWithFormat:@"%02d:%02d", 0, 0] forState:UIControlStateNormal];
+		[timeButton setTitle:@"Stop!" forState:UIControlStateNormal];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.25];
+		
+		[timeButton setBackgroundColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:.80]];
+		
+		[UIView commitAnimations];
+		
+		CGRect frame = self.stopWatchView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
+		
+		frame.origin.y = 200;
+		self.stopWatchView.frame = frame;
+		
+		[UIView commitAnimations];
+		start = [NSDate timeIntervalSinceReferenceDate];
+		timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+		
 	} else {
-		[self setDate:[NSDate date]];
-		[self setTime_in_seconds:[date timeIntervalSinceDate:start_date]];
-		// Found this next section on stackoverflow for getting minutes and seconds between two dates
+		[timeButton setTitle:@"Start!" forState:UIControlStateNormal];
+		[timer invalidate];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.25];
 		
-		// Get the system calendar
-		NSCalendar *sysCalendar = [NSCalendar currentCalendar];
-			
-		// Get conversion to hours, minutes, seconds
-		unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit; 
+		[timeButton setBackgroundColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:.80]];
 		
-		NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:[self start_date]  toDate:[self date]  options:0];
+		[UIView commitAnimations];
 		
-		NSLog(@"Conversion: %dhours %dmin %dsec",[conversionInfo hour], [conversionInfo minute], [conversionInfo second]);
-		[self setHours:[conversionInfo hour]];
-		[self setMinutes:[conversionInfo minute]];
-		[self setSeconds:[conversionInfo second]];
+		CGRect frame = self.stopWatchView.frame;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:.5];
 		
-		NSString *placeholder = [NSString stringWithFormat:@"%i:%.2i",[conversionInfo minute],[conversionInfo second]];
-		[scoreField setText:placeholder];
-		[timeButton setTitle:@"Start Timer!" forState:UIControlStateNormal];
+		frame.origin.y = 480;
+		self.stopWatchView.frame = frame;
+		
+		[UIView commitAnimations];
+		[table reloadData];
 	}	
 }
 
@@ -335,6 +379,7 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DateCellIdentifier] autorelease];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			
 		}
 		
@@ -351,7 +396,7 @@
 		
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ScoreCellIdentifier] autorelease];
-			//[cell setAccessoryView:timeButton];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		
 		// Configure the cell.
@@ -402,6 +447,11 @@
 					int sec = trunc(time_in_seconds - min * 60);
 					[[cell detailTextLabel] setText:[NSString stringWithFormat:@"%d min %d sec", min, sec]];					
 				}
+				
+				// Add the timer button to the cell 
+	
+
+				[cell addSubview:timeButton];
 				break;
 			case WOD_SCORE_TYPE_REPS:
 				[[cell textLabel] setText:@"Reps"];
@@ -508,6 +558,41 @@
 		[controller release];
 	}
 
+}
+
+- (void)makeButtonShiny:(UIButton*)button withBackgroundColor:(UIColor*)backgroundColor
+{
+    // Get the button layer and give it rounded corners with a semi-transparant button
+    CALayer *layer = button.layer;
+    layer.cornerRadius = 8.0f;
+    layer.masksToBounds = YES;
+    layer.borderWidth = 2.0f;
+    layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
+	
+    // Create a shiny layer that goes on top of the button
+    CAGradientLayer *shineLayer = [CAGradientLayer layer];
+    shineLayer.frame = button.layer.bounds;
+    // Set the gradient colors
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         nil];
+    // Set the relative positions of the gradien stops
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.8f],
+                            [NSNumber numberWithFloat:1.0f],
+                            nil];
+	
+    // Add the layer to the button
+    [button.layer addSublayer:shineLayer];
+	
+    [button setBackgroundColor:backgroundColor];
 }
 
 

@@ -50,6 +50,7 @@
 		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
 		659314B6136F76DB0050F6BA /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */; };
 		65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA36E712F4DE8E00907DE3 /* CoreData.framework */; };
+		65CE7E511380889100B01B1B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CE7E501380889100B01B1B /* QuartzCore.framework */; };
 		65F474091298A1B000E58B04 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F474071298A1B000E58B04 /* MainPageViewController.m */; };
 		65F4740A1298A1B000E58B04 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F474081298A1B000E58B04 /* MainPageViewController.xib */; };
 		65FF40B112E3DEA700DF2F2A /* WODListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF40B012E3DEA700DF2F2A /* WODListViewController.m */; };
@@ -123,6 +124,7 @@
 		659314B4136F76DB0050F6BA /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
 		659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
 		65AA36E712F4DE8E00907DE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		65CE7E501380889100B01B1B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		65F474061298A1B000E58B04 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPageViewController.h; path = Classes/MainPageViewController.h; sourceTree = "<group>"; };
 		65F474071298A1B000E58B04 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPageViewController.m; path = Classes/MainPageViewController.m; sourceTree = "<group>"; };
 		65F474081298A1B000E58B04 /* MainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageViewController.xib; path = Classes/MainPageViewController.xib; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */,
 				3413590C137F77440039CE0B /* MessageUI.framework in Frameworks */,
+				65CE7E511380889100B01B1B /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +180,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3413590B137F77440039CE0B /* MessageUI.framework */,
+				65CE7E501380889100B01B1B /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
