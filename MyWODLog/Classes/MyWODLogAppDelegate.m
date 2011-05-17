@@ -827,8 +827,6 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_RNDS]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_AMRAP]];
 	
-	[w setTimelimit:[[NSNumber alloc] initWithInt:20]];
-	
 	ee = [self addEExercise:@"HANDSTAND PUSH-UPS" quantity:5 metric:nil order:1];
 	[w addEexercisesObject:ee];
 	ee = [self addEExercise:@"ONE-LEGGED SQUATS" quantity:10 metric:nil order:2];

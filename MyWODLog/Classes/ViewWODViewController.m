@@ -90,6 +90,14 @@
 		[self setShowTimeLimit:YES];
 	}
 	
+	if ([w rrounds] != nil && [[w rrounds] count] > 0) {
+		[self setShowRepRounds:YES];
+	}
+	
+	if( [[w rounds] intValue] > 0 ) {
+		[self setShowNumRounds:YES];
+	}
+	
 	[self setTitle:[[[self wod] name] capitalizedString]];
 
 }
@@ -228,10 +236,12 @@
 		return cell;
 		
 	}
-	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 &&
+	/*else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 &&
 			 ([[[self wod] type] intValue] == WOD_TYPE_RFT ||
 			  [[[self wod] type] intValue] == WOD_TYPE_EMOTM ||
-			  [[[self wod] type] intValue] == WOD_TYPE_AMRAP) ) {
+			  [[[self wod] type] intValue] == WOD_TYPE_AMRAP) ) {*/
+	else if ( [indexPath section] == VW_SECTION_DETAILS && [indexPath row] == 2 && [self showTimeLimit]) {
+			 
 		
 		static NSString *TypeCellIdentifier = @"TimeLimitCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
@@ -246,8 +256,10 @@
 		return cell;
 		
 	}
+	/*else if ( [indexPath section] == VW_SECTION_DETAILS &&
+			 ([indexPath row] == 3 ||([indexPath row] == 2 && [[[self wod] type] intValue] == WOD_TYPE_RFMR)) ) { */
 	else if ( [indexPath section] == VW_SECTION_DETAILS &&
-			 ([indexPath row] == 3 ||([indexPath row] == 2 && [[[self wod] type] intValue] == WOD_TYPE_RFMR)) ) {
+			 ([indexPath row] == 3 ||([indexPath row] == 2 && [self showNumRounds])) ) {
 		
 		static NSString *TypeCellIdentifier = @"NumRoundsCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TypeCellIdentifier];
@@ -397,8 +409,30 @@
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
 		
-		[[cell textLabel] setText:@"Rep Rounds"];
+		[[cell textLabel] setText:@"Rep Rnds"];
 		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
+		NSString *repRoundsString = [[NSString alloc] init];
+		
+		if ([[self wod] rrounds] != nil) {
+			
+			NSEnumerator	*enumer = [[[self wod] rrounds] objectEnumerator];
+			RROUND			*rr = nil;
+			
+			while ((rr = (RROUND*)[enumer nextObject])) {
+				
+				if ([repRoundsString length] > 0) {
+					repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [rr reps]];
+				} else {
+					repRoundsString = [rr reps];
+				}
+				
+			}
+			
+			
+		}
+		
+		[[cell detailTextLabel] setText:repRoundsString];	
 		
 	}
 	else {
