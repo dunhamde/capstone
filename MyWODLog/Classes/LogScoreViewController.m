@@ -121,6 +121,7 @@
 - (void)timeButtonPressed:(UITapGestureRecognizer *)recognizer {
 		
 	if ([[[[self timeButton] titleLabel] text] isEqualToString:@"Start!"]) {
+		table.allowsSelection = NO;
 		[stopWatchButton setTitle:[NSString stringWithFormat:@"%02d:%02d", 0, 0] forState:UIControlStateNormal];
 		[timeButton setTitle:@"Stop!" forState:UIControlStateNormal];
 		[UIView beginAnimations:nil context:NULL];
@@ -142,6 +143,7 @@
 		timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
 		
 	} else {
+		table.allowsSelection = YES;
 		[timeButton setTitle:@"Start!" forState:UIControlStateNormal];
 		[timer invalidate];
 		[UIView beginAnimations:nil context:NULL];
