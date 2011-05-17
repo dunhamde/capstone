@@ -15,6 +15,7 @@
 
 @synthesize fetchedResultsController, managedObjectContext, curScores, table, filterLabel, segmentedControl;
 @synthesize	notesView, notesTitleLabel, notesTextView;
+@synthesize wodNameFilter, wodDateFilter, wodFilter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 
@@ -364,32 +365,120 @@
  Returns the fetched results controller. Creates and configures the controller if necessary.
  */
 - (NSFetchedResultsController *)fetchedResultsController {
+	
+	
+	/*
+	 // Check to see if that name doesn't already exist.
+	 NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [nameField text]];
+	 
+	 
+	 // Create and configure a fetch request with the Book entity.
+	 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	 NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
+	 [fetchRequest setEntity:entity];
+	 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
+	 
+	 NSError *error = nil; 
+	 NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	 
+	 if( error || [array count] > 0) {
+	 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Category Already Exists" message: @"Error, a category with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+	 [alert show];
+	 [alert release];
+	 alert = nil;
+	 } else {
+	 if( [[nameField text] length] > 0 ) {
+	 [self setName:[[nameField text] uppercaseString]];
+	 //			[[self mode] setName:[[[self name] copy] uppercaseString]];
+	 [[self mode] setName:[[self name] uppercaseString]];
+	 [delegate createExerciseModeViewController:self didFinishWithSave:YES];
+	 }
+	 }
+	 */
+
+	
     
 	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
+	
+	if ([self wodFilter] != nil) {
+
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+
+		[fetchRequest setEntity:entity];
+
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"wod==%@", [self wodFilter]]];
+
+		// Create the sort descriptors array.
+		NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+		NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+		[fetchRequest setSortDescriptors:sortDescriptors];
+
+			
+		// Create and initialize the fetch results controller.
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		[self setFetchedResultsController:aFetchedResultsController];
+		[[self fetchedResultsController] setDelegate:self];
+		
+		// Memory management.
+		[aFetchedResultsController release];
+		[fetchRequest release];
+		[nameDescriptor release];
+		
+	} else if ([self wodDateFilter] != nil) {
+		
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+		
+		[fetchRequest setEntity:entity];
+		
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date==%@", [self wodDateFilter]]];
+		
+		// Create the sort descriptors array.
+		NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+		NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+		[fetchRequest setSortDescriptors:sortDescriptors];
+		
+		
+		// Create and initialize the fetch results controller.
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		[self setFetchedResultsController:aFetchedResultsController];
+		[[self fetchedResultsController] setDelegate:self];
+		
+		// Memory management.
+		[aFetchedResultsController release];
+		[fetchRequest release];
+		[nameDescriptor release];
+		
+	} else {
+		
+		// Create and configure a fetch request with the 'score' entity.
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
+		[fetchRequest setEntity:entity];
+		
+		// Create the sort descriptors array.
+		NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+		NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
+		[fetchRequest setSortDescriptors:sortDescriptors];
+		
+		
+		// Create and initialize the fetch results controller.
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		[self setFetchedResultsController:aFetchedResultsController];
+		[[self fetchedResultsController] setDelegate:self];
+		
+		// Memory management.
+		[aFetchedResultsController release];
+		[fetchRequest release];
+		[nameDescriptor release];
+		
+	}
     
-	// Create and configure a fetch request with the 'score' entity.
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"score" inManagedObjectContext:managedObjectContext];
-	[fetchRequest setEntity:entity];
 	
-	// Create the sort descriptors array.
-	NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
-	[fetchRequest setSortDescriptors:sortDescriptors];
-	
-	
-	// Create and initialize the fetch results controller.
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
-	[self setFetchedResultsController:aFetchedResultsController];
-	[[self fetchedResultsController] setDelegate:self];
-	
-	// Memory management.
-	[aFetchedResultsController release];
-	[fetchRequest release];
-	[nameDescriptor release];
 	
 	return fetchedResultsController;
 }    

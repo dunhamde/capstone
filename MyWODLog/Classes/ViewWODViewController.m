@@ -127,6 +127,9 @@
 	
 	ViewScoresViewController *controller = [[ViewScoresViewController alloc] init];
 	
+	//[controller setWodNameFilter:[[self wod] name]];
+	[controller setWodFilter:[self wod]];
+	
 	[[self navigationController] pushViewController:controller animated:YES];
 	
 	[controller release];

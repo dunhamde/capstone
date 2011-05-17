@@ -14,6 +14,8 @@
 #define DATE_INDEX 0
 #define WOD_INDEX 1
 
+#import "WOD.h"
+
 @interface ViewScoresViewController : UIViewController <UITableViewDelegate, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate> {
 	
 	//UIToolbar *toolbar;
@@ -28,6 +30,12 @@
 	UIView						*notesView;
 	UILabel						*notesTitleLabel;
 	UITextView					*notesTextView;
+	
+	// Filters
+	NSString					*wodNameFilter;
+	NSDate						*wodDateFilter;
+	WOD							*wodFilter;
+	
 
 }
 
@@ -52,6 +60,10 @@
 @property (nonatomic, retain) UILabel						*notesTitleLabel;
 @property (nonatomic, retain) UITextView					*notesTextView;
 
+// Filters
+@property (nonatomic, retain) NSString						*wodNameFilter;
+@property (nonatomic, retain) NSDate						*wodDateFilter;
+@property (nonatomic, retain) WOD							*wodFilter;
 
 
 @end
