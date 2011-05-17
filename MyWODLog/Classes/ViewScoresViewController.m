@@ -79,9 +79,6 @@
 		exit(-1);  // Fail
 	}
 	
-	
-	[self exportAllData];
-	
 }
 
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer {
@@ -98,6 +95,16 @@
 	
 	table.allowsSelection = YES;
 }
+
+
+
+- (IBAction)exportPressed {
+	
+	[self exportAllData];
+	
+}
+
+
 
 - (IBAction)toggleSort	{
 

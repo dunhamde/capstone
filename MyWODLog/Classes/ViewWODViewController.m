@@ -104,6 +104,11 @@
 
 
 
+#pragma mark -
+#pragma mark IB Button Actions
+
+
+
 - (IBAction)logScorePressed:(id)sender {
 	
 	LogScoreViewController* logScore = [[LogScoreViewController alloc] init];
@@ -113,6 +118,18 @@
 	[[self navigationController] pushViewController:logScore animated:YES];
 
 	[logScore release];
+	
+}
+
+
+
+- (IBAction)viewScoresPressed:(id)sender {
+	
+	ViewScoresViewController *controller = [[ViewScoresViewController alloc] init];
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	
+	[controller release];
 	
 }
 

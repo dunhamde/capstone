@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "LogScoreViewController.h"
+#import "ViewScoresViewController.h"
 #import "WOD.h"
 #import "EXERCISE.h"
 
@@ -61,6 +62,7 @@
 
 - (void)setCurrentWOD:(WOD *)w;
 - (IBAction)logScorePressed:(id)sender;
+- (IBAction)viewScoresPressed:(id)sender;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer;
 
