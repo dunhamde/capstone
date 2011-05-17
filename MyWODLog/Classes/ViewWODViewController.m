@@ -433,19 +433,29 @@
 		
 		if ([[self wod] rrounds] != nil) {
 			
-			NSEnumerator	*enumer = [[[self wod] rrounds] objectEnumerator];
-			RROUND			*rr = nil;
+
+			// Find the correct next rep round
+			int order = 1;
+			while (order <= [[[self wod] rrounds] count]) {
+
+				NSEnumerator	*enumer = [[[self wod] rrounds] objectEnumerator];
+				RROUND			*rr = nil;
 			
-			while ((rr = (RROUND*)[enumer nextObject])) {
-				
-				if ([repRoundsString length] > 0) {
-					repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [rr reps]];
-				} else {
-					repRoundsString = [rr reps];
+				while ((rr = (RROUND*)[enumer nextObject])) {
+
+					if ([[rr order] intValue] == order) {
+						if ([repRoundsString length] > 0) {
+							repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [rr reps]];
+						} else {
+							repRoundsString = [rr reps];
+						}
+						
+						order++;
+						break;
+					}
+					
 				}
-				
-			}
-			
+			}			
 			
 		}
 		

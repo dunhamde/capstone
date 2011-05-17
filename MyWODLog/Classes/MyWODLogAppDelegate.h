@@ -53,7 +53,7 @@
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name;
 - (EXERCISE*)addExerciseToMode:(MODE*)mode withName:(NSString*)name isQuantifiable:(BOOL)quantifiable requiresMetric:(BOOL)metricRequired;
 - (WOD*)addWOD:(NSString*)name;
-- (RROUND*)addRepRound:(NSString*)numReps;
+- (RROUND*)addRepRound:(NSString*)numReps order:(NSInteger)o;
 - (EEXERCISE*)addEExercise:(NSString*)exerciseName quantity:(int)qty metric:(NSString*)met order:(int)o;
 
 

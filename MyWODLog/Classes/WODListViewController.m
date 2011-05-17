@@ -246,22 +246,25 @@
 
 
 		// Add Rep Rounds:
-		NSMutableArray* rroundList = [NSMutableArray arrayWithCapacity:0];
-		NSSet* repRoundSet = [[NSSet alloc] initWithArray:[createWODViewController wodRepRounds]];
-		NSEnumerator *enumerR = [repRoundSet objectEnumerator];
-		NSString *r = nil;
+		NSEnumerator *enumerR = [[createWODViewController wodRepRounds] objectEnumerator];
+		NSNumber *r = nil;
+		order = 1;
 
-		while ( (r = (NSString*)[enumerR nextObject]) ) {
-			
+		while ( (r = (NSNumber*)[enumerR nextObject]) ) {
+
 			RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:managedObjectContext];
-			[rroundList addObject:rround];
+
+			[rround setReps:[r stringValue]];
+			[rround setOrder:[[NSNumber alloc] initWithInt:order]];
+			[wod addRroundsObject:rround];
+			order++;
 			
 		}
-
+/*
 		NSSet* rroundSet = [[NSSet alloc] initWithArray:rroundList];
 		if ([eexSet count] > 0) {
 			[wod setRrounds:rroundSet];
-		}
+		}*/
 
 		/*
 		 // Check to see if that name doesn't already exist.
@@ -298,8 +301,8 @@
 		}
 		
 		[eexSet release];
-		[repRoundSet release];
-		[rroundSet release];
+	//	[repRoundSet release];
+	//	[rroundSet release];
 
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 

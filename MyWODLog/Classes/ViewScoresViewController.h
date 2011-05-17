@@ -35,7 +35,7 @@
 
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer;
 - (IBAction)toggleSort;
-- (IBAction)exportPressed;
+- (IBAction)exportPressed:(id)sender;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)exportAllData;
 

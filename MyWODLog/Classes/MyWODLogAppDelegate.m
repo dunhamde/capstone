@@ -347,11 +347,11 @@
 	
 	NSMutableArray* amandaRounds = [NSMutableArray arrayWithCapacity:0];
 	
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:1];
 	[amandaRounds addObject:r];
-	r = [self addRepRound:@"7"];
+	r = [self addRepRound:@"7" order:2];
 	[amandaRounds addObject:r];
-	r = [self addRepRound:@"5"];
+	r = [self addRepRound:@"5" order:3];
 	[amandaRounds addObject:r];
 	
 	enumer = [amandaRounds objectEnumerator];
@@ -405,15 +405,15 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"50"];
+	r = [self addRepRound:@"50" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"40"];
+	r = [self addRepRound:@"40" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"30"];
+	r = [self addRepRound:@"30" order:3];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"20"];
+	r = [self addRepRound:@"20" order:4];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"10"];
+	r = [self addRepRound:@"10" order:5];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"DOUBLE-UNDERS" quantity:0 metric:nil order:1];
@@ -501,11 +501,11 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 
-	r = [self addRepRound:@"21"];
+	r = [self addRepRound:@"21" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"15"];
+	r = [self addRepRound:@"15" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:3];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"OVERHEAD SQUATS, # POUNDS" quantity:0 metric:@"95" order:1];
@@ -558,11 +558,11 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"21"];
+	r = [self addRepRound:@"21" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"15"];
+	r = [self addRepRound:@"15" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:3];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"DEADLIFT, # POUNDS" quantity:0 metric:@"225" order:1];
@@ -579,11 +579,11 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"21"];
+	r = [self addRepRound:@"21" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"15"];
+	r = [self addRepRound:@"15" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:3];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"CLEAN, # POUNDS" quantity:0 metric:@"135" order:1];
@@ -618,11 +618,11 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"21"];
+	r = [self addRepRound:@"21" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"15"];
+	r = [self addRepRound:@"15" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:3];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"THRUSTERS, # POUNDS" quantity:0 metric:@"95" order:1];
@@ -663,11 +663,11 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"12"];
+	r = [self addRepRound:@"12" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"6"];
+	r = [self addRepRound:@"6" order:3];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"TOUCH AND GO" quantity:0 metric:nil order:1];
@@ -758,25 +758,25 @@
 	[w setScore_type:[[NSNumber alloc] initWithInt:WOD_SCORE_TYPE_TIME]];
 	[w setType:[[NSNumber alloc] initWithInt:WOD_TYPE_RRFT]];
 	
-	r = [self addRepRound:@"10"];
+	r = [self addRepRound:@"10" order:1];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"9"];
+	r = [self addRepRound:@"9" order:2];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"8"];
+	r = [self addRepRound:@"8" order:3];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"7"];
+	r = [self addRepRound:@"7" order:4];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"6"];
+	r = [self addRepRound:@"6" order:5];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"5"];
+	r = [self addRepRound:@"5" order:6];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"4"];
+	r = [self addRepRound:@"4" order:7];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"3"];
+	r = [self addRepRound:@"3" order:8];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"2"];
+	r = [self addRepRound:@"2" order:9];
 	[w addRroundsObject:r];
-	r = [self addRepRound:@"1"];
+	r = [self addRepRound:@"1" order:10];
 	[w addRroundsObject:r];
 	
 	ee = [self addEExercise:@"DEADLIFT, # BODY WEIGHT" quantity:0 metric:@"1 1/2" order:1];
@@ -987,14 +987,14 @@
 
 
 
-- (RROUND*)addRepRound:(NSString*)numReps {
+- (RROUND*)addRepRound:(NSString*)numReps order:(NSUInteger)o {
 	
 	// If the rep round is already in the DB, return it instead of creating a new one
 	NSEnumerator *enumerR = [[self repRounds] objectEnumerator];
 	RROUND* r = nil;
 	
 	while ( (r = (RROUND*)[enumerR nextObject]) ) {
-		if ( [[r reps] isEqualToString:numReps] ) {
+		if ( [[r reps] isEqualToString:numReps] && [[r order] intValue] == o  ) {
 			return r;
 		}
 	}
@@ -1002,6 +1002,7 @@
 	RROUND* rround = (RROUND *)[NSEntityDescription insertNewObjectForEntityForName:@"rround" inManagedObjectContext:[self managedObjectContext]];
 	
 	[rround setReps:numReps];
+	[rround setOrder:[[NSNumber alloc] initWithInt:o]];
 	
 	[[self repRounds] addObject:rround];
 	

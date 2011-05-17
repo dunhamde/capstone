@@ -159,7 +159,13 @@
 
 - (IBAction)cancel:(id)sender
 {
-	[[self navigationController] popToRootViewControllerAnimated:YES];
+	if ([self popToRoot]) {
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+	} else {
+		[[self navigationController] popViewControllerAnimated:YES];
+	}
+
+
 }
 
 

@@ -14,5 +14,6 @@
 
 @dynamic reps;
 @dynamic wods;
+@dynamic order;
 
 @end

@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) NSString * reps;
+@property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSSet* wods;
 
 @end
