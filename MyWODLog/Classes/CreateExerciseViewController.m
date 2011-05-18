@@ -83,12 +83,39 @@
 - (IBAction)save:(id)sender
 {
 	if ([[nameField text] length] > 0) {
+		BOOL canSave = NO;
 		
-	
-		[self setName:[nameField text]];
-	
+		// If 
+		if ([metricRequired isOn]) {
+			
+			NSRange range = [[nameField text] rangeOfString:@"#"];
+			if ( range.location == NSNotFound || range.length == 0 ) {
+				
+				UIAlertView *alert = nil;
+				alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
+												   message:@"A '#' symbol is required since this exercise requires a metric.  The '#' symbol denotes where the metric should be placed once this exercise is added to a specific WOD.  Please add a '#' symbol (without the quotes) to the exercise name (where it makes sense) or disable the metric requirement."
+												  delegate:nil
+										 cancelButtonTitle:@"Ok"
+										 otherButtonTitles:nil];
+				[alert show];
+				[alert release];
+				alert = nil;
+				
+				
+			} else {
+				canSave = YES;
+			}
 
-		[delegate createExerciseViewController:self didFinishWithSave:YES];
+			
+		} else {
+			canSave = YES;
+		}
+
+		
+		if (canSave) {
+			[self setName:[nameField text]];
+			[delegate createExerciseViewController:self didFinishWithSave:YES];
+		}
 	}
 }
 
