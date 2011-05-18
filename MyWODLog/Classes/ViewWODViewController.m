@@ -465,8 +465,6 @@
 		[[cell detailTextLabel] setText:repRoundsString];	
 		
 	}
-	else {
-	}
 	
 }
 

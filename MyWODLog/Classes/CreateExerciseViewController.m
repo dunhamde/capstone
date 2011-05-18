@@ -73,15 +73,18 @@
 
 - (IBAction)cancel:(id)sender
 {
+	
     [self setName:nil];
 	// [[self navigationController] popViewControllerAnimated:YES];
 	[delegate createExerciseViewController:self didFinishWithSave:NO];
+	
 }
 
 
 
 - (IBAction)save:(id)sender
 {
+	
 	if ([[nameField text] length] > 0) {
 		BOOL canSave = NO;
 		
@@ -117,6 +120,7 @@
 			[delegate createExerciseViewController:self didFinishWithSave:YES];
 		}
 	}
+	
 }
 
 

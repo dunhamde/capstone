@@ -232,13 +232,9 @@
 
 	
 	if ([e requiresMetric] > 0) {
-		
 		[self addExerciseElement:e quantity:q metric:m];
-		
 	} else {
-		
 		[self addExerciseElement:e quantity:q metric:nil];
-		
 	}
 
 	// Remove the notifcation
@@ -512,6 +508,8 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+	
+	
 	if ( [indexPath section] == CW_SECTION_DETAILS && [indexPath row] == 0 ) {
 		
 		static NSString *NameCellIdentifier = @"NameCell";
@@ -649,7 +647,8 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-
+	
+	
 	// Can't we do this by cell name instead of section/row numbers?
 	// i.e.:  [cell reuseIdentifier]  << returns a string
 	
@@ -839,7 +838,7 @@
 		[[self navigationController] pushViewController:controller animated:YES];
 		
 		[controller release];
-		
+				
 	}
 	// Case 'Add Notes...':
 	else if( [cellIdentifier isEqualToString:@"NotesCell"] ) {
@@ -853,7 +852,7 @@
 		[[self navigationController] pushViewController:controller animated:YES];		
 		
 		[controller release];
-		
+				
 	}
 	else if( [cellIdentifier isEqualToString:@"NumRoundsCell"] ) {
 		
@@ -884,12 +883,6 @@
 		
 	}
 	else if( [cellIdentifier isEqualToString:@"RepRoundsCell"] ) {
-		
-		//TODO: THIS CRASHES TOO
-	//	if ([self repRoundList] != nil) {
-	//		[[self repRoundList] release];
-	//		[self setRepRoundList:nil];
-	//	}
 
 		ListEditViewController *controller = [[ListEditViewController alloc] init];
 		
@@ -904,6 +897,8 @@
 		[controller release];
 
 	}
+	
+	[[self table] deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 

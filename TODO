@@ -9,7 +9,7 @@
 WEEKEND PLANS:
 [X] Get exporting working -M/D
 [X] Get View WOD Page working with rep rounds -M
-[ ] Merge itermediate score page with main page -D
+[-] Merge itermediate score page with main page -D/M
 [X] Log Score Page redo with table view -M/D
 [X] Don't allow save with no input on wod name (any)
 LOWER PRIORITY WEEEKEND PLANS:
@@ -39,7 +39,7 @@ MAJOR:
 
 MINOR:
 [X] Add a 'view scores for this wod' button on a WOD's page
-[ ] Add Alert to Add Exercise page to confirm the user adds a pound symbol
+[X] Add Alert to Add Exercise page to confirm the user adds a pound symbol
     '#' (or other symbol we want to use) to the exercise name to replace with
     the metric when added to a WOD
 [ ] Make a Settings page (that shows up in iOS Settings app, not our app)
