@@ -17,6 +17,8 @@
 @synthesize	notesView, notesTitleLabel, notesTextView;
 @synthesize wodNameFilter, wodDateFilter, wodFilter;
 
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -60,6 +62,8 @@
 	return self;
 }
 
+
+
 - (void)viewDidLoad {
 	
     [super viewDidLoad];
@@ -81,6 +85,8 @@
 	}
 	
 }
+
+
 
 - (void)notesViewTouched:(UITapGestureRecognizer *)recognizer {
 	
@@ -116,7 +122,7 @@
 	NSArray *sortDescriptors;
 	
 	if (selectedUnit == DATE_INDEX) {
-		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 		key = @"date";
 		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 		[nameDescriptor release];
@@ -138,6 +144,13 @@
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	[fetchRequest setEntity:entity];
+	
+	if ([self wodFilter]) {
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"wod==%@", [self wodFilter]]];
+	} else if([self wodDateFilter]) {
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date==%@", [self wodDateFilter]]];
+	}
+	
 	[fetchedResultsController initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:key cacheName:@"Root"];	
 	[sortDescriptors release];
 	[fetchRequest release];
@@ -152,13 +165,16 @@
 	[table reloadData];
 }
 
+
+
 #pragma mark -
 #pragma mark Table view data source methods
+
+
 
 /*
  The data source methods are handled primarily by the fetch results controller
  */
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	NSLog( @"SCORES NUM OF SECTIONS IN TABLE = %d", [[fetchedResultsController sections] count] );
 	NSLog(@"fetched results: %@", fetchedResultsController);
@@ -175,6 +191,8 @@
 	NSLog( @"SCORES NUM OF ROWS IN SECTION = %d", [sectionInfo numberOfObjects] );
 	return [sectionInfo numberOfObjects];
 }
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath	{
 	
@@ -217,6 +235,7 @@
 }
 
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	NSLog(@"CELL");
@@ -237,11 +256,13 @@
 }
 
 
+
 - (void)configureCell:(ScoreTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell
 	SCORE *newscore = (SCORE *)[fetchedResultsController objectAtIndexPath:indexPath];
     cell.score = newscore;
 }
+
 
 
 #pragma mark -
@@ -365,38 +386,6 @@
  Returns the fetched results controller. Creates and configures the controller if necessary.
  */
 - (NSFetchedResultsController *)fetchedResultsController {
-	
-	
-	/*
-	 // Check to see if that name doesn't already exist.
-	 NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [nameField text]];
-	 
-	 
-	 // Create and configure a fetch request with the Book entity.
-	 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	 NSEntityDescription *entity = [NSEntityDescription entityForName:@"mode" inManagedObjectContext:[self managedObjectContext]];
-	 [fetchRequest setEntity:entity];
-	 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
-	 
-	 NSError *error = nil; 
-	 NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	 
-	 if( error || [array count] > 0) {
-	 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Category Already Exists" message: @"Error, a category with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-	 [alert show];
-	 [alert release];
-	 alert = nil;
-	 } else {
-	 if( [[nameField text] length] > 0 ) {
-	 [self setName:[[nameField text] uppercaseString]];
-	 //			[[self mode] setName:[[[self name] copy] uppercaseString]];
-	 [[self mode] setName:[[self name] uppercaseString]];
-	 [delegate createExerciseModeViewController:self didFinishWithSave:YES];
-	 }
-	 }
-	 */
-
-	
     
 	// Do not use [self fetchedResultsController] or self.fetchedResultsController (stack overflow)
     if (fetchedResultsController != nil) {
@@ -413,7 +402,7 @@
 		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"wod==%@", [self wodFilter]]];
 
 		// Create the sort descriptors array.
-		NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+		NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 		NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 		[fetchRequest setSortDescriptors:sortDescriptors];
 

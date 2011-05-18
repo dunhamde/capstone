@@ -17,6 +17,9 @@ LOWER PRIORITY WEEEKEND PLANS:
 [X] Make sure all data put into database is either ALL CAPS or lower case
 
 MAJOR:
+[ ] Edit button on Scores page
+[ ] Delete CSV file after returning from send mail
+[ ] Filter by date range
 [X] Fix add exercises to accomidate WODs like 'Nicole'
 [ ] Create WOD Page: On WOD Type change remove all Exercises
 [ ] Create WOD Page: Don't allow Add Exercise if no WOD Type
