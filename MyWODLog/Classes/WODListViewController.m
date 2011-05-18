@@ -496,6 +496,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+	self.fetchedResultsController = nil;
 	[fetchedResultsController release];
 	[managedObjectContext release];
     [super dealloc];

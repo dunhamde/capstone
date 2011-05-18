@@ -693,7 +693,8 @@
 
 
 - (void)dealloc {
-	
+	self.fetchedResultsController = nil;
+	[fetchedResultsController release];
     [super dealloc];
 	
 }

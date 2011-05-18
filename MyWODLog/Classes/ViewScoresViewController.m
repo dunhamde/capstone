@@ -419,7 +419,7 @@
 
 			
 		// Create and initialize the fetch results controller.
-		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:nil];
 		[self setFetchedResultsController:aFetchedResultsController];
 		[[self fetchedResultsController] setDelegate:self];
 		
@@ -444,7 +444,7 @@
 		
 		
 		// Create and initialize the fetch results controller.
-		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:nil];
 		[self setFetchedResultsController:aFetchedResultsController];
 		[[self fetchedResultsController] setDelegate:self];
 		
@@ -467,7 +467,7 @@
 		
 		
 		// Create and initialize the fetch results controller.
-		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:@"Root"];
+		NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:nil];
 		[self setFetchedResultsController:aFetchedResultsController];
 		[[self fetchedResultsController] setDelegate:self];
 		
@@ -564,6 +564,8 @@
 
 
 - (void)dealloc {
+	self.fetchedResultsController = nil;
+	[fetchedResultsController release];
     [super dealloc];
 }
 
