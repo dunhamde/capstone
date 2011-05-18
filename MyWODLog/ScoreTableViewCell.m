@@ -143,9 +143,16 @@
 	}
 	else if ([[[score wod] score_type] intValue] == WOD_SCORE_TYPE_REPS ) 
 		scoreLabel.text = [NSString stringWithFormat:@"%d reps", [[score reps] intValue]];
-	else {
+	else if ([[[score wod] score_type] intValue] == WOD_SCORE_TYPE_RNDS ){
 		scoreLabel.text = [NSString stringWithFormat:@"%d rounds", [[score rounds] intValue]];
+	} else {
+		if ([[score completed] boolValue]) {
+			[scoreLabel setText:@"Completed"];
+		} else {
+			[scoreLabel setText:@"Not Completed"];
+		}
 	}
+
 
 
 }

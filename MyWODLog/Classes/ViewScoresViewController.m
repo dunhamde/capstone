@@ -122,11 +122,14 @@
 	NSArray *sortDescriptors;
 	
 	if (selectedUnit == DATE_INDEX) {
+		
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 		key = @"date";
 		sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
 		[nameDescriptor release];
+		
 	} else {
+		
 		nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"wod.name" ascending:YES];
 		timeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
 		roundDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rounds" ascending:YES];
@@ -138,7 +141,6 @@
 		[roundDescriptor release];
 		[repDescriptor release];
 		[nameDescriptor release];
-
 
 	}
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

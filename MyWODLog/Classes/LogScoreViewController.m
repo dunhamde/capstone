@@ -18,8 +18,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	NSString *title = @"Log Score for ";
-	[self setTitle:[title stringByAppendingString:[wod name]]];
+	//NSString *title = @"Log Score for ";
+	//[self setTitle:[title stringByAppendingString:[wod name]]];
+	[self setTitle:@"Log Score"];
 	self.hiddenButton.enabled = NO;
 	
 	timeButton = [[UIButton alloc] initWithFrame:CGRectMake(75, 9, 60, 30)]; 
@@ -68,7 +69,7 @@
 	[self setDateFormatted:curDate];
 	
 	[format release];
-	[title release];
+	//[title release];
 	[tap release];
 
 }

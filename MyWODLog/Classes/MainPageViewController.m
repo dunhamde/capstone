@@ -38,7 +38,7 @@
 
 - (void)scoresPressed {
 	
-	ScoresViewController *scores;
+	//ScoresViewController *scores;
 	
 	// Set the back button to say "Home" instead of the title of this page
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -46,12 +46,16 @@
 //	self.navigationItem.backBarButtonItem = backButton;
 	[backButton release];
 	
-	scores = [[ScoresViewController alloc] init];
+	//scores = [[ScoresViewController alloc] init];
 	//scores.managedObjectContext = [self managedObjectContext];
-
-	[[self navigationController] pushViewController:scores animated:YES];
 	
-	[scores release];
+	
+	ViewScoresViewController *controller = [[ViewScoresViewController alloc] init];
+
+	[[self navigationController] pushViewController:controller animated:YES];
+	
+	[controller release];
+	//[scores release];
 }
 
 
