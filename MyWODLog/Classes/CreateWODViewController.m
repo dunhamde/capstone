@@ -763,11 +763,16 @@
 
 			NSEnumerator *enumer = [[self wodRepRounds] objectEnumerator];
 			NSNumber *n;
+			int rrcount = [[self wodRepRounds] count];
 			
 			while ((n = (NSNumber*)[enumer nextObject])) {
 				
 				if ([repRoundsString length] > 0) {
-					repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [n stringValue]];
+					if (rrcount > CW_MAX_RROUND_COUNT_FOR_SPACING) {
+						repRoundsString = [NSString stringWithFormat:@"%@-%@", repRoundsString, [n stringValue]];
+					} else {
+						repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [n stringValue]];
+					}
 				} else {
 					repRoundsString = [n stringValue];
 				}

@@ -439,7 +439,8 @@
 
 			// Find the correct next rep round
 			int order = 1;
-			while (order <= [[[self wod] rrounds] count]) {
+			int rrcount = [[[self wod] rrounds] count];
+			while (order <= rrcount) {
 
 				NSEnumerator	*enumer = [[[self wod] rrounds] objectEnumerator];
 				RROUND			*rr = nil;
@@ -448,7 +449,13 @@
 
 					if ([[rr order] intValue] == order) {
 						if ([repRoundsString length] > 0) {
-							repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [rr reps]];
+							if (rrcount > VW_MAX_RROUND_COUNT_FOR_SPACING) {
+								repRoundsString = [NSString stringWithFormat:@"%@-%@", repRoundsString, [rr reps]];
+							} else {
+								repRoundsString = [NSString stringWithFormat:@"%@ - %@", repRoundsString, [rr reps]];
+							}
+
+							
 						} else {
 							repRoundsString = [rr reps];
 						}

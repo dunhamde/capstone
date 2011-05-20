@@ -144,6 +144,7 @@
     
 	if( editingStyle == UITableViewCellEditingStyleDelete ) {
 		
+		//TODO: change this code back to not checking canDelete, as this is taken care of in the method above
 		BOOL canDelete = NO;
 		
 		EXERCISE *e = (EXERCISE*)[fetchedResultsController objectAtIndexPath:indexPath];

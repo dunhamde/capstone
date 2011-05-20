@@ -23,7 +23,7 @@
 
 #define CW_NUM_SECTIONS					3
 
-
+#define CW_MAX_RROUND_COUNT_FOR_SPACING	7
 
 @protocol CreateWODViewControllerDelegate;
 

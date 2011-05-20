@@ -22,6 +22,9 @@
 
 #define VW_NUM_SECTIONS					3
 
+
+#define VW_MAX_RROUND_COUNT_FOR_SPACING	7
+
 @interface ViewWODViewController : UIViewController <UITableViewDelegate, LogScoreViewControllerDelegate> {
 
 	WOD							*wod;
