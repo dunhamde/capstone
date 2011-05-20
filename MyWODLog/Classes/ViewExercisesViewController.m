@@ -121,28 +121,66 @@
 	
 }
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+	BOOL canDelete = NO;
+	
+	EXERCISE *e = (EXERCISE*)[fetchedResultsController objectAtIndexPath:indexPath];
+	
+	if ([[e eexercises] count] == 0) {
+		canDelete = YES;
+	}
+	
+    return canDelete;
 }
-*/
+
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	if( editingStyle == UITableViewCellEditingStyleDelete ) {
-		// Delete the managed object.
-		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
 		
-		NSError *error;
-		if (![context save:&error]) {
-			// Update to handle the error appropriately.
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			exit(-1);  // Fail
+		BOOL canDelete = NO;
+		
+		EXERCISE *e = (EXERCISE*)[fetchedResultsController objectAtIndexPath:indexPath];
+		
+		if ([[e eexercises] count] == 0) {
+			canDelete = YES;
 		}
-	}
+		
+		
+		if( canDelete ) {
+		
+			// Delete the managed object.
+			NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+			[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+			
+			NSError *error;
+			if (![context save:&error]) {
+				// Update to handle the error appropriately.
+				NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+				exit(-1);  // Fail
+			}
+			
+		} else {
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to delete"
+															message:@"This exercise is in use by at least one WOD."
+														   delegate:nil
+												  cancelButtonTitle:@"Ok"
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+			alert = nil;
+			
+		}
+
+		
+	} // end if( editingStyle ... )
 	
 }
 
@@ -278,56 +316,8 @@
 	// Merging changes causes the fetched results controller to update its results
 	[context mergeChangesFromContextDidSaveNotification:saveNotification];
 	
-
-/*
-	if ( [self lastExerciseAdded] != nil ) {
-
-		NSString *lastNameQuery = [NSString stringWithFormat:@"name == '%@'", [[self lastExerciseAdded] name]];
-		NSLog(@"Query: %@", lastNameQuery);
-		
-		
-		// Create and configure a fetch request with the Book entity.
-		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"exercise" inManagedObjectContext:managedObjectContext];
-		[fetchRequest setEntity:entity];
-		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:lastNameQuery]];
-		
-		NSError *error = nil; 
-		NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-		if (!error && [array count] > 0) {
-			NSLog(@"COUNT=%d", [array count]);
-			EXERCISE *e = [array objectAtIndex:0];
-			[e setModes:[self mode]];
-			[mode addExercisesObject:e];
-
-			// Save back to database
-			if (![addingManagedObjectContext save:&error]) {
-				// Update to handle the error appropriately.
-				NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-				exit(-1);  // Fail
-			}
-			
-			
-			NSLog(@"SET MODES CALLED");
-		}
-		
-		// Create the sort descriptors array.
-		//NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-		//NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nameDescriptor, nil];
-		//[fetchRequest setSortDescriptors:sortDescriptors];
-		
-		
-		// Create and initialize the fetch results controller.
-		//NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
-
-		
-		
-		//[[self lastExerciseAdded] setModes:[self mode]];
-	//	[[self lastExerciseAdded] release];
-		[self setLastExerciseAdded:nil];
-		NSLog(@"GOT HERE");
-	} */
 }
+
 
 
 #pragma mark -
@@ -340,7 +330,6 @@
  */
 - (NSFetchedResultsController *)fetchedResultsController {
 	
-	//NSLog( @"HEREZ" );
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
@@ -369,8 +358,9 @@
 	[fetchRequest release];
 	[nameDescriptor release];
 	[sortDescriptors release];
-//	NSLog( @"HEREZ2" );
+
 	return fetchedResultsController;
+	
 }
 
 
@@ -378,7 +368,6 @@
 /**
  Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
  */
-
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller is about to start sending change notifications, so prepare the table view for updates.
 	[self.tableView beginUpdates];
@@ -418,11 +407,11 @@
 	switch(type) {
 			
 		case NSFetchedResultsChangeInsert:
-			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			[[self tableView] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+				[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 	}
 }
@@ -431,7 +420,6 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	//[self.tableView endUpdates];
 	[[self tableView] endUpdates];
 }
 
@@ -501,7 +489,6 @@
 - (void)dealloc {
 	[fetchedResultsController release];
 	[managedObjectContext release];
-//	[addingManagedObjectContext release];
     [super dealloc];
 }
 

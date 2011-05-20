@@ -223,7 +223,11 @@
 		
 	} else {
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input" message: @"Input is required to save" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
+														message:@"Input is required to save"
+													   delegate:nil
+											  cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
 		alert = nil;
