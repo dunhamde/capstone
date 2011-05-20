@@ -62,12 +62,12 @@ MINOR:
 
 BUGS:
 [X] Rep Rounds are not ordered on the view wod page.
-[ ] Crashes when you delete an exercise that is in use by a WOD!
+[X] Crashes when you delete an exercise that is in use by a WOD!
   - This is because I set the rule to deny instead of nullify when an
     exercise is deleted and a eexercise has a reference to it.
   - We either need to figure out if there is a try/catch/exception thrown
     situation for this, or do some sort of software check on delete
-[ ] Deleteing a WOD possibly doesn't remove eexercise's, rround's, and
+[-] Deleteing a WOD possibly doesn't remove eexercise's, rround's, and
     score's... investigate this
   - I set the rule to cascade, but it has not been tested to see if it
     actually works as expected.

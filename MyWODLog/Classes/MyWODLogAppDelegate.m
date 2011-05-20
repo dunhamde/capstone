@@ -329,7 +329,7 @@
 	e = [self addExerciseToMode:m withName:@"CLEAN & JERK, # POUNDS" isQuantifiable:YES requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"CLEAN & JERK"];	
 	e = [self addExerciseToMode:m withName:@"WALL-BALL SHOTS, # POUNDS" isQuantifiable:YES requiresMetric:YES];
-	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
+//	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
 	e = [self addExerciseToMode:m withName:@"BENCH PRESS, BODY WEIGHT"];  // same thing as bench?
 	e = [self addExerciseToMode:m withName:@"HANG POWER CLEAN, # POUNDS" isQuantifiable:YES requiresMetric:YES];	
 
@@ -781,7 +781,7 @@
 	
 	ee = [self addEExercise:@"DEADLIFT, # BODY WEIGHT" quantity:0 metric:@"1 1/2" order:1];
 	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"BENCH, BODY WEIGHT" quantity:0 metric:nil order:2];
+	ee = [self addEExercise:@"BENCH PRESS, BODY WEIGHT" quantity:0 metric:nil order:2];
 	[w addEexercisesObject:ee];
 	ee = [self addEExercise:@"CLEAN, # BODY WEIGHT" quantity:0 metric:@"3/4" order:3];
 	[w addEexercisesObject:ee];
@@ -987,7 +987,7 @@
 
 
 
-- (RROUND*)addRepRound:(NSString*)numReps order:(NSUInteger)o {
+- (RROUND*)addRepRound:(NSString*)numReps order:(NSInteger)o {
 	
 	// If the rep round is already in the DB, return it instead of creating a new one
 	NSEnumerator *enumerR = [[self repRounds] objectEnumerator];
