@@ -46,6 +46,9 @@
 		34D36D78137662DF00A17E51 /* EEXERCISE.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D36D76137662DF00A17E51 /* EEXERCISE.m */; };
 		34F60F6312ED4D05004186AF /* LogScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F60F6112ED4D05004186AF /* LogScoreViewController.m */; };
 		34F60F6412ED4D05004186AF /* LogScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F60F6212ED4D05004186AF /* LogScoreViewController.xib */; };
+		65023E151395ACED00542A85 /* ProgressChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65023E131395ACED00542A85 /* ProgressChartViewController.m */; };
+		65023E161395ACED00542A85 /* ProgressChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65023E141395ACED00542A85 /* ProgressChartViewController.xib */; };
+		65081C80139450B0009FCEE6 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65081C7F139450B0009FCEE6 /* libCorePlot-CocoaTouch.a */; };
 		653B14471356A62700BF3C72 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B14451356A62700BF3C72 /* EditViewController.m */; };
 		653B14481356A62700BF3C72 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B14461356A62700BF3C72 /* EditViewController.xib */; };
 		659314B6136F76DB0050F6BA /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 659314B5136F76DB0050F6BA /* ScoreTableViewCell.m */; };
@@ -118,6 +121,82 @@
 		34F60F6012ED4D05004186AF /* LogScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogScoreViewController.h; path = Classes/LogScoreViewController.h; sourceTree = "<group>"; };
 		34F60F6112ED4D05004186AF /* LogScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogScoreViewController.m; path = Classes/LogScoreViewController.m; sourceTree = "<group>"; };
 		34F60F6212ED4D05004186AF /* LogScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LogScoreViewController.xib; path = Classes/LogScoreViewController.xib; sourceTree = "<group>"; };
+		65023E121395ACED00542A85 /* ProgressChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressChartViewController.h; sourceTree = "<group>"; };
+		65023E131395ACED00542A85 /* ProgressChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressChartViewController.m; sourceTree = "<group>"; };
+		65023E141395ACED00542A85 /* ProgressChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressChartViewController.xib; sourceTree = "<group>"; };
+		65081C351394505D009FCEE6 /* _CPFillColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPFillColor.h; sourceTree = "<group>"; };
+		65081C361394505D009FCEE6 /* _CPFillGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPFillGradient.h; sourceTree = "<group>"; };
+		65081C371394505D009FCEE6 /* _CPFillImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPFillImage.h; sourceTree = "<group>"; };
+		65081C381394505D009FCEE6 /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
+		65081C391394505D009FCEE6 /* CPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotation.h; sourceTree = "<group>"; };
+		65081C3A1394505D009FCEE6 /* CPAnnotationHostLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationHostLayer.h; sourceTree = "<group>"; };
+		65081C3B1394505D009FCEE6 /* CPAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAxis.h; sourceTree = "<group>"; };
+		65081C3C1394505D009FCEE6 /* CPAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAxisLabel.h; sourceTree = "<group>"; };
+		65081C3D1394505D009FCEE6 /* CPAxisLabelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAxisLabelGroup.h; sourceTree = "<group>"; };
+		65081C3E1394505D009FCEE6 /* CPAxisSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAxisSet.h; sourceTree = "<group>"; };
+		65081C3F1394505D009FCEE6 /* CPAxisTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAxisTitle.h; sourceTree = "<group>"; };
+		65081C401394505D009FCEE6 /* CPBarPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBarPlot.h; sourceTree = "<group>"; };
+		65081C411394505D009FCEE6 /* CPBorderedLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBorderedLayer.h; sourceTree = "<group>"; };
+		65081C421394505D009FCEE6 /* CPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColor.h; sourceTree = "<group>"; };
+		65081C431394505D009FCEE6 /* CPColorSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorSpace.h; sourceTree = "<group>"; };
+		65081C441394505D009FCEE6 /* CPConstrainedPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPConstrainedPosition.h; sourceTree = "<group>"; };
+		65081C451394505D009FCEE6 /* CPDarkGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDarkGradientTheme.h; sourceTree = "<group>"; };
+		65081C461394505D009FCEE6 /* CPDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDefinitions.h; sourceTree = "<group>"; };
+		65081C471394505D009FCEE6 /* CPExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPExceptions.h; sourceTree = "<group>"; };
+		65081C481394505D009FCEE6 /* CPFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPFill.h; sourceTree = "<group>"; };
+		65081C491394505D009FCEE6 /* CPGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGradient.h; sourceTree = "<group>"; };
+		65081C4A1394505D009FCEE6 /* CPGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGraph.h; sourceTree = "<group>"; };
+		65081C4B1394505D009FCEE6 /* CPGraphHostingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGraphHostingView.h; sourceTree = "<group>"; };
+		65081C4C1394505D009FCEE6 /* CPGridLineGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGridLineGroup.h; sourceTree = "<group>"; };
+		65081C4D1394505D009FCEE6 /* CPGridLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGridLines.h; sourceTree = "<group>"; };
+		65081C4E1394505D009FCEE6 /* CPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPImage.h; sourceTree = "<group>"; };
+		65081C4F1394505D009FCEE6 /* CPLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLayer.h; sourceTree = "<group>"; };
+		65081C501394505D009FCEE6 /* CPLayerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLayerAnnotation.h; sourceTree = "<group>"; };
+		65081C511394505D009FCEE6 /* CPLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLayoutManager.h; sourceTree = "<group>"; };
+		65081C521394505D009FCEE6 /* CPLimitBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLimitBand.h; sourceTree = "<group>"; };
+		65081C531394505D009FCEE6 /* CPLineStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLineStyle.h; sourceTree = "<group>"; };
+		65081C541394505D009FCEE6 /* CPMutableLineStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMutableLineStyle.h; sourceTree = "<group>"; };
+		65081C551394505D009FCEE6 /* CPMutableNumericData+TypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPMutableNumericData+TypeConversion.h"; sourceTree = "<group>"; };
+		65081C561394505D009FCEE6 /* CPMutableNumericData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMutableNumericData.h; sourceTree = "<group>"; };
+		65081C571394505D009FCEE6 /* CPMutableTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMutableTextStyle.h; sourceTree = "<group>"; };
+		65081C581394505D009FCEE6 /* CPNumericData+TypeConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPNumericData+TypeConversion.h"; sourceTree = "<group>"; };
+		65081C591394505D009FCEE6 /* CPNumericData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNumericData.h; sourceTree = "<group>"; };
+		65081C5A1394505D009FCEE6 /* CPNumericDataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNumericDataType.h; sourceTree = "<group>"; };
+		65081C5B1394505D009FCEE6 /* CPPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPathExtensions.h; sourceTree = "<group>"; };
+		65081C5C1394505D009FCEE6 /* CPPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPieChart.h; sourceTree = "<group>"; };
+		65081C5D1394505D009FCEE6 /* CPPlainBlackTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlainBlackTheme.h; sourceTree = "<group>"; };
+		65081C5E1394505D009FCEE6 /* CPPlainWhiteTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlainWhiteTheme.h; sourceTree = "<group>"; };
+		65081C5F1394505D009FCEE6 /* CPPlatformSpecificCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlatformSpecificCategories.h; sourceTree = "<group>"; };
+		65081C601394505D009FCEE6 /* CPPlatformSpecificDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlatformSpecificDefines.h; sourceTree = "<group>"; };
+		65081C611394505D009FCEE6 /* CPPlatformSpecificFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlatformSpecificFunctions.h; sourceTree = "<group>"; };
+		65081C621394505D009FCEE6 /* CPPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlot.h; sourceTree = "<group>"; };
+		65081C631394505D009FCEE6 /* CPPlotArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotArea.h; sourceTree = "<group>"; };
+		65081C641394505D009FCEE6 /* CPPlotAreaFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotAreaFrame.h; sourceTree = "<group>"; };
+		65081C651394505D009FCEE6 /* CPPlotGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotGroup.h; sourceTree = "<group>"; };
+		65081C661394505D009FCEE6 /* CPPlotRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotRange.h; sourceTree = "<group>"; };
+		65081C671394505D009FCEE6 /* CPPlotSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotSpace.h; sourceTree = "<group>"; };
+		65081C681394505D009FCEE6 /* CPPlotSpaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotSpaceAnnotation.h; sourceTree = "<group>"; };
+		65081C691394505D009FCEE6 /* CPPlotSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPlotSymbol.h; sourceTree = "<group>"; };
+		65081C6A1394505D009FCEE6 /* CPPolarPlotSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPolarPlotSpace.h; sourceTree = "<group>"; };
+		65081C6B1394505D009FCEE6 /* CPRangePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRangePlot.h; sourceTree = "<group>"; };
+		65081C6C1394505D009FCEE6 /* CPResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPResponder.h; sourceTree = "<group>"; };
+		65081C6D1394505D009FCEE6 /* CPScatterPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScatterPlot.h; sourceTree = "<group>"; };
+		65081C6E1394505D009FCEE6 /* CPSlateTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSlateTheme.h; sourceTree = "<group>"; };
+		65081C6F1394505D009FCEE6 /* CPStocksTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPStocksTheme.h; sourceTree = "<group>"; };
+		65081C701394505D009FCEE6 /* CPTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextLayer.h; sourceTree = "<group>"; };
+		65081C711394505D009FCEE6 /* CPTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTextStyle.h; sourceTree = "<group>"; };
+		65081C721394505D009FCEE6 /* CPTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTheme.h; sourceTree = "<group>"; };
+		65081C731394505D009FCEE6 /* CPTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTimeFormatter.h; sourceTree = "<group>"; };
+		65081C741394505D009FCEE6 /* CPTradingRangePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTradingRangePlot.h; sourceTree = "<group>"; };
+		65081C751394505D009FCEE6 /* CPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUtilities.h; sourceTree = "<group>"; };
+		65081C761394505D009FCEE6 /* CPXYAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYAxis.h; sourceTree = "<group>"; };
+		65081C771394505D009FCEE6 /* CPXYAxisSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYAxisSet.h; sourceTree = "<group>"; };
+		65081C781394505D009FCEE6 /* CPXYGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYGraph.h; sourceTree = "<group>"; };
+		65081C791394505D009FCEE6 /* CPXYPlotSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYPlotSpace.h; sourceTree = "<group>"; };
+		65081C7A1394505D009FCEE6 /* CPXYTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYTheme.h; sourceTree = "<group>"; };
+		65081C7B1394505D009FCEE6 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
+		65081C7C1394505D009FCEE6 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
+		65081C7F139450B0009FCEE6 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "Classes/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		653B14441356A62700BF3C72 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		653B14451356A62700BF3C72 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 		653B14461356A62700BF3C72 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +223,7 @@
 				65AA36E812F4DE8E00907DE3 /* CoreData.framework in Frameworks */,
 				3413590C137F77440039CE0B /* MessageUI.framework in Frameworks */,
 				65CE7E511380889100B01B1B /* QuartzCore.framework in Frameworks */,
+				65081C80139450B0009FCEE6 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +251,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				65081C341394505D009FCEE6 /* CorePlotHeaders */,
 				341358B0137F53270039CE0B /* CHCSVParser */,
 				659314B1136F76880050F6BA /* Table Cells */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -207,6 +288,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65081C7F139450B0009FCEE6 /* libCorePlot-CocoaTouch.a */,
 				65AA36E712F4DE8E00907DE3 /* CoreData.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -389,6 +471,7 @@
 		34CD239412F2640D002A8DC0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				65023E211395ACFA00542A85 /* Progress Chart */,
 				34A445F9135BB34400F37BBE /* Custom List Edit */,
 				34D12327135AC3FB008B9573 /* Custom Edit */,
 				34CD237D12F26316002A8DC0 /* Main Page */,
@@ -421,6 +504,95 @@
 			);
 			name = "Custom Edit";
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		65023E211395ACFA00542A85 /* Progress Chart */ = {
+			isa = PBXGroup;
+			children = (
+				65023E121395ACED00542A85 /* ProgressChartViewController.h */,
+				65023E131395ACED00542A85 /* ProgressChartViewController.m */,
+				65023E141395ACED00542A85 /* ProgressChartViewController.xib */,
+			);
+			name = "Progress Chart";
+			sourceTree = "<group>";
+		};
+		65081C341394505D009FCEE6 /* CorePlotHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				65081C351394505D009FCEE6 /* _CPFillColor.h */,
+				65081C361394505D009FCEE6 /* _CPFillGradient.h */,
+				65081C371394505D009FCEE6 /* _CPFillImage.h */,
+				65081C381394505D009FCEE6 /* CorePlot-CocoaTouch.h */,
+				65081C391394505D009FCEE6 /* CPAnnotation.h */,
+				65081C3A1394505D009FCEE6 /* CPAnnotationHostLayer.h */,
+				65081C3B1394505D009FCEE6 /* CPAxis.h */,
+				65081C3C1394505D009FCEE6 /* CPAxisLabel.h */,
+				65081C3D1394505D009FCEE6 /* CPAxisLabelGroup.h */,
+				65081C3E1394505D009FCEE6 /* CPAxisSet.h */,
+				65081C3F1394505D009FCEE6 /* CPAxisTitle.h */,
+				65081C401394505D009FCEE6 /* CPBarPlot.h */,
+				65081C411394505D009FCEE6 /* CPBorderedLayer.h */,
+				65081C421394505D009FCEE6 /* CPColor.h */,
+				65081C431394505D009FCEE6 /* CPColorSpace.h */,
+				65081C441394505D009FCEE6 /* CPConstrainedPosition.h */,
+				65081C451394505D009FCEE6 /* CPDarkGradientTheme.h */,
+				65081C461394505D009FCEE6 /* CPDefinitions.h */,
+				65081C471394505D009FCEE6 /* CPExceptions.h */,
+				65081C481394505D009FCEE6 /* CPFill.h */,
+				65081C491394505D009FCEE6 /* CPGradient.h */,
+				65081C4A1394505D009FCEE6 /* CPGraph.h */,
+				65081C4B1394505D009FCEE6 /* CPGraphHostingView.h */,
+				65081C4C1394505D009FCEE6 /* CPGridLineGroup.h */,
+				65081C4D1394505D009FCEE6 /* CPGridLines.h */,
+				65081C4E1394505D009FCEE6 /* CPImage.h */,
+				65081C4F1394505D009FCEE6 /* CPLayer.h */,
+				65081C501394505D009FCEE6 /* CPLayerAnnotation.h */,
+				65081C511394505D009FCEE6 /* CPLayoutManager.h */,
+				65081C521394505D009FCEE6 /* CPLimitBand.h */,
+				65081C531394505D009FCEE6 /* CPLineStyle.h */,
+				65081C541394505D009FCEE6 /* CPMutableLineStyle.h */,
+				65081C551394505D009FCEE6 /* CPMutableNumericData+TypeConversion.h */,
+				65081C561394505D009FCEE6 /* CPMutableNumericData.h */,
+				65081C571394505D009FCEE6 /* CPMutableTextStyle.h */,
+				65081C581394505D009FCEE6 /* CPNumericData+TypeConversion.h */,
+				65081C591394505D009FCEE6 /* CPNumericData.h */,
+				65081C5A1394505D009FCEE6 /* CPNumericDataType.h */,
+				65081C5B1394505D009FCEE6 /* CPPathExtensions.h */,
+				65081C5C1394505D009FCEE6 /* CPPieChart.h */,
+				65081C5D1394505D009FCEE6 /* CPPlainBlackTheme.h */,
+				65081C5E1394505D009FCEE6 /* CPPlainWhiteTheme.h */,
+				65081C5F1394505D009FCEE6 /* CPPlatformSpecificCategories.h */,
+				65081C601394505D009FCEE6 /* CPPlatformSpecificDefines.h */,
+				65081C611394505D009FCEE6 /* CPPlatformSpecificFunctions.h */,
+				65081C621394505D009FCEE6 /* CPPlot.h */,
+				65081C631394505D009FCEE6 /* CPPlotArea.h */,
+				65081C641394505D009FCEE6 /* CPPlotAreaFrame.h */,
+				65081C651394505D009FCEE6 /* CPPlotGroup.h */,
+				65081C661394505D009FCEE6 /* CPPlotRange.h */,
+				65081C671394505D009FCEE6 /* CPPlotSpace.h */,
+				65081C681394505D009FCEE6 /* CPPlotSpaceAnnotation.h */,
+				65081C691394505D009FCEE6 /* CPPlotSymbol.h */,
+				65081C6A1394505D009FCEE6 /* CPPolarPlotSpace.h */,
+				65081C6B1394505D009FCEE6 /* CPRangePlot.h */,
+				65081C6C1394505D009FCEE6 /* CPResponder.h */,
+				65081C6D1394505D009FCEE6 /* CPScatterPlot.h */,
+				65081C6E1394505D009FCEE6 /* CPSlateTheme.h */,
+				65081C6F1394505D009FCEE6 /* CPStocksTheme.h */,
+				65081C701394505D009FCEE6 /* CPTextLayer.h */,
+				65081C711394505D009FCEE6 /* CPTextStyle.h */,
+				65081C721394505D009FCEE6 /* CPTheme.h */,
+				65081C731394505D009FCEE6 /* CPTimeFormatter.h */,
+				65081C741394505D009FCEE6 /* CPTradingRangePlot.h */,
+				65081C751394505D009FCEE6 /* CPUtilities.h */,
+				65081C761394505D009FCEE6 /* CPXYAxis.h */,
+				65081C771394505D009FCEE6 /* CPXYAxisSet.h */,
+				65081C781394505D009FCEE6 /* CPXYGraph.h */,
+				65081C791394505D009FCEE6 /* CPXYPlotSpace.h */,
+				65081C7A1394505D009FCEE6 /* CPXYTheme.h */,
+				65081C7B1394505D009FCEE6 /* NSDecimalNumberExtensions.h */,
+				65081C7C1394505D009FCEE6 /* NSNumberExtensions.h */,
+			);
+			path = CorePlotHeaders;
 			sourceTree = "<group>";
 		};
 		659314B1136F76880050F6BA /* Table Cells */ = {
@@ -496,6 +668,7 @@
 				653B14481356A62700BF3C72 /* EditViewController.xib in Resources */,
 				34D122FC135ABBE9008B9573 /* SelectWODTypeViewController.xib in Resources */,
 				34A44600135BB42F00F37BBE /* ListEditViewController.xib in Resources */,
+				65023E161395ACED00542A85 /* ProgressChartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +705,7 @@
 				34D36D77137662DF00A17E51 /* EXERCISE.m in Sources */,
 				34D36D78137662DF00A17E51 /* EEXERCISE.m in Sources */,
 				341358B3137F53520039CE0B /* CHCSVWriter.m in Sources */,
+				65023E151395ACED00542A85 /* ProgressChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +722,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyWODLog_Prefix.pch;
 				INFOPLIST_FILE = "MyWODLog-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = MyWODLog;
 			};
 			name = Debug;
@@ -560,6 +742,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyWODLog_Prefix.pch;
 				INFOPLIST_FILE = "MyWODLog-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
 				PRODUCT_NAME = MyWODLog;
 				VALIDATE_PRODUCT = YES;
 			};

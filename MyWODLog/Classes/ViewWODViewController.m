@@ -136,6 +136,13 @@
 	
 }
 
+- (IBAction)progressChartPressed:(id)sender {
+	ProgressChartViewController *controller = [[ProgressChartViewController alloc] init];
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release];
+}
+
 
 
 #pragma mark -
