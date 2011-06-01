@@ -666,7 +666,7 @@
 	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"name" cacheName:@"Root"];
 	[self setFetchedResultsController:aFetchedResultsController];
 	//	self.fetchedResultsController = aFetchedResultsController;
-	[[self fetchedResultsController] setDelegate:self];
+	//[[self fetchedResultsController] setDelegate:self];
 	//	fetchedResultsController.delegate = self;
 	
 	// Memory management.

@@ -295,7 +295,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 50}, {252, 692}}</string>
+							<string>{{0, 82}, {252, 692}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -344,12 +344,11 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>65FBC74E1395EED600123464</string>
+										<string>65FBC7E91396002E00123464</string>
 										<key>history</key>
 										<array>
 											<string>6599D843135FFEC000C11679</string>
 											<string>6599D844135FFEC000C11679</string>
-											<string>65C193BB136E458A00DB7AC5</string>
 											<string>656842E61373586D00836EB7</string>
 											<string>6568435B137374CB00836EB7</string>
 											<string>6568435C137374CB00836EB7</string>
@@ -367,20 +366,15 @@
 											<string>65CE7DA4137FADF100B01B1B</string>
 											<string>65CE7DE9138075B200B01B1B</string>
 											<string>65CE7DEC138075B200B01B1B</string>
-											<string>65CE7DEE138075B200B01B1B</string>
 											<string>65CE7F871380F2A200B01B1B</string>
-											<string>654CFCE51382491F005DB8F1</string>
-											<string>65A6A51913835A3E00C33C5C</string>
 											<string>6511FE16138362DE0071B14B</string>
 											<string>6511FE1A138362DE0071B14B</string>
 											<string>65F39CCF138729F3002986A7</string>
 											<string>65F39CD1138729F3002986A7</string>
 											<string>65F39CD2138729F3002986A7</string>
 											<string>65F39CD3138729F3002986A7</string>
-											<string>65F39CD4138729F3002986A7</string>
 											<string>65F39CD5138729F3002986A7</string>
 											<string>65F39CD6138729F3002986A7</string>
-											<string>65081C87139450DD009FCEE6</string>
 											<string>65081CCE13946239009FCEE6</string>
 											<string>65081CD013946239009FCEE6</string>
 											<string>65081CD113946239009FCEE6</string>
@@ -393,18 +387,26 @@
 											<string>65023E091395AB2C00542A85</string>
 											<string>65023E351395B01900542A85</string>
 											<string>65023E361395B01900542A85</string>
-											<string>65023E511395BA6F00542A85</string>
 											<string>65023E521395BA6F00542A85</string>
-											<string>65023E721395BBBD00542A85</string>
 											<string>65FBC6FB1395E59400123464</string>
 											<string>65FBC6FC1395E59400123464</string>
 											<string>65FBC6FD1395E59400123464</string>
 											<string>65FBC6FE1395E59400123464</string>
-											<string>65FBC6FF1395E59400123464</string>
 											<string>65FBC7001395E59400123464</string>
-											<string>65FBC7011395E59400123464</string>
-											<string>65FBC7021395E59400123464</string>
-											<string>65FBC7031395E59400123464</string>
+											<string>65FBC78B1395F55200123464</string>
+											<string>65FBC78C1395F55200123464</string>
+											<string>65FBC78D1395F55200123464</string>
+											<string>65FBC78E1395F55200123464</string>
+											<string>65FBC78F1395F55200123464</string>
+											<string>65FBC7911395F55200123464</string>
+											<string>65FBC7931395F55200123464</string>
+											<string>65FBC7941395F55200123464</string>
+											<string>65FBC7B61395FA6900123464</string>
+											<string>65FBC7B71395FA6900123464</string>
+											<string>65FBC7BF1395FB6600123464</string>
+											<string>65FBC7C01395FB6600123464</string>
+											<string>65FBC7C11395FB6600123464</string>
+											<string>65FBC7C21395FB6600123464</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -602,7 +604,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>65FBC74F1395EED600123464</string>
+		<string>65FBC7EA1396002E00123464</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>65FBC7081395E59400123464</string>
 		<string>65FBC7091395E59400123464</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -627,12 +630,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ProgressChartViewController.m</string>
+								<string>ViewWODViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -649,8 +654,6 @@
 							<string>318pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -703,7 +706,7 @@
 			<key>WindowToolGUID</key>
 			<string>6599D804135E5AF900C11679</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -908,8 +911,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>6524EEC7137F889B00E33E6A</string>
-				<string>6524EEC8137F889B00E33E6A</string>
+				<string>65FBC7AA1395FA1100123464</string>
+				<string>65FBC7AB1395FA1100123464</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -918,7 +921,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

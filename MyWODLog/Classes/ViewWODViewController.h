@@ -13,6 +13,7 @@
 #import "ProgressChartViewController.h"
 #import "WOD.h"
 #import "EXERCISE.h"
+#import "EEXERCISE.h"
 
 #define VW_SECTION_DETAILS				0
 #define VW_SECTION_EXERCISES			1

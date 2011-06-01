@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import	"WOD.h"
+#import "SCORE.h"
 #import "MyWODLogAppDelegate.h"
 #import "CorePlot-CocoaTouch.h"
-
 
 @interface ProgressChartViewController : UIViewController <CPPlotDataSource> {
 	

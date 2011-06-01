@@ -60,19 +60,47 @@
 	float xRangeLength = [latestScore timeIntervalSinceDate:earliestScore];
 	NSLog(@"%f",xRangeLength);
 	
-	float maxTime = 0;
+	float maxScore = 0;
 	for (int i = 0; i < [scores count]; i++) {
-		if ([[[scores objectAtIndex:i] time] floatValue] > maxTime) {
-			maxTime = [[[scores objectAtIndex:i] time] floatValue];
+		if ([[[scores objectAtIndex:i] time] floatValue] > maxScore) {
+			maxScore = [[[scores objectAtIndex:i] time] floatValue];
 		}
 	}
+	if ([[wod score_type] intValue] == WOD_SCORE_TYPE_TIME) {
+		for (int i = 0; i < [scores count]; i++) {
+			if ([[[scores objectAtIndex:i] time] floatValue] > maxScore) {
+				maxScore = [[[scores objectAtIndex:i] time] floatValue];
+			}
+		}
+		maxScore = maxScore/60 + 1;
+	}
+	else if ([[wod score_type] intValue] == WOD_SCORE_TYPE_REPS) {
+		for (int i = 0; i < [scores count]; i++) {
+			if ([[[scores objectAtIndex:i] reps] floatValue] > maxScore) {
+				maxScore = [[[scores objectAtIndex:i] reps] floatValue];
+			}
+		}
+		maxScore = maxScore + 1;
+	}
+	else if ([[wod score_type] intValue] == WOD_SCORE_TYPE_RNDS) {
+		for (int i = 0; i < [scores count]; i++) {
+			if ([[[scores objectAtIndex:i] rounds] floatValue] > maxScore) {
+				maxScore = [[[scores objectAtIndex:i] rounds] floatValue];
+			}
+		}
+		maxScore = maxScore + 1;
+	}
+		
+	NSLog(@"%f",maxScore);
+
     plotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(xLow-oneDay) length:CPDecimalFromFloat(xRangeLength+oneDay*2)];
-    plotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-0.5) length:CPDecimalFromFloat(maxTime/60 + 1)];
+    plotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-0.5) length:CPDecimalFromFloat(maxScore)];
 	plotSpace.allowsUserInteraction = YES;
 
     // Axes
 	CPXYAxisSet *axisSet = (CPXYAxisSet *)graph.axisSet;
     CPXYAxis *x = axisSet.xAxis;
+	x.labelingPolicy = CPAxisLabelingPolicyAutomatic;
     x.majorIntervalLength = CPDecimalFromFloat(oneDay);
     x.orthogonalCoordinateDecimal = CPDecimalFromString(@"0");
     x.minorTicksPerInterval = 0;
@@ -81,11 +109,30 @@
     CPTimeFormatter *timeFormatter = [[[CPTimeFormatter alloc] initWithDateFormatter:dateFormatter] autorelease];
     timeFormatter.referenceDate = refDate;
     x.labelFormatter = timeFormatter;
+	x.title = @"Date";
 	
     CPXYAxis *y = axisSet.yAxis;
+	y.labelingPolicy = CPAxisLabelingPolicyAutomatic;
     y.majorIntervalLength = CPDecimalFromString(@"1.0");
     y.minorTicksPerInterval = 5;
     y.orthogonalCoordinateDecimal = CPDecimalFromFloat(oneDay);
+	
+	switch ([[wod score_type] intValue]) {
+		case WOD_SCORE_TYPE_NONE:
+			y.title = @"None";
+			break;
+		case WOD_SCORE_TYPE_TIME:
+			y.title = @"Time";
+			break;
+		case WOD_SCORE_TYPE_REPS:
+			y.title = @"Reps";
+			break;
+		case WOD_SCORE_TYPE_RNDS:
+			y.title = @"Rounds";
+			break;
+		default:
+			break;
+	}	
 	
     // Create a plot that uses the data source method
 	CPScatterPlot *dataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
@@ -111,10 +158,26 @@
 	NSMutableArray *newData = [NSMutableArray array];
 	NSUInteger i;
 	for ( i = 0; i < [scores count] ; i++ ) {
+		id y;
 		NSTimeInterval x = [[[scores objectAtIndex:i] date] timeIntervalSinceDate:refDate];
-		float seconds = [[[scores objectAtIndex:i] time] floatValue];
-		float minutes = seconds / 60;
-		id y = [NSDecimalNumber numberWithFloat:minutes];
+		float minutes, seconds;
+		switch ([[wod score_type] intValue]) {
+			case WOD_SCORE_TYPE_NONE:
+				break;
+			case WOD_SCORE_TYPE_TIME:
+				seconds = [[[scores objectAtIndex:i] time] floatValue];
+				minutes = seconds / 60;
+				y = [NSDecimalNumber numberWithFloat:minutes];
+				break;
+			case WOD_SCORE_TYPE_REPS:
+				y = [NSDecimalNumber numberWithFloat:[[[scores objectAtIndex:i] reps] floatValue]];
+				break;
+			case WOD_SCORE_TYPE_RNDS:
+				y = [NSDecimalNumber numberWithFloat:[[[scores objectAtIndex:i] rounds] floatValue]];
+				break;
+			default:
+				break;
+		}
 		[newData addObject:
 		 [NSDictionary dictionaryWithObjectsAndKeys:
 		  [NSDecimalNumber numberWithFloat:x], [NSNumber numberWithInt:CPScatterPlotFieldX], 
