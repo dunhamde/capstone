@@ -22,6 +22,7 @@
 	//[self setTitle:[title stringByAppendingString:[wod name]]];
 	[self setTitle:@"Log Score"];
 	self.hiddenButton.enabled = NO;
+	[datePicker setDate:[NSDate date]];
 	
 	timeButton = [[UIButton alloc] initWithFrame:CGRectMake(75, 9, 60, 30)]; 
 	[timeButton setTitle:@"Start!" forState:UIControlStateNormal];
