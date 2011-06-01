@@ -8,18 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import	"WOD.h"
+#import "MyWODLogAppDelegate.h"
 #import "CorePlot-CocoaTouch.h"
 
 
-@interface ProgressChartViewController : UIViewController {
+@interface ProgressChartViewController : UIViewController <CPPlotDataSource> {
+	
+	NSFetchedResultsController	*fetchedResultsController;
+	NSManagedObjectContext		*managedObjectContext;
 	
 	WOD *wod;
 	CPXYGraph *graph;
-	
-	NSMutableArray *dataForPlot;
+	NSMutableArray *plotData;
 }
+@property (nonatomic, retain) NSFetchedResultsController	*fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext		*managedObjectContext;
+@property (nonatomic, retain) WOD		*wod;
 
-@property(readwrite, retain, nonatomic) NSMutableArray *dataForPlot;
+
+@property(readwrite, retain, nonatomic) NSMutableArray *plotData;
 
 @end
 

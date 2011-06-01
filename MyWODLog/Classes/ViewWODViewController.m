@@ -138,6 +138,7 @@
 
 - (IBAction)progressChartPressed:(id)sender {
 	ProgressChartViewController *controller = [[ProgressChartViewController alloc] init];
+	[controller setWod:[self wod]];
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];
