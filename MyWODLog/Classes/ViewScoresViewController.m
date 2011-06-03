@@ -67,6 +67,7 @@
 - (void)viewDidLoad {
 	
     [super viewDidLoad];
+	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
 	
 	filterLabel.backgroundColor = [UIColor clearColor];
 	filterLabel.font = [UIFont boldSystemFontOfSize: 15.0f];
@@ -265,6 +266,40 @@
     cell.score = newscore;
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+	[table setEditing:editing animated:animated];
+	
+	[self.navigationItem setHidesBackButton:editing animated:YES];
+	
+	if (editing) {
+		//UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createWOD)];
+		//[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
+		//[addButton release];
+	}
+	else {
+	
+		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		
+	}	
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		// Delete the managed object.
+		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
+		
+		NSError *error;
+		if (![context save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+    }   
+}
 
 
 #pragma mark -
@@ -512,8 +547,6 @@
 	}
 }
 
-
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
 	
 	switch(type) {
@@ -527,8 +560,6 @@
 			break;
 	}
 }
-
-
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.

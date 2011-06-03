@@ -334,7 +334,6 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
 	
-	
 	[self.navigationItem setHidesBackButton:editing animated:YES];
 
 	if (editing) {
