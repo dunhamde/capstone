@@ -38,7 +38,6 @@
 	
 	[self setTitle:@"Categories"];
 	
-	//[self setQuantify:NO];
 	
 	// Configure the save and cancel buttons.
 	[[self navigationItem] setRightBarButtonItem:[self editButtonItem]];
@@ -47,7 +46,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	[[self tableView] setAllowsSelectionDuringEditing:NO];
-//	self.tableView.allowsSelectionDuringEditing = NO;
 	
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -74,7 +72,6 @@
 - (void)createExerciseMode:(id)sender {
 	
 	CreateExerciseModeViewController *createExerciseModeViewController = [[CreateExerciseModeViewController alloc] init];
-//	createExerciseModeViewController.delegate = self;
 	
 	[createExerciseModeViewController setDelegate:self];
 	[createExerciseModeViewController setManagedObjectContext:[self managedObjectContext]];
@@ -85,9 +82,6 @@
 
 	[addingContext release];
 	
-	if( fetchedResultsController == NULL ) {
-		NSLog( @"FETCHED RESULTS IS NULL WHEN IT SHOULDN'T BE!!!!" );
-	}
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
 
@@ -213,10 +207,8 @@
 	MODE *mode = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (mode) {
 		[[cell textLabel] setText:[[mode name] capitalizedString]];
-//		[[cell textLabel] setText:[NSString stringWithFormat:@"%@  '%u'", [mode name], [[mode exercises] count]]];
 
 	} else {
-		NSLog( @"Mode is NULL for a cell at row %d", [indexPath row] );
 	}
 	
 }
@@ -243,7 +235,6 @@
 		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
 	
-		NSLog(@"ACTUALLY DELETING");
 		NSError *error;
 		if (![context save:&error]) {
 			// Update to handle the error appropriately.
@@ -251,14 +242,7 @@
 			exit(-1);  // Fail
 		}
 	}
-	
-    //if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-     //   [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    //}   
-   // else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-   // }   
+	  
 }
 
 #pragma mark -
@@ -406,7 +390,6 @@
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			NSLog(@"DELETING IN DID CHAGNE OBJECT");
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
@@ -428,13 +411,10 @@
 	switch(type) {
 			
 		case NSFetchedResultsChangeInsert:
-//			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			[[self tableView] insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
 		case NSFetchedResultsChangeDelete:
-			NSLog(@"DELETING IN DID cHANGE SECTION");
-//			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			[[self tableView] deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 	}
@@ -444,7 +424,6 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	//[self.tableView endUpdates];
 	[[self tableView] endUpdates];
 }
 

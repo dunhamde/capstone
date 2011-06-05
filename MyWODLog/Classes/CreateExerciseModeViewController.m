@@ -91,7 +91,6 @@
 	} else {
 		if( [[nameField text] length] > 0 ) {
 			[self setName:[[nameField text] uppercaseString]];
-//			[[self mode] setName:[[[self name] copy] uppercaseString]];
 			[[self mode] setName:[[self name] uppercaseString]];
 			[delegate createExerciseModeViewController:self didFinishWithSave:YES];
 		}

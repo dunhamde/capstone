@@ -179,10 +179,9 @@
  The data source methods are handled primarily by the fetch results controller
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	NSLog( @"SCORES NUM OF SECTIONS IN TABLE = %d", [[fetchedResultsController sections] count] );
-	NSLog(@"fetched results: %@", fetchedResultsController);
 
     return [[fetchedResultsController sections] count];
+	
 }
 
 
@@ -191,8 +190,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-	NSLog( @"SCORES NUM OF ROWS IN SECTION = %d", [sectionInfo numberOfObjects] );
+
 	return [sectionInfo numberOfObjects];
+	
 }
 
 
@@ -241,14 +241,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	NSLog(@"CELL");
-    // Dequeue or if necessary create a ScoreTableViewCell, then set its recipe to the recipe for the current row.
     static NSString *ScoreCellIdentifier = @"ScoreCellIdentifier";
     
     ScoreTableViewCell *scoreCell = (ScoreTableViewCell *)[tableView dequeueReusableCellWithIdentifier:ScoreCellIdentifier];
     if (scoreCell == nil) {
         scoreCell = [[[ScoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ScoreCellIdentifier] autorelease];
-		//scoreCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		[scoreCell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     }
@@ -256,6 +253,7 @@
 	[self configureCell:scoreCell atIndexPath:indexPath];
     
     return scoreCell;
+	
 }
 
 
@@ -270,16 +268,15 @@
     [super setEditing:editing animated:animated];
 	[table setEditing:editing animated:animated];
 	
-	[self.navigationItem setHidesBackButton:editing animated:YES];
+	[[self navigationItem] setHidesBackButton:editing animated:YES];
 	
 	if (editing) {
 		//UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createWOD)];
 		//[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
 		//[addButton release];
-	}
-	else {
+	} else {
 	
-		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		[[self navigationItem] setLeftBarButtonItem:nil animated:NO];
 		
 	}	
 }

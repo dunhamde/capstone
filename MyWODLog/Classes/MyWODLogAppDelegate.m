@@ -125,7 +125,6 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-//		    NSLog(@"Creating managed object context");
         managedObjectContext = [[NSManagedObjectContext alloc] init];
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
@@ -228,10 +227,8 @@
 	
 	// Throw up an error message if the WOD already exists.
 	if( error || [array count] <= 0) {
-		NSLog(@"NEEDS TO GENERATE DEFAULT DATA");
 		need = YES;
 	} else {
-		NSLog(@"DOES NOT NEED TO GENERATE DEFAULT DATA");
 	}
 	
 	[fetchRequest release];
@@ -273,17 +270,6 @@
 	e = [self addExerciseToMode:m withName:@"MAX REP PULL-UPS"];
 	
 	
-////	e = [self addExerciseToMode:m withName:@"Air squat"];
-	//e = [self addExerciseToMode:m withName:@"Sit up"];
-	//e = [self addExerciseToMode:m withName:@"Pull up"];
-	//e = [self addExerciseToMode:m withName:@"Push up"];
-	//e = [self addExerciseToMode:m withName:@"Handstand push up"];
-////	e = [self addExerciseToMode:m withName:@"Turkish get up"];
-////	e = [self addExerciseToMode:m withName:@"Walking lunge"];
-////	e = [self addExerciseToMode:m withName:@"Kipping pull up"];
-//	e = [self addExerciseToMode:m withName:@"Ring dips"];
-////	e = [self addExerciseToMode:m withName:@"Wall balls"];
-////	e = [self addExerciseToMode:m withName:@"Rope climb"];
 	
 	m = [self addMode:@"MOBILITY"];
 	e = [self addExerciseToMode:m withName:@"DOUBLE-UNDERS"];
@@ -291,30 +277,9 @@
 	e = [self addExerciseToMode:m withName:@"ROW # METERS" isQuantifiable:NO requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"RUN # METERS" isQuantifiable:NO requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"BURPEES"];
-//	e = [self addExerciseToMode:m withName:@"Run # meter(s)" isQuantifiable:NO requiresMetric:YES];
-////	e = [self addExerciseToMode:m withName:@"Run # mile(s)" isQuantifiable:NO requiresMetric:YES];
-////	e = [self addExerciseToMode:m withName:@"Any sprint distance"];
-//	e = [self addExerciseToMode:m withName:@"Row # meter(s)" isQuantifiable:NO requiresMetric:YES];
-//	e = [self addExerciseToMode:m withName:@"Burpee"];
-////	e = [self addExerciseToMode:m withName:@"Box jump"];
-////	e = [self addExerciseToMode:m withName:@"Jump rope"];
-	//e = [self addExerciseToMode:m withName:@"Double unders"];
+
 	
 	m = [self addMode:@"WEIGHT LIFTING"];
-////	e = [self addExerciseToMode:m withName:@"Front squat"];
-////	e = [self addExerciseToMode:m withName:@"Back squat"];
-//	e = [self addExerciseToMode:m withName:@"Clean & Jerk"];
-//	e = [self addExerciseToMode:m withName:@"Hang power clean"];
-//	e = [self addExerciseToMode:m withName:@"Deadlift"];
-//	e = [self addExerciseToMode:m withName:@"Thruster"];
-//	e = [self addExerciseToMode:m withName:@"Snatch"];
-//	e = [self addExerciseToMode:m withName:@"Power press"];
-//	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
-//	e = [self addExerciseToMode:m withName:@"Bench press"];
-//	e = [self addExerciseToMode:m withName:@"Overhead squats"];
-//	e = [self addExerciseToMode:m withName:@"Power snatch"];
-////	e = [self addExerciseToMode:m withName:@"Sumo deadlift"];
-//	e = [self addExerciseToMode:m withName:@"Kettlebell swing"];
 	e = [self addExerciseToMode:m withName:@"SNATCH, # POUNDS" isQuantifiable:YES requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"PUSH PRESS, # POUNDS" isQuantifiable:YES requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"OVERHEAD SQUATS, # POUNDS" isQuantifiable:YES requiresMetric:YES];
@@ -329,7 +294,6 @@
 	e = [self addExerciseToMode:m withName:@"CLEAN & JERK, # POUNDS" isQuantifiable:YES requiresMetric:YES];
 	e = [self addExerciseToMode:m withName:@"CLEAN & JERK"];	
 	e = [self addExerciseToMode:m withName:@"WALL-BALL SHOTS, # POUNDS" isQuantifiable:YES requiresMetric:YES];
-//	e = [self addExerciseToMode:m withName:@"BENCH, BODY WEIGHT"];
 	e = [self addExerciseToMode:m withName:@"BENCH PRESS, BODY WEIGHT"];  // same thing as bench?
 	e = [self addExerciseToMode:m withName:@"HANG POWER CLEAN, # POUNDS" isQuantifiable:YES requiresMetric:YES];	
 
@@ -387,14 +351,6 @@
 	
 	NSSet *angieSet = [[NSSet alloc] initWithArray:angieExercises];
 	[w setEexercises:angieSet];
-	/*ee = [self addEExercise:@"PULL-UPS" quantity:100 metric:nil];
-	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"PUSH-UPS" quantity:100 metric:nil];
-	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SIT-UPS" quantity:100 metric:nil];
-	[w addEexercisesObject:ee];
-	ee = [self addEExercise:@"SQUATS" quantity:100 metric:nil];
-	[w addEexercisesObject:ee];*/
 	// #### [/ANGIE] ####
 
 	

@@ -488,7 +488,7 @@
 - (void)logScoreViewController:(LogScoreViewController *)controller didFinishWithSave:(BOOL)save	{
 	
 	if (save) {
-		NSLog(@"SAVING SCORE");
+
 		// Create a new WOD in the database with specific attributes:
 		SCORE* score = (SCORE *)[NSEntityDescription insertNewObjectForEntityForName:@"score" inManagedObjectContext:managedObjectContext];
 		[score setCompleted:[NSNumber numberWithInt:1]];
@@ -513,7 +513,6 @@
 				break;
 		}	
 		
-		NSLog(@"Saving score: %@",score);
 		
 		// Save the new WOD:
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];

@@ -87,7 +87,7 @@
 }
 
 - (void)scoreNote:(NSNotification*)saveNotification {
-	NSLog(@"SCORE SENT");
+
 	// Update 'Score' and refresh the table
 	NSDictionary *dict = [saveNotification userInfo];
 
@@ -97,6 +97,7 @@
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver:self name:@":ScoreSent" object:nil];
 	[table reloadData];
+	
 }
 
 - (void)notesChangedNote:(NSNotification*)saveNotification {
@@ -187,7 +188,7 @@
 		NSDateFormatter *format = [[NSDateFormatter alloc] init];
 		[format setDateFormat:@"MM/dd/yyyy"];
 		NSString *newDate = [format stringFromDate:[datePicker date]];
-		NSLog(@"%@",newDate);
+
 		[self setDateFormatted:newDate];	
 		[self setDate:[datePicker date]];
 		[format release];
@@ -224,9 +225,10 @@
 }
 
 - (IBAction)save:(id)sender	{
-	NSLog(@"SAVING LOG");
+
 	[delegate logScoreViewController:self didFinishWithSave:YES];
 	[[self navigationController] popViewControllerAnimated:YES];
+	
 }
 
 #pragma mark -

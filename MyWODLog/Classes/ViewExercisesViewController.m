@@ -70,21 +70,11 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-/*	if (mode != NULL && [mode exercises] != NULL) {
-		NSLog(@"RETURNING %d", [[mode exercises] count]);
-		return [[mode exercises] count];
-	}
-	if (mode == NULL) {
-		NSLog( @"MODE == NULL" );
-	} else if ([mode exercises] == NULL) {
-		NSLog(@"MODE EXERCISES == NULL");
-	}
-	NSLog(@"RETURNING ZERO");
-	return 0;
-*/
+
     // Return the number of rows in the section.
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 	return [sectionInfo numberOfObjects];
+	
 }
 
 
@@ -108,15 +98,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-    // Configure the cell to show the book's title
-//	EXERCISE *exercise = [[mode exercises] anyObject];
 	EXERCISE *exercise = [fetchedResultsController objectAtIndexPath:indexPath];
 	if (exercise) {
 		[[cell textLabel] setText:[[exercise name] capitalizedString]];
-//		cell.textLabel.text = [exercise name];
-		//[[cell textLabel] setText:[exercise name]];
 	} else {
-		NSLog( @"Exercise is NULL for a cell at row %d", [indexPath row] );
 	}
 	
 }
@@ -125,6 +110,7 @@
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	
     // Return NO if you do not want the specified item to be editable.
 	BOOL canDelete = NO;
 	
@@ -135,6 +121,7 @@
 	}
 	
     return canDelete;
+	
 }
 
 
@@ -195,11 +182,11 @@
 	
 	if (editing) {
 		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createExercise)];
-		[self.navigationItem setLeftBarButtonItem:addButton animated:animated];
+		[[self navigationItem] setLeftBarButtonItem:addButton animated:animated];
 		[addButton release];
 	}
 	else {
-		[self.navigationItem setLeftBarButtonItem:nil animated:NO];
+		[[self navigationItem] setLeftBarButtonItem:nil animated:NO];
 		
 	}	
 }
@@ -227,37 +214,13 @@
 
 
 
-/**
- Creates a new book, an AddViewController to manage addition of the book, and a new managed object context
-  for the add controller to keep changes made to the book discrete from the application's managed object
-  context until the book is saved.
- IMPORTANT: It's not necessary to use a second context for this. You could just use the existing context,
-  which would simplify some of the code -- you wouldn't need to merge changes after a save, for example.
-  This implementation, though, illustrates a pattern that may sometimes be useful (where you want to
-  maintain a separate set of edits).  The root view controller sets itself as the delegate of the add
-  controller so that it can be informed when the user has completed the add operation -- either saving or
-  canceling (see addViewController:didFinishWithSave:).
- */
+
 - (IBAction)createExercise {
 	
     CreateExerciseViewController *createExerciseViewController = [[CreateExerciseViewController alloc] init];
 	[createExerciseViewController setDelegate:self];
 	
 	[self setCevc:createExerciseViewController];
-
-	
-	/*
-	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	[self setAddingManagedObjectContext:addingContext];
-	[addingContext release];
-	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-	
-	createExerciseViewController.exercise = (EXERCISE *)[NSEntityDescription insertNewObjectForEntityForName:@"exercise" inManagedObjectContext:addingContext];
-
-	[self setLastExerciseAdded:createExerciseViewController.exercise];
-	 */
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createExerciseViewController];
 	

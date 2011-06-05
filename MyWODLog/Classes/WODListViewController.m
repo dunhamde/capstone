@@ -62,8 +62,9 @@
  */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	//NSLog( @"NUM OF SECTIONS = %d", [[fetchedResultsController sections] count] );
+
     return [[fetchedResultsController sections] count];
+	
 }
 
 
@@ -72,8 +73,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-//	NSLog( @"WOD LIST NUM OF OBJECTS = %d", [sectionInfo numberOfObjects] );
 	return [sectionInfo numberOfObjects];
+
 }
 
 
@@ -184,19 +185,13 @@
 		[wod setNotes:[createWODViewController wodNotes]];
 
 		// Add exercises:
-//		NSSet* exerciseSet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseArray]];
-//		NSSet* exerciseQtySet = [[NSSet alloc] initWithArray:[createWODViewController wodExerciseQtyArray]];
-		
 		NSMutableArray* exerciseArray = [createWODViewController wodExerciseArray];
 		NSMutableArray* exerciseQtyArray = [createWODViewController wodExerciseQtyArray];
 		NSMutableArray* exerciseMetricArray = [createWODViewController wodExerciseMetricArray];
 		
-	//	NSLog( @"EA: %d,  EQA: %d", [[createWODViewController wodExerciseArray] count], [[createWODViewController wodExerciseQtyArray] count] );
-	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
 		if ([exerciseArray count] != [exerciseQtyArray count]) {
-			NSLog(@"Something went wrong, mix-match of exercises and their quantities!");
+			// Throw and error up
 		}
-	//	NSLog( @"SEA: %d,  SEQA: %d", [exerciseSet count], [exerciseQtySet count] );
 
 		NSMutableArray* eexList = [NSMutableArray arrayWithCapacity:0];
 
@@ -260,37 +255,9 @@
 			order++;
 			
 		}
-/*
-		NSSet* rroundSet = [[NSSet alloc] initWithArray:rroundList];
-		if ([eexSet count] > 0) {
-			[wod setRrounds:rroundSet];
-		}*/
 
-		/*
-		 // Check to see if that name doesn't already exist.
-		 NSString *queryString = [NSString stringWithFormat:@"name == '%@'", [self wodName] ];
-		 
-		 // Create and configure a fetch request with the wod entity.
-		 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		 NSEntityDescription *entity = [NSEntityDescription entityForName:@"wod" inManagedObjectContext:[self managedObjectContext]];
-		 [fetchRequest setEntity:entity];
-		 [fetchRequest setPredicate:[NSPredicate predicateWithFormat:queryString]];
-		 
-		 NSError *error = nil; 
-		 NSArray *array = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-		 
-		 // Throw up an error message if the WOD already exists.
-		 if( error || [array count] > 0) {
-		 
-		 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"WOD Already Exists" message: @"Error, a WOD with that name already exists!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		 [alert show];
-		 [alert release];
-		 alert = nil;
-		 
-		 /*/
 
 		// Save the new WOD:
-		//TODO: why are we adding an observer here? ahh its for the merging to update the list with the FRC
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(createWODControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 		NSError *error;
@@ -301,9 +268,7 @@
 		}
 		
 		[eexSet release];
-	//	[repRoundSet release];
-	//	[rroundSet release];
-
+		
 		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
 
 	}
@@ -311,10 +276,10 @@
 	// Clean up:
 	[createWODViewController release];
 	[self setCreateWODViewController:nil];
-		NSLog(@"SAVING 15");
+
 	// Dismiss the modal view to return to the main list:
     [self dismissModalViewControllerAnimated:YES];
-			NSLog(@"SAVING 16");
+
 }
 
 

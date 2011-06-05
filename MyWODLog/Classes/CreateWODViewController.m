@@ -67,7 +67,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSLog(@"VIEW WILL APPEAR");
 
 	// Register for exercises saved notifications
 	
@@ -84,31 +83,12 @@
 	// Handle Rep Round (if need be)
 	if ([self repRoundList] != nil) {
 
-		//TODO: Fix memory leak here (repRoundList cannot be released here... or crash later on)
-		// Probably need to actually copy elements into wodRepRounds
-		//[self setWodRepRounds:[[self repRoundList] elements]];
-		//[[self wodRepRounds] release];
-		//[self setWodRepRounds:nil];
-		
-		
-		// Posible solution may be:  Make a get copy of elements method for ListEditVC
-		//  and remove the setter/getters for it (but make a set default elements method)
-		
-		
-		// SOLUTION:  THROW UP MEMORY LEAKS
 		[self setWodRepRounds:[NSMutableArray arrayWithCapacity:0]];
 		[[self wodRepRounds] addObjectsFromArray:[[self repRoundList] elements]];
 		
-		// THIS BELOW IS NECESSARY YET CRASHES THE PROGRAM....
-	//	[[self repRoundList] release];
-	//	[self setRepRoundList:nil];
-		
-		
 		[[self table] reloadData];
 
-
 	}
-	NSLog(@"END VIEW WILL APPEAR");
 	 
 }
 
@@ -124,7 +104,7 @@
 
 
 - (IBAction)save:(id)sender {
-	NSLog(@"CW SAVE");
+
 	// Error check that save is possible:
 	if ([self wodName] == nil) {
 		return;
@@ -152,20 +132,11 @@
 	
 	// Confirm that a name has been entered
 	} else if ([self readyToSave]) {
-		
-		NSLog(@"Saved with text: %@", [self wodName]);
-
 		[delegate createWODViewController:self didFinishWithSave:YES];
 	} else {
-		/*
-		 UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Network error" message: @"Error sending your info to the server" delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
-		 
-		 [someError show];
-		 [someError release];
-		 */
 	}
 	[fetchRequest release];
-	NSLog(@"CW SAVE END");
+
 }
 
 
