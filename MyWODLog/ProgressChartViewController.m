@@ -58,7 +58,6 @@
 	NSDate *earliestScore = [[scores lastObject] date];
 	NSDate *latestScore = [[scores objectAtIndex:0] date];
 	float xRangeLength = [latestScore timeIntervalSinceDate:earliestScore];
-	NSLog(@"%f",xRangeLength);
 	
 	float maxScore = 0;
 	for (int i = 0; i < [scores count]; i++) {
@@ -91,7 +90,6 @@
 		maxScore = maxScore + 1;
 	}
 		
-	NSLog(@"%f",maxScore);
 
     plotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(xLow-oneDay) length:CPDecimalFromFloat(xRangeLength+oneDay*2)];
     plotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-0.5) length:CPDecimalFromFloat(maxScore)];

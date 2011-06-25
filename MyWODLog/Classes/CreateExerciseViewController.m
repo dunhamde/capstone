@@ -75,7 +75,6 @@
 {
 	
     [self setName:nil];
-	// [[self navigationController] popViewControllerAnimated:YES];
 	[delegate createExerciseViewController:self didFinishWithSave:NO];
 	
 }

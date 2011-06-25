@@ -79,7 +79,7 @@
 
 
 - (void)save:(id)sender {
-	NSLog(@"SAVING");
+
 	if ([[[self quantityField] text] length] > 0 ) {
 		
 		NSString *metric = nil;
@@ -98,13 +98,13 @@
 		
 		// Create a dictionary with the exercise and the quantity and their respective keys
 		NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self exercise],quantity,metric,nil] forKeys:[NSArray arrayWithObjects:@"Exercise",@"Quantity",@"Metric",nil]];
-		NSLog(@"DICT = %@", dict);
+
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ExerciseSelected" object:nil userInfo:dict];
-NSLog(@"EXERCISE SELECTED SENT");
+
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		
 	}
-	NSLog(@"DONE SAVING");
+
 }
 
 
