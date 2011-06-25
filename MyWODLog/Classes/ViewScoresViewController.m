@@ -154,7 +154,13 @@
 		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date==%@", [self wodDateFilter]]];
 	}
 	
-	[fetchedResultsController initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:key cacheName:@"Root"];	
+	// Create and initialize the fetch results controller.
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"time" cacheName:nil];
+	[self setFetchedResultsController:aFetchedResultsController];
+	[[self fetchedResultsController] setDelegate:self];
+	
+	// Memory management.
+	[aFetchedResultsController release];	
 	[sortDescriptors release];
 	[fetchRequest release];
 
@@ -290,8 +296,8 @@
 		
 		// Delete the managed object.
 		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		NSLog(@"%@",[fetchedResultsController fetchedObjects]);
 		[context deleteObject:[fetchedResultsController objectAtIndexPath:indexPath]];
-		
 		NSError *error;
 		if (![context save:&error]) {
 			// Update to handle the error appropriately.
@@ -525,6 +531,7 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 	
 	UITableView *tableView = [self table];
+	NSLog(@"Updating table");
 	
 	switch(type) {
 			
@@ -533,6 +540,7 @@
 			break;
 			
 		case NSFetchedResultsChangeDelete:
+			NSLog(@"Deleting rows");
 			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 			break;
 			
