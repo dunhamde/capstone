@@ -878,6 +878,23 @@
 
 }
 
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		NSInteger row = [indexPath row];
+		NSLog(@"ex %@",[wodExerciseArray objectAtIndex:row]);
+		NSLog(@"qty %i",[wodExerciseQtyArray objectAtIndex:row]);
+		NSLog(@"metric %@",[wodExerciseMetricArray objectAtIndex:row]);
+		NSLog(@"name %@",[wodExerciseNameArray objectAtIndex:row]);
+		//[tableView removeObjectAtIndex:row];      
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
